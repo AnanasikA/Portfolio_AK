@@ -4,15 +4,11 @@ import { notFound } from 'next/navigation';
 import { projects } from '@/data/projects';
 import ProjectView from './ProjectView';
 
-// 1) prerender slugów
-export function generateStaticParams(): { slug: string }[] {
+export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-// 2) metadata
-export async function generateMetadata(
-  { params }: { params: { slug: string } }
-): Promise<Metadata> {
+export async function generateMetadata({ params }: any): Promise<Metadata> {
   const p = projects.find((x) => x.slug === params.slug);
   if (!p) return {};
   return {
@@ -21,10 +17,7 @@ export async function generateMetadata(
   };
 }
 
-// 3) strona (server component)
-export default function Page(
-  { params }: { params: { slug: string } }
-) {
+export default function Page({ params }: any) {
   const p = projects.find((x) => x.slug === params.slug);
   if (!p) return notFound();
   return <ProjectView project={p} />;
