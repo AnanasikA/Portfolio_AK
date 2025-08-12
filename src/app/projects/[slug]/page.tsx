@@ -4,12 +4,12 @@ import { notFound } from 'next/navigation';
 import { projects } from '@/data/projects';
 import ProjectView from './ProjectView';
 
-// 1) pre-render slugi
-export function generateStaticParams(): Array<{ slug: string }> {
+// 1) prerender slugów
+export function generateStaticParams(): { slug: string }[] {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-// 2) metadata (może być async)
+// 2) metadata
 export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
