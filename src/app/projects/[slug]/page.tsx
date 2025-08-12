@@ -4,16 +4,17 @@ import { notFound } from 'next/navigation';
 import { projects } from '@/data/projects';
 import ProjectView from './ProjectView';
 
-// 1) pre-render slugi
+// pre-render slugów
 export function generateStaticParams(): { slug: string }[] {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-// 2) metadata
-export function generateMetadata(
-  { params }: { params: { slug: string } }
-): Metadata {
-  const p = projects.find((x) => x.slug === params.slug);
+// metadata (Next 15: params to Promise)
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const p = projects.find((x) => x.slug === slug);
   if (!p) return {};
   return {
     title: `${p.title} – projekt`,
@@ -21,11 +22,12 @@ export function generateMetadata(
   };
 }
 
-// 3) strona
-export default function Page(
-  { params }: { params: { slug: string } }
+// strona (Next 15: params to Promise)
+export default async function Page(
+  { params }: { params: Promise<{ slug: string }> }
 ) {
-  const p = projects.find((x) => x.slug === params.slug);
+  const { slug } = await params;
+  const p = projects.find((x) => x.slug === slug);
   if (!p) return notFound();
   return <ProjectView project={p} />;
 }
