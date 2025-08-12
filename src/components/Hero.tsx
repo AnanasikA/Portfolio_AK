@@ -43,7 +43,7 @@ export default function Hero() {
       <div className="relative w-full lg:w-1/2 xl:w-[58%] 2xl:w-[60%] flex items-center justify-center p-6 lg:p-8 xl:p-10">
         <div className="relative w-full h-[40vh] sm:h-[48vh] lg:h-[60vh] xl:h-[72vh] 2xl:h-[80vh] 3xl:h-[86vh]">
           <Image
-            src="/laptop-scene-hero.png"
+            src="/laptop-scene-hero.webp"
             alt="Ilustracja projektowania stron — laptop z kodem i elementami UI"
             fill
             className="object-contain rounded-lg"

@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const pricingData = [
   {
-    icon: '/landing-icon.png',
+    icon: '/icons/landing-icon.webp',
     title: 'Strona wizytówka / Landing Page',
     priceLabel: 'od 1 500 zł',
     priceValue: '1500',
@@ -20,7 +20,7 @@ const pricingData = [
     ],
   },
   {
-    icon: '/firma-icon.png',
+    icon: '/icons/firma-icon.webp',
     title: 'Rozbudowana strona firmowa',
     priceLabel: 'od 3 000 zł',
     priceValue: '3000',
@@ -111,7 +111,7 @@ export default function PricingSection() {
                   itemScope
                   itemType="https://schema.org/Offer"
                 >
-                  <Image src="/price-tag.png" alt="" width={20} height={20} aria-hidden="true" />
+                  <Image src="/icons/price-tag.webp" alt="" width={20} height={20} aria-hidden="true" />
                   <span aria-label={`Cena ${item.priceLabel}`}>{item.priceLabel}</span>
                   <meta itemProp="priceCurrency" content="PLN" />
                   <meta itemProp="price" content={item.priceValue} />
@@ -132,7 +132,7 @@ export default function PricingSection() {
               "
             >
               <Image
-                src="/pricing-illustration.png"
+                src="/pricing-illustration.webp"
                 alt="Przykładowe elementy projektu strony — layout, typografia, sekcje"
                 fill
                 className="object-contain rounded-3xl"

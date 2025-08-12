@@ -9,25 +9,25 @@ const skills = [
     title: 'Projektowanie stron',
     description:
       'Tworzę estetyczne, funkcjonalne strony internetowe dopasowane do Twojej marki i celów biznesowych.',
-    icon: '/web-icon.png',
+    icon: '/icons/web-icon.webp',
   },
   {
     title: 'Design UX/UI',
     description:
       'Dbam o doświadczenie użytkownika – od intuicyjnych interfejsów po spójny styl wizualny.',
-    icon: '/ux-icon.png',
+    icon: '/icons/ux-icon.webp',
   },
   {
     title: 'Front-end development',
     description:
       'Piszę lekki, responsywny i nowoczesny kod w Next.js oraz Tailwind CSS.',
-    icon: '/code-icon.png',
+    icon: '/icons/code-icon.webp',
   },
   {
     title: 'Optymalizacja i responsywność',
     description:
       'Strony działają płynnie i świetnie wyglądają na każdym ekranie – od telefonu po duży monitor.',
-    icon: '/responsive-icon.png',
+    icon: '/icons/responsive-icon.webp',
   },
 ];
 

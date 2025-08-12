@@ -151,7 +151,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
         {/* Logo */}
         <Link href="/" aria-label="Strona główna">
           <Image
-            src="/logo.png"
+            src="/icons/logo.webp"
             alt="Anastasiia Kupriianets logo"
             width={60}
             height={40}
@@ -209,7 +209,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
           className="md:hidden p-2"
         >
           <Image
-            src="/menu-icon.png"
+            src="/icons/menu-icon.webp"
             alt="Menu"
             width={28}
             height={28}

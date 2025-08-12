@@ -30,7 +30,7 @@ export const projects: ProjectItem[] = [
     slug: 'luisowka',
     description:
       'W pełni funkcjonalna platforma rezerwacyjna dla domku w Nowej Morawie. Zaprojektowałam cały przepływ rezerwacji, panel właściciela i weryfikację kolizji dat. Serwis jest szybki, responsywny i przygotowany pod SEO oraz prywatność.',
-    image: '/luisowka.png',
+    image: '/projects/luisowka.webp',
     ratio: 1.6,
     tech: ['Next.js', 'Tailwind CSS', 'Firebase', 'Firestore', 'React Calendar', 'Vercel', 'FormSubmit'],
     link: 'https://luisowka.com',
@@ -68,7 +68,7 @@ export const projects: ProjectItem[] = [
     slug: 'zdrowie-plus',
     description:
       'Strona dla marki wellness zaprojektowana pod lekkość i przejrzystość. Modularne sekcje ofertowe i blogowe prowadzą do kontaktu i zapisu — idealna baza do rozwoju treści.',
-    image: '/Zdrowie+.png',
+    image: '/projects/Zdrowie+.webp',
     ratio: 1.6,
     tech: ['React', 'Tailwind CSS', 'Figma', 'Framer Motion', 'Google Fonts', 'EmailJS'],
     link: 'https://ananasika.github.io/Bella-Italia/',
@@ -100,7 +100,7 @@ export const projects: ProjectItem[] = [
     slug: 'quest-for-paws',
     description:
       'Empatyczna strona fundacji pomagającej zwierzętom. Nacisk na dostępność i prostą nawigację, by łatwo dotrzeć do adopcji oraz wsparcia.',
-    image: '/Paws.png',
+    image: '/projects/Paws.webp',
     tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Google Fonts', 'EmailJS', 'Figma'],
     link: 'https://ananasika.github.io/konferencja/',
     work: [
@@ -126,7 +126,7 @@ export const projects: ProjectItem[] = [
     slug: 'realestate',
     description:
       'Minimalistyczny landing dla agencji nieruchomości nastawiony na pozyskanie kontaktu. Wyraźna hierarchia treści, karty ofert i szybkie CTA.',
-    image: '/RealEstate.png',
+    image: '/projects/RealEstate.webp',
     tech: ['React', 'Tailwind CSS', 'Figma', 'Framer Motion', 'Google Fonts', 'EmailJS'],
     link: 'https://ananasika.github.io/drone-product-page/',
     work: [
@@ -148,7 +148,7 @@ export const projects: ProjectItem[] = [
     slug: 'marecki-24-7',
     description:
       'Strona warsztatu i pomocy drogowej skoncentrowana na szybkim kontakcie. Na start telefonu, sekcje usług, dojazdu i elementy zaufania.',
-    image: '/Warsztat.png',
+    image: '/projects/Warsztat.webp',
     tech: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Google Fonts', 'EmailJS', 'Figma'],
     link: 'https://auto-pomoc.vercel.app/',
     work: [
@@ -170,7 +170,7 @@ export const projects: ProjectItem[] = [
     slug: 'goports',
     description:
       'Autorski motyw WordPress z czystym kodem (bez builderów). Czytelne kategorie, filtrowanie wydarzeń i wygodny panel redakcyjny.',
-    image: '/goports2.png',
+    image: '/projects/goports2.webp',
     tech: ['WordPress', 'PHP', 'HTML', 'CSS', 'JavaScript', 'Responsive Design'],
     link: 'https://goports.ct.ws',
     work: [
@@ -192,7 +192,7 @@ export const projects: ProjectItem[] = [
     slug: 'studybuddy',
     description:
       'Lekka platforma do wyszukiwania korepetytora. Przejrzyste karty, prowadzące CTA i subtelne animacje 3D tworzą nowoczesny, przyjazny interfejs.',
-    image: '/studybuddy.png',
+    image: '/projects/studybuddy.webp',
     tech: ['Next.js', 'Tailwind CSS', 'Spline', 'Blender', 'Framer Motion', 'Figma'],
     link: 'https://studybuddy-b7nk.vercel.app/',
     work: [
@@ -214,7 +214,7 @@ export const projects: ProjectItem[] = [
     slug: 'photographer',
     description:
       'Portfolio z naciskiem na storytelling obrazu — UI jest lekki i nie odciąga uwagi. Siatka galerii, lazy-loading i płynne przejścia.',
-    image: '/photographer-site.jpg',
+    image: '/projects/photographer-site.webp',
     tech: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Google Fonts', 'Responsive Design', 'Figma'],
     link: 'https://ananasika.github.io/portfolio-photographer/',
     work: [
@@ -236,7 +236,7 @@ export const projects: ProjectItem[] = [
     slug: 'luxenails',
     description:
       'Kobiecy, kolorowy serwis salonu stylizacji paznokci. Klarowna oferta, cennik i opinie, do tego szybki kontakt i social proof.',
-    image: '/startup-site.jpg',
+    image: '/projects/startup-site.webp',
     tech: ['React', 'Tailwind CSS', 'HTML', 'CSS', 'Google Fonts', 'Figma'],
     link: 'https://ananasika.github.io/Strona_startup/',
     work: [

@@ -48,7 +48,7 @@ export default function About() {
           <div className="order-2 lg:order-1 relative px-6 sm:px-10 pb-16 lg:pb-0">
             <div className="relative w-full h-[42vh] sm:h-[52vh] md:h-[58vh] lg:h-full rounded-2xl overflow-hidden">
               <Image
-                src="/about-illustration.png"
+                src="/about-illustration.webp"
                 alt="Proces tworzenia strony: od kontaktu, przez projekt, po wdrożenie"
                 fill
                 className="object-contain p-6 sm:p-8 lg:p-10"

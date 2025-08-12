@@ -101,7 +101,6 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
             bg-white/20 supports-[backdrop-filter]:bg-white/20 supports-[backdrop-filter]:backdrop-blur-sm
             shadow-2xl border-l border-[#99CCFF]/40 z-50 px-6 pt-16 pb-8
           "
-          style={{ fontFamily: 'Georgia, serif' }}
         >
           {/* Zamknij */}
           <button
@@ -109,7 +108,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
             className="absolute top-3.5 right-5 p-1.5 rounded-full hover:bg-white/40 transition"
             aria-label="Zamknij menu"
           >
-            <Image src="/close-icon.png" alt="Zamknij" width={24} height={24} loading="lazy" />
+            <Image src="/icons/close-icon.webp" alt="Zamknij" width={24} height={24} loading="lazy" />
           </button>
 
           {/* Linki */}
