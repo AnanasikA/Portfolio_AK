@@ -24,7 +24,42 @@ function BriefModal({
   onClose: () => void;
   nameRef: React.MutableRefObject<HTMLInputElement | null>;
 }) {
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState<string>('');
+
   if (typeof window === 'undefined') return null;
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus('sending');
+    setErrorMsg('');
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    // Możesz dopisać/zmienić pola techniczne:
+    fd.set('_captcha', 'false');
+    fd.set('_subject', 'Nowe zapytanie o wycenę z briefu');
+
+    try {
+      // 🔸 AJAX endpoint FormSubmit: /ajax/<email>
+      const res = await fetch('https://formsubmit.co/ajax/kontakt@anastasiiakupriianets.pl', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: fd, // FormSubmit akceptuje FormData w /ajax/
+      });
+
+      if (!res.ok) throw new Error(`Status ${res.status}`);
+      setStatus('sent');
+      form.reset(); // wyczyść formularz
+    } catch (err: unknown) {
+  setStatus('error');
+  setErrorMsg(
+    err instanceof Error
+      ? `Ups… ${err.message}`
+      : 'Ups… nie udało się wysłać. Spróbuj ponownie za chwilę.'
+  );
+}
+  }
 
   return createPortal(
     <AnimatePresence>
@@ -56,6 +91,7 @@ function BriefModal({
               <FiX className="text-2xl" />
             </button>
 
+            {/* Nagłówek */}
             <h3
               id="brief-modal-title"
               className="text-2xl font-semibold mb-6"
@@ -64,105 +100,136 @@ function BriefModal({
               Krótkie zapytanie ofertowe
             </h3>
 
-            <form
-              action="https://formsubmit.co/kontakt@anastasiiakupriianets.pl"
-              method="POST"
-              className="space-y-4"
-            >
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_subject" value="Nowe zapytanie o wycenę" />
-
-              <div>
-                <label className="block mb-1 text-sm font-medium">Imię i nazwisko</label>
-                <input
-                  ref={nameRef}
-                  type="text"
-                  name="Imię i nazwisko"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                  autoComplete="name"
-                />
-              </div>
-
-              <div>
-                <label className="block mb-1 text-sm font-medium">Email</label>
-                <input
-                  type="email"
-                  name="Email"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                  autoComplete="email"
-                />
-              </div>
-
-              <div>
-                <label className="block mb-1 text-sm font-medium">Rodzaj strony</label>
-                <select
-                  name="Rodzaj strony"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                  defaultValue=""
-                >
-                  <option value="" disabled>
-                    Wybierz...
-                  </option>
-                  <option value="Strona wizytówka / Landing Page">
-                    Strona wizytówka / Landing Page
-                  </option>
-                  <option value="Rozbudowana strona firmowa">
-                    Rozbudowana strona firmowa
-                  </option>
-                </select>
-              </div>
-
-              <div>
-                <span className="block mb-1 text-sm font-medium">Czy masz logo?</span>
-                <div className="flex gap-6 mt-1">
-                  <label className="flex items-center gap-2">
-                    <input type="radio" name="Logo" value="Tak" required /> Tak
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input type="radio" name="Logo" value="Nie" /> Nie
-                  </label>
-                </div>
-              </div>
-
-              <div>
-                <label className="block mb-1 text-sm font-medium">Budżet</label>
-                <select
-                  name="Budżet"
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                  defaultValue=""
-                >
-                  <option value="" disabled>
-                    Wybierz...
-                  </option>
-                  <option value="1500–3000 zł">1500–3000 zł</option>
-                  <option value="3000–5000 zł">3000–5000 zł</option>
-                  <option value="5000+ zł">5000+ zł</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block mb-1 text-sm font-medium">Opis projektu</label>
-                <textarea
-                  name="Opis projektu"
-                  rows={4}
-                  required
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2"
-                />
-              </div>
-
-              <div className="pt-2">
+            {/* Widok po wysłaniu */}
+            {status === 'sent' ? (
+              <div className="text-center py-10">
+                <p className="text-2xl mb-2">Dziękuję!</p>
+                <p className="text-gray-600 mb-8">
+                  Twoje zapytanie zostało wysłane. Odpowiem w ciągu 24 godzin.
+                </p>
                 <button
-                  type="submit"
+                  onClick={onClose}
                   className="bg-[#007aff] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#005fcc] transition"
                 >
-                  Wyślij brief
+                  Zamknij
                 </button>
               </div>
-            </form>
+            ) : (
+              <>
+                {/* Komunikat błędu */}
+                {status === 'error' && (
+                  <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    {errorMsg}
+                  </div>
+                )}
+
+                {/* Formularz – już bez przejścia na stronę FormSubmit */}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* pola techniczne + honeypot */}
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_subject" value="Nowe zapytanie o wycenę" />
+                  <input
+                    type="text"
+                    name="_honey"
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+
+                  <div>
+                    <label className="block mb-1 text-sm font-medium">Imię i nazwisko</label>
+                    <input
+                      ref={nameRef}
+                      type="text"
+                      name="Imię i nazwisko"
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      autoComplete="name"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block mb-1 text-sm font-medium">Email</label>
+                    <input
+                      type="email"
+                      name="Email"
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      autoComplete="email"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block mb-1 text-sm font-medium">Rodzaj strony</label>
+                    <select
+                      name="Rodzaj strony"
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      defaultValue=""
+                    >
+                      <option value="" disabled>
+                        Wybierz...
+                      </option>
+                      <option value="Strona wizytówka / Landing Page">
+                        Strona wizytówka / Landing Page
+                      </option>
+                      <option value="Rozbudowana strona firmowa">
+                        Rozbudowana strona firmowa
+                      </option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <span className="block mb-1 text-sm font-medium">Czy masz logo?</span>
+                    <div className="flex gap-6 mt-1">
+                      <label className="flex items-center gap-2">
+                        <input type="radio" name="Logo" value="Tak" required /> Tak
+                      </label>
+                      <label className="flex items-center gap-2">
+                        <input type="radio" name="Logo" value="Nie" /> Nie
+                      </label>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block mb-1 text-sm font-medium">Budżet</label>
+                    <select
+                      name="Budżet"
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                      defaultValue=""
+                    >
+                      <option value="" disabled>
+                        Wybierz...
+                      </option>
+                      <option value="1500–3000 zł">1500–3000 zł</option>
+                      <option value="3000–5000 zł">3000–5000 zł</option>
+                      <option value="5000+ zł">5000+ zł</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block mb-1 text-sm font-medium">Opis projektu</label>
+                    <textarea
+                      name="Opis projektu"
+                      rows={4}
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-4 py-2"
+                    />
+                  </div>
+
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={status === 'sending'}
+                      className="bg-[#007aff] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#005fcc] transition disabled:opacity-60"
+                    >
+                      {status === 'sending' ? 'Wysyłanie…' : 'Wyślij brief'}
+                    </button>
+                  </div>
+                </form>
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}
@@ -170,6 +237,7 @@ function BriefModal({
     document.body
   );
 }
+
 
 export default function Header({ isOpen, toggleMenu }: HeaderProps) {
   const [isBriefOpen, setIsBriefOpen] = useState(false);
