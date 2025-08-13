@@ -1,3 +1,4 @@
+// components/About.tsx
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
@@ -5,6 +6,9 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
 import { FiX, FiMail, FiArrowRight, FiCalendar, FiCheck } from 'react-icons/fi';
+
+const ILLU = '/about-illustration.webp';
+const ILLU_FALLBACK = '/images/placeholder-about.webp'; // dodaj w public/images/
 
 export default function About() {
   const [open, setOpen] = useState(false);
@@ -22,6 +26,13 @@ export default function About() {
       document.body.style.overflow = 'auto';
     };
   }, [open]);
+
+  // Opcjonalnie: pozwól innym komponentom otwierać ten modal (np. z menu)
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener('open-brief', handler as EventListener);
+    return () => window.removeEventListener('open-brief', handler as EventListener);
+  }, []);
 
   const steps = [
     { step: '1', title: 'Kontakt', text: 'Napisz do mnie lub wypełnij formularz. Odpowiem szybko i konkretnie.' },
@@ -48,12 +59,17 @@ export default function About() {
           <div className="order-2 lg:order-1 relative px-6 sm:px-10 pb-16 lg:pb-0">
             <div className="relative w-full h-[42vh] sm:h-[52vh] md:h-[58vh] lg:h-full rounded-2xl overflow-hidden">
               <Image
-                src="/about-illustration.webp"
+                src={ILLU}
                 alt="Proces tworzenia strony: od kontaktu, przez projekt, po wdrożenie"
                 fill
                 className="object-contain p-6 sm:p-8 lg:p-10"
                 sizes="(min-width:1024px) 50vw, 100vw"
                 itemProp="image"
+                onError={(e) => {
+                  const t = e.currentTarget as HTMLImageElement;
+                  if (!t.src.endsWith(ILLU_FALLBACK)) t.src = ILLU_FALLBACK;
+                }}
+                priority={false}
               />
             </div>
           </div>
@@ -111,7 +127,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* CTA na końcu sekcji – minimalistyczny outline */}
+        {/* CTA na końcu sekcji */}
         <div className="px-6 sm:px-10 pb-12">
           <div className="max-w-6xl mx-auto">
             <div className="mt-8 flex justify-center">
@@ -134,7 +150,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* === MODAL (minimal) === */}
+      {/* === MODAL === */}
       {typeof window !== 'undefined' &&
         createPortal(
           <AnimatePresence>
@@ -163,7 +179,7 @@ export default function About() {
                   className="w-full max-w-2xl rounded-2xl bg-white text-[#0f172a] shadow-lg border border-slate-200"
                   onMouseDown={(e) => e.stopPropagation()}
                 >
-                  {/* Header prosty */}
+                  {/* Header */}
                   <div className="flex items-start gap-3 px-6 pt-5 pb-3 border-b border-slate-200">
                     <div className="shrink-0 mt-0.5 rounded-lg bg-[#007aff]/10 p-2">
                       <FiMail className="w-5 h-5 text-[#007aff]" />
@@ -203,9 +219,9 @@ export default function About() {
                       action="https://formsubmit.co/kontakt@anastasiiakupriianets.pl"
                       method="POST"
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="grid grid-cols-1 sm:grid-cols-2 gap-4"
                     >
-                      {/* FormSubmit config */}
                       <input type="hidden" name="_subject" value="Nowe zapytanie (Modal brief)" />
                       <input type="hidden" name="_template" value="table" />
                       <input type="hidden" name="_captcha" value="false" />

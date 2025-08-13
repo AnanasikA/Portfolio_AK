@@ -1,9 +1,25 @@
+// app/regulamin/page.tsx
+import type { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Regulamin | Anastasiia Kupriianets',
+  description:
+    'Regulamin korzystania ze strony anastasiiakupriianets.pl — zasady użytkowania, prawa autorskie i informacje o danych.',
+  alternates: { canonical: '/regulamin' },
+  robots: { index: true, follow: true },
+};
 
 export default function Regulamin() {
   return (
-    <section className="max-w-4xl mx-auto px-4 py-12 text-gray-800">
-      <h1 className="text-3xl font-bold mb-6">Regulamin strony</h1>
+    <main
+      id="content"
+      className="max-w-4xl mx-auto px-4 py-12 text-gray-800"
+      aria-labelledby="page-title"
+    >
+      <h1 id="page-title" className="text-3xl font-bold mb-6">
+        Regulamin strony
+      </h1>
 
       <p className="mb-4">
         Niniejszy regulamin określa zasady korzystania ze strony internetowej{' '}
@@ -24,24 +40,24 @@ export default function Regulamin() {
 
       <h2 className="text-xl font-semibold mt-6 mb-2">2. Prawa autorskie</h2>
       <p className="mb-4">
-        Wszelkie treści i materiały graficzne znajdujące się na stronie są chronione prawem autorskim
-        i należą do Anastasiia Kupriianets, o ile nie wskazano inaczej. Zabrania się ich kopiowania,
-        rozpowszechniania i wykorzystywania bez zgody autora.
+        Wszelkie treści i materiały graficzne znajdujące się na stronie są chronione prawem
+        autorskim i należą do Anastasiia Kupriianets, o ile nie wskazano inaczej. Zabrania się ich
+        kopiowania, rozpowszechniania i wykorzystywania bez zgody autora.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">3. Odpowiedzialność</h2>
       <p className="mb-4">
-        Administrator nie ponosi odpowiedzialności za ewentualne błędy lub nieaktualność informacji na
-        stronie, ani za szkody wynikające z jej użytkowania.
+        Administrator nie ponosi odpowiedzialności za ewentualne błędy lub nieaktualność
+        informacji na stronie, ani za szkody wynikające z jej użytkowania.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">4. Dane osobowe i cookies</h2>
       <p className="mb-4">
         Zasady przetwarzania danych osobowych i wykorzystywania cookies określa Polityka Prywatności
         dostępna pod adresem{' '}
-        <a href="/polityka-prywatnosci" className="underline text-blue-600 hover:text-blue-800">
+        <Link href="/polityka-prywatnosci" className="underline text-blue-600 hover:text-blue-800">
           /polityka-prywatnosci
-        </a>
+        </Link>
         .
       </p>
 
@@ -60,6 +76,6 @@ export default function Regulamin() {
           ← Powrót
         </Link>
       </div>
-    </section>
+    </main>
   );
 }

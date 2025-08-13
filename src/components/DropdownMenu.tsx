@@ -10,6 +10,8 @@ interface DropdownMenuProps {
   toggleMenu: () => void;
 }
 
+const ICON_FALLBACK = '/icons/placeholder.webp';
+
 export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -63,18 +65,23 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
     setHash(`#${id}`);
   };
 
-  const handleClick = async (route: string) => {
+  const handleClick = (route: string) => {
     toggleMenu();
+
+    // link do sekcji
     if (route.startsWith('#')) {
+      const id = route.slice(1);
       if (pathname !== '/') {
-        await router.push('/');
-        requestAnimationFrame(() => scrollToHash(route));
+        // Przejście na stronę główną z kotwicą (twój HashScroller to przechwyci i przewinie)
+        router.push(`/#${id}`);
       } else {
         scrollToHash(route);
       }
       return;
     }
-    await router.push(route);
+
+    // zwykła nawigacja
+    router.push(route);
   };
 
   const linkBase =
@@ -108,7 +115,17 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
             className="absolute top-3.5 right-5 p-1.5 rounded-full hover:bg-white/40 transition"
             aria-label="Zamknij menu"
           >
-            <Image src="/icons/close-icon.webp" alt="Zamknij" width={24} height={24} loading="lazy" />
+            <Image
+              src="/icons/close-icon.webp"
+              alt="Zamknij"
+              width={24}
+              height={24}
+              loading="lazy"
+              onError={(e) => {
+                const t = e.currentTarget as HTMLImageElement;
+                if (!t.src.endsWith(ICON_FALLBACK)) t.src = ICON_FALLBACK;
+              }}
+            />
           </button>
 
           {/* Linki */}
@@ -140,13 +157,13 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
               );
             })}
 
-            {/* CTA – czytelny: biały przycisk, niebieski tekst (font light) */}
+            {/* CTA – biały przycisk, niebieski tekst */}
             <li className="pt-2">
               <button
                 onClick={() => {
                   toggleMenu();
                   if (typeof window !== 'undefined') {
-                    window.dispatchEvent(new CustomEvent('open-brief')); // ✅ bez błędu ESLint
+                    window.dispatchEvent(new CustomEvent('open-brief'));
                   }
                 }}
                 className="

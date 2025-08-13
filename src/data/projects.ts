@@ -3,25 +3,23 @@ export type ProjectItem = {
   title: string;
   slug: string;
   description: string;
-  image: string;        // cover
-  ratio?: number;       // np. 1.6 dla 1600x1000
+  image: string;         // długi zrzut/cover do widoku szczegółu (scrollowalny)
+  cardImage: string;     // miniatura do listy projektów (kafelek)
+  ratio?: number;        // opcjonalne
   tech: string[];
-  link?: string;        // link online (opcjonalny)
+  link?: string;
 
-  work?: string[];      // lista zadań/zasięgu prac
+  work?: string[];
   results?: {
-    highlights?: string[];           // wypunktowane rezultaty
-    metrics?: Record<string, string>; // używane już nie będzie – zostawiamy opcjonalne
-    timeframe?: string;               // np. "4 tygodnie"
+    highlights?: string[];
+    metrics?: Record<string, string>;
+    timeframe?: string;
   };
 
-  // NOWE pola pod widok szczegółu
   challenges?: { problem: string; solution: string }[];
   decisions?: string[];
   integrations?: string[];
   handoff?: Record<string, string>;
-
-  gallery?: string[];   // dodatkowe screeny
 };
 
 export const projects: ProjectItem[] = [
@@ -30,10 +28,12 @@ export const projects: ProjectItem[] = [
     slug: 'luisowka',
     description:
       'W pełni funkcjonalna platforma rezerwacyjna dla domku w Nowej Morawie. Zaprojektowałam cały przepływ rezerwacji, panel właściciela i weryfikację kolizji dat. Serwis jest szybki, responsywny i przygotowany pod SEO oraz prywatność.',
-    image: '/projects/luisowka.webp',
-    ratio: 1.6,
+    image: '/projects/Luisowka.webp',
+    cardImage: '/projects/Luisowka1.webp',
+
     tech: ['Next.js', 'Tailwind CSS', 'Firebase', 'Firestore', 'React Calendar', 'Vercel', 'FormSubmit'],
     link: 'https://luisowka.com',
+
     work: [
       'Projekt UX/UI i design system',
       'Implementacja Next.js + Tailwind CSS',
@@ -41,26 +41,33 @@ export const projects: ProjectItem[] = [
       'Panel administracyjny (CRUD rezerwacji, kolizje dat)',
       'Formularz zapytań + podstawowe SEO + polityka prywatności',
     ],
+
     results: {
       timeframe: '4 tygodnie',
-      highlights: [
-        'Spójny, prosty proces rezerwacji',
-        'Automatyczna weryfikacja dostępności i blokady zakresów',
-        'Lekka warstwa UI i pełna responsywność',
-      ],
     },
+
     challenges: [
-      { problem: 'Zapobieganie rezerwacjom pokrywającym się w tych samych datach.', solution: 'Walidacja zakresów w Firestore i blokada dni w kalendarzu w czasie rzeczywistym.' },
-      { problem: 'Edycja rezerwacji bez panelu typu WordPress.', solution: 'Własny prosty panel CRUD w Next.js z regułami bezpieczeństwa Firestore.' },
-      { problem: 'Czytelna prezentacja zasad i danych RODO.', solution: 'Wyraźne sekcje informacyjne + polityka prywatności i formularze zgodne z RODO.' },
+      {
+        problem: 'Zapobieganie rezerwacjom pokrywającym się w tych samych datach.',
+        solution: 'Walidacja zakresów w Firestore i blokada dni w kalendarzu w czasie rzeczywistym.',
+      },
+      {
+        problem: 'Edycja rezerwacji bez panelu typu WordPress.',
+        solution: 'Własny prosty panel CRUD w Next.js z regułami bezpieczeństwa Firestore.',
+      },
+      {
+        problem: 'Czytelna prezentacja zasad i danych RODO.',
+        solution: 'Wyraźne sekcje informacyjne + polityka prywatności i formularze zgodne z RODO.',
+      },
     ],
+
     decisions: [
       'Next.js + ISR dla szybkiego TTFB i prostego hostingu na Vercel',
       'React Calendar zamiast ciężkich widgetów – pełna kontrola UX',
       'Design tokens w Tailwindzie dla spójnej kolorystyki i typografii',
     ],
+
     integrations: ['Firebase/Firestore', 'React Calendar', 'FormSubmit', 'Vercel'],
-    gallery: ['/projects/luisowka-1.png', '/projects/luisowka-2.png'],
   },
 
   {
@@ -68,7 +75,8 @@ export const projects: ProjectItem[] = [
     slug: 'zdrowie-plus',
     description:
       'Strona dla marki wellness zaprojektowana pod lekkość i przejrzystość. Modularne sekcje ofertowe i blogowe prowadzą do kontaktu i zapisu — idealna baza do rozwoju treści.',
-    image: '/projects/Zdrowie+.webp',
+    image: '/projects/Zdrowie+1.webp',
+    cardImage: '/projects/Zdrowie+.webp', // podmień na osobną miniaturę, gdy będziesz mieć
     ratio: 1.6,
     tech: ['React', 'Tailwind CSS', 'Figma', 'Framer Motion', 'Google Fonts', 'EmailJS'],
     link: 'https://ananasika.github.io/Bella-Italia/',
@@ -92,7 +100,6 @@ export const projects: ProjectItem[] = [
       'Treści semantyczne i komponenty SEO',
     ],
     integrations: ['EmailJS (formularz)', 'Google Fonts'],
-    gallery: ['/projects/zdrowie-1.webp', '/projects/zdrowie-2.webp'],
   },
 
   {
@@ -100,7 +107,8 @@ export const projects: ProjectItem[] = [
     slug: 'quest-for-paws',
     description:
       'Empatyczna strona fundacji pomagającej zwierzętom. Nacisk na dostępność i prostą nawigację, by łatwo dotrzeć do adopcji oraz wsparcia.',
-    image: '/projects/Paws.webp',
+    image: '/projects/Paws1.webp',
+    cardImage: '/projects/Paws.webp',
     tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Google Fonts', 'EmailJS', 'Figma'],
     link: 'https://ananasika.github.io/konferencja/',
     work: [
@@ -118,7 +126,6 @@ export const projects: ProjectItem[] = [
       'Przyciski akcji w stałych miejscach na każdej podstronie',
     ],
     integrations: ['EmailJS', 'Google Fonts'],
-    gallery: ['/projects/paws-1.webp'],
   },
 
   {
@@ -126,7 +133,8 @@ export const projects: ProjectItem[] = [
     slug: 'realestate',
     description:
       'Minimalistyczny landing dla agencji nieruchomości nastawiony na pozyskanie kontaktu. Wyraźna hierarchia treści, karty ofert i szybkie CTA.',
-    image: '/projects/RealEstate.webp',
+    image: '/projects/RealEstate1.webp',
+    cardImage: '/projects/RealEstate.webp',
     tech: ['React', 'Tailwind CSS', 'Figma', 'Framer Motion', 'Google Fonts', 'EmailJS'],
     link: 'https://ananasika.github.io/drone-product-page/',
     work: [
@@ -140,7 +148,6 @@ export const projects: ProjectItem[] = [
     ],
     decisions: ['Minimalne animacje, nacisk na wydajność', 'Elastyczny grid pod przyszłe filtry'],
     integrations: ['EmailJS', 'Google Fonts'],
-    gallery: ['/projects/realestate-1.webp', '/projects/realestate-2.webp'],
   },
 
   {
@@ -148,7 +155,8 @@ export const projects: ProjectItem[] = [
     slug: 'marecki-24-7',
     description:
       'Strona warsztatu i pomocy drogowej skoncentrowana na szybkim kontakcie. Na start telefonu, sekcje usług, dojazdu i elementy zaufania.',
-    image: '/projects/Warsztat.webp',
+    image: '/projects/Warsztat1.webp',
+    cardImage: '/projects/Warsztat.webp',
     tech: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Google Fonts', 'EmailJS', 'Figma'],
     link: 'https://auto-pomoc.vercel.app/',
     work: [
@@ -162,7 +170,6 @@ export const projects: ProjectItem[] = [
     ],
     decisions: ['Next.js dla szybkości i łatwego hostingu', 'Mapa i telefon jako główne akcje'],
     integrations: ['EmailJS', 'Google Fonts', 'Mapy (link)'],
-    gallery: ['/projects/marecki-1.webp'],
   },
 
   {
@@ -170,7 +177,8 @@ export const projects: ProjectItem[] = [
     slug: 'goports',
     description:
       'Autorski motyw WordPress z czystym kodem (bez builderów). Czytelne kategorie, filtrowanie wydarzeń i wygodny panel redakcyjny.',
-    image: '/projects/goports2.webp',
+    image: '/projects/goports21.webp',
+    cardImage: '/projects/goports2.webp',
     tech: ['WordPress', 'PHP', 'HTML', 'CSS', 'JavaScript', 'Responsive Design'],
     link: 'https://goports.ct.ws',
     work: [
@@ -184,7 +192,6 @@ export const projects: ProjectItem[] = [
     ],
     decisions: ['Własne CPT i pola, bez page builderów', 'Lekki CSS i sprite’y ikon'],
     integrations: ['WordPress (CPT/ACF)', 'Mapa wydarzeń (embed/link)'],
-    gallery: ['/projects/goports-1.webp'],
   },
 
   {
@@ -192,7 +199,8 @@ export const projects: ProjectItem[] = [
     slug: 'studybuddy',
     description:
       'Lekka platforma do wyszukiwania korepetytora. Przejrzyste karty, prowadzące CTA i subtelne animacje 3D tworzą nowoczesny, przyjazny interfejs.',
-    image: '/projects/studybuddy.webp',
+    image: '/projects/studybuddy1.webp',
+    cardImage: '/projects/studybuddy.webp',
     tech: ['Next.js', 'Tailwind CSS', 'Spline', 'Blender', 'Framer Motion', 'Figma'],
     link: 'https://studybuddy-b7nk.vercel.app/',
     work: [
@@ -206,7 +214,6 @@ export const projects: ProjectItem[] = [
     ],
     decisions: ['3D tylko w hero i akcentach', 'SSR/ISR w Next.js dla szybkości'],
     integrations: ['Spline (3D)', 'Framer Motion'],
-    gallery: ['/projects/studybuddy-1.webp'],
   },
 
   {
@@ -214,7 +221,8 @@ export const projects: ProjectItem[] = [
     slug: 'photographer',
     description:
       'Portfolio z naciskiem na storytelling obrazu — UI jest lekki i nie odciąga uwagi. Siatka galerii, lazy-loading i płynne przejścia.',
-    image: '/projects/photographer-site.webp',
+    image: '/projects/photographer-site1.webp',
+    cardImage: '/projects/photographer-site.webp',
     tech: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Google Fonts', 'Responsive Design', 'Figma'],
     link: 'https://ananasika.github.io/portfolio-photographer/',
     work: [
@@ -228,7 +236,6 @@ export const projects: ProjectItem[] = [
     ],
     decisions: ['Minimalny UI, nacisk na treść', 'Kolorystyka wspierająca fotografie'],
     integrations: ['Google Fonts'],
-    gallery: ['/projects/photographer-1.webp'],
   },
 
   {
@@ -236,7 +243,8 @@ export const projects: ProjectItem[] = [
     slug: 'luxenails',
     description:
       'Kobiecy, kolorowy serwis salonu stylizacji paznokci. Klarowna oferta, cennik i opinie, do tego szybki kontakt i social proof.',
-    image: '/projects/startup-site.webp',
+    image: '/projects/startup-site1.webp',
+    cardImage: '/projects/startup-site.webp',
     tech: ['React', 'Tailwind CSS', 'HTML', 'CSS', 'Google Fonts', 'Figma'],
     link: 'https://ananasika.github.io/Strona_startup/',
     work: [
@@ -250,6 +258,5 @@ export const projects: ProjectItem[] = [
     ],
     decisions: ['Wyraźne CTA i sekcja FAQ', 'Karty usług do łatwej rozbudowy'],
     integrations: ['Google Fonts', 'Formularz e-mail (lekki)'],
-    gallery: ['/projects/luxenails-1.webp'],
   },
 ];

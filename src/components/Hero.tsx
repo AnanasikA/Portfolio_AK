@@ -3,8 +3,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
+import { useCallback } from 'react';
+
+const HERO_SRC = '/laptop-scene-hero.webp';
+const HERO_FALLBACK = '/images/placeholder-hero.webp'; // wrzuć do public/images/
 
 export default function Hero() {
+  const handleImgError = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    const t = e.currentTarget;
+    if (!t.src.endsWith(HERO_FALLBACK)) t.src = HERO_FALLBACK;
+  }, []);
+
   return (
     <section
       id="hero"
@@ -41,14 +50,15 @@ export default function Hero() {
 
       {/* Ilustracja */}
       <div className="relative w-full lg:w-1/2 xl:w-[58%] 2xl:w-[60%] flex items-center justify-center p-6 lg:p-8 xl:p-10">
-        <div className="relative w-full h-[40vh] sm:h-[48vh] lg:h-[60vh] xl:h-[72vh] 2xl:h-[80vh] 3xl:h-[86vh]">
+        <div className="relative w-full h-[40vh] sm:h-[48vh] lg:h-[60vh] xl:h-[72vh] 2xl:h-[80vh]">
           <Image
-            src="/laptop-scene-hero.webp"
+            src={HERO_SRC}
             alt="Ilustracja projektowania stron — laptop z kodem i elementami UI"
             fill
             className="object-contain rounded-lg"
             priority
-            sizes="(min-width:2400px) 60vw, (min-width:1536px) 60vw, (min-width:1280px) 58vw, (min-width:1024px) 50vw, 90vw"
+            sizes="(min-width:1536px) 60vw, (min-width:1280px) 58vw, (min-width:1024px) 50vw, 90vw"
+            onError={handleImgError}
           />
         </div>
       </div>

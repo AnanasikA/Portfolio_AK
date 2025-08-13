@@ -1,60 +1,82 @@
+// components/CookieConsent.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 export default function CookieConsent() {
+  const [root, setRoot] = useState<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
+  // Utwórz/znajdź kontener portalu w <body>
   useEffect(() => {
-    const accepted = localStorage.getItem('cookie-accepted');
-    if (!accepted) {
-      setVisible(true);
+    if (typeof window === 'undefined') return;
+
+    let el = document.getElementById('cookie-consent-root') as HTMLElement | null;
+    let created = false;
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'cookie-consent-root';
+      document.body.appendChild(el);
+      created = true;
     }
+    setRoot(el);
+
+    // Pokaż tylko, gdy brak decyzji
+    const hasDecision = !!localStorage.getItem('cookie-consent');
+    setVisible(!hasDecision);
+
+    // Reaguj na zmianę w innej karcie
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === 'cookie-consent') setVisible(!e.newValue);
+    };
+    window.addEventListener('storage', onStorage);
+
+    return () => {
+      window.removeEventListener('storage', onStorage);
+      // Sprzątanie tylko gdy to my stworzyliśmy kontener i on jeszcze jest w DOM
+      if (created && el && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    };
   }, []);
 
-  const handleAccept = () => {
-    localStorage.setItem('cookie-accepted', 'true');
+  const decide = (value: '1' | '0') => {
+    try {
+      localStorage.setItem('cookie-consent', value);
+    } catch {
+      // ignorujemy, np. tryb prywatny
+    }
+    // Po decyzji po prostu chowamy baner; kontener usunie cleanup efektu przy unmount
     setVisible(false);
   };
 
-  if (!visible) return null;
+  if (!root || !visible) return null;
 
-  return (
-    <div className="fixed inset-0 z-50 backdrop-blur-sm bg-blue-100/40 flex items-center justify-center p-4">
-      <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6 text-blue-900">
-        <h2 className="text-lg font-semibold mb-3">Zgoda na pliki cookies</h2>
-
-        <p className="text-sm leading-relaxed mb-4">
-          Korzystając z tej strony, wyrażasz zgodę na używanie plików cookies do celów statystycznych i funkcjonalnych. Szczegóły znajdziesz w&nbsp;
-          <a
-            href="/polityka-prywatnosci"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-700 underline hover:text-blue-900"
-          >
-            polityce prywatności
-          </a>{' '}
-          i&nbsp;
-          <a
-            href="/regulamin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-700 underline hover:text-blue-900"
-          >
-            regulaminie
-          </a>
-          .
+  return createPortal(
+    <div className="fixed inset-x-0 bottom-0 z-[9999]">
+      <div className="mx-auto max-w-5xl m-4 rounded-2xl bg-white/95 text-black p-4 shadow-lg flex flex-wrap items-center gap-3">
+        <p className="text-sm">
+          Używamy plików cookie do analityki i poprawy działania serwisu.
         </p>
-
-        <div className="flex justify-end">
+        <div className="ml-auto flex gap-2">
           <button
-            onClick={handleAccept}
-            className="bg-blue-700 hover:bg-blue-800 text-white px-5 py-2 rounded-md text-sm font-medium transition"
+            type="button"
+            onClick={() => decide('0')}
+            className="px-4 py-2 rounded-full border border-black/15 hover:bg-black/5 transition text-sm"
+          >
+            Odrzuć
+          </button>
+          <button
+            type="button"
+            onClick={() => decide('1')}
+            className="px-4 py-2 rounded-full bg-[#007aff] text-white hover:opacity-90 transition text-sm"
           >
             Akceptuję
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    root
   );
 }

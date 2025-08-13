@@ -1,32 +1,52 @@
+// app/projects/[slug]/page.tsx
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { projects } from '@/data/projects';
+import { projects, type ProjectItem } from '@/data/projects';
 import ProjectView from './ProjectView';
 
-// Pre-render ścieżek
-export function generateStaticParams(): { slug: string }[] {
+export const dynamicParams = false;
+
+export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-// Next 15: params => Promise<{ slug: string }>
+type Params = { slug: string };
+
 export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<Params> }
 ): Promise<Metadata> {
   const { slug } = await params;
-  const p = projects.find((x) => x.slug === slug);
+  const p: ProjectItem | undefined = projects.find((x) => x.slug === slug);
   if (!p) return {};
-  return { title: `${p.title} – projekt`, description: p.description };
+
+  const url = `/projects/${slug}`;
+  const ogImg = p.cardImage ?? p.image;
+
+  return {
+    title: `${p.title} – projekt`,
+    description: p.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'article',
+      url,
+      title: `${p.title} – projekt`,
+      description: p.description,
+      images: ogImg ? [{ url: ogImg }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${p.title} – projekt`,
+      description: p.description,
+      images: ogImg ? [ogImg] : undefined,
+    },
+  };
 }
 
-// Next 15: params => Promise<...> (searchParams też może być Promise – nie używamy)
-type PageProps = {
-  params: Promise<{ slug: string }>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
-};
-
-export default async function Page({ params }: PageProps) {
+export default async function Page(
+  { params }: { params: Promise<Params> }
+) {
   const { slug } = await params;
-  const p = projects.find((x) => x.slug === slug);
-  if (!p) return notFound();
+  const p: ProjectItem | undefined = projects.find((x) => x.slug === slug);
+  if (!p) notFound();
   return <ProjectView project={p} />;
 }

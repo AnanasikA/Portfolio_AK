@@ -5,6 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiArrowRight } from 'react-icons/fi';
 import Image from 'next/image';
 
+const ICON_FALLBACK = '/icons/placeholder.webp';
+const ILLU_FALLBACK = '/images/placeholder-illustration.webp';
+
 const pricingData = [
   {
     icon: '/icons/landing-icon.webp',
@@ -85,7 +88,17 @@ export default function PricingSection() {
                 <meta itemProp="serviceType" content={item.title} />
                 <div className="mb-5 flex items-center gap-4">
                   <div className="bg-white rounded-xl p-3 shadow-sm">
-                    <Image src={item.icon} alt="" width={36} height={36} aria-hidden="true" />
+                    <Image
+                      src={item.icon}
+                      alt=""
+                      width={36}
+                      height={36}
+                      aria-hidden="true"
+                      onError={(e) => {
+                        const t = e.currentTarget as HTMLImageElement;
+                        if (!t.src.endsWith(ICON_FALLBACK)) t.src = ICON_FALLBACK;
+                      }}
+                    />
                   </div>
                   <h3 className="text-2xl font-medium font-serif" itemProp="name">
                     {item.title}
@@ -111,7 +124,17 @@ export default function PricingSection() {
                   itemScope
                   itemType="https://schema.org/Offer"
                 >
-                  <Image src="/icons/price-tag.webp" alt="" width={20} height={20} aria-hidden="true" />
+                  <Image
+                    src="/icons/price-tag.webp"
+                    alt=""
+                    width={20}
+                    height={20}
+                    aria-hidden="true"
+                    onError={(e) => {
+                      const t = e.currentTarget as HTMLImageElement;
+                      if (!t.src.endsWith(ICON_FALLBACK)) t.src = ICON_FALLBACK;
+                    }}
+                  />
                   <span aria-label={`Cena ${item.priceLabel}`}>{item.priceLabel}</span>
                   <meta itemProp="priceCurrency" content="PLN" />
                   <meta itemProp="price" content={item.priceValue} />
@@ -138,6 +161,10 @@ export default function PricingSection() {
                 className="object-contain rounded-3xl"
                 priority
                 sizes="(min-width:1280px) 50vw, (min-width:768px) 50vw, 100vw"
+                onError={(e) => {
+                  const t = e.currentTarget as HTMLImageElement;
+                  if (!t.src.endsWith(ILLU_FALLBACK)) t.src = ILLU_FALLBACK;
+                }}
               />
             </div>
           </div>
@@ -162,7 +189,7 @@ export default function PricingSection() {
         </div>
       </div>
 
-      {/* Modal (minimalistyczny, spójny) */}
+      {/* Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div

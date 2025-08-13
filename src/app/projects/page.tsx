@@ -1,22 +1,32 @@
-'use client';
+// app/projects/page.tsx
+import type { Metadata } from 'next';
+import ProjectsPage from './page.client';
 
-import { useState } from 'react';
-import Projects from '@/components/Projects';
-import Header from '@/components/Header';
-import DropdownMenu from '@/components/DropdownMenu';
+export const metadata: Metadata = {
+  title: 'Projekty | Anastasiia – Front-End Developer',
+  description:
+    'Przegląd projektów stron internetowych: Next.js, Tailwind CSS, UX/UI. Lekki kod, wydajność i dostępność.',
+  alternates: { canonical: '/projects' },
+  openGraph: {
+    type: 'website',
+    url: '/projects',
+    title: 'Projekty | Anastasiia – Front-End Developer',
+    description:
+      'Przegląd projektów stron internetowych: Next.js, Tailwind CSS, UX/UI. Lekki kod, wydajność i dostępność.',
+    locale: 'pl_PL',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Portfolio – projekty' }],
+    siteName: 'Anastasiia Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Projekty | Anastasiia – Front-End Developer',
+    description:
+      'Przegląd projektów stron internetowych: Next.js, Tailwind CSS, UX/UI.',
+    images: ['/og-image.jpg'],
+  },
+  robots: { index: true, follow: true },
+};
 
-export default function ProjectsPage() {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen(prev => !prev);
-
-  return (
-    <>
-      <Header isOpen={isOpen} toggleMenu={toggleMenu} />
-      <DropdownMenu isOpen={isOpen} toggleMenu={toggleMenu} />
-
-      <main className="scroll-smooth" aria-hidden={isOpen}>
-        <Projects />
-      </main>
-    </>
-  );
+export default function Page() {
+  return <ProjectsPage />;
 }

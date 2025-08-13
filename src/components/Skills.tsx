@@ -3,6 +3,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
+import { Libre_Baskerville } from 'next/font/google';
+
+const libre = Libre_Baskerville({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+});
 
 const skills = [
   {
@@ -33,15 +40,9 @@ const skills = [
 
 export default function SkillsSection() {
   return (
-    <section
-      id="skills"
-      className="w-full bg-[#007aff] text-white pt-20 pb-12 px-6 sm:px-10"
-    >
+    <section id="skills" className="w-full bg-[#007aff] text-white pt-20 pb-12 px-6 sm:px-10">
       <div className="max-w-6xl mx-auto">
-        <h2
-          className="text-4xl sm:text-5xl text-center font-light mb-14"
-          style={{ fontFamily: 'Libre Baskerville, serif' }}
-        >
+        <h2 className={`${libre.className} text-4xl sm:text-5xl text-center font-light mb-14`}>
           Co potrafię?
         </h2>
 
@@ -55,25 +56,31 @@ export default function SkillsSection() {
                          transition will-change-transform"
             >
               <div className="w-12 h-12 min-w-[48px]">
-                <Image src={skill.icon} alt={skill.title} width={48} height={48} />
+                <Image
+                  src={skill.icon}
+                  alt={skill.title}
+                  width={48}
+                  height={48}
+                  sizes="48px"
+                  // jeśli nie masz któregoś pliku, podmień automatycznie na placeholder
+                  onError={(e) => {
+                    const img = e.currentTarget as HTMLImageElement;
+                    img.src = '/icons/placeholder.webp';
+                  }}
+                />
               </div>
 
               <div>
-                <h3
-                  className="text-lg sm:text-xl font-light mb-1.5"
-                  style={{ fontFamily: 'Libre Baskerville, serif' }}
-                >
+                <h3 className={`${libre.className} text-lg sm:text-xl font-light mb-1.5`}>
                   {skill.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-white/90">
-                  {skill.description}
-                </p>
+                <p className="text-sm leading-relaxed text-white/90">{skill.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA – spójny z Hero (outline + strzałka) */}
+        {/* CTA */}
         <div className="mt-12 sm:mt-14 flex justify-center">
           <Link
             href="/projects"
@@ -84,7 +91,6 @@ export default function SkillsSection() {
                        hover:bg-white/10 active:scale-[0.99]
                        transition focus:outline-none
                        focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#cfe3ff]"
-            style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
           >
             Zobacz projekty
             <FiArrowRight className="opacity-90 transition-transform group-hover:translate-x-0.5" />

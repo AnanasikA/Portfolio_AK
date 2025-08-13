@@ -4,24 +4,37 @@ import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend } from 'react-icons/fi';
 
+type Status = 'idle' | 'sending' | 'success' | 'error';
+
 export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<Status>('idle');
 
   const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formRef.current || status === 'sending') return;
     setStatus('sending');
 
     try {
-      const formData = new FormData(formRef.current!);
-      const response = await fetch('https://formsubmit.co/kontakt@anastasiiakupriianets.pl', {
+      const formData = new FormData(formRef.current);
+
+      // honeypot: jeśli bot wypełni, przerywamy
+      if ((formData.get('_honey') as string)?.trim()) {
+        setStatus('success'); // udaj sukces, ale nic nie wysyłamy
+        formRef.current.reset();
+        return;
+      }
+
+      // UŻYJ AJAX endpointu FormSubmit (bez redirectów)
+      const res = await fetch('https://formsubmit.co/ajax/kontakt@anastasiiakupriianets.pl', {
         method: 'POST',
+        headers: { Accept: 'application/json' },
         body: formData,
       });
 
-      if (response.ok) {
+      if (res.ok) {
         setStatus('success');
-        formRef.current?.reset();
+        formRef.current.reset();
       } else {
         setStatus('error');
       }
@@ -45,14 +58,13 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <h2
-            className="text-4xl sm:text-5xl font-light"
-            style={{ fontFamily: 'Libre Baskerville, serif' }}
-          >
+          <h2 className="text-4xl sm:text-5xl font-light font-serif">
             Masz pomysł na stronę?
           </h2>
           <p className="text-lg opacity-80 leading-relaxed">
-            Wypełnij krótki formularz – odezwę się, by porozmawiać o Twoim projekcie i zaproponować najlepsze rozwiązanie. Tworzę strony, które nie tylko dobrze wyglądają, ale i działają.
+            Wypełnij krótki formularz – odezwę się, by porozmawiać o Twoim projekcie i
+            zaproponować najlepsze rozwiązanie. Tworzę strony, które nie tylko dobrze
+            wyglądają, ale i działają.
           </p>
         </motion.div>
 
@@ -65,9 +77,12 @@ export default function Contact() {
           transition={{ duration: 0.7 }}
           className="bg-white border border-[#e0e7ff] shadow-lg rounded-3xl p-8 space-y-5"
         >
+          {/* FormSubmit: pola ukryte */}
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_subject" value="Nowa wiadomość z portfolio" />
-          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
+          {/* _template nie jest wymagane przy /ajax, ale możesz zostawić po swojej stronie */}
+          {/* <input type="hidden" name="_template" value="table" /> */}
 
           <div>
             <label htmlFor="name" className="block text-sm font-medium mb-1">
@@ -105,26 +120,32 @@ export default function Contact() {
               rows={4}
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#007aff] focus:outline-none"
-            ></textarea>
+            />
           </div>
 
           <div>
             <button
               type="submit"
-              className="flex items-center gap-2 bg-[#007aff] text-white px-5 py-3 rounded-full font-light hover:bg-[#0062cc] transition"
+              disabled={status === 'sending'}
+              className={`flex items-center gap-2 px-5 py-3 rounded-full font-light transition
+                ${status === 'sending' ? 'bg-[#7fb6ff] cursor-not-allowed text-white' : 'bg-[#007aff] hover:bg-[#0062cc] text-white'}
+              `}
             >
               <FiSend className="text-xl" />
-              Wyślij wiadomość
+              {status === 'sending' ? 'Wysyłanie…' : 'Wyślij wiadomość'}
             </button>
 
             {status === 'success' && (
-              <p className="text-green-600 pt-3">Wiadomość została wysłana.</p>
+              <p className="text-green-600 pt-3">Dziękuję! Wiadomość została wysłana.</p>
             )}
             {status === 'error' && (
-              <p className="text-red-600 pt-3">Błąd – spróbuj ponownie.</p>
-            )}
-            {status === 'sending' && (
-              <p className="text-gray-500 pt-3">Wysyłanie...</p>
+              <p className="text-red-600 pt-3">
+                Ups, nie udało się wysłać. Spróbuj ponownie lub napisz na
+                {' '}
+                <a className="underline" href="mailto:kontakt@anastasiiakupriianets.pl">
+                  kontakt@anastasiiakupriianets.pl
+                </a>.
+              </p>
             )}
           </div>
         </motion.form>
