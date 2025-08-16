@@ -10,37 +10,45 @@ export default function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>('idle');
 
-  const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!formRef.current || status === 'sending') return;
-    setStatus('sending');
+const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  if (!formRef.current || status === 'sending') return;
+  setStatus('sending');
 
-    try {
-      const formData = new FormData(formRef.current);
+  try {
+    const formData = new FormData(formRef.current);
 
-      // honeypot
-      if ((formData.get('_honey') as string)?.trim()) {
-        setStatus('success');
-        formRef.current.reset();
-        return;
+    // honeypot: jeśli bot wypełni, przerywamy
+    if ((formData.get('_honey') as string)?.trim()) {
+      setStatus('success');
+      formRef.current.reset();
+      return;
+    }
+
+    // Wysyłka formularza
+    const res = await fetch('https://formsubmit.co/ajax/kontakt@anastasiiakupriianets.pl', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (res.ok) {
+      // 📊 Google Ads – kliknięcie/konwersja
+      if (typeof window.gtag !== 'undefined') {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-XXXXXXX/YYYYYYYYYYYY' // <- tutaj Twój Conversion ID i Label
+        });
       }
 
-      const res = await fetch('https://formsubmit.co/ajax/kontakt@anastasiiakupriianets.pl', {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: formData,
-      });
-
-      if (res.ok) {
-        setStatus('success');
-        formRef.current.reset();
-      } else {
-        setStatus('error');
-      }
-    } catch {
+      setStatus('success');
+      formRef.current.reset();
+    } else {
       setStatus('error');
     }
-  };
+  } catch {
+    setStatus('error');
+  }
+};
+
 
   return (
     <section

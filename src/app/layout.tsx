@@ -1,12 +1,12 @@
 import './globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Libre_Baskerville } from 'next/font/google';
-import Analytics from '@/components/Analytics';
+import { Analytics } from '@vercel/analytics/react'; // ⬅️ Vercel Analytics
 import CookieConsent from '@/components/CookieConsent';
 import Script from 'next/script';
 
 const inter = Inter({ subsets: ['latin'], display: 'swap', variable: '--font-inter' });
-const libre = Libre_Baskerville({ subsets: ['latin'], weight: ['400','700'], display: 'swap', variable: '--font-libre' });
+const libre = Libre_Baskerville({ subsets: ['latin'], weight: ['400', '700'], display: 'swap', variable: '--font-libre' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://anastasiiakupriianets.pl'),
@@ -15,10 +15,11 @@ export const metadata: Metadata = {
   description: 'Portfolio Front-End Developerki (Next.js, Tailwind). UX/UI, wydajność i dostępność.',
   alternates: {
     canonical: '/',
-    languages: { 'pl': '/', 'pl-PL': '/', 'x-default': '/' },
+    languages: { pl: '/', 'pl-PL': '/', 'x-default': '/' },
   },
   robots: {
-    index: true, follow: true,
+    index: true,
+    follow: true,
     googleBot: { index: true, follow: true, 'max-snippet': -1, 'max-image-preview': 'large', 'max-video-preview': -1 },
   },
   openGraph: {
@@ -38,9 +39,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/favicon.ico',
-    // apple: '/apple-touch-icon.png', // <-- odkomentuj tylko jeśli plik faktycznie istnieje w /public
+    // apple: '/apple-touch-icon.png',
   },
-  // 🔴 NIE dodajemy tu themeColor – jest niżej w viewport
   formatDetection: { telephone: false, address: false, email: false },
 };
 
@@ -58,8 +58,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pl" className={`${inter.variable} ${libre.variable} scroll-smooth`}>
       <head>
-        {/* Google Analytics */}
-        <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-CLP2ME6EWT" />
+        {/* GA4 loader */}
+        <Script
+          id="ga4-loader"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-CLP2ME6EWT"
+        />
+
+        {/* Jedna wspólna inicjalizacja gtag dla GA4 i Google Ads */}
         <Script
           id="gtag-init"
           strategy="afterInteractive"
@@ -68,42 +74,62 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
+
+              // GA4
               gtag('config', 'G-CLP2ME6EWT');
+
+              // Google Ads (PODMIEŃ na swój Conversion ID, format: AW-123456789)
+              gtag('config', 'AW-123456789');
             `,
           }}
         />
+
         {/* Structured Data */}
         <Script
-          id="ld-person" type="application/ld+json"
+          id="ld-person"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org', '@type': 'Person',
-              name: 'Anastasiia Kupriianets', url: siteUrl,
-              email: 'mailto:kontakt@anastasiiakupriianets.pl', jobTitle: 'Front-End Developer',
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Anastasiia Kupriianets',
+              url: siteUrl,
+              email: 'mailto:kontakt@anastasiiakupriianets.pl',
+              jobTitle: 'Front-End Developer',
             }),
           }}
         />
         <Script
-          id="ld-website" type="application/ld+json"
+          id="ld-website"
+          type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org', '@type': 'WebSite',
-              name: 'Anastasiia Portfolio', url: siteUrl,
-              potentialAction: { '@type': 'SearchAction', target: `${siteUrl}/?q={search_term_string}`, 'query-input': 'required name=search_term_string' },
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Anastasiia Portfolio',
+              url: siteUrl,
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: `${siteUrl}/?q={search_term_string}`,
+                'query-input': 'required name=search_term_string',
+              },
             }),
           }}
         />
       </head>
 
       <body className={`${inter.className} antialiased text-black bg-white`}>
-        {/* Skip link (działa z #content na stronach) */}
+        {/* Skip link */}
         <a href="#content" className="skip-link">Pomiń do treści</a>
 
-        {/* Tło: lekki gradient, zero 404 */}
+        {/* Tło */}
         <div className="fixed inset-0 -z-10 bg-gradient-to-b from-[#007aff] to-[#339cff] opacity-40" aria-hidden />
 
+        {/* Vercel Web Analytics */}
         <Analytics />
+
         {children}
+
         <CookieConsent />
       </body>
     </html>
