@@ -24,6 +24,53 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
+  title: 'Lion Force Weld — strona firmowa',
+  slug: 'lion-force-weld',
+  description:
+    'Strona firmowa dla Lion Force Weld skupiona na czytelnej prezentacji usług i danych kontaktowych. Projekt obejmował nowoczesny, responsywny layout oraz przygotowanie serwisu pod dalszy rozwój i SEO.',
+  image: '/projects/LionForceWeld(1).webp',
+  cardImage: '/projects/LionForceWeld.webp',
+
+  tech: ['WordPress', 'ACF', 'Tailwind CSS', 'SEO'],
+  link: 'https://lionforceweld.pl',
+
+  work: [
+    'Projekt layoutu i struktury strony',
+    'Kodowanie własnego motywu WordPress',
+    'Konfiguracja edytowalnych sekcji (ACF)',
+    'Responsywność (desktop / mobile)',
+    'Podstawowa optymalizacja SEO (nagłówki, struktura treści)',
+  ],
+
+  results: {
+    timeframe: '2 tygodnie',
+  },
+
+  challenges: [
+    {
+      problem: 'Brak gotowej struktury treści po stronie klienta.',
+      solution:
+        'Zaprojektowanie uniwersalnego układu sekcji, który pozwala na łatwe uzupełnianie i edycję treści w przyszłości.',
+    },
+    {
+      problem: 'Potrzeba prostego panelu edycji bez korzystania z page builderów.',
+      solution:
+        'Zastosowanie ACF jako jedynego narzędzia edycji treści, co upraszcza panel i zmniejsza ryzyko błędów.',
+    },
+  ],
+
+  decisions: [
+    'Własny motyw WordPress zamiast gotowego szablonu',
+    'ACF zamiast page builderów — lepsza wydajność i kontrola kodu',
+    'Prosty, techniczny design dopasowany do branży spawalniczej',
+  ],
+
+  integrations: ['WordPress', 'ACF'],
+},
+
+
+  {
+    
     title: 'Luisówka — domek w górach',
     slug: 'luisowka',
     description:

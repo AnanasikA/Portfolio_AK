@@ -60,13 +60,7 @@ export default function CookieConsent() {
           Używamy plików cookie do analityki i poprawy działania serwisu.
         </p>
         <div className="ml-auto flex gap-2">
-          <button
-            type="button"
-            onClick={() => decide('0')}
-            className="px-4 py-2 rounded-full border border-black/15 hover:bg-black/5 transition text-sm"
-          >
-            Odrzuć
-          </button>
+
           <button
             type="button"
             onClick={() => decide('1')}
