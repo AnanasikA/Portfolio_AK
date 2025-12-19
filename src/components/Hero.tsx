@@ -27,10 +27,17 @@ export default function Hero() {
             Projektuję strony internetowe, które robią wrażenie.
           </h1>
 
-          <p className="mb-6 text-base sm:text-lg text-white/90 font-sans">
-            Nowoczesne witryny w&nbsp;Next.js i&nbsp;Tailwind CSS — jasne zasady,
-            szybka realizacja i&nbsp;efekt, który wyróżnia Twoją markę w&nbsp;sieci.
-          </p>
+        <p className="mb-6 text-base sm:text-lg text-white/90 font-sans">
+  Projektuję i&nbsp;koduję strony internetowe —
+  od prostych witryn firmowych w&nbsp;WordPressie,
+  po nowoczesne projekty w&nbsp;Next.js.
+  Dbam o&nbsp;design, szybkość działania i&nbsp;czytelny przekaz,
+  który buduje zaufanie do Twojej marki.
+</p>
+
+
+
+
 
           <Link
             href="/projects"
