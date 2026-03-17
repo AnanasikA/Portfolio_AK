@@ -16,7 +16,6 @@ const libre = Libre_Baskerville({
 });
 
 export default function Projects() {
-  // slug -> ratio (width/height) wykryte po załadowaniu obrazka
   const [ratios, setRatios] = useState<Record<string, number>>({});
 
   return (
@@ -35,8 +34,10 @@ export default function Projects() {
           >
             Moje projekty w sieci
           </motion.h2>
+
           <p className="mt-4 text-white text-base max-w-2xl mx-auto leading-relaxed">
-            Poznaj strony, które stworzyłam od pierwszego szkicu po finalny kod – dopasowane do potrzeb klientów, nowoczesne w formie i przyjazne w użytkowaniu.
+            Poznaj strony, które stworzyłam od pierwszego szkicu po finalny kod – dopasowane
+            do potrzeb klientów, nowoczesne w formie i przyjazne w użytkowaniu.
           </p>
         </div>
 
@@ -48,6 +49,7 @@ export default function Projects() {
           >
             <span>←</span> Strona główna
           </Link>
+
           <Link
             href="/#kontakt"
             className="inline-flex items-center gap-2 border border-white/80 px-4 py-2 rounded-full text-sm hover:bg-white hover:text-[#007aff] transition"
@@ -58,23 +60,21 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto items-stretch">
         {projects.map((project: ProjectItem, index) => {
           const cardImg = project.cardImage || project.image;
 
           return (
-            <motion.div
+            <motion.article
               key={project.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="border border-white/40 rounded-xl p-5 flex flex-col gap-y-4 bg-transparent"
+              className="h-full border border-white/40 rounded-xl p-5 flex flex-col bg-transparent"
             >
-              {/* Ramka dopasowana 1:1 do naturalnego ratio obrazka */}
               <div
                 className="relative w-full rounded-md overflow-hidden border border-white/30"
-                style={{ aspectRatio: ratios[project.slug] ?? 1.6 }} // fallback 16:10
+                style={{ aspectRatio: ratios[project.slug] ?? 1.6 }}
               >
                 <Image
                   src={cardImg}
@@ -87,7 +87,7 @@ export default function Projects() {
                     const r = img.naturalWidth / img.naturalHeight;
                     if (Number.isFinite(r) && r > 0) {
                       setRatios((prev) =>
-                        prev[project.slug] === r ? prev : { ...prev, [project.slug]: r },
+                        prev[project.slug] === r ? prev : { ...prev, [project.slug]: r }
                       );
                     }
                   }}
@@ -100,36 +100,39 @@ export default function Projects() {
                 />
               </div>
 
-              <div className="flex flex-col justify-between flex-1">
+              <div className="flex flex-col flex-1 pt-4">
                 <div>
-                  <h3 className={`${libre.className} text-2xl font-light mb-2`}>
+                  <h3 className={`${libre.className} text-2xl font-light leading-tight min-h-[72px]`}>
                     {project.title}
                   </h3>
-                  <p className="text-sm text-white/90 mb-4">{project.description}</p>
+
+                  <p className="mt-3 text-sm text-white/90 leading-relaxed line-clamp-5 min-h-[110px]">
+                    {project.description}
+                  </p>
                 </div>
 
-                <div className="mt-auto flex flex-wrap justify-between items-center gap-3">
-                  <div className="flex flex-wrap gap-2 text-xs text-white">
-                    {project.tech.map((tech) => (
-                      <span
-                        key={tech}
-                        className="border border-white/50 text-white px-2 py-1 rounded-md text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                <div className="mt-4 flex flex-wrap gap-2 text-xs text-white">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="border border-white/50 text-white px-2 py-1 rounded-md text-xs"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
 
+                <div className="mt-auto pt-6">
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="text-sm text-white border border-white hover:bg-white hover:text-[#007aff] transition px-3 py-1 rounded-full"
+                    className="inline-flex text-sm text-white border border-white hover:bg-white hover:text-[#007aff] transition px-3 py-1 rounded-full"
                     aria-label={`Zobacz szczegóły: ${project.title}`}
                   >
                     Zobacz projekt →
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           );
         })}
       </div>
@@ -142,6 +145,7 @@ export default function Projects() {
         >
           ← Strona główna
         </Link>
+
         <Link
           href="/#kontakt"
           className="inline-flex items-center gap-2 border border-white/80 px-4 py-2 rounded-full text-sm hover:bg-white hover:text-[#007aff] transition"
