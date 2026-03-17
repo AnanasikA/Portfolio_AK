@@ -35,10 +35,6 @@ export default function Hero() {
   który buduje zaufanie do Twojej marki.
 </p>
 
-
-
-
-
           <Link
             href="/projects"
             aria-label="Zobacz projekty — portfolio stron internetowych"

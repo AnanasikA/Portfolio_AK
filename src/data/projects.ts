@@ -24,6 +24,80 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
+  title: 'Spiro Pilates & Mobility',
+  slug: 'spiro-pilates-mobility',
+  description:
+    'Nowoczesna strona internetowa dla studia pilates i mobility, zaprojektowana z myślą o lekkości, estetyce i prostym zarządzaniu treścią. Projekt obejmował wdrożenie customowego motywu WordPress, wersję językową oraz integrację z systemem rezerwacji.',
+
+  image: '/projects/SpiroPilates1.webp',
+  cardImage: '/projects/SpiroPilates.webp',
+
+  tech: [
+    'WordPress',
+    'Custom Theme',
+    'ACF',
+    'Polylang',
+    'SEO',
+    'Responsive Design',
+  ],
+
+  link: 'https://spiropilatesmobility.pl/',
+
+  work: [
+    'Projekt UX/UI i struktury strony',
+    'Kodowanie customowego motywu WordPress',
+    'Tworzenie sekcji edytowalnych (ACF)',
+    'Integracja z Fitssey (grafik zajęć)',
+    'Wdrożenie wersji językowej (PL/EN)',
+    'Optymalizacja SEO i wydajności',
+  ],
+
+  results: {
+    timeframe: '2–3 tygodnie',
+    highlights: [
+      'Estetyczna, lekka strona dopasowana do branży wellness',
+      'Prosty panel edycji dla właścicielki',
+      'Gotowa baza pod rozwój i pozycjonowanie',
+    ],
+  },
+
+  challenges: [
+    {
+      problem:
+        'Konieczność szybkiego wdrożenia strony ze względu na termin projektu.',
+      solution:
+        'Podział prac na etapy i skupienie się najpierw na kluczowych sekcjach.',
+    },
+    {
+      problem:
+        'Strona musiała być łatwa w obsłudze bez użycia page builderów.',
+      solution:
+        'Zastosowanie customowego motywu + ACF do prostego zarządzania treścią.',
+    },
+    {
+      problem:
+        'Zmieniająca się oferta i grafik zajęć.',
+      solution:
+        'Elastyczne sekcje + integracja z zewnętrznym systemem Fitssey.',
+    },
+  ],
+
+  decisions: [
+    'Custom WordPress zamiast gotowego szablonu',
+    'ACF zamiast page buildera — lepsza wydajność i kontrola',
+    'Polylang do obsługi wielu języków',
+    'Minimalistyczny design dopasowany do branży wellness',
+  ],
+
+  integrations: [
+    'Fitssey',
+    'Polylang',
+    'Rank Math SEO',
+    'Wordfence',
+    'UpdraftPlus',
+  ],
+},
+  {
   title: 'Lion Force Weld — strona firmowa',
   slug: 'lion-force-weld',
   description:
