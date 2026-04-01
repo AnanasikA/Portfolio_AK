@@ -231,42 +231,42 @@
 },
 "lion-force-weld": {
   "title": "Lion Force Weld",
-  "description": "Strona firmowa zaprojektowana tak, aby uporządkować ofertę, podkreślić profesjonalizm marki i ułatwić szybki kontakt z klientem.",
-  "overview": "Projekt dla firmy spawalniczej, której zależało na czytelnej prezentacji usług i mocniejszym wizerunku online.",
-  "workTitle": "Zakres prac",
+  "description": "A company website designed to organize the offer, highlight the brand’s professionalism, and make client contact fast and easy.",
+  "overview": "A project for a welding company that needed a clearer service presentation and a stronger online presence.",
+  "workTitle": "Scope of work",
   "work": [
-    "Projekt layoutu i struktury strony",
-    "Kodowanie własnego motywu WordPress",
-    "Konfiguracja edytowalnych sekcji z ACF",
-    "Dostosowanie strony do urządzeń mobilnych",
-    "Podstawowa optymalizacja SEO"
+    "Website layout and structure design",
+    "Custom WordPress theme development",
+    "Editable sections setup with ACF",
+    "Responsive design implementation",
+    "Basic SEO optimization"
   ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "2 tygodnie",
+  "resultsTitle": "Results",
+  "timeframeLabel": "Timeline",
+  "timeframe": "2 weeks",
   "highlights": [
-    "Czytelna prezentacja usług i danych kontaktowych",
-    "Profesjonalniejszy odbiór marki",
-    "Dobra baza pod dalszy rozwój strony i SEO"
+    "Clear presentation of services and contact details",
+    "More professional brand perception",
+    "Strong base for future website growth and SEO"
   ],
-  "challengesTitle": "Wyzwania",
+  "challengesTitle": "Challenges",
   "challenges": [
     {
-      "problem": "Klient nie miał gotowej i uporządkowanej struktury treści.",
-      "solution": "Przygotowałam uniwersalny układ sekcji, który można łatwo rozwijać i uzupełniać."
+      "problem": "The client did not have a ready or structured content system.",
+      "solution": "I designed a flexible section layout that can be easily expanded and updated."
     },
     {
-      "problem": "Panel edycji miał być prosty i bez page builderów.",
-      "solution": "Wdrożyłam ACF jako główne narzędzie do edycji treści, aby uprościć obsługę strony."
+      "problem": "The editing panel had to stay simple and avoid page builders.",
+      "solution": "I implemented ACF as the main content editing tool to keep the dashboard easy to use."
     }
   ],
-  "decisionsTitle": "Decyzje projektowe",
+  "decisionsTitle": "Project decisions",
   "decisions": [
-    "Własny motyw WordPress zamiast gotowego szablonu",
-    "ACF zamiast page builderów dla lepszej wydajności",
-    "Prosty, techniczny design dopasowany do branży"
+    "Custom WordPress theme instead of a ready-made template",
+    "ACF instead of page builders for better performance",
+    "Simple, technical design tailored to the industry"
   ],
-  "integrationsTitle": "Integracje",
+  "integrationsTitle": "Integrations",
   "integrations": [
     "WordPress",
     "ACF"
