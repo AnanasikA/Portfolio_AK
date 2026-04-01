@@ -2,6 +2,10 @@
 import type { Metadata } from 'next';
 import ProjectsPage from './page.client';
 
+export function generateStaticParams() {
+  return [{ locale: 'pl' }, { locale: 'en' }];
+}
+
 export const metadata: Metadata = {
   title: 'Projekty | Anastasiia – Front-End Developer',
   description:

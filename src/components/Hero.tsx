@@ -1,17 +1,22 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import { FiArrowRight } from 'react-icons/fi';
 import { useCallback } from 'react';
+import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 
 const HERO_SRC = '/laptop-scene-hero.webp';
-const HERO_FALLBACK = '/images/placeholder-hero.webp'; // wrzuć do public/images/
+const HERO_FALLBACK = '/images/placeholder-hero.webp';
 
 export default function Hero() {
+  const t = useTranslations('hero');
+
   const handleImgError = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-    const t = e.currentTarget;
-    if (!t.src.endsWith(HERO_FALLBACK)) t.src = HERO_FALLBACK;
+    const target = e.currentTarget as HTMLImageElement;
+    if (!target.src.endsWith(HERO_FALLBACK)) {
+      target.src = HERO_FALLBACK;
+    }
   }, []);
 
   return (
@@ -20,24 +25,19 @@ export default function Hero() {
       aria-labelledby="hero-heading"
       className="relative w-full min-h-[100svh] bg-[#007aff] overflow-hidden flex flex-col lg:flex-row items-center justify-between"
     >
-      {/* Tekst */}
       <div className="w-full lg:w-1/2 xl:w-[42%] 2xl:w-[40%] flex items-center justify-center px-6 sm:px-10 pt-24 sm:pt-28 lg:pt-0 pb-12 text-white">
         <div className="max-w-xl text-center lg:text-left">
           <h1 id="hero-heading" className="text-4xl sm:text-5xl font-light mb-6 font-serif">
-            Projektuję strony internetowe, które robią wrażenie.
+            {t('title')}
           </h1>
 
-        <p className="mb-6 text-base sm:text-lg text-white/90 font-sans">
-  Projektuję i&nbsp;koduję strony internetowe —
-  od prostych witryn firmowych w&nbsp;WordPressie,
-  po nowoczesne projekty w&nbsp;Next.js.
-  Dbam o&nbsp;design, szybkość działania i&nbsp;czytelny przekaz,
-  który buduje zaufanie do Twojej marki.
-</p>
+          <p className="mb-6 text-base sm:text-lg text-white/90 font-sans">
+            {t('description')}
+          </p>
 
           <Link
             href="/projects"
-            aria-label="Zobacz projekty — portfolio stron internetowych"
+            aria-label={t('projects_aria')}
             className="inline-flex items-center gap-2 rounded-full
                        bg-transparent text-white border border-white/70
                        px-7 py-3 text-base font-light
@@ -45,18 +45,17 @@ export default function Hero() {
                        transition focus:outline-none
                        focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#cfe3ff]"
           >
-            Zobacz moje projekty
+            {t('cta')}
             <FiArrowRight className="opacity-90" />
           </Link>
         </div>
       </div>
 
-      {/* Ilustracja */}
       <div className="relative w-full lg:w-1/2 xl:w-[58%] 2xl:w-[60%] flex items-center justify-center p-6 lg:p-8 xl:p-10">
         <div className="relative w-full h-[40vh] sm:h-[48vh] lg:h-[60vh] xl:h-[72vh] 2xl:h-[80vh]">
           <Image
             src={HERO_SRC}
-            alt="Ilustracja projektowania stron — laptop z kodem i elementami UI"
+            alt={t('image_alt')}
             fill
             className="object-contain rounded-lg"
             priority

@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useRouter, usePathname } from '@/i18n/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -19,6 +20,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
   const [hash, setHash] = useState<string>(
     typeof window !== 'undefined' ? window.location.hash : ''
   );
+  
 
   // ESC + klik poza
   useEffect(() => {
@@ -49,13 +51,15 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
     exit: { opacity: 0, x: 50 },
   };
 
-  const links = [
-    { name: 'Start', path: '/' },
-    { name: 'Jak działam', path: '#how' },
-    { name: 'Projekty', path: '/projects' },
-    { name: 'Cennik', path: '#pricing' },
-    { name: 'Kontakt', path: '#contact' },
-  ];
+   const t = useTranslations('dropdownMenu');
+
+const links = [
+  { name: t('home'), path: '/' },
+  { name: t('how'), path: '#how' },
+  { name: t('projects'), path: '/projects' },
+  { name: t('pricing'), path: '#pricing' },
+  { name: t('contact'), path: '#contact' },
+];
 
   const scrollToHash = (h: string) => {
     const id = h.replace(/^#/, '');
@@ -98,7 +102,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
           ref={menuRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Menu nawigacyjne"
+          aria-label={t('menuAria')}
           initial="hidden"
           animate="visible"
           exit="exit"
@@ -113,7 +117,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
           <button
             onClick={toggleMenu}
             className="absolute top-3.5 right-5 p-1.5 rounded-full hover:bg-white/40 transition"
-            aria-label="Zamknij menu"
+            aria-label={t('closeAria')}
           >
             <Image
               src="/icons/close-icon.webp"
@@ -160,21 +164,21 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
             {/* CTA – biały przycisk, niebieski tekst */}
             <li className="pt-2">
               <button
-                onClick={() => {
-                  toggleMenu();
-                  if (typeof window !== 'undefined') {
-                    window.dispatchEvent(new CustomEvent('open-brief'));
-                  }
-                }}
-                className="
-                  inline-flex items-center justify-center rounded-full
-                  bg-white text-[#007aff] px-5 py-2 text-base font-light tracking-wide
-                  hover:bg-[#f5faff] transition border border-[#007aff]/20
-                "
-                aria-label="Wyceń projekt"
-              >
-                Wyceń projekt
-              </button>
+  onClick={() => {
+    toggleMenu();
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('open-brief'));
+    }
+  }}
+  className="
+    inline-flex items-center justify-center rounded-full
+    bg-white text-[#007aff] px-5 py-2 text-base font-light tracking-wide
+    hover:bg-[#f5faff] transition border border-[#007aff]/20
+  "
+  aria-label={t('ctaAria')}
+>
+  {t('cta')}
+</button>
             </li>
           </motion.ul>
         </motion.div>

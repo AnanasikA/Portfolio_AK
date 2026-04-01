@@ -3,52 +3,51 @@
 import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend } from 'react-icons/fi';
+import { useTranslations } from 'next-intl';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
 export default function Contact() {
+  const t = useTranslations('contact');
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>('idle');
 
-const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  if (!formRef.current || status === 'sending') return;
-  setStatus('sending');
+  const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formRef.current || status === 'sending') return;
 
-  try {
-    const formData = new FormData(formRef.current);
+    setStatus('sending');
 
-    // honeypot: jeśli bot wypełni, przerywamy
-    if ((formData.get('_honey') as string)?.trim()) {
-      setStatus('success');
-      formRef.current.reset();
-      return;
-    }
+    try {
+      const formData = new FormData(formRef.current);
 
-    // Wysyłka formularza
-    const res = await fetch('https://formsubmit.co/ajax/kontakt@anastasiiakupriianets.pl', {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (res.ok) {
-      // 📊 Google Ads – kliknięcie/konwersja
-      if (typeof window.gtag !== 'undefined') {
-        window.gtag('event', 'conversion', {
-          send_to: 'AW-XXXXXXX/YYYYYYYYYYYY' // <- tutaj Twój Conversion ID i Label
-        });
+      if ((formData.get('_honey') as string)?.trim()) {
+        setStatus('success');
+        formRef.current.reset();
+        return;
       }
 
-      setStatus('success');
-      formRef.current.reset();
-    } else {
+      const res = await fetch('https://formsubmit.co/ajax/kontakt@anastasiiakupriianets.pl', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (res.ok) {
+        if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+          window.gtag('event', 'conversion', {
+            send_to: 'AW-XXXXXXX/YYYYYYYYYYYY',
+          });
+        }
+
+        setStatus('success');
+        formRef.current.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch {
       setStatus('error');
     }
-  } catch {
-    setStatus('error');
-  }
-};
-
+  };
 
   return (
     <section
@@ -58,7 +57,6 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#007aff]/10 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
-        {/* Tekst po lewej */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -66,16 +64,13 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
           className="space-y-6"
         >
           <h2 className="text-4xl sm:text-5xl font-light font-serif">
-            Masz pomysł na stronę?
+            {t('title')}
           </h2>
           <p className="text-lg opacity-80 leading-relaxed">
-            Wypełnij krótki formularz – odezwę się, by porozmawiać o Twoim projekcie i
-            zaproponować najlepsze rozwiązanie. Tworzę strony, które nie tylko dobrze
-            wyglądają, ale i działają.
+            {t('subtitle')}
           </p>
         </motion.div>
 
-        {/* Prawy panel: formularz lub ekran potwierdzenia */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,16 +78,14 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
           className="bg-white border border-[#e0e7ff] shadow-lg rounded-3xl p-8"
         >
           {status === 'success' ? (
-            // --- Ekran "Dziękuję" ---
             <div
               role="status"
               aria-live="polite"
               className="text-center px-2 py-6"
             >
-              <h3 className="text-2xl font-semibold mb-2">Dziękuję za wiadomość</h3>
+              <h3 className="text-2xl font-semibold mb-2">{t('success_title')}</h3>
               <p className="text-gray-600 max-w-md mx-auto">
-                Formularz został wysłany poprawnie. Odpowiem najczęściej w ciągu 24 godzin
-                w dni robocze.
+                {t('success_text')}
               </p>
 
               <div className="mt-8 flex items-center justify-center gap-3">
@@ -101,20 +94,18 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
                   onClick={() => setStatus('idle')}
                   className="px-5 py-3 rounded-full border border-gray-300 text-gray-800 hover:bg-gray-50 transition"
                 >
-                  Wyślij kolejną wiadomość
+                  {t('send_another')}
                 </button>
                 <a
                   href="mailto:kontakt@anastasiiakupriianets.pl"
                   className="px-5 py-3 rounded-full bg-[#007aff] text-white hover:bg-[#0062cc] transition"
                 >
-                  Napisz maila
+                  {t('write_email')}
                 </a>
               </div>
             </div>
           ) : (
-            // --- Formularz ---
             <form ref={formRef} onSubmit={sendForm} className="space-y-5">
-              {/* ukryte pola FormSubmit */}
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_subject" value="Nowa wiadomość z portfolio" />
               <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
@@ -124,7 +115,7 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
                   role="alert"
                   className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
                 >
-                  Nie udało się wysłać formularza. Spróbuj ponownie lub napisz na{' '}
+                  {t('error')}{' '}
                   <a className="underline" href="mailto:kontakt@anastasiiakupriianets.pl">
                     kontakt@anastasiiakupriianets.pl
                   </a>.
@@ -133,7 +124,7 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
 
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-1">
-                  Imię i nazwisko
+                  {t('form.name')}
                 </label>
                 <input
                   type="text"
@@ -146,7 +137,7 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-1">
-                  Email
+                  {t('form.email')}
                 </label>
                 <input
                   type="email"
@@ -159,7 +150,7 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-1">
-                  Wiadomość
+                  {t('form.message')}
                 </label>
                 <textarea
                   id="message"
@@ -174,14 +165,14 @@ const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
                 <button
                   type="submit"
                   disabled={status === 'sending'}
-                  className={`flex items-center gap-2 px-5 py-3 rounded-full font-light transition
-                    ${status === 'sending'
+                  className={`flex items-center gap-2 px-5 py-3 rounded-full font-light transition ${
+                    status === 'sending'
                       ? 'bg-[#7fb6ff] cursor-not-allowed text-white'
-                      : 'bg-[#007aff] hover:bg-[#0062cc] text-white'}
-                  `}
+                      : 'bg-[#007aff] hover:bg-[#0062cc] text-white'
+                  }`}
                 >
                   <FiSend className="text-xl" />
-                  {status === 'sending' ? 'Wysyłanie…' : 'Wyślij wiadomość'}
+                  {status === 'sending' ? t('sending') : t('form.submit')}
                 </button>
               </div>
             </form>

@@ -1,0 +1,626 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "projects": "Projects"
+  },
+"hero": {
+  "title": "I design websites that make an impression.",
+  "description": "I design and code websites — from simple business websites in WordPress to modern projects in Next.js. I focus on design, performance and clear communication that helps build trust in your brand.",
+  "cta": "View my projects",
+  "projects_aria": "View projects — portfolio of websites",
+  "image_alt": "Website design illustration — laptop with code and UI elements"
+},
+ "skills": {
+  "title": "What can I do?",
+  "cta": "View projects",
+  "cta_aria": "View projects",
+  "web": {
+    "title": "Website design",
+    "description": "I create aesthetic and functional websites tailored to your brand and business goals."
+  },
+  "ux": {
+    "title": "UX/UI design",
+    "description": "I care about user experience — from intuitive interfaces to a consistent visual style."
+  },
+  "frontend": {
+    "title": "Front-end development",
+    "description": "I write lightweight, responsive and modern code in Next.js and Tailwind CSS."
+  },
+  "responsive": {
+    "title": "Optimization and responsiveness",
+    "description": "Websites run smoothly and look great on every screen — from mobile phones to large monitors."
+  }
+},
+"pricing": {
+  "title": "How much does a website cost?",
+  "subtitle": "Each project is priced individually — the amounts below are approximate and help estimate the budget.",
+  "cta": "Ask for a custom quote",
+  "package_aria": "What the package includes",
+  "price_aria": "Price",
+  "image_alt": "Sample website project elements — layout, typography, sections",
+  "items": {
+    "landing": {
+      "title": "Business card website / Landing Page",
+      "priceLabel": "from 1,500 PLN",
+      "description": "A simple, aesthetic and responsive website presenting your offer — perfect for getting started.",
+      "features": [
+        "One-page layout or a short homepage",
+        "Contact form",
+        "Basic SEO optimization"
+      ]
+    },
+    "company": {
+      "title": "Expanded company website",
+      "priceLabel": "from 3,000 PLN",
+      "description": "A multi-section website with several subpages, tailored to your brand and industry.",
+      "features": [
+        "2–6 subpages (e.g. About, Offer, Contact)",
+        "Custom visual design",
+        "Performance and SEO optimization"
+      ]
+    }
+  },
+  "modal": {
+    "title": "Quick quote request",
+    "subtitle": "Let me know what you need — I will get back to you with an initial quote and a realistic timeline.",
+    "close": "Close form"
+  },
+  "form": {
+    "name": "Full name",
+    "email": "Email",
+    "websiteType": "Website type",
+    "budget": "Budget",
+    "description": "Project description",
+    "choose": "Choose...",
+    "submit": "Send brief",
+    "options": {
+      "landing": "Business card website / Landing Page",
+      "company": "Expanded company website"
+    }
+  }
+},
+"contact": {
+  "title": "Do you have an idea for a website?",
+  "subtitle": "Fill out the short form — I will get back to you to talk about your project and suggest the best solution. I create websites that not only look good, but also work well.",
+  "success_title": "Thank you for your message",
+  "success_text": "Your form has been sent successfully. I usually reply within 24 business hours.",
+  "send_another": "Send another message",
+  "write_email": "Write an email",
+  "error": "The form could not be sent. Please try again or write to",
+  "sending": "Sending…",
+  "form": {
+    "name": "Full name",
+    "email": "Email",
+    "message": "Message",
+    "submit": "Send message"
+  }
+},
+  "footer": {
+  "description": "I design and code modern websites — functional, aesthetic and ready to perform. I focus on UX/UI, accessibility and clean code.",
+  "privacy": "Privacy Policy",
+  "terms": "Terms and Conditions",
+  "cookies": "Cookies",
+  "legal_aria": "Legal links"
+},
+  "cookie": {
+    "message": "We use cookies to ensure the best experience on our website.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "learn_more": "Learn more"
+  },
+  "meta": {
+    "title": "Anastasiia | Portfolio",
+    "description": "Front-End Developer portfolio (Next.js, Tailwind). UX/UI, performance and accessibility."
+  },  
+  "projectsPage": {
+    "ariaLabel": "Projects",
+    "title": "My projects online",
+    "subtitle": "Explore the websites I created from the first sketch to the final code — tailored to clients’ needs, modern in form and easy to use.",
+    "home": "Home",
+    "homeAria": "Go back to the home page",
+    "contactTop": "Write to me",
+    "contactBottom": "Contact",
+    "contactAria": "Go to the contact section",
+    "projectButton": "View project",
+    "projectDetailsAria": "View details: {title}"
+  },
+  "dropdownMenu": {
+    "home": "Home",
+    "how": "How I work",
+    "projects": "Projects",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "cta": "Get a quote",
+    "menuAria": "Navigation menu",
+    "closeAria": "Close menu",
+    "closeAlt": "Close",
+    "ctaAria": "Get a quote"
+  },
+  "cookieConsent": {
+    "text": "We use cookies for analytics and to improve the website.",
+    "accept": "Accept"
+  },
+
+  "projectDetail": {
+  "overviewTitle": "About the project",
+  "timeframeLabel": "Timeline",
+  "workTitle": "What I worked on",
+  "resultsTitle": "Results",
+  "challengesTitle": "Challenges and solutions",
+  "challengeLabel": "Challenge",
+  "solutionLabel": "Solution",
+  "decisionsTitle": "Key project decisions",
+  "integrationsTitle": "Integrations",
+  "sidebarText": "Have questions or want a similar result? Just send me a message and I’ll get back to you with a proposal.",
+  "viewOnline": "View online",
+  "contact": "Get in touch",
+  "imagePreviewAria": "Full preview of the {title} project — scroll inside the frame to see the full page",
+  "imageAlt": "{title} — long website preview"
+},
+
+"projectsPage": {
+  "title": "Selected Projects",
+  "subtitle": "Websites designed to look polished, feel clear, and support business goals.",
+  "home": "Home",
+  "homeAria": "Go back to the homepage",
+  "contactTop": "Let's talk about your project",
+  "contactBottom": "Get in touch",
+  "contactAria": "Go to contact section",
+  "projectButton": "View project",
+  "projectDetailsAria": "View details for {title}",
+  "backToProjects": "Projects",
+  "backToProjectsAria": "Go back to the projects list"
+},
+
+"projects": {
+  "spiro-pilates-mobility": {
+  "title": "Spiro Pilates & Mobility",
+  "description": "A modern website for a pilates and mobility studio, designed to build a calm and professional brand image while making it easier for clients to get in touch.",
+  "overview": "A website project for a wellness studio that needed an elegant, lightweight, and easy-to-manage online presence with room for future growth.",
+  "workTitle": "Scope of work",
+  "work": [
+    "UX/UI and website structure design",
+    "Custom WordPress theme development",
+    "Editable content sections built with ACF",
+    "Fitssey integration",
+    "PL/EN language version implementation",
+    "SEO and performance optimization"
+  ],
+  "resultsTitle": "Results",
+  "timeframeLabel": "Timeline",
+  "timeframe": "2–3 weeks",
+  "highlights": [
+    "Light and elegant website tailored to the wellness industry",
+    "Simple editing panel for the owner",
+    "Strong foundation for future content growth and SEO"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "The website had to be launched quickly due to a project deadline.",
+      "solution": "The work was divided into stages, with the key sections delivered first."
+    },
+    {
+      "problem": "The site needed to be easy to manage without using page builders.",
+      "solution": "I used a custom WordPress theme and ACF to simplify content editing."
+    },
+    {
+      "problem": "The offer and class schedule could change over time.",
+      "solution": "I designed flexible sections and integrated the site with Fitssey."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "Custom WordPress instead of a pre-made template",
+    "ACF instead of a page builder for better performance and control",
+    "Polylang for multilingual support",
+    "Minimalist design tailored to the wellness industry"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Fitssey",
+    "Polylang",
+    "Rank Math SEO",
+    "Wordfence",
+    "UpdraftPlus"
+  ]
+},
+"lion-force-weld": {
+  "title": "Lion Force Weld",
+  "description": "Strona firmowa zaprojektowana tak, aby uporządkować ofertę, podkreślić profesjonalizm marki i ułatwić szybki kontakt z klientem.",
+  "overview": "Projekt dla firmy spawalniczej, której zależało na czytelnej prezentacji usług i mocniejszym wizerunku online.",
+  "workTitle": "Zakres prac",
+  "work": [
+    "Projekt layoutu i struktury strony",
+    "Kodowanie własnego motywu WordPress",
+    "Konfiguracja edytowalnych sekcji z ACF",
+    "Dostosowanie strony do urządzeń mobilnych",
+    "Podstawowa optymalizacja SEO"
+  ],
+  "resultsTitle": "Efekt",
+  "timeframeLabel": "Czas realizacji",
+  "timeframe": "2 tygodnie",
+  "highlights": [
+    "Czytelna prezentacja usług i danych kontaktowych",
+    "Profesjonalniejszy odbiór marki",
+    "Dobra baza pod dalszy rozwój strony i SEO"
+  ],
+  "challengesTitle": "Wyzwania",
+  "challenges": [
+    {
+      "problem": "Klient nie miał gotowej i uporządkowanej struktury treści.",
+      "solution": "Przygotowałam uniwersalny układ sekcji, który można łatwo rozwijać i uzupełniać."
+    },
+    {
+      "problem": "Panel edycji miał być prosty i bez page builderów.",
+      "solution": "Wdrożyłam ACF jako główne narzędzie do edycji treści, aby uprościć obsługę strony."
+    }
+  ],
+  "decisionsTitle": "Decyzje projektowe",
+  "decisions": [
+    "Własny motyw WordPress zamiast gotowego szablonu",
+    "ACF zamiast page builderów dla lepszej wydajności",
+    "Prosty, techniczny design dopasowany do branży"
+  ],
+  "integrationsTitle": "Integracje",
+  "integrations": [
+    "WordPress",
+    "ACF"
+  ]
+},
+
+"luisowka": {
+  "title": "Luisówka",
+  "description": "A modern mountain cabin website with a custom availability inquiry system, designed to combine aesthetics, easy booking flow, and simple management.",
+  "overview": "A website project for a rental property where both attractive presentation and practical reservation handling were essential.",
+  "workTitle": "Scope of work",
+  "work": [
+    "UX/UI design and design system",
+    "Implementation with Next.js and Tailwind CSS",
+    "Availability calendar and booking logic",
+    "Admin panel for reservation management",
+    "Inquiry form, basic SEO, and legal pages"
+  ],
+  "resultsTitle": "Results",
+  "timeframeLabel": "Timeline",
+  "timeframe": "4 weeks",
+  "highlights": [
+    "Consistent and visually appealing presentation of the rental offer",
+    "Custom admin panel for reservation management",
+    "Website prepared for SEO, performance, and future growth"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "Overlapping reservations had to be prevented.",
+      "solution": "I added date range validation and blocked booked dates in the calendar."
+    },
+    {
+      "problem": "A simple admin panel was needed without relying on WordPress.",
+      "solution": "I built a custom CRUD admin panel in Next.js with Firestore security logic."
+    },
+    {
+      "problem": "The website had to clearly communicate privacy and form-related information.",
+      "solution": "I prepared clear legal pages and a transparent inquiry flow."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "Next.js for speed and simple deployment on Vercel",
+    "Custom calendar logic instead of heavy third-party solutions",
+    "Consistent styling system based on Tailwind CSS"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Firebase",
+    "Firestore",
+    "React Calendar",
+    "FormSubmit",
+    "Vercel"
+  ]
+},
+"zdrowie-plus": {
+  "title": "Zdrowie+",
+  "description": "A light and clear website for a wellness brand, designed to guide users through the offer, content, and contact flow in a simple and structured way.",
+  "overview": "A concept website for a wellness brand with a strong focus on aesthetics, content consistency, and clear calls to action.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Low-fi and high-fi wireframes",
+    "UI style design",
+    "Offer, blog, and CTA sections",
+    "Micro-interactions with Framer Motion",
+    "Semantic structure and basic SEO"
+  ],
+  "resultsTitle": "Results",
+  "timeframeLabel": "Timeline",
+  "timeframe": "3 weeks",
+  "highlights": [
+    "Clear layout with easy user paths",
+    "Consistent brand communication",
+    "Structure ready for future blog and content expansion"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "The design needed to stay visually light despite many sections.",
+      "solution": "I used a modular grid, a limited color palette, and consistent typography."
+    },
+    {
+      "problem": "Animations had to add energy without hurting performance.",
+      "solution": "I used subtle micro-animations instead of heavy visual effects."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "Framer Motion used sparingly and only where it supports UX",
+    "Reusable card system for visual consistency",
+    "Semantic structure for better SEO"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "EmailJS",
+    "Google Fonts"
+  ]
+},
+"quest-for-paws": {
+  "title": "Quest for Paws",
+  "description": "An empathetic and easy-to-use website for an animal support organization, designed to make adoption, support, and contact paths simple and accessible.",
+  "overview": "A foundation website project where accessibility, clear navigation, and action-oriented user flow were the key priorities.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Accessibility audit",
+    "Information architecture and action flows",
+    "Adoption, support, and contact form design",
+    "Contrast, focus states, and aria improvements"
+  ],
+  "resultsTitle": "Results",
+  "highlights": [
+    "Improved readability of forms and content",
+    "Shorter path to adoption and support",
+    "More accessible and better organized interface"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "The website included a lot of emotional content and imagery, but still had to remain clear and readable.",
+      "solution": "I used calm typography, balanced image proportions, and a clear section structure."
+    },
+    {
+      "problem": "The site needed to be more accessible for screen reader users.",
+      "solution": "I refined the heading structure, ARIA roles, focus rings, and alternative text."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "WCAG AA-compliant contrast",
+    "Consistent placement of key action buttons",
+    "Focus on simple and intuitive navigation"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "EmailJS",
+    "Google Fonts"
+  ]
+},
+"realestate": {
+  "title": "RealEstate",
+  "description": "A minimalist landing page for the real estate industry, designed to build trust quickly and guide users toward contact.",
+  "overview": "A website project focused on clear offer presentation, strong value points, and an effective contact form.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Section wireframing and content hierarchy",
+    "Property card design",
+    "Lightweight property list with room for future expansion",
+    "Lead form with validation"
+  ],
+  "resultsTitle": "Results",
+  "highlights": [
+    "Clear presentation of the offer and key value points",
+    "Trust-building sections",
+    "Structure ready for future CMS expansion"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "A lot of property information had to fit into a limited space.",
+      "solution": "I used repeatable cards with clear content hierarchy and a simple CTA."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "Minimal animations with performance in mind",
+    "Flexible grid ready for future filters and expansion",
+    "Simple section layout focused on lead generation"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "EmailJS",
+    "Google Fonts"
+  ]
+},
+"marecki-24-7": {
+  "title": "Marecki 24/7",
+  "description": "A roadside assistance and repair website designed so users in stressful situations can instantly see the key services and call without friction.",
+  "overview": "A service website project where fast contact, mobile clarity, and straightforward offer presentation were the top priorities.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Mobile-first interface design",
+    "Service, location, and working hours sections",
+    "Large contact-focused CTAs",
+    "Phone and map integration"
+  ],
+  "resultsTitle": "Results",
+  "highlights": [
+    "Instant access to the phone number",
+    "Clear layout on mobile devices",
+    "Better service presentation for urgent situations"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "Users often land on the site in stressful situations and need quick answers.",
+      "solution": "I focused on large buttons, shorter content, and always-visible CTAs."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "Mobile-first as the main design approach",
+    "Phone and map as the primary actions",
+    "Simple layout built for fast contact"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "EmailJS",
+    "Google Fonts",
+    "Map link"
+  ]
+},
+"goports": {
+  "title": "Goports",
+  "description": "A custom WordPress theme designed for clear event presentation, smoother editorial work, and lightweight performance without page builders.",
+  "overview": "A sports website project focused on strong content structure, filtering, and easier day-to-day content management.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Custom WordPress theme development from scratch",
+    "Category and event structure design",
+    "Event filtering",
+    "Performance and SEO optimization"
+  ],
+  "resultsTitle": "Results",
+  "highlights": [
+    "Lighter and more organized front-end",
+    "Easier editorial workflow",
+    "Faster access to events and content"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "The WordPress site had to stay lightweight despite having a larger amount of content.",
+      "solution": "I built a custom theme with a minimal plugin setup and an optimized front-end."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "Custom theme instead of a page builder",
+    "Minimal plugin usage for better performance",
+    "Custom content structure for events and categories"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "WordPress",
+    "Custom post types",
+    "ACF"
+  ]
+},
+"studybuddy": {
+  "title": "StudyBuddy",
+  "description": "A modern tutor discovery platform that combines a clear interface, light animations, and subtle 3D elements.",
+  "overview": "An educational project focused on friendly UX, a simple tutor selection flow, and a modern visual style.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Navigation and tutor card design",
+    "Section and CTA animations",
+    "3D asset optimization",
+    "Building a modern and lightweight interface"
+  ],
+  "resultsTitle": "Results",
+  "highlights": [
+    "Smooth interface despite using 3D elements",
+    "Clear user flow from selection to contact",
+    "Modern and approachable platform feel"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "3D elements could reduce performance on weaker devices.",
+      "solution": "I optimized the models, limited the animation scope, and used conditional loading."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "3D used only where it improves the first impression",
+    "Next.js for speed and better performance",
+    "Modern UI without overloading the experience with effects"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Spline",
+    "Framer Motion"
+  ]
+},
+"photographer": {
+  "title": "Photographer Portfolio",
+  "description": "A photographer portfolio designed so that all attention stays on the images, while the interface supports their presentation instead of competing with them.",
+  "overview": "A portfolio project focused on visual storytelling, gallery aesthetics, and smooth browsing across devices.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Gallery and navigation design",
+    "Image loading optimization",
+    "Subtle transition animations",
+    "Refined mobile and desktop layout"
+  ],
+  "resultsTitle": "Results",
+  "highlights": [
+    "Stronger focus on the photography itself",
+    "Comfortable gallery browsing on mobile",
+    "More premium personal brand perception"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "Large images could slow down the site.",
+      "solution": "I used image size optimization, compression, and controlled image loading."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "Minimal interface that does not distract from the photography",
+    "Calm color palette that supports the portfolio",
+    "Priority on visual experience and smooth browsing"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Google Fonts"
+  ]
+},
+"luxenails": {
+  "title": "LUXENAILS",
+  "description": "A colorful and feminine nail salon website designed to present the offer clearly, build trust, and encourage contact.",
+  "overview": "A beauty website project focused on consistent branding, simple service presentation, and a friendly brand experience.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Interface design aligned with the brand style",
+    "Service, pricing, and review sections",
+    "Contact form and CTAs",
+    "Visual consistency refinement"
+  ],
+  "resultsTitle": "Results",
+  "highlights": [
+    "Friendly offer presentation for new clients",
+    "Consistent and attractive online branding",
+    "Lightweight website supporting inquiries and bookings"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "The colorful visual style had to remain clear and well organized.",
+      "solution": "I used a balanced palette, strong headings, and a consistent section grid."
+    }
+  ],
+  "decisionsTitle": "Project decisions",
+  "decisions": [
+    "Clear CTAs and an FAQ section",
+    "Service cards ready for future expansion",
+    "Design based on a light, feminine brand style"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Google Fonts",
+    "Lightweight email form"
+  ]
+}}
+}

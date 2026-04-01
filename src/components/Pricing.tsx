@@ -1,52 +1,57 @@
 'use client';
 
+import Script from 'next/script';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiArrowRight } from 'react-icons/fi';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
-const ICON_FALLBACK = '/icons/placeholder.webp';
 const ILLU_FALLBACK = '/images/placeholder-illustration.webp';
 
-const pricingData = [
-  {
-    icon: '/icons/landing-icon.webp',
-    title: 'Strona wizytówka / Landing Page',
-    priceLabel: 'od 1 500 zł',
-    priceValue: '1500',
-    description:
-      'Prosta, estetyczna i responsywna strona prezentująca Twoją ofertę — idealna na start.',
-    features: [
-      'Układ one-page lub krótka strona główna',
-      'Formularz kontaktowy',
-      'Podstawowa optymalizacja SEO',
-    ],
-  },
-  {
-    icon: '/icons/firma-icon.webp',
-    title: 'Rozbudowana strona firmowa',
-    priceLabel: 'od 3 000 zł',
-    priceValue: '3000',
-    description:
-      'Wielosekcyjna strona z kilkoma podstronami, dopasowana do Twojej marki i branży.',
-    features: [
-      '2–6 podstron (np. O nas, Oferta, Kontakt)',
-      'Indywidualny projekt graficzny',
-      'Optymalizacja wydajności i SEO',
-    ],
-  },
-];
-
 export default function PricingSection() {
+  const t = useTranslations('pricing');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // ESC + blokowanie scrolla jak modal otwarty
+  const pricingData = [
+    {
+      key: 'landing',
+      iconType: 'lordicon',
+      iconSrc: 'https://cdn.lordicon.com/fikcyfpp.json',
+      priceLabel: t('items.landing.priceLabel'),
+      priceValue: '1500',
+      title: t('items.landing.title'),
+      description: t('items.landing.description'),
+      features: [
+        t('items.landing.features.0'),
+        t('items.landing.features.1'),
+        t('items.landing.features.2'),
+      ],
+    },
+    {
+      key: 'company',
+      iconType: 'lordicon',
+      iconSrc: 'https://cdn.lordicon.com/zhiiqoue.json',
+      priceLabel: t('items.company.priceLabel'),
+      priceValue: '3000',
+      title: t('items.company.title'),
+      description: t('items.company.description'),
+      features: [
+        t('items.company.features.0'),
+        t('items.company.features.1'),
+        t('items.company.features.2'),
+      ],
+    },
+  ];
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setIsModalOpen(false);
+
     if (isModalOpen) {
       window.addEventListener('keydown', onKey);
       document.body.style.overflow = 'hidden';
     }
+
     return () => {
       window.removeEventListener('keydown', onKey);
       document.body.style.overflow = 'auto';
@@ -59,24 +64,26 @@ export default function PricingSection() {
       aria-labelledby="pricing-heading"
       className="relative w-full bg-[#007aff] text-white py-20 sm:py-24 px-6 sm:px-10"
     >
+      <Script
+        src="https://cdn.lordicon.com/lordicon.js"
+        strategy="afterInteractive"
+      />
+
       <div className="mx-auto max-w-[1220px] xl:max-w-[1320px] 2xl:max-w-[1440px]">
-        {/* Nagłówek */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 id="pricing-heading" className="text-4xl sm:text-5xl mb-4 font-light font-serif">
-            Ile kosztuje strona?
+            {t('title')}
           </h2>
           <p className="text-lg opacity-90 max-w-2xl mx-auto">
-            Każdy projekt wyceniam indywidualnie — poniższe kwoty są orientacyjne i pomagają oszacować budżet.
+            {t('subtitle')}
           </p>
         </div>
 
-        {/* Kafelki + obraz */}
         <div className="grid md:grid-cols-2 gap-10 items-start">
-          {/* Kafelki po lewej */}
           <div className="flex flex-col gap-8">
             {pricingData.map((item, i) => (
               <motion.article
-                key={item.title}
+                key={item.key}
                 itemScope
                 itemType="https://schema.org/Service"
                 initial={{ opacity: 0, y: 18 }}
@@ -86,20 +93,20 @@ export default function PricingSection() {
                 className="border border-white/20 bg-white/5 rounded-3xl p-8 shadow-sm hover:bg-white/10 hover:border-white/30 transition"
               >
                 <meta itemProp="serviceType" content={item.title} />
+
                 <div className="mb-5 flex items-center gap-4">
-                  <div className="bg-white rounded-xl p-3 shadow-sm">
-                    <Image
-                      src={item.icon}
-                      alt=""
-                      width={36}
-                      height={36}
-                      aria-hidden="true"
-                      onError={(e) => {
-                        const t = e.currentTarget as HTMLImageElement;
-                        if (!t.src.endsWith(ICON_FALLBACK)) t.src = ICON_FALLBACK;
-                      }}
-                    />
+                  <div className="rounded-xl p-3  flex items-center justify-center w-[60px] h-[60px]">
+                    {item.iconType === 'lordicon' && (
+                      <lord-icon
+                        src={item.iconSrc}
+                        trigger="loop"
+                        delay="1000"
+                        colors="primary:#e4e4e4,secondary:#93c5fd"
+                        style={{ width: '34px', height: '34px' }}
+                      />
+                    )}
                   </div>
+
                   <h3 className="text-2xl font-medium font-serif" itemProp="name">
                     {item.title}
                   </h3>
@@ -109,7 +116,7 @@ export default function PricingSection() {
                   {item.description}
                 </p>
 
-                <ul className="space-y-2 mb-5 text-sm" aria-label="Co zawiera pakiet">
+                <ul className="space-y-2 mb-5 text-sm" aria-label={t('package_aria')}>
                   {item.features.map((feature, idx) => (
                     <li key={idx} className="flex gap-2">
                       <span aria-hidden="true">•</span>
@@ -124,18 +131,18 @@ export default function PricingSection() {
                   itemScope
                   itemType="https://schema.org/Offer"
                 >
-                  <Image
-                    src="/icons/price-tag.webp"
-                    alt=""
-                    width={20}
-                    height={20}
-                    aria-hidden="true"
-                    onError={(e) => {
-                      const t = e.currentTarget as HTMLImageElement;
-                      if (!t.src.endsWith(ICON_FALLBACK)) t.src = ICON_FALLBACK;
-                    }}
-                  />
-                  <span aria-label={`Cena ${item.priceLabel}`}>{item.priceLabel}</span>
+                  <div className="flex items-center justify-center w-5 h-5">
+                    <lord-icon
+                      src="https://cdn.lordicon.com/ysqeagpz.json"
+                      trigger="loop"
+                      colors="primary:#e4e4e4,secondary:#93c5fd"
+                      style={{ width: '18px', height: '18px' }}
+                    />
+                  </div>
+
+                  <span aria-label={`${t('price_aria')} ${item.priceLabel}`}>
+                    {item.priceLabel}
+                  </span>
                   <meta itemProp="priceCurrency" content="PLN" />
                   <meta itemProp="price" content={item.priceValue} />
                 </div>
@@ -143,7 +150,6 @@ export default function PricingSection() {
             ))}
           </div>
 
-          {/* Obraz po prawej */}
           <div className="flex justify-center md:justify-end md:items-end">
             <div
               className="
@@ -156,21 +162,20 @@ export default function PricingSection() {
             >
               <Image
                 src="/pricing-illustration.webp"
-                alt="Przykładowe elementy projektu strony — layout, typografia, sekcje"
+                alt={t('image_alt')}
                 fill
                 className="object-contain rounded-3xl"
                 priority
                 sizes="(min-width:1280px) 50vw, (min-width:768px) 50vw, 100vw"
                 onError={(e) => {
-                  const t = e.currentTarget as HTMLImageElement;
-                  if (!t.src.endsWith(ILLU_FALLBACK)) t.src = ILLU_FALLBACK;
+                  const target = e.currentTarget as HTMLImageElement;
+                  if (!target.src.endsWith(ILLU_FALLBACK)) target.src = ILLU_FALLBACK;
                 }}
               />
             </div>
           </div>
         </div>
 
-        {/* CTA – spójny outline + strzałka */}
         <div className="text-center pt-12">
           <button
             onClick={() => setIsModalOpen(true)}
@@ -183,13 +188,12 @@ export default function PricingSection() {
                        transition focus:outline-none
                        focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#cfe3ff]"
           >
-            Zapytaj o indywidualną wycenę
+            {t('cta')}
             <FiArrowRight className="opacity-90 transition-transform group-hover:translate-x-0.5" />
           </button>
         </div>
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
@@ -213,26 +217,25 @@ export default function PricingSection() {
               className="bg-white text-gray-900 rounded-3xl w-full max-w-2xl border border-slate-200 shadow-lg"
               onMouseDown={(e) => e.stopPropagation()}
             >
-              {/* Header */}
               <div className="flex items-start gap-3 px-6 pt-5 pb-3 border-b border-slate-200">
                 <div className="flex-1">
                   <h3 id="pricing-modal-title" className="text-xl sm:text-2xl font-serif font-light leading-snug">
-                    Krótkie zapytanie ofertowe
+                    {t('modal.title')}
                   </h3>
                   <p className="text-sm text-slate-600 mt-1">
-                    Daj znać, czego potrzebujesz — wrócę z wstępną wyceną i realnym terminem.
+                    {t('modal.subtitle')}
                   </p>
                 </div>
+
                 <button
                   onClick={() => setIsModalOpen(false)}
                   className="rounded-full p-2 hover:bg-slate-100 text-slate-700"
-                  aria-label="Zamknij formularz"
+                  aria-label={t('modal.close')}
                 >
                   <FiX className="text-2xl" />
                 </button>
               </div>
 
-              {/* Formularz */}
               <div className="px-6 pb-6 pt-4">
                 <form
                   action="https://formsubmit.co/kontakt@anastasiiakupriianets.pl"
@@ -244,7 +247,9 @@ export default function PricingSection() {
                   <input type="hidden" name="_template" value="table" />
 
                   <div className="col-span-1">
-                    <label className="block mb-1 text-xs text-slate-600">Imię i nazwisko</label>
+                    <label className="block mb-1 text-xs text-slate-600">
+                      {t('form.name')}
+                    </label>
                     <input
                       type="text"
                       name="Imię i nazwisko"
@@ -256,7 +261,9 @@ export default function PricingSection() {
                   </div>
 
                   <div className="col-span-1">
-                    <label className="block mb-1 text-xs text-slate-600">Email</label>
+                    <label className="block mb-1 text-xs text-slate-600">
+                      {t('form.email')}
+                    </label>
                     <input
                       type="email"
                       name="Email"
@@ -268,7 +275,9 @@ export default function PricingSection() {
                   </div>
 
                   <div className="col-span-1">
-                    <label className="block mb-1 text-xs text-slate-600">Rodzaj strony</label>
+                    <label className="block mb-1 text-xs text-slate-600">
+                      {t('form.websiteType')}
+                    </label>
                     <select
                       name="Rodzaj strony"
                       required
@@ -276,14 +285,16 @@ export default function PricingSection() {
                       className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none
                                  focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30"
                     >
-                      <option value="" disabled>Wybierz...</option>
-                      <option value="Strona wizytówka / Landing Page">Strona wizytówka / Landing Page</option>
-                      <option value="Rozbudowana strona firmowa">Rozbudowana strona firmowa</option>
+                      <option value="" disabled>{t('form.choose')}</option>
+                      <option value="Strona wizytówka / Landing Page">{t('form.options.landing')}</option>
+                      <option value="Rozbudowana strona firmowa">{t('form.options.company')}</option>
                     </select>
                   </div>
 
                   <div className="col-span-1">
-                    <label className="block mb-1 text-xs text-slate-600">Budżet</label>
+                    <label className="block mb-1 text-xs text-slate-600">
+                      {t('form.budget')}
+                    </label>
                     <select
                       name="Budżet"
                       required
@@ -291,7 +302,7 @@ export default function PricingSection() {
                       className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none
                                  focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30"
                     >
-                      <option value="" disabled>Wybierz...</option>
+                      <option value="" disabled>{t('form.choose')}</option>
                       <option value="1500–3000 zł">1500–3000 zł</option>
                       <option value="3000–5000 zł">3000–5000 zł</option>
                       <option value="5000+ zł">5000+ zł</option>
@@ -299,7 +310,9 @@ export default function PricingSection() {
                   </div>
 
                   <div className="col-span-1 sm:col-span-2">
-                    <label className="block mb-1 text-xs text-slate-600">Opis projektu</label>
+                    <label className="block mb-1 text-xs text-slate-600">
+                      {t('form.description')}
+                    </label>
                     <textarea
                       name="Opis projektu"
                       rows={4}
@@ -316,7 +329,7 @@ export default function PricingSection() {
                                  px-5 py-2.5 text-sm font-light text-white transition active:scale-[0.99]"
                       style={{ backgroundColor: '#007aff' }}
                     >
-                      Wyślij brief
+                      {t('form.submit')}
                       <FiArrowRight className="opacity-90 transition-transform group-hover:translate-x-0.5" />
                     </button>
                   </div>

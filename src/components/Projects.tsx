@@ -1,9 +1,9 @@
-// app/projects/Projects.tsx
 'use client';
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { projects } from '@/data/projects';
 import type { ProjectItem } from '@/data/projects';
@@ -17,11 +17,13 @@ const libre = Libre_Baskerville({
 
 export default function Projects() {
   const [ratios, setRatios] = useState<Record<string, number>>({});
+  const tPage = useTranslations('projectsPage');
+  const tProjects = useTranslations('projects');
 
   return (
     <section
       id="projects"
-      aria-label="Projekty"
+      aria-label={tPage('title')}
       className="w-full py-24 px-4 sm:px-6 bg-[#007aff] text-white"
     >
       <div className="max-w-7xl mx-auto mb-10">
@@ -32,12 +34,11 @@ export default function Projects() {
             transition={{ duration: 0.6 }}
             className={`${libre.className} text-5xl sm:text-4xl font-light mt-2`}
           >
-            Moje projekty w sieci
+            {tPage('title')}
           </motion.h2>
 
           <p className="mt-4 text-white text-base max-w-2xl mx-auto leading-relaxed">
-            Poznaj strony, które stworzyłam od pierwszego szkicu po finalny kod – dopasowane
-            do potrzeb klientów, nowoczesne w formie i przyjazne w użytkowaniu.
+            {tPage('subtitle')}
           </p>
         </div>
 
@@ -45,17 +46,17 @@ export default function Projects() {
           <Link
             href="/"
             className="inline-flex items-center gap-2 border border-white/80 px-4 py-2 rounded-full text-sm hover:bg-white hover:text-[#007aff] transition"
-            aria-label="Wróć na stronę główną"
+            aria-label={tPage('homeAria')}
           >
-            <span>←</span> Strona główna
+            <span>←</span> {tPage('home')}
           </Link>
 
           <Link
             href="/#kontakt"
             className="inline-flex items-center gap-2 border border-white/80 px-4 py-2 rounded-full text-sm hover:bg-white hover:text-[#007aff] transition"
-            aria-label="Przejdź do sekcji kontakt"
+            aria-label={tPage('contactAria')}
           >
-            Napisz do mnie →
+            {tPage('contactTop')} →
           </Link>
         </div>
       </div>
@@ -63,6 +64,8 @@ export default function Projects() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto items-stretch">
         {projects.map((project: ProjectItem, index) => {
           const cardImg = project.cardImage || project.image;
+          const title = tProjects(`${project.slug}.title`);
+          const description = tProjects(`${project.slug}.description`);
 
           return (
             <motion.article
@@ -78,7 +81,7 @@ export default function Projects() {
               >
                 <Image
                   src={cardImg}
-                  alt={project.title}
+                  alt={title}
                   fill
                   className="object-contain"
                   sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 90vw"
@@ -91,23 +94,17 @@ export default function Projects() {
                       );
                     }
                   }}
-                  onError={(e) => {
-                    const t = e.currentTarget as HTMLImageElement;
-                    if (!t.src.endsWith('/images/placeholder-card.webp')) {
-                      t.src = '/images/placeholder-card.webp';
-                    }
-                  }}
                 />
               </div>
 
               <div className="flex flex-col flex-1 pt-4">
                 <div>
                   <h3 className={`${libre.className} text-2xl font-light leading-tight min-h-[72px]`}>
-                    {project.title}
+                    {title}
                   </h3>
 
-                  <p className="mt-3 text-sm text-white/90 leading-relaxed line-clamp-5 min-h-[110px]">
-                    {project.description}
+                  <p className="mt-3 text-sm text-white/90 leading-relaxed line-clamp-4 min-h-[96px]">
+                    {description}
                   </p>
                 </div>
 
@@ -126,9 +123,9 @@ export default function Projects() {
                   <Link
                     href={`/projects/${project.slug}`}
                     className="inline-flex text-sm text-white border border-white hover:bg-white hover:text-[#007aff] transition px-3 py-1 rounded-full"
-                    aria-label={`Zobacz szczegóły: ${project.title}`}
+                    aria-label={tPage('projectDetailsAria', { title })}
                   >
-                    Zobacz projekt →
+                    {tPage('projectButton')} →
                   </Link>
                 </div>
               </div>
@@ -141,17 +138,17 @@ export default function Projects() {
         <Link
           href="/"
           className="inline-flex items-center gap-2 border border-white/80 px-4 py-2 rounded-full text-sm hover:bg-white hover:text-[#007aff] transition"
-          aria-label="Wróć na stronę główną"
+          aria-label={tPage('homeAria')}
         >
-          ← Strona główna
+          ← {tPage('home')}
         </Link>
 
         <Link
           href="/#kontakt"
           className="inline-flex items-center gap-2 border border-white/80 px-4 py-2 rounded-full text-sm hover:bg-white hover:text-[#007aff] transition"
-          aria-label="Przejdź do sekcji kontakt"
+          aria-label={tPage('contactAria')}
         >
-          Kontakt →
+          {tPage('contactBottom')} →
         </Link>
       </div>
     </section>

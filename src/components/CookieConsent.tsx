@@ -3,9 +3,11 @@
 
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useTranslations } from 'next-intl';
 
 export default function CookieConsent() {
   const [root, setRoot] = useState<HTMLElement | null>(null);
+  const t = useTranslations('cookieConsent');
   const [visible, setVisible] = useState(false);
 
   // Utwórz/znajdź kontener portalu w <body>
@@ -57,8 +59,8 @@ export default function CookieConsent() {
     <div className="fixed inset-x-0 bottom-0 z-[9999]">
       <div className="mx-auto max-w-5xl m-4 rounded-2xl bg-white/95 text-black p-4 shadow-lg flex flex-wrap items-center gap-3">
         <p className="text-sm">
-          Używamy plików cookie do analityki i poprawy działania serwisu.
-        </p>
+  {t('text')}
+</p>
         <div className="ml-auto flex gap-2">
 
           <button
@@ -66,7 +68,7 @@ export default function CookieConsent() {
             onClick={() => decide('1')}
             className="px-4 py-2 rounded-full bg-[#007aff] text-white hover:opacity-90 transition text-sm"
           >
-            Akceptuję
+            {t('accept')}
           </button>
         </div>
       </div>

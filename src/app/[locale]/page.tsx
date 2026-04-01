@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-// import Projects from '@/components/Projects'; // zostaw zakomentowane
 import Pricing from '@/components/Pricing';
 import Contact from '@/components/Contact';
 import Skills from '@/components/Skills';
@@ -19,7 +18,7 @@ function HashScroller() {
       if (!el) return false;
 
       const header = document.querySelector('header[role="banner"]') as HTMLElement | null;
-      const extra = 8; // drobny margines
+      const extra = 8;
       const offset = (header?.offsetHeight ?? 80) + extra;
 
       const y = el.getBoundingClientRect().top + window.scrollY - offset;
@@ -38,7 +37,7 @@ function HashScroller() {
       tryScroll();
     };
 
-    run(); // initial load (np. /#contact)
+    run();
     window.addEventListener('hashchange', run);
     return () => window.removeEventListener('hashchange', run);
   }, []);
@@ -50,7 +49,6 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
-  // blokada przewijania tła przy otwartym menu
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     return () => {
@@ -70,10 +68,8 @@ export default function Home() {
         <About />
         <Skills />
         {/* <Projects /> */}
-
         <Pricing />
         <Contact />
-
         <Footer />
       </main>
     </>

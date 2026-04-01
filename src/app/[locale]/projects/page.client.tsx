@@ -1,5 +1,8 @@
-// app/projects/page.client.tsx
 'use client';
+
+export function generateStaticParams() {
+  return [{ locale: 'pl' }, { locale: 'en' }];
+}
 
 import { useEffect, useState } from 'react';
 import Projects from '@/components/Projects';
