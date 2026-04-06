@@ -177,6 +177,58 @@
 },
 
 "projects": {
+  "crescent-development": {
+  "title": "Crescent Development",
+  "description": "A modern real estate website designed in a premium style, focused on showcasing properties and generating leads.",
+  "overview": "A website project for a real estate developer aiming to create a modern, visually appealing and conversion-focused platform for presenting active investments.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Premium UX/UI design",
+    "Development using Next.js + Tailwind CSS",
+    "Dynamic investment pages",
+    "Conversion-focused sections (hero, CTA, projects)",
+    "Performance and responsiveness optimization",
+    "Scalable structure for future growth"
+  ],
+  "resultsTitle": "Outcome",
+  "timeframeLabel": "Timeline",
+  "timeframe": "2–4 weeks",
+  "highlights": [
+    "Modern and elegant design tailored to real estate industry",
+    "Clear presentation of investments and offers",
+    "Improved user flow towards contact and conversion",
+    "Strong foundation for scaling and future development"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "The website needed to feel premium but remain clean and easy to navigate.",
+      "solution": "Minimal layout, strong typography and limited color palette."
+    },
+    {
+      "problem": "Presenting multiple investments in a clear way.",
+      "solution": "Projects section with dynamic pages for each investment."
+    },
+    {
+      "problem": "The website needed to support sales, not just aesthetics.",
+      "solution": "Multiple conversion points (CTA sections, contact form)."
+    }
+  ],
+  "decisionsTitle": "Key decisions",
+  "decisions": [
+    "Next.js instead of WordPress for performance and flexibility",
+    "Tailwind CSS for consistent and fast UI development",
+    "Minimal premium design (gold + dark navy palette)",
+    "Conversion-driven layout (CTA, projects, contact)"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Contact form",
+    "Mobile-first responsiveness",
+    "SEO-ready structure",
+    "Prepared for future CMS integration"
+  ]
+},
   "spiro-pilates-mobility": {
   "title": "Spiro Pilates & Mobility",
   "description": "A modern website for a pilates and mobility studio, designed to build a calm and professional brand image while making it easier for clients to get in touch.",

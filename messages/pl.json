@@ -178,6 +178,58 @@
 },
 
 "projects": {
+  "crescent-development": {
+  "title": "Crescent Development",
+  "description": "Nowoczesna strona internetowa dla dewelopera nieruchomości, zaprojektowana w eleganckim, premium stylu z naciskiem na prezentację inwestycji i generowanie zapytań.",
+  "overview": "Projekt strony dla firmy deweloperskiej, której celem było stworzenie nowoczesnej, estetycznej i sprzedażowej witryny prezentującej aktualne inwestycje oraz budującej zaufanie klientów.",
+  "workTitle": "Zakres prac",
+  "work": [
+    "Projekt UX/UI w stylu premium",
+    "Kodowanie strony w Next.js + Tailwind CSS",
+    "Stworzenie dynamicznych podstron inwestycji",
+    "Projekt sekcji sprzedażowych (hero, CTA, projekty)",
+    "Optymalizacja pod wydajność i responsywność",
+    "Budowa struktury pod dalszy rozwój projektu"
+  ],
+  "resultsTitle": "Efekt",
+  "timeframeLabel": "Czas realizacji",
+  "timeframe": "2–4 tygodnie",
+  "highlights": [
+    "Nowoczesny, elegancki design dopasowany do branży nieruchomości",
+    "Czytelna prezentacja inwestycji i oferty",
+    "Lepsze prowadzenie użytkownika do kontaktu (CTA, formularze)",
+    "Solidna baza pod rozwój i skalowanie projektu"
+  ],
+  "challengesTitle": "Wyzwania",
+  "challenges": [
+    {
+      "problem": "Strona musiała wyglądać premium, ale jednocześnie pozostać czytelna i prosta.",
+      "solution": "Minimalistyczny layout, mocna typografia i ograniczona paleta kolorów."
+    },
+    {
+      "problem": "Prezentacja wielu inwestycji w przejrzysty sposób.",
+      "solution": "Stworzenie sekcji projektów oraz dynamicznych podstron dla każdej inwestycji."
+    },
+    {
+      "problem": "Strona miała wspierać sprzedaż, nie tylko wyglądać dobrze.",
+      "solution": "Zastosowanie wielu punktów kontaktu (CTA, formularz, sekcje sprzedażowe)."
+    }
+  ],
+  "decisionsTitle": "Decyzje projektowe",
+  "decisions": [
+    "Next.js zamiast WordPressa dla większej wydajności i kontroli",
+    "Tailwind CSS dla szybkiego budowania spójnego UI",
+    "Minimalistyczny design z akcentem premium (złoto + granat)",
+    "Sekcje oparte na konwersji (CTA, projekty, kontakt)"
+  ],
+  "integrationsTitle": "Integracje",
+  "integrations": [
+    "Formularz kontaktowy",
+    "Responsywność mobile-first",
+    "Struktura pod SEO",
+    "Możliwość dalszej integracji z CMS"
+  ]
+},
 "spiro-pilates-mobility": {
   "title": "Spiro Pilates & Mobility",
   "description": "Nowoczesna strona internetowa dla studia pilates i mobility, zaprojektowana tak, aby budować spokojny, profesjonalny wizerunek marki i ułatwiać kontakt z klientkami.",

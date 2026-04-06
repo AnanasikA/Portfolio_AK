@@ -9,6 +9,20 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
+  slug: 'crescent-development',
+  image: '/projects/Crescent1.webp',
+  cardImage: '/projects/Crescent.webp',
+  tech: [
+    'Next.js',
+    'Tailwind CSS',
+    'TypeScript',
+    'Responsive Design',
+    'UI/UX Design',
+    'SEO Ready',
+  ],
+  link: 'https://nieruchomosci-six.vercel.app/',
+},
+  {
     slug: 'spiro-pilates-mobility',
     image: '/projects/SpiroPilates1.webp',
     cardImage: '/projects/SpiroPilates.webp',
