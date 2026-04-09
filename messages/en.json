@@ -177,6 +177,58 @@
 },
 
 "projects": {
+  "biuro-ksiegowe": {
+  "title": "Modern Accounting Office",
+  "description": "A modern website for an accounting office, designed in a clean and professional style with a focus on trust, clarity of services, and generating client inquiries.",
+  "overview": "A website project for an accounting firm aimed at creating a professional, visually calm experience that helps clients easily understand the offer and quickly get in touch.",
+  "workTitle": "Scope of Work",
+  "work": [
+    "UX/UI design in a modern, minimalist style",
+    "Development using Next.js + Tailwind CSS",
+    "Building service sections (accounting, HR, consulting)",
+    "Design of trust-building sections (reviews, stats, numbers)",
+    "Creation of a clear hero section with CTA",
+    "Optimization for responsiveness and performance"
+  ],
+  "resultsTitle": "Results",
+  "timeframeLabel": "Timeline",
+  "timeframe": "1–3 weeks",
+  "highlights": [
+    "Clean and calm design that builds trust",
+    "Clear presentation of services and client benefits",
+    "Improved conversion through CTA and contact form",
+    "Modern look that stands out from competitors"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "The website needed to be simple and understandable for clients without accounting knowledge.",
+      "solution": "Use of plain language, clear sections, and supportive icons."
+    },
+    {
+      "problem": "Accounting websites often look outdated and unattractive.",
+      "solution": "Implementation of a modern layout, light color palette, and clean UI."
+    },
+    {
+      "problem": "Encouraging users to take action and get in touch.",
+      "solution": "Visible CTAs, contact section, and logical user flow across the page."
+    }
+  ],
+  "decisionsTitle": "Design Decisions",
+  "decisions": [
+    "Next.js for performance and modern architecture",
+    "Tailwind CSS for fast and consistent UI development",
+    "Light and calm color palette (green + gray)",
+    "Conversion-focused sections (CTA, services, contact)"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Contact form",
+    "Mobile-first responsiveness",
+    "Basic SEO structure",
+    "Scalable structure for future CMS integration"
+  ]
+},
   "crescent-development": {
   "title": "Crescent Development",
   "description": "A modern real estate website designed in a premium style, focused on showcasing properties and generating leads.",

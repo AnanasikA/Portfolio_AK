@@ -178,6 +178,58 @@
 },
 
 "projects": {
+  "biuro-ksiegowe": {
+  "title": "Nowoczesne Biuro Księgowe",
+  "description": "Nowoczesna strona internetowa dla biura księgowego, zaprojektowana w lekkim, przejrzystym stylu z naciskiem na zaufanie, czytelność oferty i generowanie kontaktów.",
+  "overview": "Projekt strony dla biura rachunkowego, którego celem było stworzenie profesjonalnej, spokojnej wizualnie witryny, ułatwiającej klientom zrozumienie oferty i szybki kontakt.",
+  "workTitle": "Zakres prac",
+  "work": [
+    "Projekt UX/UI w nowoczesnym, minimalistycznym stylu",
+    "Kodowanie strony w Next.js + Tailwind CSS",
+    "Budowa sekcji usług (księgowość, kadry, doradztwo)",
+    "Projekt sekcji zaufania (opinie, statystyki, liczby)",
+    "Stworzenie czytelnego hero z CTA",
+    "Optymalizacja pod responsywność i wydajność"
+  ],
+  "resultsTitle": "Efekt",
+  "timeframeLabel": "Czas realizacji",
+  "timeframe": "1–3 tygodnie",
+  "highlights": [
+    "Przejrzysty i spokojny design budujący zaufanie",
+    "Jasna prezentacja usług i korzyści dla klienta",
+    "Lepsza konwersja dzięki CTA i formularzowi kontaktowemu",
+    "Nowoczesny wygląd wyróżniający się na tle konkurencji"
+  ],
+  "challengesTitle": "Wyzwania",
+  "challenges": [
+    {
+      "problem": "Strona musiała być prosta i zrozumiała dla klientów bez wiedzy księgowej.",
+      "solution": "Użycie prostego języka, czytelnych sekcji i ikon wspierających komunikację."
+    },
+    {
+      "problem": "Branża księgowa często wygląda przestarzale i mało atrakcyjnie.",
+      "solution": "Zastosowanie nowoczesnego layoutu, lekkich kolorów i estetycznego UI."
+    },
+    {
+      "problem": "Zachęcenie użytkownika do kontaktu.",
+      "solution": "Widoczne CTA, sekcja kontaktowa i logiczne prowadzenie użytkownika przez stronę."
+    }
+  ],
+  "decisionsTitle": "Decyzje projektowe",
+  "decisions": [
+    "Next.js dla szybkości działania i nowoczesnego stacka",
+    "Tailwind CSS dla spójnego i szybkiego UI",
+    "Jasna, stonowana kolorystyka (zieleń + szarość)",
+    "Układ oparty na sekcjach zaufania i konwersji"
+  ],
+  "integrationsTitle": "Integracje",
+  "integrations": [
+    "Formularz kontaktowy",
+    "Responsywność mobile-first",
+    "Podstawowa optymalizacja SEO",
+    "Możliwość rozbudowy o CMS w przyszłości"
+  ]
+},
   "crescent-development": {
   "title": "Crescent Development",
   "description": "Nowoczesna strona internetowa dla dewelopera nieruchomości, zaprojektowana w eleganckim, premium stylu z naciskiem na prezentację inwestycji i generowanie zapytań.",
