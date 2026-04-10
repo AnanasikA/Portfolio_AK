@@ -8,11 +8,13 @@
     "projects": "Projects"
   },
 "hero": {
-  "title": "I design websites that make an impression.",
-  "description": "I design and code websites — from simple business websites in WordPress to modern projects in Next.js. I focus on design, performance and clear communication that helps build trust in your brand.",
-  "cta": "View my projects",
-  "projects_aria": "View projects — portfolio of websites",
-  "image_alt": "Website design illustration — laptop with code and UI elements"
+  "badge": "WordPress & Next.js • remote collaboration across Poland",
+  "title": "I design modern websites for businesses across Poland",
+  "description": "I create modern business websites, landing pages, and portfolios using WordPress and Next.js — clean, aesthetic, and tailored to your brand.",
+  "primary_cta": "Request a quote",
+  "secondary_cta": "View projects",
+  "highlights": "Remote collaboration • tailored approach • modern design",
+  "image_alt": "Mockups of modern website designs"
 },
  "skills": {
   "title": "What can I do?",
@@ -85,7 +87,6 @@
 },
 "contact": {
   "title": "Do you have an idea for a website?",
-  "subtitle": "Fill out the short form — I will get back to you to talk about your project and suggest the best solution. I create websites that not only look good, but also work well.",
   "success_title": "Thank you for your message",
   "success_text": "Your form has been sent successfully. I usually reply within 24 business hours.",
   "send_another": "Send another message",
@@ -130,15 +131,15 @@
   },
   "dropdownMenu": {
     "home": "Home",
-    "how": "How I work",
-    "projects": "Projects",
+    "services": "Services",
+    "process": "Process",
+    "projects": "Work",
     "pricing": "Pricing",
-    "contact": "Contact",
-    "cta": "Get a quote",
+    "cta": "Request a quote",
+    "ctaAria": "Open quote form",
     "menuAria": "Navigation menu",
     "closeAria": "Close menu",
-    "closeAlt": "Close",
-    "ctaAria": "Get a quote"
+    "smallText": "Modern websites for businesses across Poland."
   },
   "cookieConsent": {
     "text": "We use cookies for analytics and to improve the website.",

@@ -6,6 +6,7 @@ import About from '@/components/About';
 import Pricing from '@/components/Pricing';
 import Contact from '@/components/Contact';
 import Skills from '@/components/Skills';
+import FAQ from '@/components/FAQ';
 import Header from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 import Footer from '@/components/Footer';
@@ -29,11 +30,13 @@ function HashScroller() {
     const run = () => {
       const h = (typeof window !== 'undefined' && window.location.hash) || '';
       if (!h) return;
+
       let tries = 0;
       const tryScroll = () => {
         if (smoothScrollTo(h)) return;
         if (tries++ < 40) setTimeout(tryScroll, 50);
       };
+
       tryScroll();
     };
 
@@ -65,13 +68,14 @@ export default function Home() {
 
       <main className="scroll-smooth" aria-hidden={isOpen}>
         <Hero />
-        <About />
         <Skills />
-        {/* <Projects /> */}
+        <About />
         <Pricing />
+        <FAQ />
         <Contact />
-        <Footer />
       </main>
+
+      <Footer />
     </>
   );
 }

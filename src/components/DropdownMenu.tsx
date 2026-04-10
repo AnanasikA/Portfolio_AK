@@ -20,25 +20,33 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
   const [hash, setHash] = useState<string>(
     typeof window !== 'undefined' ? window.location.hash : ''
   );
-  
 
-  // ESC + klik poza
+  const t = useTranslations('dropdownMenu');
+
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => e.key === 'Escape' && toggleMenu();
-    const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) toggleMenu();
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') toggleMenu();
     };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        toggleMenu();
+      }
+    };
+
     if (isOpen) {
       document.addEventListener('keydown', handleEsc);
       document.addEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = 'hidden';
     }
+
     return () => {
       document.removeEventListener('keydown', handleEsc);
       document.removeEventListener('mousedown', handleClickOutside);
+      document.body.style.overflow = '';
     };
   }, [isOpen, toggleMenu]);
 
-  // śledzenie #hash (dla podświetlenia aktywnego)
   useEffect(() => {
     const onHash = () => setHash(window.location.hash);
     window.addEventListener('hashchange', onHash);
@@ -46,25 +54,42 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
   }, []);
 
   const menuVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: 50 },
+    hidden: { opacity: 0, x: 36 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.28,
+        ease: [0.22, 1, 0.36, 1] as const,
+      },
+    },
+    exit: {
+      opacity: 0,
+      x: 36,
+      transition: {
+        duration: 0.22,
+        ease: [0.4, 0, 1, 1] as const,
+      },
+    },
   };
 
-   const t = useTranslations('dropdownMenu');
-
-const links = [
-  { name: t('home'), path: '/' },
-  { name: t('how'), path: '#how' },
-  { name: t('projects'), path: '/projects' },
-  { name: t('pricing'), path: '#pricing' },
-  { name: t('contact'), path: '#contact' },
-];
+  const links = [
+    { name: t('home'), path: '/' },
+    { name: t('services'), path: '#services' },
+    { name: t('process'), path: '#process' },
+    { name: t('projects'), path: '/projects' },
+    { name: t('pricing'), path: '#pricing' },
+    { name: 'FAQ', path: '#faq' },
+  ];
 
   const scrollToHash = (h: string) => {
     const id = h.replace(/^#/, '');
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     history.replaceState(null, '', `#${id}`);
     setHash(`#${id}`);
   };
@@ -72,116 +97,127 @@ const links = [
   const handleClick = (route: string) => {
     toggleMenu();
 
-    // link do sekcji
     if (route.startsWith('#')) {
       const id = route.slice(1);
+
       if (pathname !== '/') {
-        // Przejście na stronę główną z kotwicą (twój HashScroller to przechwyci i przewinie)
         router.push(`/#${id}`);
       } else {
-        scrollToHash(route);
+        setTimeout(() => {
+          scrollToHash(route);
+        }, 50);
       }
+
       return;
     }
 
-    // zwykła nawigacja
     router.push(route);
   };
 
   const linkBase =
-    "relative group inline-flex items-center text-right " +
-    "text-[#0a1d3e] transition-colors duration-300 font-normal " +
-    "after:content-[''] after:absolute after:right-0 after:-bottom-1 after:h-[1.5px] after:w-0 " +
-    "after:bg-[#ff7aac] after:transition-all after:duration-300 " +
-    "hover:text-[#ff7aac] hover:after:w-full";
+    "group relative inline-flex items-center text-right text-white/88 transition duration-300 " +
+    "after:content-[''] after:absolute after:right-0 after:-bottom-1 after:h-[2px] after:w-full " +
+    "after:origin-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 " +
+    'hover:text-white hover:after:scale-x-100';
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          ref={menuRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label={t('menuAria')}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-          variants={menuVariants}
-          className="
-            fixed top-0 right-0 h-full w-full sm:w-[70%] md:w-[50%] lg:w-[40%]
-            bg-white/20 supports-[backdrop-filter]:bg-white/20 supports-[backdrop-filter]:backdrop-blur-sm
-            shadow-2xl border-l border-[#99CCFF]/40 z-50 px-6 pt-16 pb-8
-          "
-        >
-          {/* Zamknij */}
-          <button
-            onClick={toggleMenu}
-            className="absolute top-3.5 right-5 p-1.5 rounded-full hover:bg-white/40 transition"
-            aria-label={t('closeAria')}
-          >
-            <Image
-              src="/icons/close-icon.webp"
-              alt="Zamknij"
-              width={24}
-              height={24}
-              loading="lazy"
-              onError={(e) => {
-                const t = e.currentTarget as HTMLImageElement;
-                if (!t.src.endsWith(ICON_FALLBACK)) t.src = ICON_FALLBACK;
-              }}
-            />
-          </button>
+        <>
+          <motion.div
+            className="fixed inset-0 z-40 bg-[#07152f]/35 backdrop-blur-[2px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          />
 
-          {/* Linki */}
-          <motion.ul
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.35 }}
-            className="flex flex-col items-end gap-5 mt-6"
+          <motion.div
+            ref={menuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t('menuAria')}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={menuVariants}
+            className="fixed top-0 right-0 z-50 flex h-full w-full max-w-[92vw] flex-col border-l border-white/10 bg-[linear-gradient(180deg,rgba(0,122,255,0.94)_0%,rgba(0,104,221,0.96)_100%)] px-6 pb-8 pt-24 shadow-2xl backdrop-blur-xl sm:max-w-[420px]"
           >
-            {links.map((link, i) => {
-              const isHash = link.path.startsWith('#');
-              const isActive = isHash ? hash === link.path : pathname === link.path;
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.10),transparent_24%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.08),transparent_22%)]" />
 
-              return (
-                <motion.li
-                  key={link.name}
-                  initial={{ x: 30, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.2 + i * 0.06, duration: 0.3 }}
-                >
-                  <button
-                    onClick={() => handleClick(link.path)}
-                    className={`${linkBase} ${isActive ? 'text-[#ff7aac] after:w-full' : ''}`}
-                    style={{ fontSize: '18px', letterSpacing: '0.2px' }}
+            <button
+              onClick={toggleMenu}
+              className="absolute right-5 top-5 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/10 transition hover:bg-white/16"
+              aria-label={t('closeAria')}
+            >
+              <Image
+                src="/icons/close-icon.webp"
+                alt="Zamknij"
+                width={20}
+                height={20}
+                loading="lazy"
+                className="h-5 w-5"
+                onError={(e) => {
+                  const t = e.currentTarget as HTMLImageElement;
+                  if (!t.src.endsWith(ICON_FALLBACK)) t.src = ICON_FALLBACK;
+                }}
+              />
+            </button>
+
+            <motion.ul
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.08, duration: 0.3 }}
+              className="relative z-10 flex flex-col items-end gap-5"
+            >
+              {links.map((link, i) => {
+                const isHash = link.path.startsWith('#');
+                const isActive = isHash ? hash === link.path : pathname === link.path;
+
+                return (
+                  <motion.li
+                    key={link.name}
+                    initial={{ x: 24, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 0.12 + i * 0.05, duration: 0.25 }}
                   >
-                    {link.name}
-                  </button>
-                </motion.li>
-              );
-            })}
+                    <button
+                      onClick={() => handleClick(link.path)}
+                      className={`${linkBase} ${
+                        isActive ? 'text-white after:scale-x-100' : ''
+                      }`}
+                      style={{
+                        fontFamily: 'Libre Baskerville, serif',
+                        fontSize: 'clamp(1.2rem, 2vw, 1.55rem)',
+                        letterSpacing: '-0.02em',
+                      }}
+                    >
+                      {link.name}
+                    </button>
+                  </motion.li>
+                );
+              })}
 
-            {/* CTA – biały przycisk, niebieski tekst */}
-            <li className="pt-2">
-              <button
-  onClick={() => {
-    toggleMenu();
-    if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('open-brief'));
-    }
-  }}
-  className="
-    inline-flex items-center justify-center rounded-full
-    bg-white text-[#007aff] px-5 py-2 text-base font-light tracking-wide
-    hover:bg-[#f5faff] transition border border-[#007aff]/20
-  "
-  aria-label={t('ctaAria')}
->
-  {t('cta')}
-</button>
-            </li>
-          </motion.ul>
-        </motion.div>
+              <li className="pt-4">
+                <button
+                  onClick={() => {
+                    toggleMenu();
+                    if (typeof window !== 'undefined') {
+                      window.dispatchEvent(new CustomEvent('open-brief'));
+                    }
+                  }}
+                  className="inline-flex min-h-[50px] items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-medium text-[#007aff] shadow-[0_12px_30px_rgba(0,0,0,0.12)] transition hover:-translate-y-0.5 hover:bg-[#eef6ff]"
+                  aria-label={t('ctaAria')}
+                >
+                  {t('cta')}
+                </button>
+              </li>
+            </motion.ul>
+
+            <div className="relative z-10 mt-auto pt-10 text-right text-sm text-white/65">
+              <p>{t('smallText')}</p>
+            </div>
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   );

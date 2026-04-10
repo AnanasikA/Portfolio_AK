@@ -1,36 +1,59 @@
 // app/projects/page.tsx
 import type { Metadata } from 'next';
-import ProjectsPage from './page.client';
+import ProjectsPageClient from './page.client';
 
-export function generateStaticParams() {
-  return [{ locale: 'pl' }, { locale: 'en' }];
-}
+const SITE_URL = 'https://anastasiiakupriianets.pl';
+
+type PageProps = {
+  searchParams: Promise<{
+    page?: string;
+  }>;
+};
 
 export const metadata: Metadata = {
-  title: 'Projekty | Anastasiia – Front-End Developer',
+  metadataBase: new URL(SITE_URL),
+  title: 'Projekty | Anastasiia Kupriianets – Front-End Developer',
   description:
-    'Przegląd projektów stron internetowych: Next.js, Tailwind CSS, UX/UI. Lekki kod, wydajność i dostępność.',
-  alternates: { canonical: '/projects' },
+    'Przegląd projektów stron internetowych tworzonych w Next.js, Tailwind CSS i WordPressie. Nowoczesny design, responsywność i wydajność.',
+  alternates: {
+    canonical: '/projects',
+  },
   openGraph: {
     type: 'website',
     url: '/projects',
-    title: 'Projekty | Anastasiia – Front-End Developer',
+    title: 'Projekty | Anastasiia Kupriianets – Front-End Developer',
     description:
-      'Przegląd projektów stron internetowych: Next.js, Tailwind CSS, UX/UI. Lekki kod, wydajność i dostępność.',
+      'Przegląd projektów stron internetowych tworzonych w Next.js, Tailwind CSS i WordPressie. Nowoczesny design, responsywność i wydajność.',
+    siteName: 'AK Web & Design',
     locale: 'pl_PL',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Portfolio – projekty' }],
-    siteName: 'Anastasiia Portfolio',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Portfolio projektów Anastasiia Kupriianets',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Projekty | Anastasiia – Front-End Developer',
+    title: 'Projekty | Anastasiia Kupriianets – Front-End Developer',
     description:
-      'Przegląd projektów stron internetowych: Next.js, Tailwind CSS, UX/UI.',
+      'Przegląd projektów stron internetowych tworzonych w Next.js, Tailwind CSS i WordPressie.',
     images: ['/og-image.jpg'],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
-export default function Page() {
-  return <ProjectsPage />;
+export default async function Page({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const parsedPage = Number(params.page ?? '1');
+
+  const currentPage =
+    Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+
+  return <ProjectsPageClient currentPage={currentPage} />;
 }

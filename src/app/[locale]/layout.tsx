@@ -6,10 +6,21 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import CookieConsent from '@/components/CookieConsent';
-import '../globals.css';
+import '@/app/globals.css';
 
-const inter = Inter({subsets: ['latin'], display: 'swap', variable: '--font-inter'});
-const libre = Libre_Baskerville({subsets: ['latin'], weight: ['400', '700'], display: 'swap', variable: '--font-libre'});
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const libre = Libre_Baskerville({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+  preload: false,
+  variable: '--font-libre',
+});
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));

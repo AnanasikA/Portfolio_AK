@@ -7,6 +7,8 @@ import ProjectView from './ProjectView';
 
 type Params = { slug: string };
 
+const SITE_URL = 'https://anastasiiakupriianets.pl';
+
 export function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
@@ -19,30 +21,52 @@ export async function generateMetadata(
   const { slug } = await params;
   const p: ProjectItem | undefined = projects.find((x) => x.slug === slug);
 
-  if (!p) return {};
+  if (!p) {
+    return {
+      title: 'Projekt nie znaleziony',
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
 
   const t = await getTranslations('projects');
 
   const title = t(`${slug}.title`);
   const description = t(`${slug}.description`);
-
-  const url = `/projects/${slug}`;
+  const pathname = `/projects/${slug}`;
   const ogImg = p.cardImage ?? p.image;
 
   return {
-    title: `${title} – projekt`,
+    metadataBase: new URL(SITE_URL),
+    title: `${title} | Realizacja strony internetowej`,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: pathname,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
     openGraph: {
-      type: 'article',
-      url,
-      title: `${title} – projekt`,
+      type: 'website',
+      url: pathname,
+      title: `${title} | Realizacja strony internetowej`,
       description,
-      images: ogImg ? [{ url: ogImg }] : undefined,
+      siteName: 'AK Web & Design',
+      images: ogImg
+        ? [
+            {
+              url: ogImg,
+              alt: title,
+            },
+          ]
+        : undefined,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} – projekt`,
+      title: `${title} | Realizacja strony internetowej`,
       description,
       images: ogImg ? [ogImg] : undefined,
     },

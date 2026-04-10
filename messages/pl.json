@@ -8,12 +8,15 @@
     "projects": "Projekty"
   },
   "hero": {
-  "title": "Projektuję strony internetowe, które robią wrażenie.",
-  "description": "Projektuję i koduję strony internetowe — od prostych witryn firmowych w WordPressie, po nowoczesne projekty w Next.js. Dbam o design, szybkość działania i czytelny przekaz, który buduje zaufanie do Twojej marki.",
-  "cta": "Zobacz moje projekty",
-  "projects_aria": "Zobacz projekty — portfolio stron internetowych",
-  "image_alt": "Ilustracja projektowania stron — laptop z kodem i elementami UI"
-},
+    "badge": "WordPress i Next.js • współpraca zdalna w całej Polsce",
+    "title": "Projektuję strony internetowe dla firm z całej Polski",
+    "description": "Tworzę nowoczesne strony firmowe, wizytówki i landing page’e w WordPressie oraz Next.js — estetyczne, przejrzyste i dopasowane do Twojej marki.",
+    "primary_cta": "Poproś o wycene",
+    "secondary_cta": "Zobacz realizacje",
+    "highlights": "Zdalna współpraca • indywidualne podejście • nowoczesny design",
+    "image_alt": "Mockupy nowoczesnych projektów stron internetowych"
+  }
+,
   "skills": {
   "title": "Co potrafię?",
   "cta": "Zobacz projekty",
@@ -85,7 +88,6 @@
 },
 "contact": {
   "title": "Masz pomysł na stronę?",
-  "subtitle": "Wypełnij krótki formularz – odezwę się, by porozmawiać o Twoim projekcie i zaproponować najlepsze rozwiązanie. Tworzę strony, które nie tylko dobrze wyglądają, ale i działają.",
   "success_title": "Dziękuję za wiadomość",
   "success_text": "Formularz został wysłany poprawnie. Odpowiem najczęściej w ciągu 24 godzin w dni robocze.",
   "send_another": "Wyślij kolejną wiadomość",
@@ -128,17 +130,17 @@
     "projectButton": "Zobacz projekt",
     "projectDetailsAria": "Zobacz szczegóły: {title}"
 },
-  "dropdownMenu": {
+   "dropdownMenu": {
     "home": "Start",
-    "how": "Jak działam",
-    "projects": "Projekty",
+    "services": "Usługi",
+    "process": "Proces",
+    "projects": "Portfolio",
     "pricing": "Cennik",
-    "contact": "Kontakt",
-    "cta": "Wyceń projekt",
+    "cta": "Poproś o wycenę",
+    "ctaAria": "Otwórz formularz wyceny",
     "menuAria": "Menu nawigacyjne",
     "closeAria": "Zamknij menu",
-    "closeAlt": "Zamknij",
-    "ctaAria": "Wyceń projekt"
+    "smallText": "Nowoczesne strony internetowe dla firm w całej Polsce."
   },
 
   "cookieConsent": {
