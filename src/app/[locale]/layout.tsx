@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Libre_Baskerville } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -71,6 +72,20 @@ export default async function LocaleLayout({
 
   return (
     <div className={`${inter.variable} ${libre.variable} scroll-smooth`}>
+    <Script
+    src="https://www.googletagmanager.com/gtag/js?id=G-CLP2ME6EWT"
+    strategy="afterInteractive"
+  />
+
+  <Script id="google-analytics" strategy="afterInteractive">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-CLP2ME6EWT');
+    `}
+  </Script>
+
       <Analytics />
 
       <NextIntlClientProvider locale={locale} messages={messages}>

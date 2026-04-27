@@ -141,7 +141,7 @@ export default function Contact() {
               id="contact-heading"
               itemProp="name"
               variants={fadeUp}
-              className="text-[2rem] font-semibold leading-[1.04] tracking-[-0.04em] sm:text-[2.5rem] md:text-[2.9rem] lg:text-[3.15rem] xl:text-[3.45rem]"
+              className="text-[2rem] font-serif leading-[1.04] tracking-[-0.04em] sm:text-[2.5rem] md:text-[2.9rem] lg:text-[3.15rem] xl:text-[3.45rem]"
             >
               {t('title')}
             </motion.h2>

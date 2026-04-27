@@ -414,7 +414,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
     <>
       <header
         role="banner"
-        className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[#007aff]/10 px-4 py-3 backdrop-blur-xl"
+        className="fixed left-0 top-0 z-50 w-full border-b border-white/10 bg-[rgba(0,122,255,0.65)] px-4 py-3 backdrop-blur-xl"
       >
         <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between">
           <Link href="/" aria-label={isEn ? 'Home' : 'Strona główna'} className="shrink-0">
@@ -470,7 +470,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
               className="ml-2 inline-flex min-h-[46px] items-center rounded-full border border-white/35 bg-white/8 px-5 py-2.5 text-sm font-medium leading-none text-white shadow-sm backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/14 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 xl:px-6"
               style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
             >
-              {isEn ? 'Request a quote' : 'Poproś o wycenę'}
+              {isEn ? 'Request a quote' : 'Zapytaj o wycenę'}
             </button>
           </nav>
 

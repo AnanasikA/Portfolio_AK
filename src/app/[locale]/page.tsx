@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
+import ForWhoSection from '@/components/ForWhoSection';
+import ProcessSection from '@/components/ProcessSection';
+import CtaSection from '@/components/CtaSection';
 import Pricing from '@/components/Pricing';
 import Contact from '@/components/Contact';
 import Skills from '@/components/Skills';
@@ -68,9 +70,12 @@ export default function Home() {
 
       <main className="scroll-smooth" aria-hidden={isOpen}>
         <Hero />
+        <ForWhoSection />
         <Skills />
-        <About />
+        <CtaSection />
         <Pricing />
+        <ProcessSection  />
+      
         <FAQ />
         <Contact />
       </main>

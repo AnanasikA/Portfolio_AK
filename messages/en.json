@@ -8,82 +8,169 @@
     "projects": "Projects"
   },
 "hero": {
-  "badge": "WordPress & Next.js • remote collaboration across Poland",
-  "title": "I design modern websites for businesses across Poland",
-  "description": "I create modern business websites, landing pages, and portfolios using WordPress and Next.js — clean, aesthetic, and tailored to your brand.",
+  "badge": "Websites for businesses • WordPress & Next.js • remote work",
+  "title": "I create websites for businesses that attract clients",
+  "description": "Modern websites tailored to your industry — clear, fast, and ready to bring in new clients.",
   "primary_cta": "Request a quote",
   "secondary_cta": "View projects",
-  "highlights": "Remote collaboration • tailored approach • modern design",
-  "image_alt": "Mockups of modern website designs"
+  "highlights": "from €350 • 7–14 days • custom design",
+  "image_alt": "Modern website design projects for businesses"
 },
- "skills": {
-  "title": "What can I do?",
+"forWho": {
+  "badge": "Who it’s for",
+  "title": "Websites for businesses, brands and organizations that want to look professional",
+  "description": "I create and improve websites for local services, B2B companies, real estate and organizations — including support for existing websites.",
+  "items": [
+    {
+      "title": "Service businesses",
+      "text": "Local services, technical services, transport and niche industries."
+    },
+    {
+      "title": "B2B companies",
+      "text": "Business websites, service offers and trust-building content."
+    },
+    {
+      "title": "Real estate",
+      "text": "Websites for investments, agencies and property listings."
+    },
+    {
+      "title": "Organizations",
+      "text": "Clear informational websites for associations and institutions."
+    },
+    {
+      "title": "Website support",
+      "text": "Updates, fixes and ongoing improvements for existing websites."
+    }
+  ]
+},
+ "benefits": {
+  "title": "A website that not only looks good, but helps you get clients",
+  "description": "I design websites with a focus on clarity, trust, and making it easy for visitors to contact you.",
   "cta": "View projects",
-  "cta_aria": "View projects",
-  "web": {
-    "title": "Website design",
-    "description": "I create aesthetic and functional websites tailored to your brand and business goals."
+  "cta_aria": "View my projects",
+  "image": {
+    "title": "Professional image",
+    "description": "Your website presents your business as modern, trustworthy, and professional."
   },
-  "ux": {
-    "title": "UX/UI design",
-    "description": "I care about user experience — from intuitive interfaces to a consistent visual style."
+  "offer": {
+    "title": "Clear offer",
+    "description": "I organize the content so visitors quickly understand what you offer and why they should choose you."
   },
-  "frontend": {
-    "title": "Front-end development",
-    "description": "I write lightweight, responsive and modern code in Next.js and Tailwind CSS."
+  "contact": {
+    "title": "Easy contact",
+    "description": "I add clear buttons, forms, and CTA sections that help turn visitors into inquiries."
   },
   "responsive": {
-    "title": "Optimization and responsiveness",
-    "description": "Websites run smoothly and look great on every screen — from mobile phones to large monitors."
+    "title": "Speed and responsiveness",
+    "description": "Your website looks good on phones, tablets, and desktops, and loads quickly."
   }
 },
+"midCta": {
+  "badge": "Not sure where to start?",
+  "title": "Send me a message — I’ll help you choose the right website for your business",
+  "description": "I’ll briefly review your situation and suggest a solution that fits your budget, industry, and website goals.",
+  "cta": "Request a quote"
+},
 "pricing": {
-  "title": "How much does a website cost?",
-  "subtitle": "Each project is priced individually — the amounts below are approximate and help estimate the budget.",
-  "cta": "Ask for a custom quote",
-  "package_aria": "What the package includes",
+  "title": "How much does a website cost for your business?",
+  "subtitle": "Choose a package or send me a message — I’ll help you pick the right solution for your needs and budget.",
+
+  "highlights": "✔ from €350 • ✔ delivery in 7–14 days • ✔ tailored quote",
+
+  "cta": "Request a quote",
+  "cta_subtext": "Not sure which option is right for you? Send me a message — I’ll guide you.",
+
+  "package_aria": "What’s included in the package",
   "price_aria": "Price",
-  "image_alt": "Sample website project elements — layout, typography, sections",
+  "image_alt": "Example website design elements — layout, typography, sections",
+
   "items": {
     "landing": {
-      "title": "Business card website / Landing Page",
-      "priceLabel": "from 1,500 PLN",
-      "description": "A simple, aesthetic and responsive website presenting your offer — perfect for getting started.",
+      "title": "Landing Page / Simple Website",
+      "priceLabel": "from €350",
+      "badge": "Good for a start",
+      "description": "A simple, modern website that clearly presents your offer and makes it easy for clients to contact you.",
       "features": [
-        "One-page layout or a short homepage",
-        "Contact form",
+        "One-page layout or simple homepage",
+        "Contact form and clear CTA buttons",
+        "Responsive design (mobile + desktop)",
         "Basic SEO optimization"
       ]
     },
+
     "company": {
-      "title": "Expanded company website",
-      "priceLabel": "from 3,000 PLN",
-      "description": "A multi-section website with several subpages, tailored to your brand and industry.",
+      "title": "Business Website",
+      "priceLabel": "from €700",
+      "badge": "Most popular",
+      "description": "A more advanced website for businesses that want to look professional and attract more clients.",
       "features": [
-        "2–6 subpages (e.g. About, Offer, Contact)",
-        "Custom visual design",
+        "2–6 pages (e.g. About, Services, Contact)",
+        "Custom design tailored to your brand",
+        "Better structure and UX for conversions",
         "Performance and SEO optimization"
+      ]
+    },
+
+    "premium": {
+      "title": "Advanced Website / Premium",
+      "priceLabel": "from €1200",
+      "badge": "For bigger projects",
+      "description": "A fully customized website with more sections, refined UX, and room for future growth.",
+      "features": [
+        "More pages and complex structure",
+        "Advanced UX and user flow",
+        "Premium design and fine details",
+        "Ready for future expansion"
       ]
     }
   },
+
   "modal": {
-    "title": "Quick quote request",
-    "subtitle": "Let me know what you need — I will get back to you with an initial quote and a realistic timeline.",
-    "close": "Close form"
+    "title": "Quick project inquiry",
+    "subtitle": "Tell me briefly what you need — I’ll get back with a proposal and estimated price.",
+    "close": "Close"
   },
+
   "form": {
     "name": "Full name",
     "email": "Email",
     "websiteType": "Website type",
     "budget": "Budget",
-    "description": "Project description",
+    "description": "Describe your project",
     "choose": "Choose...",
-    "submit": "Send brief",
+    "submit": "Send inquiry",
+
     "options": {
-      "landing": "Business card website / Landing Page",
-      "company": "Expanded company website"
+      "landing": "Landing page / Simple website",
+      "company": "Business website",
+      "premium": "Advanced website / Premium"
     }
   }
+},
+"process": {
+  "badge": "How collaboration works",
+  "title": "From brief to finished website",
+  "description": "A clear process with no chaos — you know what we’re doing, what stage we’re at, and when the website will be ready.",
+  "tags": ["Clear quote", "Design + launch", "Post-launch support"],
+  "primary_cta": "Start a project",
+  "secondary_cta": "View projects",
+  "steps": [
+    {
+      "step": "01",
+      "title": "Brief & direction",
+      "text": "We define the goal, scope, and key information about your business."
+    },
+    {
+      "step": "02",
+      "title": "Design & build",
+      "text": "I prepare the layout, content flow, and build the website in WordPress or Next.js."
+    },
+    {
+      "step": "03",
+      "title": "Launch & support",
+      "text": "I publish the website, test everything, and show you how to use it."
+    }
+  ]
 },
 "contact": {
   "title": "Do you have an idea for a website?",

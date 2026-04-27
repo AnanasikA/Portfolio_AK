@@ -80,11 +80,11 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1
-              variants={itemReveal}
-              className="font-serif text-[2.2rem] font-light leading-[1.08] tracking-[-0.03em] sm:text-[2.8rem] md:text-[3.2rem] lg:text-[3.35rem] xl:text-[3.8rem] 2xl:text-[4.4rem]"
-            >
-              {t('title')}
-            </motion.h1>
+  variants={itemReveal}
+  className="font-serif text-[1.9rem] font-medium leading-[1.08] tracking-[-0.035em] sm:text-[2.3rem] md:text-[2.6rem] lg:text-[2.9rem] xl:text-[3.2rem] 2xl:text-[3.6rem]"
+>
+  {t('title')}
+</motion.h1>
 
             <motion.p
               variants={itemReveal}

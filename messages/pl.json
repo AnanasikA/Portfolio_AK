@@ -7,84 +7,170 @@
     "contact": "Kontakt",
     "projects": "Projekty"
   },
-  "hero": {
-    "badge": "WordPress i Next.js • współpraca zdalna w całej Polsce",
-    "title": "Projektuję strony internetowe dla firm z całej Polski",
-    "description": "Tworzę nowoczesne strony firmowe, wizytówki i landing page’e w WordPressie oraz Next.js — estetyczne, przejrzyste i dopasowane do Twojej marki.",
-    "primary_cta": "Poproś o wycene",
-    "secondary_cta": "Zobacz realizacje",
-    "highlights": "Zdalna współpraca • indywidualne podejście • nowoczesny design",
-    "image_alt": "Mockupy nowoczesnych projektów stron internetowych"
-  }
-,
-  "skills": {
-  "title": "Co potrafię?",
-  "cta": "Zobacz projekty",
-  "cta_aria": "Zobacz projekty",
-  "web": {
-    "title": "Projektowanie stron",
-    "description": "Tworzę estetyczne, funkcjonalne strony internetowe dopasowane do Twojej marki i celów biznesowych."
+"hero": {
+  "badge": "Strony dla firm • WordPress i Next.js • współpraca zdalna",
+  "title": "Tworzę strony dla firm, które zdobywają klientów",
+  "description": "Nowoczesne strony www dopasowane do Twojej branży — przejrzyste, szybkie i gotowe na klientów.",
+  "primary_cta": "Zapytaj o wycenę",
+  "secondary_cta": "Zobacz realizacje",
+  "highlights": "od 1500 zł • 7–14 dni • indywidualny projekt",
+  "image_alt": "Nowoczesne projekty stron internetowych dla firm"
+},
+"forWho": {
+  "badge": "Dla kogo",
+  "title": "Strony dla firm, marek i organizacji, które chcą wyglądać profesjonalnie",
+  "description": "Tworzę i rozwijam strony dla usług lokalnych, firm B2B, nieruchomości i organizacji — także zajmuję się opieką nad istniejącymi stronami.",
+  "items": [
+    {
+      "title": "Firmy usługowe",
+      "text": "Usługi lokalne, serwisy, transport i branże specjalistyczne."
+    },
+    {
+      "title": "B2B i firmy",
+      "text": "Strony firmowe, oferta usług i budowanie zaufania."
+    },
+    {
+      "title": "Nieruchomości",
+      "text": "Strony inwestycji, agencji i prezentacje ofert."
+    },
+    {
+      "title": "Organizacje i związki",
+      "text": "Czytelne strony informacyjne dla stowarzyszeń i instytucji."
+    },
+    {
+      "title": "Opieka nad stroną",
+      "text": "Aktualizacje, poprawki i rozwój istniejących stron."
+    }
+  ]
+},
+"benefits": {
+  "title": "Strona, która nie tylko wygląda dobrze, ale pomaga zdobywać klientów",
+  "description": "Projektuję strony z myślą o czytelności, zaufaniu i łatwym kontakcie z klientem.",
+  "cta": "Zobacz realizacje",
+  "cta_aria": "Zobacz moje realizacje",
+  "image": {
+    "title": "Profesjonalny wizerunek",
+    "description": "Twoja strona pokazuje firmę jako nowoczesną, wiarygodną i godną zaufania."
   },
-  "ux": {
-    "title": "Design UX/UI",
-    "description": "Dbam o doświadczenie użytkownika – od intuicyjnych interfejsów po spójny styl wizualny."
+  "offer": {
+    "title": "Jasna oferta",
+    "description": "Porządkuję treści tak, aby klient szybko zrozumiał, co oferujesz i dlaczego warto wybrać właśnie Ciebie."
   },
-  "frontend": {
-    "title": "Front-end development",
-    "description": "Piszę lekki, responsywny i nowoczesny kod w Next.js oraz Tailwind CSS."
+  "contact": {
+    "title": "Łatwy kontakt",
+    "description": "Dodaję widoczne przyciski, formularze i sekcje CTA, które pomagają zamienić odwiedziny w zapytania."
   },
   "responsive": {
-    "title": "Optymalizacja i responsywność",
-    "description": "Strony działają płynnie i świetnie wyglądają na każdym ekranie – od telefonu po duży monitor."
+    "title": "Szybkość i responsywność",
+    "description": "Strona dobrze wygląda na telefonie, tablecie i komputerze oraz szybko się ładuje."
   }
 },
- "pricing": {
-  "title": "Ile kosztuje strona?",
-  "subtitle": "Każdy projekt wyceniam indywidualnie — poniższe kwoty są orientacyjne i pomagają oszacować budżet.",
-  "cta": "Zapytaj o indywidualną wycenę",
+"midCta": {
+  "badge": "Nie wiesz, od czego zacząć?",
+  "title": "Napisz do mnie — podpowiem, jaka strona będzie najlepsza dla Twojej firmy",
+  "description": "Krótko przeanalizuję Twoją sytuację i zaproponuję rozwiązanie dopasowane do budżetu, branży i celu strony.",
+  "cta": "Zapytaj o wycenę"
+},
+"pricing": {
+  "title": "Ile kosztuje strona internetowa dla Twojej firmy?",
+  "subtitle": "Wybierz pakiet lub napisz do mnie — pomogę dobrać rozwiązanie dopasowane do Twojej branży i budżetu.",
+
+  "highlights": "✔ od 1500 zł • ✔ realizacja 7–14 dni • ✔ indywidualna wycena",
+
+  "cta": "Zapytaj o wycenę",
+  "cta_subtext": "Nie wiesz, który pakiet wybrać? Napisz — doradzę najlepsze rozwiązanie.",
+
   "package_aria": "Co zawiera pakiet",
   "price_aria": "Cena",
   "image_alt": "Przykładowe elementy projektu strony — layout, typografia, sekcje",
+
   "items": {
     "landing": {
       "title": "Strona wizytówka / Landing Page",
       "priceLabel": "od 1 500 zł",
-      "description": "Prosta, estetyczna i responsywna strona prezentująca Twoją ofertę — idealna na start.",
+      "badge": "Dobry na start",
+      "description": "Prosta, nowoczesna strona, która jasno pokazuje ofertę i ułatwia kontakt z klientem.",
       "features": [
         "Układ one-page lub krótka strona główna",
-        "Formularz kontaktowy",
+        "Formularz kontaktowy i przyciski CTA",
+        "Responsywny design (mobile + desktop)",
         "Podstawowa optymalizacja SEO"
       ]
     },
+
     "company": {
-      "title": "Rozbudowana strona firmowa",
+      "title": "Strona firmowa",
       "priceLabel": "od 3 000 zł",
-      "description": "Wielosekcyjna strona z kilkoma podstronami, dopasowana do Twojej marki i branży.",
+      "badge": "Najczęściej wybierana",
+      "description": "Rozbudowana strona dla firm, które chcą wyglądać profesjonalnie i zdobywać więcej klientów.",
       "features": [
         "2–6 podstron (np. O nas, Oferta, Kontakt)",
-        "Indywidualny projekt graficzny",
-        "Optymalizacja wydajności i SEO"
+        "Indywidualny projekt dopasowany do marki",
+        "Lepsza struktura sprzedażowa i UX",
+        "Optymalizacja szybkości i SEO"
+      ]
+    },
+
+    "premium": {
+      "title": "Rozbudowana strona / Premium",
+      "priceLabel": "od 5 000 zł",
+      "badge": "Dla większych projektów",
+      "description": "Zaawansowana strona z większą liczbą sekcji, dopracowanym UX i większym potencjałem rozwoju.",
+      "features": [
+        "Więcej podstron i sekcji",
+        "Zaawansowany UX i lepszy flow użytkownika",
+        "Premium design i dopracowane detale",
+        "Gotowość pod dalszą rozbudowę"
       ]
     }
   },
+
   "modal": {
-    "title": "Krótkie zapytanie ofertowe",
-    "subtitle": "Daj znać, czego potrzebujesz — wrócę z wstępną wyceną i realnym terminem.",
-    "close": "Zamknij formularz"
+    "title": "Szybkie zapytanie o wycenę",
+    "subtitle": "Opisz krótko swój projekt — wrócę z propozycją i orientacyjną ceną.",
+    "close": "Zamknij"
   },
+
   "form": {
     "name": "Imię i nazwisko",
     "email": "Email",
     "websiteType": "Rodzaj strony",
     "budget": "Budżet",
-    "description": "Opis projektu",
+    "description": "Opisz, czego potrzebujesz",
     "choose": "Wybierz...",
-    "submit": "Wyślij brief",
+    "submit": "Wyślij zapytanie",
+
     "options": {
       "landing": "Strona wizytówka / Landing Page",
-      "company": "Rozbudowana strona firmowa"
+      "company": "Strona firmowa",
+      "premium": "Rozbudowana strona / Premium"
     }
   }
+},
+"process": {
+  "badge": "Jak wygląda współpraca",
+  "title": "Od briefu do gotowej strony",
+  "description": "Prosty proces bez chaosu — wiesz, co robimy, na jakim etapie jesteśmy i kiedy strona będzie gotowa.",
+  "tags": ["Jasna wycena", "Projekt + wdrożenie", "Wsparcie po starcie"],
+  "primary_cta": "Zacznij projekt",
+  "secondary_cta": "Zobacz realizacje",
+  "steps": [
+    {
+      "step": "01",
+      "title": "Brief i kierunek",
+      "text": "Ustalamy cel strony, zakres i najważniejsze informacje o Twojej firmie."
+    },
+    {
+      "step": "02",
+      "title": "Projekt i realizacja",
+      "text": "Przygotowuję układ, treści i wdrażam stronę w WordPressie lub Next.js."
+    },
+    {
+      "step": "03",
+      "title": "Wdrożenie i wsparcie",
+      "text": "Publikuję stronę, sprawdzam działanie i pokazuję, jak z niej korzystać."
+    }
+  ]
 },
 "contact": {
   "title": "Masz pomysł na stronę?",
