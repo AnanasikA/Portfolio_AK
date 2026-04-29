@@ -444,7 +444,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
             </Link>
 
             <Link href="/projects" className={linkBase}>
-              {isEn ? 'Work' : 'Portfolio'}
+              {isEn ? 'Work' : 'Projekty'}
             </Link>
 
             <Link href="/#pricing" className={linkBase}>
