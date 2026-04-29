@@ -454,7 +454,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
             </Link>
 
             <Link href="/#contact" className={linkBase}>
-              Kontakt
+              {isEn ? 'Contact' : 'Kontakt'}
             </Link>
 
             <LangSwitcher />
