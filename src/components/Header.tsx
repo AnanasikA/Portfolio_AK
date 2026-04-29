@@ -441,14 +441,6 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
               {isEn ? 'Home' : 'Start'}
             </Link>
 
-            <Link href="/#services" className={linkBase}>
-              {isEn ? 'Services' : 'Usługi'}
-            </Link>
-
-            <Link href="/#process" className={linkBase}>
-              {isEn ? 'Process' : 'Proces'}
-            </Link>
-
             <Link href="/projects" className={linkBase}>
               {isEn ? 'Work' : 'Portfolio'}
             </Link>
@@ -459,6 +451,10 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
 
             <Link href="/#faq" className={linkBase}>
               FAQ
+            </Link>
+
+            <Link href="/#contact" className={linkBase}>
+              Kontakt
             </Link>
 
             <LangSwitcher />
