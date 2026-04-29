@@ -264,6 +264,18 @@
   "backToProjectsAria": "Go back to the projects list"
 },
 
+"thankYou": {
+  "badge": "Message sent",
+  "title": "Thank you for getting in touch!",
+  "desc": "I have received your request. I will reply as soon as possible.",
+  "home": "Back to home",
+  "projects": "View projects",
+  "label": "Portfolio request",
+  "step1": "Brief received",
+  "step2": "Scope review",
+  "step3": "Reply soon"
+},
+
 "projects": {
   "biuro-ksiegowe": {
   "title": "Modern Accounting Office",

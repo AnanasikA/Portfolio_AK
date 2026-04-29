@@ -29,6 +29,7 @@ function BriefModal({
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const locale = useLocale();
+  
   const isEn = locale === 'en';
 
   if (typeof window === 'undefined') return null;
@@ -55,8 +56,9 @@ function BriefModal({
 
       if (!res.ok) throw new Error(`Status ${res.status}`);
 
-      setStatus('sent');
-      form.reset();
+form.reset();
+window.location.href = isEn ? '/en/thank-you' : '/thank-you';
+
     } catch (err: unknown) {
       setStatus('error');
       setErrorMsg(

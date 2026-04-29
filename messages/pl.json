@@ -265,6 +265,18 @@
   "backToProjectsAria": "Wróć do listy projektów"
 },
 
+"thankYou": {
+  "badge": "Wiadomość wysłana",
+  "title": "Dziękuję za kontakt!",
+  "desc": "Otrzymałam Twoje zapytanie. Odpowiem możliwie szybko.",
+  "home": "Wróć na stronę główną",
+  "projects": "Zobacz realizacje",
+  "label": "Zapytanie z portfolio",
+  "step1": "Brief otrzymany",
+  "step2": "Analiza zakresu",
+  "step3": "Odpowiedź wkrótce"
+},
+
 "projects": {
   "biuro-ksiegowe": {
   "title": "Nowoczesne Biuro Księgowe",
