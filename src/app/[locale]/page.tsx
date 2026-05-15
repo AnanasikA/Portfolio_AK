@@ -5,6 +5,7 @@ import Hero from '@/components/Hero';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import ProcessSection from '@/components/ProcessSection';
 import Pricing from '@/components/Pricing';
+import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
 import Header from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
@@ -70,6 +71,7 @@ export default function Home() {
   <FeaturedProjects />
   <Pricing />
   <ProcessSection />
+  <Testimonials />
   <Contact />
 </main>
 

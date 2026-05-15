@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiSend, FiMail, FiCheckCircle } from 'react-icons/fi';
+import { FiSend, FiMail, FiCheckCircle, FiPhone } from 'react-icons/fi';
 import { useTranslations, useLocale } from 'next-intl';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
@@ -56,6 +56,27 @@ const successVariant = {
     },
   },
 };
+
+const inputClass =
+  'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15';
+
+const selectClass =
+  'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 appearance-none cursor-pointer focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15';
+
+const labelClass = 'mb-1.5 block text-sm font-medium text-slate-700';
+
+function SelectWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative">
+      {children}
+      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
+        <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </div>
+  );
+}
 
 export default function Contact() {
   const t = useTranslations('contact');
@@ -123,6 +144,8 @@ export default function Contact() {
 
       <div className="relative mx-auto max-w-[1360px] px-5 py-16 sm:px-8 sm:py-20 md:px-10 lg:px-12 lg:py-24 xl:px-16 xl:py-28 2xl:px-20">
         <div className="grid items-start gap-8 lg:grid-cols-[0.9fr_1.05fr] lg:gap-10 xl:grid-cols-[0.88fr_1.12fr] xl:gap-14">
+
+          {/* Left column */}
           <motion.div
             variants={container}
             initial="hidden"
@@ -134,7 +157,7 @@ export default function Contact() {
               variants={fadeUp}
               className="mb-4 inline-flex rounded-full border border-[#007aff]/15 bg-white/75 px-4 py-2 text-xs text-[#007aff] backdrop-blur-md sm:text-sm"
             >
-              {isEn ? 'Let’s talk' : 'Porozmawiajmy o projekcie'}
+              {isEn ? `Let's talk` : 'Porozmawiajmy o projekcie'}
             </motion.span>
 
             <motion.h2
@@ -184,7 +207,7 @@ export default function Contact() {
               </div>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="mt-7 sm:mt-8">
+            <motion.div variants={fadeUp} className="mt-7 flex flex-col gap-3 sm:mt-8">
               <a
                 href="mailto:kontakt@anastasiiakupriianets.pl"
                 className="group inline-flex items-center gap-2 text-sm text-slate-700 transition duration-300 hover:text-[#007aff] sm:text-[15px]"
@@ -197,6 +220,7 @@ export default function Contact() {
             </motion.div>
           </motion.div>
 
+          {/* Right column — form */}
           <motion.div
             variants={panelVariant}
             initial="hidden"
@@ -244,7 +268,6 @@ export default function Contact() {
                     >
                       {t('send_another')}
                     </button>
-
                     <a
                       href="mailto:kontakt@anastasiiakupriianets.pl"
                       className="rounded-full bg-[#007aff] px-5 py-3 text-sm text-white transition hover:bg-[#0062cc]"
@@ -262,7 +285,7 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.25 }}
-                  className="relative space-y-5"
+                  className="relative space-y-4"
                   itemProp="mainEntity"
                   itemScope
                   itemType="https://schema.org/ContactPoint"
@@ -271,20 +294,9 @@ export default function Contact() {
                     itemProp="contactType"
                     content={isEn ? 'customer inquiries' : 'zapytania ofertowe'}
                   />
-
                   <input type="hidden" name="_captcha" value="false" />
-                  <input
-                    type="hidden"
-                    name="_subject"
-                    value="Nowa wiadomość z portfolio"
-                  />
-                  <input
-                    type="text"
-                    name="_honey"
-                    className="hidden"
-                    tabIndex={-1}
-                    autoComplete="off"
-                  />
+                  <input type="hidden" name="_subject" value="Nowa wiadomość z portfolio" />
+                  <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
 
                   {status === 'error' && (
                     <div
@@ -292,22 +304,17 @@ export default function Contact() {
                       className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
                     >
                       {t('error')}{' '}
-                      <a
-                        className="underline"
-                        href="mailto:kontakt@anastasiiakupriianets.pl"
-                      >
+                      <a className="underline" href="mailto:kontakt@anastasiiakupriianets.pl">
                         kontakt@anastasiiakupriianets.pl
                       </a>
                       .
                     </div>
                   )}
 
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                  {/* Imię + Email */}
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
-                      <label
-                        htmlFor="name"
-                        className="mb-1.5 block text-sm font-medium text-slate-700"
-                      >
+                      <label htmlFor="name" className={labelClass}>
                         {t('form.name')}
                       </label>
                       <input
@@ -316,15 +323,12 @@ export default function Contact() {
                         name="name"
                         required
                         autoComplete="name"
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15"
+                        placeholder={isEn ? 'Your name' : 'Twoje imię i nazwisko'}
+                        className={inputClass}
                       />
                     </div>
-
                     <div>
-                      <label
-                        htmlFor="email"
-                        className="mb-1.5 block text-sm font-medium text-slate-700"
-                      >
+                      <label htmlFor="email" className={labelClass}>
                         {t('form.email')}
                       </label>
                       <input
@@ -333,32 +337,112 @@ export default function Contact() {
                         name="email"
                         required
                         autoComplete="email"
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15"
+                        placeholder={isEn ? 'your@email.com' : 'twoj@email.pl'}
+                        className={inputClass}
                       />
                     </div>
                   </div>
 
+                  {/* Telefon (opcjonalne) */}
                   <div>
-                    <label
-                      htmlFor="message"
-                      className="mb-1.5 block text-sm font-medium text-slate-700"
-                    >
+                    <label htmlFor="phone" className={labelClass}>
+                      {isEn ? 'Phone (optional)' : 'Telefon (opcjonalnie)'}
+                    </label>
+                    <div className="relative">
+                      <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+                        <FiPhone className="h-4 w-4" />
+                      </span>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        autoComplete="tel"
+                        placeholder={isEn ? '+48 000 000 000' : '+48 000 000 000'}
+                        className={`${inputClass} pl-10`}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Rodzaj strony + Budżet */}
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label htmlFor="site_type" className={labelClass}>
+                        {isEn ? 'Type of website' : 'Rodzaj strony'}
+                      </label>
+                      <SelectWrapper>
+                        <select id="site_type" name="site_type" className={selectClass}>
+                          <option value="">
+                            {isEn ? 'Choose...' : 'Wybierz...'}
+                          </option>
+                          <option value="landing">{isEn ? 'Landing page / Business card' : 'Landing page / Wizytówka'}</option>
+                          <option value="company">{isEn ? 'Company website' : 'Strona firmowa'}</option>
+                          <option value="portfolio">{isEn ? 'Portfolio' : 'Portfolio'}</option>
+                          <option value="ecommerce">{isEn ? 'Online store' : 'Sklep internetowy'}</option>
+                          <option value="blog">{isEn ? 'Blog' : 'Blog'}</option>
+                          <option value="other">{isEn ? 'Other / Not sure' : 'Inne / Nie wiem jeszcze'}</option>
+                        </select>
+                      </SelectWrapper>
+                    </div>
+                    <div>
+                      <label htmlFor="budget" className={labelClass}>
+                        {isEn ? 'Budget' : 'Budżet'}
+                      </label>
+                      <SelectWrapper>
+                        <select id="budget" name="budget" className={selectClass}>
+                          <option value="">
+                            {isEn ? 'Choose...' : 'Wybierz...'}
+                          </option>
+                          <option value="1500-3000">{isEn ? '€350–700 (Basic)' : '1 500–3 000 zł (Podstawowy)'}</option>
+                          <option value="3000-5000">{isEn ? '€700–1 200 (Standard)' : '3 000–5 000 zł (Standardowy)'}</option>
+                          <option value="5000+">{isEn ? '€1 200+ (Premium)' : '5 000+ zł (Premium)'}</option>
+                          <option value="unknown">{isEn ? 'Not sure yet' : 'Nie wiem jeszcze'}</option>
+                        </select>
+                      </SelectWrapper>
+                    </div>
+                  </div>
+
+                  {/* Czy masz logo? */}
+                  <div>
+                    <label htmlFor="has_logo" className={labelClass}>
+                      {isEn ? 'Do you have a logo?' : 'Czy masz logo?'}
+                    </label>
+                    <SelectWrapper>
+                      <select id="has_logo" name="has_logo" className={selectClass}>
+                        <option value="">
+                          {isEn ? 'Choose...' : 'Wybierz...'}
+                        </option>
+                        <option value="yes">{isEn ? 'Yes, I have a logo' : 'Tak, mam logo'}</option>
+                        <option value="no">{isEn ? 'No, I need one' : 'Nie, potrzebuję logo'}</option>
+                        <option value="inprogress">{isEn ? 'In progress' : 'W trakcie tworzenia'}</option>
+                      </select>
+                    </SelectWrapper>
+                  </div>
+
+                  {/* Wiadomość */}
+                  <div>
+                    <label htmlFor="message" className={labelClass}>
                       {t('form.message')}
                     </label>
                     <textarea
                       id="message"
                       name="message"
-                      rows={6}
+                      rows={4}
                       required
-                      className="min-h-[160px] w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15 sm:min-h-[180px]"
+                      placeholder={
+                        isEn
+                          ? 'Briefly describe your project — what kind of site you need, its purpose, and what matters most to you.'
+                          : 'Napisz krótko, jakiej strony potrzebujesz, jaki ma być jej cel i co jest dla Ciebie najważniejsze.'
+                      }
+                      className={`${inputClass} min-h-[120px] sm:min-h-[140px]`}
                     />
                   </div>
 
+                  {/* Submit */}
                   <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center">
                     <button
                       type="submit"
                       disabled={status === 'sending'}
-                      className={`group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white transition duration-300 ${
+                      className={`group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white transition duration-300 ${
                         status === 'sending'
                           ? 'cursor-not-allowed bg-[#7fb6ff]'
                           : 'bg-[#007aff] hover:-translate-y-0.5 hover:bg-[#0062cc]'
@@ -370,8 +454,8 @@ export default function Contact() {
 
                     <p className="text-xs leading-5 text-slate-500 sm:text-sm">
                       {isEn
-                        ? 'Usually I reply with an initial response within 1–2 business days.'
-                        : 'Zwykle odpowiadam ze wstępną informacją w ciągu 1–2 dni roboczych.'}
+                        ? 'Usually I reply within 1–2 business days.'
+                        : 'Zwykle odpowiadam w ciągu 1–2 dni roboczych.'}
                     </p>
                   </div>
                 </motion.form>
