@@ -2,13 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import Hero from '@/components/Hero';
-import ForWhoSection from '@/components/ForWhoSection';
+import FeaturedProjects from '@/components/FeaturedProjects';
 import ProcessSection from '@/components/ProcessSection';
-import CtaSection from '@/components/CtaSection';
 import Pricing from '@/components/Pricing';
 import Contact from '@/components/Contact';
-import Skills from '@/components/Skills';
-import FAQ from '@/components/FAQ';
 import Header from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 import Footer from '@/components/Footer';
@@ -69,16 +66,12 @@ export default function Home() {
       <DropdownMenu isOpen={isOpen} toggleMenu={toggleMenu} />
 
       <main className="scroll-smooth" aria-hidden={isOpen}>
-        <Hero />
-        <ForWhoSection />
-        <Skills />
-        <CtaSection />
-        <Pricing />
-        <ProcessSection  />
-      
-        <FAQ />
-        <Contact />
-      </main>
+  <Hero />
+  <FeaturedProjects />
+  <Pricing />
+  <ProcessSection />
+  <Contact />
+</main>
 
       <Footer />
     </>

@@ -16,61 +16,35 @@
   "highlights": "od 1500 zł • 7–14 dni • indywidualny projekt",
   "image_alt": "Nowoczesne projekty stron internetowych dla firm"
 },
-"forWho": {
-  "badge": "Dla kogo",
-  "title": "Strony dla firm, marek i organizacji, które chcą wyglądać profesjonalnie",
-  "description": "Tworzę i rozwijam strony dla usług lokalnych, firm B2B, nieruchomości i organizacji — także zajmuję się opieką nad istniejącymi stronami.",
-  "items": [
-    {
-      "title": "Firmy usługowe",
-      "text": "Usługi lokalne, serwisy, transport i branże specjalistyczne."
+"featuredProjects": {
+  "badge": "Wybrane projekty",
+  "title": "Zobacz przykłady stron, które pokazują styl i podejście do projektu",
+  "cta": "Zobacz projekt",
+  "ctaText": "Masz podobny projekt? Zobacz realizacje albo wyślij krótkie zapytanie.",
+  "allProjects": "Zobacz wszystkie projekty",
+  "askQuote": "Zapytaj o wycenę",
+
+  "projects": {
+    "spiro": {
+      "title": "Spiro Pilates & Mobility",
+      "category": "Strona dla studia pilates",
+      "description": "Nowoczesna strona usługowa z przejrzystą ofertą i harmonogramem zajęć."
     },
-    {
-      "title": "B2B i firmy",
-      "text": "Strony firmowe, oferta usług i budowanie zaufania."
+
+    "crescent": {
+      "title": "Crescent Development",
+      "category": "Strona dla branży nieruchomości",
+      "description": "Elegancka prezentacja inwestycji, lokali i oferty dla klientów."
     },
-    {
-      "title": "Nieruchomości",
-      "text": "Strony inwestycji, agencji i prezentacje ofert."
-    },
-    {
-      "title": "Organizacje i związki",
-      "text": "Czytelne strony informacyjne dla stowarzyszeń i instytucji."
-    },
-    {
-      "title": "Opieka nad stroną",
-      "text": "Aktualizacje, poprawki i rozwój istniejących stron."
+
+    "luisowka": {
+      "title": "Luisówka",
+      "category": "Strona dla obiektu noclegowego",
+      "description": "Klimatyczna strona z galerią, ofertą i formularzem rezerwacji."
     }
-  ]
-},
-"benefits": {
-  "title": "Strona, która nie tylko wygląda dobrze, ale pomaga zdobywać klientów",
-  "description": "Projektuję strony z myślą o czytelności, zaufaniu i łatwym kontakcie z klientem.",
-  "cta": "Zobacz realizacje",
-  "cta_aria": "Zobacz moje realizacje",
-  "image": {
-    "title": "Profesjonalny wizerunek",
-    "description": "Twoja strona pokazuje firmę jako nowoczesną, wiarygodną i godną zaufania."
-  },
-  "offer": {
-    "title": "Jasna oferta",
-    "description": "Porządkuję treści tak, aby klient szybko zrozumiał, co oferujesz i dlaczego warto wybrać właśnie Ciebie."
-  },
-  "contact": {
-    "title": "Łatwy kontakt",
-    "description": "Dodaję widoczne przyciski, formularze i sekcje CTA, które pomagają zamienić odwiedziny w zapytania."
-  },
-  "responsive": {
-    "title": "Szybkość i responsywność",
-    "description": "Strona dobrze wygląda na telefonie, tablecie i komputerze oraz szybko się ładuje."
   }
 },
-"midCta": {
-  "badge": "Nie wiesz, od czego zacząć?",
-  "title": "Napisz do mnie — podpowiem, jaka strona będzie najlepsza dla Twojej firmy",
-  "description": "Krótko przeanalizuję Twoją sytuację i zaproponuję rozwiązanie dopasowane do budżetu, branży i celu strony.",
-  "cta": "Zapytaj o wycenę"
-},
+
 "pricing": {
   "title": "Ile kosztuje strona internetowa dla Twojej firmy?",
   "subtitle": "Wybierz pakiet lub napisz do mnie — pomogę dobrać rozwiązanie dopasowane do Twojej branży i budżetu.",

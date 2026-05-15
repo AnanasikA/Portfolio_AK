@@ -451,10 +451,6 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
               {isEn ? 'Pricing' : 'Cennik'}
             </Link>
 
-            <Link href="/#faq" className={linkBase}>
-              FAQ
-            </Link>
-
             <Link href="/#contact" className={linkBase}>
               {isEn ? 'Contact' : 'Kontakt'}
             </Link>

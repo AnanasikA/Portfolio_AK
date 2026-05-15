@@ -16,60 +16,33 @@
   "highlights": "from €350 • 7–14 days • custom design",
   "image_alt": "Modern website design projects for businesses"
 },
-"forWho": {
-  "badge": "Who it’s for",
-  "title": "Websites for businesses, brands and organizations that want to look professional",
-  "description": "I create and improve websites for local services, B2B companies, real estate and organizations — including support for existing websites.",
-  "items": [
-    {
-      "title": "Service businesses",
-      "text": "Local services, technical services, transport and niche industries."
+"featuredProjects": {
+  "badge": "Selected projects",
+  "title": "Explore websites that reflect my design style and approach to each project",
+  "cta": "View project",
+  "ctaText": "Have a similar project in mind? Explore my work or send a quick request.",
+  "askQuote": "Request a quote",
+  "allProjects": "View all projects",
+
+  "projects": {
+    "spiro": {
+      "title": "Spiro Pilates & Mobility",
+      "category": "Website for a pilates studio",
+      "description": "A modern service website with a clear offer and class schedule."
     },
-    {
-      "title": "B2B companies",
-      "text": "Business websites, service offers and trust-building content."
+
+    "crescent": {
+      "title": "Crescent Development",
+      "category": "Website for the real estate industry",
+      "description": "An elegant presentation of properties, apartments and client offers."
     },
-    {
-      "title": "Real estate",
-      "text": "Websites for investments, agencies and property listings."
-    },
-    {
-      "title": "Organizations",
-      "text": "Clear informational websites for associations and institutions."
-    },
-    {
-      "title": "Website support",
-      "text": "Updates, fixes and ongoing improvements for existing websites."
+
+    "luisowka": {
+      "title": "Luisówka",
+      "category": "Website for a mountain cabin rental",
+      "description": "A cozy website with a gallery, offer section and reservation form."
     }
-  ]
-},
- "benefits": {
-  "title": "A website that not only looks good, but helps you get clients",
-  "description": "I design websites with a focus on clarity, trust, and making it easy for visitors to contact you.",
-  "cta": "View projects",
-  "cta_aria": "View my projects",
-  "image": {
-    "title": "Professional image",
-    "description": "Your website presents your business as modern, trustworthy, and professional."
-  },
-  "offer": {
-    "title": "Clear offer",
-    "description": "I organize the content so visitors quickly understand what you offer and why they should choose you."
-  },
-  "contact": {
-    "title": "Easy contact",
-    "description": "I add clear buttons, forms, and CTA sections that help turn visitors into inquiries."
-  },
-  "responsive": {
-    "title": "Speed and responsiveness",
-    "description": "Your website looks good on phones, tablets, and desktops, and loads quickly."
   }
-},
-"midCta": {
-  "badge": "Not sure where to start?",
-  "title": "Send me a message — I’ll help you choose the right website for your business",
-  "description": "I’ll briefly review your situation and suggest a solution that fits your budget, industry, and website goals.",
-  "cta": "Request a quote"
 },
 "pricing": {
   "title": "How much does a website cost for your business?",
@@ -218,10 +191,9 @@
   },
   "dropdownMenu": {
     "home": "Home",
-    "services": "Services",
-    "process": "Process",
-    "projects": "Work",
-    "pricing": "Pricing",
+  "process": "Process",
+  "projects": "Projects",
+  "pricing": "Pricing",
     "cta": "Request a quote",
     "ctaAria": "Open quote form",
     "menuAria": "Navigation menu",
