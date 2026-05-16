@@ -1,11 +1,10 @@
 {
   "nav": {
     "home": "Home",
-    "about": "About",
-    "skills": "Skills",
     "pricing": "Pricing",
     "contact": "Contact",
-    "projects": "Projects"
+    "projects": "Projects",
+    "blog": "Blog"
   },
 "hero": {
   "badge": "Websites for businesses • WordPress & Next.js • remote work",
@@ -194,6 +193,7 @@
   "process": "Process",
   "projects": "Projects",
   "pricing": "Pricing",
+  "blog": "Blog",
     "cta": "Request a quote",
     "ctaAria": "Open quote form",
     "menuAria": "Navigation menu",

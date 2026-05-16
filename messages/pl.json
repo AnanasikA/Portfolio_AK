@@ -1,11 +1,10 @@
 {
   "nav": {
     "home": "Strona główna",
-    "about": "O mnie",
-    "skills": "Umiejętności",
     "pricing": "Cennik",
     "contact": "Kontakt",
-    "projects": "Projekty"
+    "projects": "Projekty",
+    "blog": "Blog"
   },
 "hero": {
   "badge": "Strony dla firm • WordPress i Next.js • współpraca zdalna",
@@ -196,6 +195,7 @@
     "process": "Proces",
     "projects": "Portfolio",
     "pricing": "Cennik",
+    "blog": "Blog",
     "cta": "Poproś o wycenę",
     "ctaAria": "Otwórz formularz wyceny",
     "menuAria": "Menu nawigacyjne",

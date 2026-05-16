@@ -78,6 +78,8 @@ export default function DropdownMenu({ isOpen, toggleMenu }: DropdownMenuProps) 
     { name: t('process'), path: '#process' },
     { name: t('projects'), path: '/projects' },
     { name: t('pricing'), path: '#pricing' },
+    { name: t('blog'), path: '/blog' }
+
   ];
 
   const scrollToHash = (h: string) => {

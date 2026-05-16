@@ -443,12 +443,18 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
               {isEn ? 'Home' : 'Start'}
             </Link>
 
+            
+
             <Link href="/projects" className={linkBase}>
               {isEn ? 'Work' : 'Projekty'}
             </Link>
 
             <Link href="/#pricing" className={linkBase}>
               {isEn ? 'Pricing' : 'Cennik'}
+            </Link>
+
+            <Link href="/blog" className={linkBase}>
+              {isEn ? 'Blog' : 'Blog'}
             </Link>
 
             <Link href="/#contact" className={linkBase}>
