@@ -8,6 +8,7 @@ import { FiX } from 'react-icons/fi';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { usePathname } from 'next/navigation';
+import { sendEmail } from '../lib/sendEmail';
 
 interface HeaderProps {
   isOpen: boolean;
@@ -29,7 +30,6 @@ function BriefModal({
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const locale = useLocale();
-  
   const isEn = locale === 'en';
 
   if (typeof window === 'undefined') return null;
@@ -41,32 +41,26 @@ function BriefModal({
 
     const form = e.currentTarget;
     const fd = new FormData(form);
-    fd.set('_captcha', 'false');
-    fd.set(
-      '_subject',
-      isEn ? 'New quote request from portfolio brief' : 'Nowe zapytanie o wycenę z briefu'
-    );
 
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/kontakt@anastasiiakupriianets.pl', {
-        method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: fd,
-      });
+    const result = await sendEmail({
+      name: fd.get('Imię i nazwisko') as string,
+      email: fd.get('Email') as string,
+      site_type: fd.get('Rodzaj strony') as string,
+      budget: fd.get('Budżet') as string,
+      has_logo: fd.get('Logo') as string,
+      message: fd.get('Opis projektu') as string,
+      locale,
+    });
 
-      if (!res.ok) throw new Error(`Status ${res.status}`);
-
-form.reset();
-window.location.href = isEn ? '/en/thank-you' : '/thank-you';
-
-    } catch (err: unknown) {
+    if (result.ok) {
+      form.reset();
+      window.location.href = isEn ? '/en/thank-you' : '/pl/thank-you';
+    } else {
       setStatus('error');
       setErrorMsg(
-        err instanceof Error
-          ? `Ups… ${err.message}`
-          : isEn
-            ? 'Oops… something went wrong. Please try again in a moment.'
-            : 'Ups… nie udało się wysłać. Spróbuj ponownie za chwilę.'
+        isEn
+          ? 'Oops… something went wrong. Please try again in a moment.'
+          : 'Ups… nie udało się wysłać. Spróbuj ponownie za chwilę.'
       );
     }
   }
@@ -104,21 +98,23 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
 
             {status === 'sent' ? (
               <div className="py-10 text-center">
-                <p className="mb-3 inline-flex rounded-full bg-[#eef5ff] px-3 py-1 text-xs font-medium text-[#007aff]"
-                   style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                <p
+                  className="mb-3 inline-flex rounded-full bg-[#eef5ff] px-3 py-1 text-xs font-medium text-[#007aff]"
+                  style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                 >
                   {isEn ? 'Quote request sent' : 'Zapytanie wysłane'}
                 </p>
 
                 <h3
                   className="text-2xl font-semibold tracking-[-0.02em] text-slate-900 sm:text-3xl"
-                  style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                  style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                 >
                   {isEn ? 'Thank you!' : 'Dziękuję!'}
                 </h3>
 
-                <p className="mx-auto mt-3 max-w-[38ch] text-sm leading-6 text-slate-600 sm:text-base"
-                   style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                <p
+                  className="mx-auto mt-3 max-w-[38ch] text-sm leading-6 text-slate-600 sm:text-base"
+                  style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                 >
                   {isEn
                     ? 'Your request has been sent successfully. I will get back to you within 24 hours.'
@@ -127,7 +123,7 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
 
                 <button
                   onClick={onClose}
-                  style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                  style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                   className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-full bg-[#007aff] px-6 py-3.5 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-[#006ae0]"
                 >
                   {isEn ? 'Close' : 'Zamknij'}
@@ -136,8 +132,9 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
             ) : (
               <>
                 <div className="max-w-xl">
-                  <p className="mb-3 inline-flex rounded-full bg-[#eef5ff] px-3 py-1 text-xs font-medium text-[#007aff]"
-                     style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                  <p
+                    className="mb-3 inline-flex rounded-full bg-[#eef5ff] px-3 py-1 text-xs font-medium text-[#007aff]"
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                   >
                     {isEn ? 'Free quote' : 'Bezpłatna wycena'}
                   </p>
@@ -150,8 +147,9 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                     {isEn ? 'Tell me about your project' : 'Opowiedz mi o swoim projekcie'}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base"
-                     style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                  <p
+                    className="mt-3 text-sm leading-6 text-slate-600 sm:text-base"
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                   >
                     {isEn
                       ? 'Fill out a short brief and I will get back to you with an initial scope, timeline, and estimate.'
@@ -160,24 +158,22 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                 </div>
 
                 {status === 'error' && (
-                  <div className="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" style={{ fontFamily: 'Inter, system-ui, sans-serif'}}>
+                  <div
+                    className="mt-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
+                  >
                     {errorMsg}
                   </div>
                 )}
 
                 <form onSubmit={handleSubmit} className="mt-8 grid gap-4">
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input
-                    type="hidden"
-                    name="_subject"
-                    value={isEn ? 'New quote request from portfolio' : 'Nowe zapytanie o wycenę'}
-                  />
                   <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-800"
-                             style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                      <label
+                        className="mb-2 block text-sm font-medium text-slate-800"
+                        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                       >
                         {isEn ? 'Full name' : 'Imię i nazwisko'}
                       </label>
@@ -189,13 +185,14 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                         autoComplete="name"
                         className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/10"
                         placeholder={isEn ? 'Your full name' : 'Twoje imię i nazwisko'}
-                        style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                       />
                     </div>
 
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-800"
-                            style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                      <label
+                        className="mb-2 block text-sm font-medium text-slate-800"
+                        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                       >
                         Email
                       </label>
@@ -206,15 +203,16 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                         autoComplete="email"
                         className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/10"
                         placeholder={isEn ? 'your@email.com' : 'twoj@email.com'}
-                        style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                       />
                     </div>
                   </div>
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-800"
-                             style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                      <label
+                        className="mb-2 block text-sm font-medium text-slate-800"
+                        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                       >
                         {isEn ? 'Type of website' : 'Rodzaj strony'}
                       </label>
@@ -222,33 +220,22 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                         name="Rodzaj strony"
                         required
                         defaultValue=""
-                        style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                         className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/10"
                       >
-                        <option value="" disabled>
-                          {isEn ? 'Choose...' : 'Wybierz...'}
-                        </option>
-                        <option value="Landing page">
-                          {isEn ? 'Landing page' : 'Landing page'}
-                        </option>
-                        <option value="Strona firmowa">
-                          {isEn ? 'Company website' : 'Strona firmowa'}
-                        </option>
-                        <option value="Portfolio">
-                          {isEn ? 'Portfolio' : 'Portfolio'}
-                        </option>
-                        <option value="Redesign">
-                          {isEn ? 'Redesign' : 'Redesign'}
-                        </option>
-                        <option value="Nie wiem jeszcze">
-                          {isEn ? "I'm not sure yet" : 'Nie wiem jeszcze'}
-                        </option>
+                        <option value="" disabled>{isEn ? 'Choose...' : 'Wybierz...'}</option>
+                        <option value="Landing page">{isEn ? 'Landing page' : 'Landing page'}</option>
+                        <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
+                        <option value="Portfolio">Portfolio</option>
+                        <option value="Redesign">Redesign</option>
+                        <option value="Nie wiem jeszcze">{isEn ? "I'm not sure yet" : 'Nie wiem jeszcze'}</option>
                       </select>
                     </div>
 
                     <div>
-                      <label className="mb-2 block text-sm font-medium text-slate-800"
-                             style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                      <label
+                        className="mb-2 block text-sm font-medium text-slate-800"
+                        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                       >
                         {isEn ? 'Budget' : 'Budżet'}
                       </label>
@@ -256,12 +243,10 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                         name="Budżet"
                         required
                         defaultValue=""
-                        style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                        style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                         className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/10"
                       >
-                        <option value="" disabled>
-                          {isEn ? 'Choose...' : 'Wybierz...'}
-                        </option>
+                        <option value="" disabled>{isEn ? 'Choose...' : 'Wybierz...'}</option>
                         <option value="1500–3000 zł">1500–3000 zł</option>
                         <option value="3000–5000 zł">3000–5000 zł</option>
                         <option value="5000+ zł">5000+ zł</option>
@@ -270,8 +255,9 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-slate-800"
-                           style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                    <label
+                      className="mb-2 block text-sm font-medium text-slate-800"
+                      style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                     >
                       {isEn ? 'Do you have a logo?' : 'Czy masz logo?'}
                     </label>
@@ -279,20 +265,19 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                       name="Logo"
                       required
                       defaultValue=""
-                      style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                      style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                       className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/10"
                     >
-                      <option value="" disabled>
-                        {isEn ? 'Choose...' : 'Wybierz...'}
-                      </option>
+                      <option value="" disabled>{isEn ? 'Choose...' : 'Wybierz...'}</option>
                       <option value="Tak">{isEn ? 'Yes' : 'Tak'}</option>
                       <option value="Nie">{isEn ? 'No' : 'Nie'}</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-slate-800"
-                           style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                    <label
+                      className="mb-2 block text-sm font-medium text-slate-800"
+                      style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                     >
                       {isEn ? 'Project description' : 'Opis projektu'}
                     </label>
@@ -300,7 +285,7 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                       name="Opis projektu"
                       rows={5}
                       required
-                      style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                      style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                       className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/10"
                       placeholder={
                         isEn
@@ -313,16 +298,12 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    style={{ fontFamily: 'Inter, system-ui, sans-serif'}}
+                    style={{ fontFamily: 'Inter, system-ui, sans-serif' }}
                     className="mt-2 inline-flex min-h-[54px] items-center justify-center rounded-full bg-[#007aff] px-6 py-3.5 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-[#006ae0] disabled:opacity-60"
                   >
                     {status === 'sending'
-                      ? isEn
-                        ? 'Sending...'
-                        : 'Wysyłanie...'
-                      : isEn
-                        ? 'Send request'
-                        : 'Wyślij zapytanie'}
+                      ? isEn ? 'Sending...' : 'Wysyłanie...'
+                      : isEn ? 'Send request' : 'Wyślij zapytanie'}
                   </button>
                 </form>
               </>
@@ -339,7 +320,6 @@ window.location.href = isEn ? '/en/thank-you' : '/thank-you';
 function LangSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
-
   const cleanPath = pathname.replace(/^\/(pl|en)(?=\/|$)/, '') || '/';
 
   return (
@@ -348,21 +328,16 @@ function LangSwitcher() {
         href={cleanPath}
         locale="pl"
         className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase transition-colors sm:text-xs ${
-          locale === 'pl'
-            ? 'bg-white text-[#007aff]'
-            : 'text-white/75 hover:text-white'
+          locale === 'pl' ? 'bg-white text-[#007aff]' : 'text-white/75 hover:text-white'
         }`}
       >
         PL
       </Link>
-
       <Link
         href={cleanPath}
         locale="en"
         className={`rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase transition-colors sm:text-xs ${
-          locale === 'en'
-            ? 'bg-white text-[#007aff]'
-            : 'text-white/75 hover:text-white'
+          locale === 'en' ? 'bg-white text-[#007aff]' : 'text-white/75 hover:text-white'
         }`}
       >
         EN
@@ -382,7 +357,6 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setIsBriefOpen(false);
     };
-
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
@@ -394,10 +368,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
     } else {
       document.body.style.overflow = '';
     }
-
-    return () => {
-      document.body.style.overflow = '';
-    };
+    return () => { document.body.style.overflow = ''; };
   }, [isBriefOpen]);
 
   useEffect(() => {
@@ -439,30 +410,12 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
             style={{ fontFamily: 'Libre Baskerville, serif' }}
             aria-label={isEn ? 'Primary navigation' : 'Główna nawigacja strony'}
           >
-            <Link href="/" className={linkBase}>
-              {isEn ? 'Home' : 'Start'}
-            </Link>
-
-            
-
-            <Link href="/projects" className={linkBase}>
-              {isEn ? 'Work' : 'Projekty'}
-            </Link>
-
-            <Link href="/#pricing" className={linkBase}>
-              {isEn ? 'Pricing' : 'Cennik'}
-            </Link>
-
-            <Link href="/blog" className={linkBase}>
-              {isEn ? 'Blog' : 'Blog'}
-            </Link>
-
-            <Link href="/#contact" className={linkBase}>
-              {isEn ? 'Contact' : 'Kontakt'}
-            </Link>
-
+            <Link href="/" className={linkBase}>{isEn ? 'Home' : 'Start'}</Link>
+            <Link href="/projects" className={linkBase}>{isEn ? 'Work' : 'Projekty'}</Link>
+            <Link href="/#pricing" className={linkBase}>{isEn ? 'Pricing' : 'Cennik'}</Link>
+            <Link href="/blog" className={linkBase}>Blog</Link>
+            <Link href="/#contact" className={linkBase}>{isEn ? 'Contact' : 'Kontakt'}</Link>
             <LangSwitcher />
-
             <button
               type="button"
               onClick={() => setIsBriefOpen(true)}
@@ -476,7 +429,6 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
 
           <div className="flex items-center gap-3 lg:hidden">
             <LangSwitcher />
-
             <button
               type="button"
               onClick={() => setIsBriefOpen(true)}
@@ -484,18 +436,9 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
             >
               {isEn ? 'Quote' : 'Wycena'}
             </button>
-
             <button
               onClick={toggleMenu}
-              aria-label={
-                isOpen
-                  ? isEn
-                    ? 'Close menu'
-                    : 'Zamknij menu'
-                  : isEn
-                    ? 'Open menu'
-                    : 'Otwórz menu'
-              }
+              aria-label={isOpen ? (isEn ? 'Close menu' : 'Zamknij menu') : (isEn ? 'Open menu' : 'Otwórz menu')}
               aria-expanded={isOpen}
               aria-controls="main-navigation"
               className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/8 backdrop-blur-sm transition hover:bg-white/12"

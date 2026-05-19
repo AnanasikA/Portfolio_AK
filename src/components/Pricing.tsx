@@ -5,23 +5,19 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiArrowRight, FiCheck } from 'react-icons/fi';
 import { useTranslations, useLocale } from 'next-intl';
+import { sendEmail } from '@/lib/sendEmail';
 
 const container = {
   hidden: {},
   visible: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.06,
-    },
+    transition: { staggerChildren: 0.1, delayChildren: 0.06 },
   },
 };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
   visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
+    opacity: 1, y: 0, filter: 'blur(0px)',
     transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
@@ -29,64 +25,27 @@ const fadeUp = {
 const cardVariant = {
   hidden: { opacity: 0, y: 36, scale: 0.985, filter: 'blur(10px)' },
   visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: 'blur(0px)',
+    opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
     transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },
   },
 };
 
 const modalOverlay = {
   hidden: { opacity: 0, backdropFilter: 'blur(0px)' },
-  visible: {
-    opacity: 1,
-    backdropFilter: 'blur(10px)',
-    transition: { duration: 0.24, ease: 'easeOut' as const },
-  },
-  exit: {
-    opacity: 0,
-    backdropFilter: 'blur(0px)',
-    transition: { duration: 0.18, ease: 'easeInOut' as const },
-  },
+  visible: { opacity: 1, backdropFilter: 'blur(10px)', transition: { duration: 0.24, ease: 'easeOut' as const } },
+  exit: { opacity: 0, backdropFilter: 'blur(0px)', transition: { duration: 0.18, ease: 'easeInOut' as const } },
 };
 
 const modalPanel = {
   hidden: { opacity: 0, y: 40, scale: 0.97, rotateX: 4 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    rotateX: 0,
-    transition: { duration: 0.34, ease: [0.22, 1, 0.36, 1] as const },
-  },
-  exit: {
-    opacity: 0,
-    y: 28,
-    scale: 0.98,
-    transition: { duration: 0.18, ease: 'easeInOut' as const },
-  },
+  visible: { opacity: 1, y: 0, scale: 1, rotateX: 0, transition: { duration: 0.34, ease: [0.22, 1, 0.36, 1] as const } },
+  exit: { opacity: 0, y: 28, scale: 0.98, transition: { duration: 0.18, ease: 'easeInOut' as const } },
 };
 
 const packages = [
-  {
-    key: 'landing',
-    iconSrc: 'https://cdn.lordicon.com/fikcyfpp.json',
-    priceValue: '1500',
-    recommended: false,
-  },
-  {
-    key: 'company',
-    iconSrc: 'https://cdn.lordicon.com/zhiiqoue.json',
-    priceValue: '3000',
-    recommended: true,
-  },
-  {
-    key: 'premium',
-    iconSrc: 'https://cdn.lordicon.com/sjoccsdj.json',
-    priceValue: '5000',
-    recommended: false,
-  },
+  { key: 'landing', iconSrc: 'https://cdn.lordicon.com/fikcyfpp.json', priceValue: '1500', recommended: false },
+  { key: 'company', iconSrc: 'https://cdn.lordicon.com/zhiiqoue.json', priceValue: '3000', recommended: true },
+  { key: 'premium', iconSrc: 'https://cdn.lordicon.com/sjoccsdj.json', priceValue: '5000', recommended: false },
 ];
 
 export default function PricingSection() {
@@ -94,22 +53,47 @@ export default function PricingSection() {
   const locale = useLocale();
   const isEn = locale === 'en';
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsModalOpen(false);
-    };
-
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsModalOpen(false); };
     if (isModalOpen) {
       window.addEventListener('keydown', onKey);
       document.body.style.overflow = 'hidden';
     }
-
     return () => {
       window.removeEventListener('keydown', onKey);
       document.body.style.overflow = 'auto';
     };
   }, [isModalOpen]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === 'sending') return;
+    setStatus('sending');
+
+    const fd = new FormData(e.currentTarget);
+
+    const result = await sendEmail({
+      name: fd.get('name') as string,
+      email: fd.get('email') as string,
+      site_type: fd.get('websiteType') as string,
+      budget: fd.get('budget') as string,
+      message: fd.get('description') as string,
+      locale,
+    });
+
+    if (result.ok) {
+      setStatus('success');
+      setTimeout(() => {
+        setIsModalOpen(false);
+        setStatus('idle');
+        window.location.href = isEn ? '/en/thank-you' : '/pl/thank-you';
+      }, 500);
+    } else {
+      setStatus('error');
+    }
+  };
 
   return (
     <section
@@ -134,21 +118,18 @@ export default function PricingSection() {
           viewport={{ once: true, amount: 0.2 }}
           className="mx-auto max-w-3xl text-center"
         >
-          <motion.span
-            variants={fadeUp}
-            className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs backdrop-blur-md sm:text-sm"
-          >
+          <motion.span variants={fadeUp} className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs backdrop-blur-md sm:text-sm">
             {isEn ? 'Pricing & packages' : 'Pakiety i wycena'}
           </motion.span>
 
           <motion.h2
-  id="pricing-heading"
-  itemProp="name"
-  variants={fadeUp}
-  className="font-serif text-[1.8rem] font-medium leading-[1.08] tracking-[-0.035em] sm:text-[2.1rem] md:text-[2.4rem] lg:text-[2.7rem] xl:text-[3rem]"
->
-  {t('title')}
-</motion.h2>
+            id="pricing-heading"
+            itemProp="name"
+            variants={fadeUp}
+            className="font-serif text-[1.8rem] font-medium leading-[1.08] tracking-[-0.035em] sm:text-[2.1rem] md:text-[2.4rem] lg:text-[2.7rem] xl:text-[3rem]"
+          >
+            {t('title')}
+          </motion.h2>
 
           <motion.p
             itemProp="description"
@@ -158,10 +139,7 @@ export default function PricingSection() {
             {t('subtitle')}
           </motion.p>
 
-          <motion.p
-            variants={fadeUp}
-            className="mt-5 text-sm font-medium text-white/85 sm:text-base"
-          >
+          <motion.p variants={fadeUp} className="mt-5 text-sm font-medium text-white/85 sm:text-base">
             {t('highlights')}
           </motion.p>
         </motion.div>
@@ -187,7 +165,6 @@ export default function PricingSection() {
               } ${index === 2 ? 'md:col-span-2 xl:col-span-1' : ''}`}
             >
               <meta itemProp="position" content={String(index + 1)} />
-
               <div itemProp="item" itemScope itemType="https://schema.org/Service" className="relative flex h-full flex-col">
                 <div className="mb-5 inline-flex w-fit rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/85">
                   {t(`items.${item.key}.badge`)}
@@ -195,15 +172,8 @@ export default function PricingSection() {
 
                 <div className="mb-6 flex items-center gap-4">
                   <div className="flex h-14 w-14 min-w-[56px] items-center justify-center rounded-2xl border border-white/15 bg-white/10">
-                    <lord-icon
-                      src={item.iconSrc}
-                      trigger="loop"
-                      delay="1200"
-                      colors="primary:#f8fafc,secondary:#bfdbfe"
-                      style={{ width: '34px', height: '34px' }}
-                    />
+                    <lord-icon src={item.iconSrc} trigger="loop" delay="1200" colors="primary:#f8fafc,secondary:#bfdbfe" style={{ width: '34px', height: '34px' }} />
                   </div>
-
                   <h3 itemProp="name" className="text-[1.55rem] font-semibold text-white sm:text-[1.8rem]">
                     {t(`items.${item.key}.title`)}
                   </h3>
@@ -272,9 +242,7 @@ export default function PricingSection() {
             animate="visible"
             exit="exit"
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-3 sm:p-4"
-            onMouseDown={(e) => {
-              if (e.target === e.currentTarget) setIsModalOpen(false);
-            }}
+            onMouseDown={(e) => { if (e.target === e.currentTarget) setIsModalOpen(false); }}
           >
             <motion.div
               id="pricing-modal"
@@ -297,7 +265,6 @@ export default function PricingSection() {
                     {t('modal.subtitle')}
                   </p>
                 </div>
-
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
@@ -309,28 +276,42 @@ export default function PricingSection() {
               </div>
 
               <div className="px-4 pb-5 pt-4 sm:px-6 sm:pb-6">
-                <form
-                  action="https://formsubmit.co/kontakt@anastasiiakupriianets.pl"
-                  method="POST"
-                  className="grid grid-cols-1 gap-4 sm:grid-cols-2"
-                >
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input type="hidden" name="_subject" value="Nowe zapytanie o wycenę" />
-                  <input type="hidden" name="_template" value="table" />
+                {status === 'error' && (
+                  <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    {isEn ? 'Oops… something went wrong. Please try again.' : 'Ups… nie udało się wysłać. Spróbuj ponownie.'}
+                  </div>
+                )}
 
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="mb-1 block text-xs text-slate-600">{t('form.name')}</label>
-                    <input name="name" required autoComplete="name" className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30" />
+                    <input
+                      name="name"
+                      required
+                      autoComplete="name"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30"
+                    />
                   </div>
 
                   <div>
                     <label className="mb-1 block text-xs text-slate-600">{t('form.email')}</label>
-                    <input type="email" name="email" required autoComplete="email" className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30" />
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      autoComplete="email"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30"
+                    />
                   </div>
 
                   <div>
                     <label className="mb-1 block text-xs text-slate-600">{t('form.websiteType')}</label>
-                    <select name="websiteType" required defaultValue="" className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30">
+                    <select
+                      name="websiteType"
+                      required
+                      defaultValue=""
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30"
+                    >
                       <option value="" disabled>{t('form.choose')}</option>
                       <option value={t('form.options.landing')}>{t('form.options.landing')}</option>
                       <option value={t('form.options.company')}>{t('form.options.company')}</option>
@@ -340,7 +321,12 @@ export default function PricingSection() {
 
                   <div>
                     <label className="mb-1 block text-xs text-slate-600">{t('form.budget')}</label>
-                    <select name="budget" required defaultValue="" className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30">
+                    <select
+                      name="budget"
+                      required
+                      defaultValue=""
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30"
+                    >
                       <option value="" disabled>{t('form.choose')}</option>
                       <option value="1500–3000 zł / €350–€700">1500–3000 zł / €350–€700</option>
                       <option value="3000–5000 zł / €700–€1200">3000–5000 zł / €700–€1200</option>
@@ -350,16 +336,24 @@ export default function PricingSection() {
 
                   <div className="sm:col-span-2">
                     <label className="mb-1 block text-xs text-slate-600">{t('form.description')}</label>
-                    <textarea name="description" rows={4} required className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30" />
+                    <textarea
+                      name="description"
+                      rows={4}
+                      required
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-3 text-sm outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/30"
+                    />
                   </div>
 
                   <div className="mt-2 flex flex-col gap-3 sm:col-span-2 sm:flex-row sm:items-center">
                     <button
                       type="submit"
-                      className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#007aff] px-5 py-2.5 text-sm font-medium text-white transition hover:-translate-y-0.5"
+                      disabled={status === 'sending'}
+                      className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-[#007aff] px-5 py-2.5 text-sm font-medium text-white transition hover:-translate-y-0.5 disabled:opacity-60"
                     >
-                      {t('form.submit')}
-                      <FiArrowRight className="opacity-90 transition-transform duration-300 group-hover:translate-x-1" />
+                      {status === 'sending'
+                        ? isEn ? 'Sending...' : 'Wysyłanie...'
+                        : <>{t('form.submit')} <FiArrowRight className="opacity-90 transition-transform duration-300 group-hover:translate-x-1" /></>
+                      }
                     </button>
                   </div>
                 </form>

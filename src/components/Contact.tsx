@@ -4,65 +4,32 @@ import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSend, FiMail, FiCheckCircle, FiPhone } from 'react-icons/fi';
 import { useTranslations, useLocale } from 'next-intl';
+import { sendEmail } from '@/lib/sendEmail';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
 const container = {
   hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
-    },
-  },
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
 };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
-  visible: {
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 const panelVariant = {
   hidden: { opacity: 0, y: 34, scale: 0.985, filter: 'blur(10px)' },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.75,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
+  visible: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 const successVariant = {
   hidden: { opacity: 0, scale: 0.98, y: 12 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 0.45,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-const inputClass =
-  'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15';
-
-const selectClass =
-  'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 appearance-none cursor-pointer focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15';
-
+const inputClass = 'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15';
+const selectClass = 'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 appearance-none cursor-pointer focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15';
 const labelClass = 'mb-1.5 block text-sm font-medium text-slate-700';
 
 function SelectWrapper({ children }: { children: React.ReactNode }) {
@@ -88,55 +55,35 @@ export default function Contact() {
   const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formRef.current || status === 'sending') return;
-
     setStatus('sending');
 
-    try {
-      const formData = new FormData(formRef.current);
+    const fd = new FormData(formRef.current);
+    if ((fd.get('_honey') as string)?.trim()) { setStatus('success'); formRef.current.reset(); return; }
 
-      if ((formData.get('_honey') as string)?.trim()) {
-        setStatus('success');
-        formRef.current.reset();
-        return;
+    const result = await sendEmail({
+      name: fd.get('name') as string,
+      email: fd.get('email') as string,
+      phone: fd.get('phone') as string,
+      site_type: fd.get('site_type') as string,
+      budget: fd.get('budget') as string,
+      has_logo: fd.get('has_logo') as string,
+      message: fd.get('message') as string,
+      locale,
+    });
+
+    if (result.ok) {
+      if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+        window.gtag('event', 'conversion', { send_to: 'AW-XXXXXXX/YYYYYYYYYYYY' });
       }
-
-      const res = await fetch(
-        'https://formsubmit.co/ajax/kontakt@anastasiiakupriianets.pl',
-        {
-          method: 'POST',
-          body: formData,
-        }
-      );
-
-      if (res.ok) {
-        if (
-          typeof window !== 'undefined' &&
-          typeof window.gtag !== 'undefined'
-        ) {
-          window.gtag('event', 'conversion', {
-            send_to: 'AW-XXXXXXX/YYYYYYYYYYYY',
-          });
-        }
-
-        setStatus('success');
-        formRef.current.reset();
-      } else {
-        setStatus('error');
-      }
-    } catch {
+      setStatus('success');
+      formRef.current.reset();
+    } else {
       setStatus('error');
     }
   };
 
   return (
-    <section
-      id="contact"
-      aria-labelledby="contact-heading"
-      itemScope
-      itemType="https://schema.org/ContactPage"
-      className="relative w-full overflow-hidden bg-[#f4f8ff] text-[#0f172a]"
-    >
-      {/* background */}
+    <section id="contact" aria-labelledby="contact-heading" itemScope itemType="https://schema.org/ContactPage" className="relative w-full overflow-hidden bg-[#f4f8ff] text-[#0f172a]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(0,122,255,0.10),transparent_24%),radial-gradient(circle_at_85%_30%,rgba(0,122,255,0.08),transparent_24%),radial-gradient(circle_at_50%_80%,rgba(0,122,255,0.06),transparent_28%)]" />
       <div className="absolute -left-16 top-10 h-48 w-48 rounded-full bg-[#007aff]/10 blur-3xl sm:h-64 sm:w-64" />
       <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-[#007aff]/10 blur-3xl sm:h-80 sm:w-80" />
@@ -145,73 +92,32 @@ export default function Contact() {
       <div className="relative mx-auto max-w-[1360px] px-5 py-16 sm:px-8 sm:py-20 md:px-10 lg:px-12 lg:py-24 xl:px-16 xl:py-28 2xl:px-20">
         <div className="grid items-start gap-8 lg:grid-cols-[0.9fr_1.05fr] lg:gap-10 xl:grid-cols-[0.88fr_1.12fr] xl:gap-14">
 
-          {/* Left column */}
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            className="max-w-xl"
-          >
-            <motion.span
-              variants={fadeUp}
-              className="mb-4 inline-flex rounded-full border border-[#007aff]/15 bg-white/75 px-4 py-2 text-xs text-[#007aff] backdrop-blur-md sm:text-sm"
-            >
+          <motion.div variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="max-w-xl">
+            <motion.span variants={fadeUp} className="mb-4 inline-flex rounded-full border border-[#007aff]/15 bg-white/75 px-4 py-2 text-xs text-[#007aff] backdrop-blur-md sm:text-sm">
               {isEn ? `Let's talk` : 'Porozmawiajmy o projekcie'}
             </motion.span>
 
-            <motion.h2
-              id="contact-heading"
-              itemProp="name"
-              variants={fadeUp}
-              className="text-[2rem] font-serif leading-[1.04] tracking-[-0.04em] sm:text-[2.5rem] md:text-[2.9rem] lg:text-[3.15rem] xl:text-[3.45rem]"
-            >
+            <motion.h2 id="contact-heading" itemProp="name" variants={fadeUp} className="text-[2rem] font-serif leading-[1.04] tracking-[-0.04em] sm:text-[2.5rem] md:text-[2.9rem] lg:text-[3.15rem] xl:text-[3.45rem]">
               {t('title')}
             </motion.h2>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-6 space-y-4 text-sm text-slate-700 sm:mt-7 sm:text-[15px]"
-            >
-              <div className="flex items-start gap-3">
-                <span className="mt-1 flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-[#007aff]/10 text-[#007aff]">
-                  <FiCheckCircle className="h-3.5 w-3.5" />
-                </span>
-                <p className="leading-6 sm:leading-7">
-                  {isEn
-                    ? 'A short message is enough to get an initial direction and quote.'
-                    : 'Wystarczy krótka wiadomość, żeby otrzymać wstępny kierunek i wycenę.'}
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="mt-1 flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-[#007aff]/10 text-[#007aff]">
-                  <FiCheckCircle className="h-3.5 w-3.5" />
-                </span>
-                <p className="leading-6 sm:leading-7">
-                  {isEn
-                    ? 'I create websites for businesses in WordPress and Next.js, with a strong focus on clarity, responsiveness and modern design.'
-                    : 'Tworzę strony internetowe dla firm w WordPressie i Next.js, z naciskiem na czytelność, responsywność i nowoczesny design.'}
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="mt-1 flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-[#007aff]/10 text-[#007aff]">
-                  <FiCheckCircle className="h-3.5 w-3.5" />
-                </span>
-                <p className="leading-6 sm:leading-7">
-                  {isEn
-                    ? 'Remote collaboration is simple and efficient, no matter where your business is based.'
-                    : 'Współpraca zdalna jest prosta i wygodna, niezależnie od tego, gdzie działa Twoja firma.'}
-                </p>
-              </div>
+            <motion.div variants={fadeUp} className="mt-6 space-y-4 text-sm text-slate-700 sm:mt-7 sm:text-[15px]">
+              {[
+                isEn ? 'A short message is enough to get an initial direction and quote.' : 'Wystarczy krótka wiadomość, żeby otrzymać wstępny kierunek i wycenę.',
+                isEn ? 'I create websites for businesses in WordPress and Next.js, with a strong focus on clarity, responsiveness and modern design.' : 'Tworzę strony internetowe dla firm w WordPressie i Next.js, z naciskiem na czytelność, responsywność i nowoczesny design.',
+                isEn ? 'Remote collaboration is simple and efficient, no matter where your business is based.' : 'Współpraca zdalna jest prosta i wygodna, niezależnie od tego, gdzie działa Twoja firma.',
+              ].map((text, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span className="mt-1 flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-[#007aff]/10 text-[#007aff]">
+                    <FiCheckCircle className="h-3.5 w-3.5" />
+                  </span>
+                  <p className="leading-6 sm:leading-7">{text}</p>
+                </div>
+              ))}
             </motion.div>
 
-            <motion.div variants={fadeUp} className="mt-7 flex flex-col gap-3 sm:mt-8">
-              <a
-                href="mailto:kontakt@anastasiiakupriianets.pl"
-                className="group inline-flex items-center gap-2 text-sm text-slate-700 transition duration-300 hover:text-[#007aff] sm:text-[15px]"
-              >
+            <motion.div variants={fadeUp} className="mt-7 sm:mt-8">
+              <a href="mailto:kontakt@anastasiiakupriianets.pl" className="group inline-flex items-center gap-2 text-sm text-slate-700 transition duration-300 hover:text-[#007aff] sm:text-[15px]">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#007aff]/10 bg-white/80 text-[#007aff] transition duration-300 group-hover:scale-105 group-hover:bg-white">
                   <FiMail className="h-4 w-4" />
                 </span>
@@ -220,242 +126,111 @@ export default function Contact() {
             </motion.div>
           </motion.div>
 
-          {/* Right column — form */}
-          <motion.div
-            variants={panelVariant}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            className="relative overflow-hidden rounded-[26px] border border-white/70 bg-white/80 p-5 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:rounded-[30px] sm:p-7 lg:p-8"
-          >
+          <motion.div variants={panelVariant} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} className="relative overflow-hidden rounded-[26px] border border-white/70 bg-white/80 p-5 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:rounded-[30px] sm:p-7 lg:p-8">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(0,122,255,0.07),transparent)]" />
             <div className="pointer-events-none absolute -right-10 top-0 h-28 w-28 rounded-full bg-[#007aff]/10 blur-2xl" />
 
             <AnimatePresence mode="wait">
               {status === 'success' ? (
-                <motion.div
-                  key="success"
-                  variants={successVariant}
-                  initial="hidden"
-                  animate="visible"
-                  exit={{ opacity: 0, y: 10 }}
-                  role="status"
-                  aria-live="polite"
-                  className="flex min-h-[360px] flex-col items-center justify-center px-2 py-6 text-center sm:min-h-[420px]"
-                >
-                  <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                    className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#007aff]/10 text-[#007aff]"
-                  >
+                <motion.div key="success" variants={successVariant} initial="hidden" animate="visible" exit={{ opacity: 0, y: 10 }} role="status" aria-live="polite" className="flex min-h-[360px] flex-col items-center justify-center px-2 py-6 text-center sm:min-h-[420px]">
+                  <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#007aff]/10 text-[#007aff]">
                     <FiCheckCircle className="h-8 w-8" />
                   </motion.div>
-
-                  <h3 className="text-2xl font-semibold tracking-[-0.02em]">
-                    {t('success_title')}
-                  </h3>
-
-                  <p className="mx-auto mt-3 max-w-md leading-7 text-slate-600">
-                    {t('success_text')}
-                  </p>
-
+                  <h3 className="text-2xl font-semibold tracking-[-0.02em]">{t('success_title')}</h3>
+                  <p className="mx-auto mt-3 max-w-md leading-7 text-slate-600">{t('success_text')}</p>
                   <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-                    <button
-                      type="button"
-                      onClick={() => setStatus('idle')}
-                      className="rounded-full border border-slate-300 px-5 py-3 text-sm text-slate-800 transition hover:bg-slate-50"
-                    >
+                    <button type="button" onClick={() => setStatus('idle')} className="rounded-full border border-slate-300 px-5 py-3 text-sm text-slate-800 transition hover:bg-slate-50">
                       {t('send_another')}
                     </button>
-                    <a
-                      href="mailto:kontakt@anastasiiakupriianets.pl"
-                      className="rounded-full bg-[#007aff] px-5 py-3 text-sm text-white transition hover:bg-[#0062cc]"
-                    >
+                    <a href="mailto:kontakt@anastasiiakupriianets.pl" className="rounded-full bg-[#007aff] px-5 py-3 text-sm text-white transition hover:bg-[#0062cc]">
                       {t('write_email')}
                     </a>
                   </div>
                 </motion.div>
               ) : (
-                <motion.form
-                  key="form"
-                  ref={formRef}
-                  onSubmit={sendForm}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  className="relative space-y-4"
-                  itemProp="mainEntity"
-                  itemScope
-                  itemType="https://schema.org/ContactPoint"
-                >
-                  <meta
-                    itemProp="contactType"
-                    content={isEn ? 'customer inquiries' : 'zapytania ofertowe'}
-                  />
-                  <input type="hidden" name="_captcha" value="false" />
-                  <input type="hidden" name="_subject" value="Nowa wiadomość z portfolio" />
+                <motion.form key="form" ref={formRef} onSubmit={sendForm} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }} className="relative space-y-4" itemProp="mainEntity" itemScope itemType="https://schema.org/ContactPoint">
+                  <meta itemProp="contactType" content={isEn ? 'customer inquiries' : 'zapytania ofertowe'} />
                   <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
 
                   {status === 'error' && (
-                    <div
-                      role="alert"
-                      className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
-                    >
+                    <div role="alert" className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                       {t('error')}{' '}
-                      <a className="underline" href="mailto:kontakt@anastasiiakupriianets.pl">
-                        kontakt@anastasiiakupriianets.pl
-                      </a>
-                      .
+                      <a className="underline" href="mailto:kontakt@anastasiiakupriianets.pl">kontakt@anastasiiakupriianets.pl</a>.
                     </div>
                   )}
 
-                  {/* Imię + Email */}
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className={labelClass}>
-                        {t('form.name')}
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        autoComplete="name"
-                        placeholder={isEn ? 'Your name' : 'Twoje imię i nazwisko'}
-                        className={inputClass}
-                      />
+                      <label htmlFor="name" className={labelClass}>{t('form.name')}</label>
+                      <input type="text" id="name" name="name" required autoComplete="name" placeholder={isEn ? 'Your name' : 'Twoje imię i nazwisko'} className={inputClass} />
                     </div>
                     <div>
-                      <label htmlFor="email" className={labelClass}>
-                        {t('form.email')}
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        autoComplete="email"
-                        placeholder={isEn ? 'your@email.com' : 'twoj@email.pl'}
-                        className={inputClass}
-                      />
+                      <label htmlFor="email" className={labelClass}>{t('form.email')}</label>
+                      <input type="email" id="email" name="email" required autoComplete="email" placeholder={isEn ? 'your@email.com' : 'twoj@email.pl'} className={inputClass} />
                     </div>
                   </div>
 
-                  {/* Telefon (opcjonalne) */}
                   <div>
-                    <label htmlFor="phone" className={labelClass}>
-                      {isEn ? 'Phone (optional)' : 'Telefon (opcjonalnie)'}
-                    </label>
+                    <label htmlFor="phone" className={labelClass}>{isEn ? 'Phone (optional)' : 'Telefon (opcjonalnie)'}</label>
                     <div className="relative">
-                      <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
-                        <FiPhone className="h-4 w-4" />
-                      </span>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        autoComplete="tel"
-                        placeholder={isEn ? '+48 000 000 000' : '+48 000 000 000'}
-                        className={`${inputClass} pl-10`}
-                      />
+                      <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400"><FiPhone className="h-4 w-4" /></span>
+                      <input type="tel" id="phone" name="phone" autoComplete="tel" placeholder="+48 000 000 000" className={`${inputClass} pl-10`} />
                     </div>
                   </div>
 
-                  {/* Rodzaj strony + Budżet */}
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="site_type" className={labelClass}>
-                        {isEn ? 'Type of website' : 'Rodzaj strony'}
-                      </label>
+                      <label htmlFor="site_type" className={labelClass}>{isEn ? 'Type of website' : 'Rodzaj strony'}</label>
                       <SelectWrapper>
                         <select id="site_type" name="site_type" className={selectClass}>
-                          <option value="">
-                            {isEn ? 'Choose...' : 'Wybierz...'}
-                          </option>
-                          <option value="landing">{isEn ? 'Landing page / Business card' : 'Landing page / Wizytówka'}</option>
-                          <option value="company">{isEn ? 'Company website' : 'Strona firmowa'}</option>
-                          <option value="portfolio">{isEn ? 'Portfolio' : 'Portfolio'}</option>
-                          <option value="ecommerce">{isEn ? 'Online store' : 'Sklep internetowy'}</option>
-                          <option value="blog">{isEn ? 'Blog' : 'Blog'}</option>
-                          <option value="other">{isEn ? 'Other / Not sure' : 'Inne / Nie wiem jeszcze'}</option>
+                          <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
+                          <option value="Landing page">{isEn ? 'Landing page / Business card' : 'Landing page / Wizytówka'}</option>
+                          <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
+                          <option value="Portfolio">Portfolio</option>
+                          <option value="Sklep internetowy">{isEn ? 'Online store' : 'Sklep internetowy'}</option>
+                          <option value="Blog">Blog</option>
+                          <option value="Inne">{isEn ? 'Other / Not sure' : 'Inne / Nie wiem jeszcze'}</option>
                         </select>
                       </SelectWrapper>
                     </div>
                     <div>
-                      <label htmlFor="budget" className={labelClass}>
-                        {isEn ? 'Budget' : 'Budżet'}
-                      </label>
+                      <label htmlFor="budget" className={labelClass}>{isEn ? 'Budget' : 'Budżet'}</label>
                       <SelectWrapper>
                         <select id="budget" name="budget" className={selectClass}>
-                          <option value="">
-                            {isEn ? 'Choose...' : 'Wybierz...'}
-                          </option>
-                          <option value="1500-3000">{isEn ? '€350–700 (Basic)' : '1 500–3 000 zł (Podstawowy)'}</option>
-                          <option value="3000-5000">{isEn ? '€700–1 200 (Standard)' : '3 000–5 000 zł (Standardowy)'}</option>
-                          <option value="5000+">{isEn ? '€1 200+ (Premium)' : '5 000+ zł (Premium)'}</option>
-                          <option value="unknown">{isEn ? 'Not sure yet' : 'Nie wiem jeszcze'}</option>
+                          <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
+                          <option value="1500-3000 zł">{isEn ? '€350–700 (Basic)' : '1 500–3 000 zł'}</option>
+                          <option value="3000-5000 zł">{isEn ? '€700–1 200 (Standard)' : '3 000–5 000 zł'}</option>
+                          <option value="5000+ zł">{isEn ? '€1 200+ (Premium)' : '5 000+ zł'}</option>
+                          <option value="Nie wiem">{isEn ? 'Not sure yet' : 'Nie wiem jeszcze'}</option>
                         </select>
                       </SelectWrapper>
                     </div>
                   </div>
 
-                  {/* Czy masz logo? */}
                   <div>
-                    <label htmlFor="has_logo" className={labelClass}>
-                      {isEn ? 'Do you have a logo?' : 'Czy masz logo?'}
-                    </label>
+                    <label htmlFor="has_logo" className={labelClass}>{isEn ? 'Do you have a logo?' : 'Czy masz logo?'}</label>
                     <SelectWrapper>
                       <select id="has_logo" name="has_logo" className={selectClass}>
-                        <option value="">
-                          {isEn ? 'Choose...' : 'Wybierz...'}
-                        </option>
-                        <option value="yes">{isEn ? 'Yes, I have a logo' : 'Tak, mam logo'}</option>
-                        <option value="no">{isEn ? 'No, I need one' : 'Nie, potrzebuję logo'}</option>
-                        <option value="inprogress">{isEn ? 'In progress' : 'W trakcie tworzenia'}</option>
+                        <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
+                        <option value="Tak">{isEn ? 'Yes, I have a logo' : 'Tak, mam logo'}</option>
+                        <option value="Nie">{isEn ? 'No, I need one' : 'Nie, potrzebuję logo'}</option>
+                        <option value="W trakcie">{isEn ? 'In progress' : 'W trakcie tworzenia'}</option>
                       </select>
                     </SelectWrapper>
                   </div>
 
-                  {/* Wiadomość */}
                   <div>
-                    <label htmlFor="message" className={labelClass}>
-                      {t('form.message')}
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      placeholder={
-                        isEn
-                          ? 'Briefly describe your project — what kind of site you need, its purpose, and what matters most to you.'
-                          : 'Napisz krótko, jakiej strony potrzebujesz, jaki ma być jej cel i co jest dla Ciebie najważniejsze.'
-                      }
-                      className={`${inputClass} min-h-[120px] sm:min-h-[140px]`}
-                    />
+                    <label htmlFor="message" className={labelClass}>{t('form.message')}</label>
+                    <textarea id="message" name="message" rows={4} required placeholder={isEn ? 'Briefly describe your project...' : 'Napisz krótko, jakiej strony potrzebujesz...'} className={`${inputClass} min-h-[120px] sm:min-h-[140px]`} />
                   </div>
 
-                  {/* Submit */}
                   <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center">
-                    <button
-                      type="submit"
-                      disabled={status === 'sending'}
-                      className={`group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white transition duration-300 ${
-                        status === 'sending'
-                          ? 'cursor-not-allowed bg-[#7fb6ff]'
-                          : 'bg-[#007aff] hover:-translate-y-0.5 hover:bg-[#0062cc]'
-                      }`}
-                    >
+                    <button type="submit" disabled={status === 'sending'} className={`group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white transition duration-300 ${status === 'sending' ? 'cursor-not-allowed bg-[#7fb6ff]' : 'bg-[#007aff] hover:-translate-y-0.5 hover:bg-[#0062cc]'}`}>
                       <FiSend className="text-base transition-transform duration-300 group-hover:translate-x-[1px]" />
                       {status === 'sending' ? t('sending') : t('form.submit')}
                     </button>
-
                     <p className="text-xs leading-5 text-slate-500 sm:text-sm">
-                      {isEn
-                        ? 'Usually I reply within 1–2 business days.'
-                        : 'Zwykle odpowiadam w ciągu 1–2 dni roboczych.'}
+                      {isEn ? 'Usually I reply within 1–2 business days.' : 'Zwykle odpowiadam w ciągu 1–2 dni roboczych.'}
                     </p>
                   </div>
                 </motion.form>
