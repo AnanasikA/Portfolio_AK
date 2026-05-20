@@ -10,6 +10,7 @@ import Contact from '@/components/Contact';
 import Header from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 function HashScroller() {
   useEffect(() => {
@@ -74,6 +75,8 @@ export default function Home() {
   <Testimonials />
   <Contact />
 </main>
+
+<WhatsAppButton />
 
       <Footer />
     </>
