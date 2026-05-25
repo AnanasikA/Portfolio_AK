@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@ap.cx/react-fullpage": "^0.3.0",
-    "@splinetool/react-spline": "^4.0.0",
     "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.23.0",
     "gray-matter": "^4.0.3",
