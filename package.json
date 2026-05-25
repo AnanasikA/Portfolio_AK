@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@ap.cx/react-fullpage": "^0.3.0",
-    "@react-three/drei": "^10.4.4",
-    "@react-three/fiber": "^9.2.0",
     "@splinetool/react-spline": "^4.0.0",
     "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.23.0",
@@ -24,8 +22,7 @@
     "nodemailer": "^8.0.7",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "react-icons": "^5.5.0",
-    "three": "^0.178.0"
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
