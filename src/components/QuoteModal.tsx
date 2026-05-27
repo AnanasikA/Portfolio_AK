@@ -18,8 +18,6 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     name: '',
     email: '',
     websiteType: '',
-    budget: '',
-    timeline: '',
     message: '',
   });
 
@@ -49,14 +47,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       name: form.name,
       email: form.email,
       site_type: form.websiteType,
-      budget: form.budget,
-      message: `${form.message}${form.timeline ? `\n\nTermin: ${form.timeline}` : ''}`,
+      budget: '',
+      message: form.message,
       locale,
     });
 
     if (result.ok) {
       setStatus('success');
-      setForm({ name: '', email: '', websiteType: '', budget: '', timeline: '', message: '' });
+      setForm({ name: '', email: '', websiteType: '', message: '' });
       setTimeout(() => {
         window.location.href = isEn ? '/en/thank-you' : '/pl/thank-you';
       }, 500);
@@ -116,34 +114,21 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               </div>
             </div>
 
-            <div className="grid gap-2.5 sm:grid-cols-2">
-              <div>
-                <label className={lbl}>{isEn ? 'Type of website' : 'Typ strony'}</label>
-                <select name="websiteType" value={form.websiteType} onChange={handleChange} className={inp}>
-                  <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
-                  <option value="Landing page">Landing page</option>
-                  <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
-                  <option value="Portfolio">Portfolio</option>
-                  <option value="Sklep internetowy">{isEn ? 'Online store' : 'Sklep internetowy'}</option>
-                  <option value="Nie wiem jeszcze">{isEn ? 'Not sure yet' : 'Nie wiem jeszcze'}</option>
-                </select>
-              </div>
-              <div>
-                <label className={lbl}>{isEn ? 'Budget' : 'Budżet'}</label>
-                <input type="text" name="budget" value={form.budget} onChange={handleChange}
-                  placeholder={isEn ? 'e.g. €700–1200' : 'np. 3000–5000 zł'} className={inp} />
-              </div>
-            </div>
-
             <div>
-              <label className={lbl}>{isEn ? 'Timeline (optional)' : 'Termin (opcjonalnie)'}</label>
-              <input type="text" name="timeline" value={form.timeline} onChange={handleChange}
-                placeholder={isEn ? 'e.g. within 2–3 weeks' : 'np. w ciągu 2–3 tygodni'} className={inp} />
+              <label className={lbl}>{isEn ? 'Type of website' : 'Typ strony'}</label>
+              <select name="websiteType" value={form.websiteType} onChange={handleChange} className={inp}>
+                <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
+                <option value="Landing page">Landing page</option>
+                <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
+                <option value="Portfolio">Portfolio</option>
+                <option value="Sklep internetowy">{isEn ? 'Online store' : 'Sklep internetowy'}</option>
+                <option value="Nie wiem jeszcze">{isEn ? 'Not sure yet' : 'Nie wiem jeszcze'}</option>
+              </select>
             </div>
 
             <div>
               <label className={lbl}>{isEn ? 'Project description' : 'Opis projektu'}</label>
-              <textarea name="message" required rows={2} value={form.message} onChange={handleChange}
+              <textarea name="message" required rows={3} value={form.message} onChange={handleChange}
                 placeholder={isEn ? 'Briefly describe what you need.' : 'Napisz krótko, czego potrzebujesz.'}
                 className={`${inp} resize-none`} />
             </div>
