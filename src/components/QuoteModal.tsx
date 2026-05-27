@@ -88,7 +88,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             {isEn ? 'Free quote' : 'Bezpłatna wycena'}
           </span>
           <h2 className="pr-8 text-base font-semibold tracking-[-0.02em] text-[#0f172a] sm:text-lg">
-            {isEn ? 'Tell me about your project' : 'Opowiedz mi o swoim projekcie'}
+            {isEn ? 'Tell me about your project' : 'Opowiedź mi o swoim projekcie'}
           </h2>
         </div>
 

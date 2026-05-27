@@ -105,7 +105,7 @@ function BriefModal({
                 id="brief-modal-title"
                 className="pr-8 text-xl font-semibold tracking-[-0.02em] text-slate-900 sm:text-2xl"
               >
-                {isEn ? 'Tell me about your project' : 'Opowiedz mi o swoim projekcie'}
+                {isEn ? 'Tell me about your project' : 'Opowiedź mi o swoim projekcie'}
               </h3>
               <p className="mt-1.5 text-sm leading-6 text-slate-600">
                 {isEn
