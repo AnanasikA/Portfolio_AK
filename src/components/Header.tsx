@@ -45,8 +45,7 @@ function BriefModal({
       name: fd.get('Imię i nazwisko') as string,
       email: fd.get('Email') as string,
       site_type: fd.get('Rodzaj strony') as string,
-      budget: fd.get('Budżet') as string,
-      has_logo: fd.get('Logo') as string,
+      budget: '',
       message: fd.get('Opis projektu') as string,
       locale,
     });
@@ -89,7 +88,7 @@ function BriefModal({
             style={{ maxHeight: '88dvh', overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}
             onMouseDown={(e) => e.stopPropagation()}
           >
-            {/* Header — fixed */}
+            {/* Header */}
             <div className="shrink-0 px-6 pb-2 pt-5 sm:px-8">
               <button
                 onClick={onClose}
@@ -115,7 +114,7 @@ function BriefModal({
               </p>
             </div>
 
-            {/* Scrollable form */}
+            {/* Form */}
             <div className="px-6 pb-5 sm:px-8 sm:pb-7">
               {status === 'error' && (
                 <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
@@ -152,35 +151,15 @@ function BriefModal({
                   </div>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div>
-                    <label className={labelClass}>{isEn ? 'Type of website' : 'Rodzaj strony'}</label>
-                    <select name="Rodzaj strony" required defaultValue="" className={inputClass}>
-                      <option value="" disabled>{isEn ? 'Choose...' : 'Wybierz...'}</option>
-                      <option value="Landing page">Landing page</option>
-                      <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
-                      <option value="Portfolio">Portfolio</option>
-                      <option value="Redesign">Redesign</option>
-                      <option value="Nie wiem jeszcze">{isEn ? "I'm not sure yet" : 'Nie wiem jeszcze'}</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className={labelClass}>{isEn ? 'Budget' : 'Budżet'}</label>
-                    <select name="Budżet" required defaultValue="" className={inputClass}>
-                      <option value="" disabled>{isEn ? 'Choose...' : 'Wybierz...'}</option>
-                      <option value="1500–3000 zł">1500–3000 zł</option>
-                      <option value="3000–5000 zł">3000–5000 zł</option>
-                      <option value="5000+ zł">5000+ zł</option>
-                    </select>
-                  </div>
-                </div>
-
                 <div>
-                  <label className={labelClass}>{isEn ? 'Do you have a logo?' : 'Czy masz logo?'}</label>
-                  <select name="Logo" required defaultValue="" className={inputClass}>
+                  <label className={labelClass}>{isEn ? 'Type of website' : 'Rodzaj strony'}</label>
+                  <select name="Rodzaj strony" required defaultValue="" className={inputClass}>
                     <option value="" disabled>{isEn ? 'Choose...' : 'Wybierz...'}</option>
-                    <option value="Tak">{isEn ? 'Yes' : 'Tak'}</option>
-                    <option value="Nie">{isEn ? 'No' : 'Nie'}</option>
+                    <option value="Landing page">Landing page</option>
+                    <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
+                    <option value="Portfolio">Portfolio</option>
+                    <option value="Redesign">Redesign</option>
+                    <option value="Nie wiem jeszcze">{isEn ? "I'm not sure yet" : 'Nie wiem jeszcze'}</option>
                   </select>
                 </div>
 
@@ -188,7 +167,7 @@ function BriefModal({
                   <label className={labelClass}>{isEn ? 'Project description' : 'Opis projektu'}</label>
                   <textarea
                     name="Opis projektu"
-                    rows={2}
+                    rows={3}
                     required
                     placeholder={
                       isEn
