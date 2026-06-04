@@ -24,29 +24,70 @@ function useInViewNative(ref: React.RefObject<Element | null>, margin = '-60px')
 }
 
 function CountUp({ to, suffix = '', delay = 0 }: { to: number; suffix?: string; delay?: number }) {
-  const ref    = useRef<HTMLSpanElement>(null);
-  const inView = useInViewNative(ref as React.RefObject<Element | null>);
+  const ref = useRef<HTMLSpanElement>(null);
   const [val, setVal] = useState(0);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    if (!inView) return;
+    const el = ref.current;
+    if (!el) return;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          obs.disconnect();
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px',
+      }
+    );
+
+    obs.observe(el);
+
+    // fallback dla mobile/Safari
+    const fallback = setTimeout(() => setStarted(true), 600);
+
+    return () => {
+      obs.disconnect();
+      clearTimeout(fallback);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
+
     const duration = 1400;
-    const delayMs  = delay * 1000;
+    const delayMs = delay * 1000;
     let raf: number;
     const startTime = performance.now();
+
     const tick = (now: number) => {
       const elapsed = now - startTime - delayMs;
-      if (elapsed < 0) { raf = requestAnimationFrame(tick); return; }
+      if (elapsed < 0) {
+        raf = requestAnimationFrame(tick);
+        return;
+      }
+
       const progress = Math.min(elapsed / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3);
+      const eased = 1 - Math.pow(1 - progress, 3);
+
       setVal(Math.round(eased * to));
+
       if (progress < 1) raf = requestAnimationFrame(tick);
     };
+
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, to, delay]);
+  }, [started, to, delay]);
 
-  return <span ref={ref}>{val}{suffix}</span>;
+  return (
+    <span ref={ref} style={{ display: 'inline-block' }}>
+      {val}{suffix}
+    </span>
+  );
 }
 
 const PER_PAGE = 6;
