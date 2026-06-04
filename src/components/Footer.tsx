@@ -1,198 +1,143 @@
 'use client';
 
-import { Libre_Baskerville } from 'next/font/google';
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { motion } from 'framer-motion';
-import { FiMail, FiGlobe, FiFileText } from 'react-icons/fi';
-
-const libre = Libre_Baskerville({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-});
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(6px)' },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    filter: 'blur(0px)',
-    transition: {
-      duration: 0.65,
-      delay,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-};
 
 export default function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
   const isEn = locale === 'en';
 
-  const legalLinks = [
+  const year = new Date().getFullYear();
+  const email = 'kontakt@anastasiiakupriianets.pl';
+  const website = 'anastasiiakupriianets.pl';
+  const nip = '8961662887';
+
+  const schema = {
+    '@context': 'https://schema.org', '@type': 'Organization',
+    name: 'AK Web & Design | Anastasiia Kupriianets',
+    url: 'https://anastasiiakupriianets.pl', email, taxID: nip,
+    contactPoint: [{ '@type': 'ContactPoint', contactType: isEn ? 'customer support' : 'obsługa klienta', email, availableLanguage: ['Polish', 'English'] }],
+  };
+
+  const cols = [
+    {
+      head: isEn ? 'Navigation' : 'Nawigacja',
+      links: [
+        { label: isEn ? 'Home' : 'Start', href: '/' },
+        { label: isEn ? 'Projects' : 'Projekty', href: '/projects' },
+        { label: isEn ? 'Process' : 'Proces', href: '/#process' },
+        { label: isEn ? 'Pricing' : 'Cennik', href: '/#pricing' },
+        { label: 'FAQ', href: '/#faq' },
+      ],
+    },
+    {
+      head: isEn ? 'Contact' : 'Kontakt',
+      links: [
+        { label: email, href: `mailto:${email}` },
+        { label: '+48 576 564 682', href: 'tel:+48576564682' },
+        { label: website, href: `https://${website}`, external: true },
+      ],
+    },
+  ];
+
+  const legal = [
     { href: '/polityka-prywatnosci', label: t('privacy') },
     { href: '/regulamin', label: t('terms') },
     { href: '/cookies', label: t('cookies') },
   ];
 
-  const companyName = 'AK Web & Design | Anastasiia Kupriianets';
-  const email = 'kontakt@anastasiiakupriianets.pl';
-  const website = 'anastasiiakupriianets.pl';
-  const nip = '8961662887';
-  const regon = '543952183';
-
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: companyName,
-    url: 'https://anastasiiakupriianets.pl',
-    email: email,
-    taxID: nip,
-    identifier: regon,
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        contactType: isEn ? 'customer support' : 'obsługa klienta',
-        email: email,
-        availableLanguage: ['Polish', 'English'],
-      },
-    ],
+  const linkStyle = {
+    fontFamily: 'var(--fb)', fontSize: '.9rem',
+    color: 'var(--muted)', textDecoration: 'none', transition: 'color .2s',
   };
 
   return (
-    <footer className="relative overflow-hidden border-t border-blue-100 bg-[#f4faff] text-[#1a2e4f]">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+    <footer style={{ background: 'var(--surface)', borderTop: '1px solid var(--line)' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(0,122,255,0.08),transparent_22%),radial-gradient(circle_at_85%_30%,rgba(0,122,255,0.06),transparent_22%)]" />
-      <div className="absolute -left-10 top-0 h-40 w-40 rounded-full bg-[#007aff]/10 blur-3xl" />
-      <div className="absolute bottom-0 right-0 h-48 w-48 rounded-full bg-[#007aff]/10 blur-3xl" />
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: 'clamp(40px,6vw,64px) clamp(20px,5vw,72px) 0' }}>
 
-      <div className="relative mx-auto max-w-6xl px-6 py-12 sm:py-14 lg:px-8">
-        <div className="grid gap-10 border-b border-blue-100/80 pb-10 md:grid-cols-[1.2fr_0.8fr] lg:grid-cols-[1.1fr_0.9fr]">
-          <motion.div
-            custom={0}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="max-w-xl"
-          >
-            <h2
-              className={`${libre.className} text-xl font-semibold sm:text-2xl`}
-            >
-              Anastasiia Kupriianets
-            </h2>
+        <style>{`
+          .ft-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: clamp(32px,4vw,56px);
+            padding-bottom: clamp(32px,5vw,48px);
+            border-bottom: 1px solid var(--line);
+          }
+          @media (max-width: 680px) {
+            .ft-grid {
+              grid-template-columns: 1fr 1fr;
+            }
+            .ft-brand-col {
+              grid-column: 1 / -1;
+            }
+          }
+          @media (max-width: 400px) {
+            .ft-grid { grid-template-columns: 1fr; }
+            .ft-brand-col { grid-column: 1; }
+          }
+          .ft-link:hover { color: var(--brand) !important; }
+        `}</style>
 
-            <p className="mt-3 max-w-md text-[13px] leading-relaxed text-[#445b77] sm:text-sm">
-              {t('description')}
+        <div className="ft-grid">
+
+          {/* Brand */}
+          <div className="ft-brand-col">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+              <span style={{ width: 34, height: 34, borderRadius: 9, background: 'var(--brand)', display: 'grid', placeItems: 'center', color: '#fff', fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.82rem', flexShrink: 0 }}>AK</span>
+              <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', letterSpacing: '-.02em', color: 'var(--ink)', lineHeight: 1.2 }}>
+                AK Web & Design
+              </span>
+            </div>
+            <p style={{ fontFamily: 'var(--fb)', fontSize: '.9rem', color: 'var(--muted)', lineHeight: 1.65, maxWidth: '34ch' }}>
+              {isEn
+                ? 'Web design studio — fast, modern sites built for real results.'
+                : 'Studio projektowania stron — nowoczesne, szybkie witryny nastawione na efekty.'}
             </p>
+          </div>
 
-            <div className="mt-5 flex flex-wrap gap-2">
-              {[
-                'WordPress',
-                'Next.js',
-                isEn ? 'Remote collaboration' : 'Współpraca zdalna',
-              ].map((item) => (
-                <span
-                  key={item}
-                  className="inline-flex rounded-full border border-[#007aff]/12 bg-white/70 px-3 py-1 text-[11px] text-[#355781] backdrop-blur-sm sm:text-xs"
-                >
-                  {item}
-                </span>
-              ))}
+          {/* Nav cols */}
+          {cols.map(col => (
+            <div key={col.head}>
+              <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase' as const, color: 'var(--muted-2)', marginBottom: 16 }}>
+                {col.head}
+              </p>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
+                {col.links.map(({ label, href, external }) => (
+                  <li key={label}>
+                    {external ? (
+                      <a href={href} target="_blank" rel="noopener noreferrer" className="ft-link" style={linkStyle}>
+                        {label}
+                      </a>
+                    ) : (
+                      <Link href={href as string} className="ft-link" style={linkStyle}>
+                        {label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </motion.div>
-
-          <motion.div
-            custom={0.08}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="grid gap-8 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2"
-          >
-            <div>
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.12em] text-[#2b4d76]">
-                {isEn ? 'Contact' : 'Kontakt'}
-              </h3>
-
-              <div className="space-y-3 text-sm text-[#385a84]">
-                <a
-                  href={`mailto:${email}`}
-                  className="group flex items-center gap-2 transition hover:text-[#007aff]"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#007aff]/10 bg-white/80 text-[#007aff] transition group-hover:scale-105">
-                    <FiMail className="h-4 w-4" />
-                  </span>
-                  {email}
-                </a>
-
-                <a
-                  href={`https://${website}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 transition hover:text-[#007aff]"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-[#007aff]/10 bg-white/80 text-[#007aff] transition group-hover:scale-105">
-                    <FiGlobe className="h-4 w-4" />
-                  </span>
-                  {website}
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="mb-3 text-sm font-semibold uppercase tracking-[0.12em] text-[#2b4d76]">
-                {isEn ? 'Company data' : 'Dane firmy'}
-              </h3>
-
-              <div className="space-y-2 text-sm text-[#385a84]">
-                <p>{companyName}</p>
-                <p>NIP: {nip}</p>
-                <p>REGON: {regon}</p>
-              </div>
-            </div>
-          </motion.div>
+          ))}
         </div>
 
-        <div className="flex flex-col gap-5 pt-6 md:flex-row md:items-center md:justify-between">
-          <motion.nav
-            custom={0.12}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="flex flex-wrap gap-3 sm:gap-4"
-            aria-label={t('legal_aria')}
-          >
-            {legalLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#385a84] transition hover:text-[#007aff]"
-              >
-                <FiFileText className="h-4 w-4 opacity-70" />
+        {/* Bottom bar */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '10px 16px', padding: '18px 0' }}>
+          <p style={{ fontFamily: 'var(--fb)', fontSize: '.82rem', color: 'var(--muted-2)' }}>
+            © {year} AK Web & Design · Anastasiia Kupriianets · NIP {nip}
+          </p>
+          <nav aria-label={t('legal_aria')} style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 20px' }}>
+            {legal.map(({ href, label }) => (
+              <Link key={href} href={href} className="ft-link"
+                style={{ fontFamily: 'var(--fb)', fontSize: '.82rem', color: 'var(--muted-2)', textDecoration: 'none', transition: 'color .2s' }}>
                 {label}
               </Link>
             ))}
-          </motion.nav>
-
-          <motion.p
-            custom={0.16}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={fadeUp}
-            className="text-xs leading-6 text-[#5f7693] sm:text-sm"
-          >
-            © {new Date().getFullYear()} AK Web & Design | Anastasiia Kupriianets
-          </motion.p>
+          </nav>
         </div>
+
       </div>
     </footer>
   );

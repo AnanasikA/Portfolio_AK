@@ -7,18 +7,23 @@
     "blog": "Blog"
   },
 "hero": {
-  "badge": "Websites for businesses • WordPress & Next.js • remote work",
-  "title": "I build websites for businesses that want to look professional",
-  "description": "I help businesses get online — with thoughtful design, clean code, and a calm working process.",
-  "primary_cta": "Request a quote",
-  "secondary_cta": "View projects",
+  "badge": "Business Websites • WordPress & Next.js • Remote Collaboration",
+  "title": "Helping businesses create modern websites that stand out.",
+  "description": "We design modern websites for small businesses, local services, and personal brands. Combining clean design, fast performance, and practical solutions that support business growth.",
+  "primary_cta": "Request a Quote",
+  "secondary_cta": "View Projects",
   "highlights": "from €350 • 7–14 days • custom design",
-  "image_alt": "Modern website design projects for businesses"
+  "image_alt": "Modern website projects for businesses",
+  "meta_days": "days to start",
+  "meta_custom": "custom design",
+  "meta_rating": "client rating",
+  "stat_bookings": "more bookings",
+  "stat_loadtime": "loading time"
 },
 "featuredProjects": {
   "badge": "Selected projects",
-  "title": "Explore websites that reflect my design style and approach to each project",
-  "cta": "View project",
+  "title": "Websites that work as hard as the businesses behind them.",
+  "cta": "View Case Study",
   "ctaText": "Have a similar project in mind? Explore my work or send a quick request.",
   "askQuote": "Request a quote",
   "allProjects": "View all projects",
@@ -27,38 +32,45 @@
     "spiro": {
       "title": "Spiro Pilates & Mobility",
       "category": "Website for a pilates studio",
-      "description": "A modern service website with a clear offer and class schedule."
+      "description": "A modern service website with a clear offer and class schedule.",
+      "stat1": "more bookings",
+      "stat2": "14 days"
     },
 
     "crescent": {
       "title": "Crescent Development",
       "category": "Website for the real estate industry",
-      "description": "An elegant presentation of properties, apartments and client offers."
+      "description": "An elegant presentation of properties, apartments and client offers.",
+      "stat1": "more inquiries",
+      "stat2": "qualified leads"
     },
 
     "luisowka": {
       "title": "Luisówka",
       "category": "Website for a mountain cabin rental",
-      "description": "A cozy website with a gallery, offer section and reservation form."
+      "description": "A cozy website with a gallery, offer section and reservation form.",
+      "stat1": "more direct bookings",
+      "stat2": "better occupancy"
     }
   }
 },
 "pricing": {
   "title": "How much does a website cost for your business?",
+  "badge": "Pricing",
   "subtitle": "Choose a package or send me a message — I’ll help you pick the right solution for your needs and budget.",
 
   "highlights": "✔ from €350 • ✔ delivery in 7–14 days • ✔ tailored quote",
 
-  "cta": "Request a quote",
+  "cta_button": "Request a quote",
   "cta_subtext": "Not sure which option is right for you? Send me a message — I’ll guide you.",
 
   "package_aria": "What’s included in the package",
   "price_aria": "Price",
   "image_alt": "Example website design elements — layout, typography, sections",
 
-  "items": {
+  "packages": {
     "landing": {
-      "title": "Landing Page / Simple Website",
+      "label": "Landing Page / Simple Website",
       "priceLabel": "from €350",
       "badge": "Good for a start",
       "description": "A simple, modern website that clearly presents your offer and makes it easy for clients to contact you.",
@@ -71,7 +83,7 @@
     },
 
     "company": {
-      "title": "Business Website",
+      "label": "Business Website",
       "priceLabel": "from €700",
       "badge": "Most popular",
       "description": "A more advanced website for businesses that want to look professional and attract more clients.",
@@ -84,7 +96,7 @@
     },
 
     "premium": {
-      "title": "Advanced Website / Premium",
+      "label": "Advanced Website / Premium",
       "priceLabel": "from €1200",
       "badge": "For bigger projects",
       "description": "A fully customized website with more sections, refined UX, and room for future growth.",
@@ -120,27 +132,32 @@
   }
 },
 "process": {
-  "badge": "How collaboration works",
-  "title": "From brief to finished website",
-  "description": "A clear process with no chaos — you know what we’re doing, what stage we’re at, and when the website will be ready.",
-  "tags": ["Clear quote", "Design + launch", "Post-launch support"],
-  "primary_cta": "Start a project",
-  "secondary_cta": "View projects",
+  "badge": "How We Work",
+  "title": "A clear path from idea to launch.",
+  "description": "A transparent process with no unnecessary complexity. At every stage, you know what we're working on and what comes next.",
+  "tags": ["Transparent Process", "Clear Communication", "Post-Launch Support"],
+  "primary_cta": "Start Your Project",
+  "secondary_cta": "View Projects",
   "steps": [
     {
       "step": "01",
-      "title": "Brief & direction",
-      "text": "We define the goal, scope, and key information about your business."
+      "title": "Discovery",
+      "text": "We learn about your business, goals, and audience to define the right direction for your project."
     },
     {
       "step": "02",
-      "title": "Design & build",
-      "text": "I prepare the layout, content flow, and build the website in WordPress or Next.js."
+      "title": "Design",
+      "text": "We create a custom design tailored to your brand and the needs of your customers."
     },
     {
       "step": "03",
-      "title": "Launch & support",
-      "text": "I publish the website, test everything, and show you how to use it."
+      "title": "Development",
+      "text": "We build a fast, responsive website that works seamlessly across all devices."
+    },
+    {
+      "step": "04",
+      "title": "Launch",
+      "text": "We publish your website, perform final testing, and provide support after launch."
     }
   ]
 },
@@ -152,6 +169,8 @@
   "write_email": "Write an email",
   "error": "The form could not be sent. Please try again or write to",
   "sending": "Sending…",
+  "primary_cta": "Start a project →",
+  "response_time": "I usually reply within 24 hours",
   "form": {
     "name": "Full name",
     "email": "Email",
@@ -186,7 +205,8 @@
     "contactBottom": "Contact",
     "contactAria": "Go to the contact section",
     "projectButton": "View project",
-    "projectDetailsAria": "View details: {title}"
+    "projectDetailsAria": "View details: {title}",
+    "backToProjects": "← Back to projects"
   },
   "dropdownMenu": {
     "home": "Home",
@@ -200,9 +220,10 @@
     "closeAria": "Close menu",
     "smallText": "Modern websites for businesses across Poland."
   },
-  "cookieConsent": {
+  "cookieContent": {
     "text": "We use cookies for analytics and to improve the website.",
-    "accept": "Accept"
+    "accept": "Accept",
+  "decline": "Odrzuć"
   },
 
   "projectDetail": {
@@ -221,21 +242,6 @@
   "imagePreviewAria": "Full preview of the {title} project — scroll inside the frame to see the full page",
   "imageAlt": "{title} — long website preview"
 },
-
-"projectsPage": {
-  "title": "Selected Projects",
-  "subtitle": "Websites designed to look polished, feel clear, and support business goals.",
-  "home": "Home",
-  "homeAria": "Go back to the homepage",
-  "contactTop": "Let's talk about your project",
-  "contactBottom": "Get in touch",
-  "contactAria": "Go to contact section",
-  "projectButton": "View project",
-  "projectDetailsAria": "View details for {title}",
-  "backToProjects": "Projects",
-  "backToProjectsAria": "Go back to the projects list"
-},
-
 "thankYou": {
   "badge": "Message sent",
   "title": "Thank you for getting in touch!",

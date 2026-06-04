@@ -1,243 +1,150 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiSend, FiMail, FiCheckCircle, FiPhone } from 'react-icons/fi';
+import { motion } from 'framer-motion';
+import { FiMail, FiPhone, FiGlobe } from 'react-icons/fi';
 import { useTranslations, useLocale } from 'next-intl';
-import { sendEmail } from '@/lib/sendEmail';
+import { useRef } from 'react';
+import { usePaperPlane } from '@/components/PaperPlane';
 
-type Status = 'idle' | 'sending' | 'success' | 'error';
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+const fade = {
+  hidden:  { opacity: 0, y: 24 },
+  visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: .6, delay: d, ease: [.22,1,.36,1] as const } }),
 };
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28, filter: 'blur(8px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const } },
-};
-
-const panelVariant = {
-  hidden: { opacity: 0, y: 34, scale: 0.985, filter: 'blur(10px)' },
-  visible: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const } },
-};
-
-const successVariant = {
-  hidden: { opacity: 0, scale: 0.98, y: 12 },
-  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const } },
-};
-
-const inputClass = 'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15';
-const selectClass = 'w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 appearance-none cursor-pointer focus:-translate-y-[1px] focus:border-[#007aff] focus:ring-4 focus:ring-[#007aff]/15';
-const labelClass = 'mb-1.5 block text-sm font-medium text-slate-700';
-
-function SelectWrapper({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="relative">
-      {children}
-      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-        <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
-    </div>
-  );
-}
 
 export default function Contact() {
-  const t = useTranslations('contact');
+  const t      = useTranslations('contact');
   const locale = useLocale();
-  const isEn = locale === 'en';
-  const formRef = useRef<HTMLFormElement>(null);
-  const [status, setStatus] = useState<Status>('idle');
-
-  const sendForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!formRef.current || status === 'sending') return;
-    setStatus('sending');
-
-    const fd = new FormData(formRef.current);
-    if ((fd.get('_honey') as string)?.trim()) { setStatus('success'); formRef.current.reset(); return; }
-
-    const result = await sendEmail({
-      name: fd.get('name') as string,
-      email: fd.get('email') as string,
-      phone: fd.get('phone') as string,
-      site_type: fd.get('site_type') as string,
-      budget: fd.get('budget') as string,
-      has_logo: fd.get('has_logo') as string,
-      message: fd.get('message') as string,
-      locale,
-    });
-
-    if (result.ok) {
-      if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
-        window.gtag('event', 'conversion', { send_to: 'AW-XXXXXXX/YYYYYYYYYYYY' });
-      }
-      setStatus('success');
-      formRef.current.reset();
-    } else {
-      setStatus('error');
-    }
-  };
+  const isEn   = locale === 'en';
+  const btnRef = useRef<HTMLButtonElement>(null);
+  usePaperPlane(btnRef as React.RefObject<HTMLElement | null>);
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" itemScope itemType="https://schema.org/ContactPage" className="relative w-full overflow-hidden bg-[#f4f8ff] text-[#0f172a]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(0,122,255,0.10),transparent_24%),radial-gradient(circle_at_85%_30%,rgba(0,122,255,0.08),transparent_24%),radial-gradient(circle_at_50%_80%,rgba(0,122,255,0.06),transparent_28%)]" />
-      <div className="absolute -left-16 top-10 h-48 w-48 rounded-full bg-[#007aff]/10 blur-3xl sm:h-64 sm:w-64" />
-      <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-[#007aff]/10 blur-3xl sm:h-80 sm:w-80" />
-      <div className="absolute left-1/2 top-1/2 h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#007aff]/[0.06] blur-3xl sm:h-[460px] sm:w-[460px]" />
+    <section id="contact" style={{ background: 'var(--bg)', padding: 'clamp(28px,4vw,48px) 0' }}>
+      <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
-      <div className="relative mx-auto max-w-[1360px] px-5 py-16 sm:px-8 sm:py-20 md:px-10 lg:px-12 lg:py-24 xl:px-16 xl:py-28 2xl:px-20">
-        <div className="grid items-start gap-8 lg:grid-cols-[0.9fr_1.05fr] lg:gap-10 xl:grid-cols-[0.88fr_1.12fr] xl:gap-14">
+        <motion.div
+          variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }}
+          style={{
+            background: 'linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)',
+            borderRadius: 'clamp(16px,3vw,28px)',
+            padding: 'clamp(40px,7vw,80px) clamp(20px,6vw,72px)',
+            textAlign: 'center',
+            color: '#fff',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          {/* grid texture */}
+          <div aria-hidden style={{
+            position: 'absolute', inset: 0, zIndex: 0,
+            backgroundImage: 'linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }} />
 
-          <motion.div variants={container} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="max-w-xl">
-            <motion.span variants={fadeUp} className="mb-4 inline-flex rounded-full border border-[#007aff]/15 bg-white/75 px-4 py-2 text-xs text-[#007aff] backdrop-blur-md sm:text-sm">
-              {isEn ? `Let's talk` : 'Porozmawiajmy o projekcie'}
+          {/* vignette */}
+          <div aria-hidden style={{
+            position: 'absolute', inset: 0, zIndex: 1,
+            background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 40%, rgba(30,64,175,.6) 100%)',
+          }} />
+
+          {/* blobs */}
+          <motion.div
+            aria-hidden
+            animate={{ scale: [1, 1.08, 1], opacity: [.05, .09, .05] }}
+            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+            style={{ position:'absolute', top:-120, right:-100, width:400, height:400, borderRadius:'50%', background:'rgba(255,255,255,.05)', pointerEvents:'none', zIndex:1 }}
+          />
+          <motion.div
+            aria-hidden
+            animate={{ scale: [1, 1.1, 1], opacity: [.04, .08, .04] }}
+            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+            style={{ position:'absolute', bottom:-100, left:-80, width:320, height:320, borderRadius:'50%', background:'rgba(255,255,255,.04)', pointerEvents:'none', zIndex:1 }}
+          />
+
+          <div style={{ position:'relative', zIndex:2, maxWidth:860, margin:'0 auto' }}>
+
+            {/* eyebrow */}
+            <motion.span
+              variants={fade} custom={.04} initial="hidden" whileInView="visible" viewport={{ once:true }}
+              style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'.76rem', letterSpacing:'.22em', textTransform:'uppercase', color:'rgba(255,255,255,.6)', display:'block', marginBottom:'clamp(16px,3vw,28px)' }}>
+              — {isEn ? "Let's build something" : 'Zbudujmy coś razem'} —
             </motion.span>
 
-            <motion.h2 id="contact-heading" itemProp="name" variants={fadeUp} className="text-[2rem] font-serif leading-[1.04] tracking-[-0.04em] sm:text-[2.5rem] md:text-[2.9rem] lg:text-[3.15rem] xl:text-[3.45rem]">
-              {t('title')}
+            {/* big title */}
+            <motion.h2
+              variants={fade} custom={.08} initial="hidden" whileInView="visible" viewport={{ once:true }}
+              style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(1.8rem,5vw,4.2rem)', letterSpacing:'-.035em', lineHeight:1, marginBottom:'clamp(16px,3vw,26px)' }}>
+              {isEn
+                ? "Let's build a site that helps your business grow."
+                : 'Zbudujmy stronę, która pomoże rozwinąć Twój biznes.'}
             </motion.h2>
 
-            <motion.div variants={fadeUp} className="mt-6 space-y-4 text-sm text-slate-700 sm:mt-7 sm:text-[15px]">
+            {/* subtitle */}
+            <motion.p
+              variants={fade} custom={.12} initial="hidden" whileInView="visible" viewport={{ once:true }}
+              style={{ fontFamily:'var(--fb)', fontSize:'clamp(.9rem,1.3vw,1.1rem)', color:'rgba(255,255,255,.75)', lineHeight:1.65, maxWidth:'52ch', margin:'0 auto clamp(28px,5vw,44px)' }}>
+              {isEn
+                ? "Write briefly about your business and needs. You'll get a friendly reply with direction and a quote — usually within 1–2 business days."
+                : 'Napisz krótko o swojej firmie i potrzebach. Otrzymasz przyjazną odpowiedź z kierunkiem i wyceną — zwykle w 1–2 dni robocze.'}
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              variants={fade} custom={.16} initial="hidden" whileInView="visible" viewport={{ once:true }}
+              style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:'10px 12px', marginBottom:'clamp(28px,5vw,44px)' }}>
+
+              <motion.button
+                ref={btnRef}
+                onClick={() => window.dispatchEvent(new Event('open-brief'))}
+                whileHover={{ y: -2, boxShadow: '0 12px 32px rgba(0,0,0,.28)' }}
+                whileTap={{ scale: .97 }}
+                transition={{ duration: .2 }}
+                style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(.9rem,1.2vw,1rem)', background:'#fff', color:'#1d4ed8', borderRadius:99, padding:'.88em 2em', border:'none', cursor:'pointer' }}>
+                {isEn ? 'Start a project →' : 'Rozpocznij projekt →'}
+              </motion.button>
+
+              <motion.a
+                href="mailto:kontakt@anastasiiakupriianets.pl"
+                whileHover={{ background: 'rgba(255,255,255,.12)', borderColor: 'rgba(255,255,255,.7)' }}
+                whileTap={{ scale: .97 }}
+                transition={{ duration: .2 }}
+                style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(.9rem,1.2vw,1rem)', color:'#fff', borderRadius:99, padding:'.88em 2em', border:'1.5px solid rgba(255,255,255,.35)', textDecoration:'none', display:'inline-flex', alignItems:'center' }}>
+                {isEn ? 'Write an email' : 'Napisz e-mail'}
+              </motion.a>
+            </motion.div>
+
+            {/* divider */}
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: .7, delay: .2, ease: [.22,1,.36,1] }}
+              style={{ width:40, height:1, background:'rgba(255,255,255,.2)', margin:'0 auto clamp(20px,3vw,32px)', transformOrigin:'center' }}
+            />
+
+            {/* contact links */}
+            <motion.div
+              variants={fade} custom={.2} initial="hidden" whileInView="visible" viewport={{ once:true }}
+              style={{ display:'flex', justifyContent:'center', flexWrap:'wrap', gap:'8px clamp(16px,3vw,32px)' }}>
               {[
-                isEn ? 'A short message is enough to get an initial direction and quote.' : 'Wystarczy krótka wiadomość, żeby otrzymać wstępny kierunek i wycenę.',
-                isEn ? 'I create websites for businesses in WordPress and Next.js, with a strong focus on clarity, responsiveness and modern design.' : 'Tworzę strony internetowe dla firm w WordPressie i Next.js, z naciskiem na czytelność, responsywność i nowoczesny design.',
-                isEn ? 'Remote collaboration is simple and efficient, no matter where your business is based.' : 'Współpraca zdalna jest prosta i wygodna, niezależnie od tego, gdzie działa Twoja firma.',
-              ].map((text, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-[#007aff]/10 text-[#007aff]">
-                    <FiCheckCircle className="h-3.5 w-3.5" />
-                  </span>
-                  <p className="leading-6 sm:leading-7">{text}</p>
-                </div>
+                { icon: <FiMail size={13} />, label: 'kontakt@anastasiiakupriianets.pl', href: 'mailto:kontakt@anastasiiakupriianets.pl' },
+                { icon: <FiPhone size={13} />, label: '+48 576 564 682', href: 'tel:+48576564682' },
+                { icon: <FiGlobe size={13} />, label: 'anastasiiakuprianets.pl', href: 'https://anastasiiakuprianets.pl' },
+              ].map(({ icon, label, href }) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  whileHover={{ color: 'rgba(255,255,255,.95)' }}
+                  transition={{ duration: .15 }}
+                  style={{ display:'inline-flex', alignItems:'center', gap:7, fontFamily:'var(--fd)', fontSize:'clamp(.78rem,.9vw,.83rem)', color:'rgba(255,255,255,.6)', textDecoration:'none' }}>
+                  {icon} {label}
+                </motion.a>
               ))}
             </motion.div>
 
-            <motion.div variants={fadeUp} className="mt-7 sm:mt-8">
-              <a href="mailto:kontakt@anastasiiakupriianets.pl" className="group inline-flex items-center gap-2 text-sm text-slate-700 transition duration-300 hover:text-[#007aff] sm:text-[15px]">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#007aff]/10 bg-white/80 text-[#007aff] transition duration-300 group-hover:scale-105 group-hover:bg-white">
-                  <FiMail className="h-4 w-4" />
-                </span>
-                kontakt@anastasiiakupriianets.pl
-              </a>
-            </motion.div>
-          </motion.div>
+          </div>
+        </motion.div>
 
-          <motion.div variants={panelVariant} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.15 }} className="relative overflow-hidden rounded-[26px] border border-white/70 bg-white/80 p-5 shadow-[0_20px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:rounded-[30px] sm:p-7 lg:p-8">
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(0,122,255,0.07),transparent)]" />
-            <div className="pointer-events-none absolute -right-10 top-0 h-28 w-28 rounded-full bg-[#007aff]/10 blur-2xl" />
-
-            <AnimatePresence mode="wait">
-              {status === 'success' ? (
-                <motion.div key="success" variants={successVariant} initial="hidden" animate="visible" exit={{ opacity: 0, y: 10 }} role="status" aria-live="polite" className="flex min-h-[360px] flex-col items-center justify-center px-2 py-6 text-center sm:min-h-[420px]">
-                  <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#007aff]/10 text-[#007aff]">
-                    <FiCheckCircle className="h-8 w-8" />
-                  </motion.div>
-                  <h3 className="text-2xl font-semibold tracking-[-0.02em]">{t('success_title')}</h3>
-                  <p className="mx-auto mt-3 max-w-md leading-7 text-slate-600">{t('success_text')}</p>
-                  <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-                    <button type="button" onClick={() => setStatus('idle')} className="rounded-full border border-slate-300 px-5 py-3 text-sm text-slate-800 transition hover:bg-slate-50">
-                      {t('send_another')}
-                    </button>
-                    <a href="mailto:kontakt@anastasiiakupriianets.pl" className="rounded-full bg-[#007aff] px-5 py-3 text-sm text-white transition hover:bg-[#0062cc]">
-                      {t('write_email')}
-                    </a>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.form key="form" ref={formRef} onSubmit={sendForm} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }} className="relative space-y-4" itemProp="mainEntity" itemScope itemType="https://schema.org/ContactPoint">
-                  <meta itemProp="contactType" content={isEn ? 'customer inquiries' : 'zapytania ofertowe'} />
-                  <input type="text" name="_honey" className="hidden" tabIndex={-1} autoComplete="off" />
-
-                  {status === 'error' && (
-                    <div role="alert" className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                      {t('error')}{' '}
-                      <a className="underline" href="mailto:kontakt@anastasiiakupriianets.pl">kontakt@anastasiiakupriianets.pl</a>.
-                    </div>
-                  )}
-
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="name" className={labelClass}>{t('form.name')}</label>
-                      <input type="text" id="name" name="name" required autoComplete="name" placeholder={isEn ? 'Your name' : 'Twoje imię i nazwisko'} className={inputClass} />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className={labelClass}>{t('form.email')}</label>
-                      <input type="email" id="email" name="email" required autoComplete="email" placeholder={isEn ? 'your@email.com' : 'twoj@email.pl'} className={inputClass} />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className={labelClass}>{isEn ? 'Phone (optional)' : 'Telefon (opcjonalnie)'}</label>
-                    <div className="relative">
-                      <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400"><FiPhone className="h-4 w-4" /></span>
-                      <input type="tel" id="phone" name="phone" autoComplete="tel" placeholder="+48 000 000 000" className={`${inputClass} pl-10`} />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="site_type" className={labelClass}>{isEn ? 'Type of website' : 'Rodzaj strony'}</label>
-                      <SelectWrapper>
-                        <select id="site_type" name="site_type" className={selectClass}>
-                          <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
-                          <option value="Landing page">{isEn ? 'Landing page / Business card' : 'Landing page / Wizytówka'}</option>
-                          <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
-                          <option value="Portfolio">Portfolio</option>
-                          <option value="Sklep internetowy">{isEn ? 'Online store' : 'Sklep internetowy'}</option>
-                          <option value="Blog">Blog</option>
-                          <option value="Inne">{isEn ? 'Other / Not sure' : 'Inne / Nie wiem jeszcze'}</option>
-                        </select>
-                      </SelectWrapper>
-                    </div>
-                    <div>
-                      <label htmlFor="budget" className={labelClass}>{isEn ? 'Budget' : 'Budżet'}</label>
-                      <SelectWrapper>
-                        <select id="budget" name="budget" className={selectClass}>
-                          <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
-                          <option value="1500-3000 zł">{isEn ? '€350–700 (Basic)' : '1 500–3 000 zł'}</option>
-                          <option value="3000-5000 zł">{isEn ? '€700–1 200 (Standard)' : '3 000–5 000 zł'}</option>
-                          <option value="5000+ zł">{isEn ? '€1 200+ (Premium)' : '5 000+ zł'}</option>
-                          <option value="Nie wiem">{isEn ? 'Not sure yet' : 'Nie wiem jeszcze'}</option>
-                        </select>
-                      </SelectWrapper>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="has_logo" className={labelClass}>{isEn ? 'Do you have a logo?' : 'Czy masz logo?'}</label>
-                    <SelectWrapper>
-                      <select id="has_logo" name="has_logo" className={selectClass}>
-                        <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
-                        <option value="Tak">{isEn ? 'Yes, I have a logo' : 'Tak, mam logo'}</option>
-                        <option value="Nie">{isEn ? 'No, I need one' : 'Nie, potrzebuję logo'}</option>
-                        <option value="W trakcie">{isEn ? 'In progress' : 'W trakcie tworzenia'}</option>
-                      </select>
-                    </SelectWrapper>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className={labelClass}>{t('form.message')}</label>
-                    <textarea id="message" name="message" rows={4} required placeholder={isEn ? 'Briefly describe your project...' : 'Napisz krótko, jakiej strony potrzebujesz...'} className={`${inputClass} min-h-[120px] sm:min-h-[140px]`} />
-                  </div>
-
-                  <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap sm:items-center">
-                    <button type="submit" disabled={status === 'sending'} className={`group inline-flex min-h-[50px] items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white transition duration-300 ${status === 'sending' ? 'cursor-not-allowed bg-[#7fb6ff]' : 'bg-[#007aff] hover:-translate-y-0.5 hover:bg-[#0062cc]'}`}>
-                      <FiSend className="text-base transition-transform duration-300 group-hover:translate-x-[1px]" />
-                      {status === 'sending' ? t('sending') : t('form.submit')}
-                    </button>
-                    <p className="text-xs leading-5 text-slate-500 sm:text-sm">
-                      {isEn ? 'Usually I reply within 1–2 business days.' : 'Zwykle odpowiadam w ciągu 1–2 dni roboczych.'}
-                    </p>
-                  </div>
-                </motion.form>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        </div>
       </div>
     </section>
   );

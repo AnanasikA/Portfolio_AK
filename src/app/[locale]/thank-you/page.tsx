@@ -9,80 +9,164 @@ export default function ThankYouPage() {
   const t = useTranslations('thankYou');
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f7f9fc] px-6 py-24 text-slate-950">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#007aff26,transparent_34%),linear-gradient(135deg,#ffffff_0%,#f3f8ff_45%,#eef5ff_100%)]" />
-      <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#007aff]/15 blur-[90px]" />
-      <div className="absolute -right-24 bottom-20 h-80 w-80 rounded-full bg-sky-300/20 blur-[100px]" />
+    <main style={{
+      position: 'relative', minHeight: '100svh',
+      overflow: 'hidden', background: 'var(--surface)',
+      padding: 'clamp(48px,8vw,96px) clamp(20px,5vw,48px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+    }}>
+      {/* bg blobs */}
+      <div aria-hidden style={{ position:'absolute', inset:0, zIndex:0, background:'radial-gradient(circle at 60% 10%, var(--brand-tint-2), transparent 40%)' }} />
+      <div aria-hidden style={{ position:'absolute', top:60, left:-80, width:340, height:340, borderRadius:'50%', background:'var(--brand-tint)', filter:'blur(80px)', opacity:.7, zIndex:0 }} />
+      <div aria-hidden style={{ position:'absolute', bottom:40, right:-80, width:380, height:380, borderRadius:'50%', background:'var(--brand-tint-2)', filter:'blur(90px)', opacity:.6, zIndex:0 }} />
 
-      <section className="mx-auto flex min-h-[calc(100vh-12rem)] max-w-5xl items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 28, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-full overflow-hidden rounded-[36px] border border-white/70 bg-white/75 p-6 shadow-[0_30px_90px_rgba(15,23,42,0.12)] backdrop-blur-2xl sm:p-10 md:p-12"
-        >
-          <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#007aff]/45 to-transparent" />
-          <div className="absolute right-8 top-8 hidden rounded-full border border-[#007aff]/15 bg-[#007aff]/5 px-4 py-2 text-xs font-medium text-[#007aff] sm:block">
-  {t('label')}
-</div>
+      <motion.div
+        initial={{ opacity: 0, y: 28, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          position: 'relative', zIndex: 1,
+          width: '100%', maxWidth: 720,
+          background: 'rgba(255,255,255,0.82)',
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          borderRadius: 'var(--r-xl)',
+          border: '1px solid rgba(255,255,255,.75)',
+          boxShadow: 'var(--sh-l)',
+          padding: 'clamp(32px,6vw,64px) clamp(24px,5vw,56px)',
+          overflow: 'hidden',
+        }}
+      >
+        {/* top shimmer line */}
+        <div aria-hidden style={{
+          position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
+          background: `linear-gradient(90deg, transparent, rgba(29,78,216,.35), transparent)`,
+        }} />
 
-          <div className="mx-auto max-w-2xl text-center">
-            <motion.div
-              initial={{ scale: 0.7, opacity: 0, rotate: -8 }}
-              animate={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#007aff] shadow-[0_18px_40px_rgba(0,122,255,0.28)]"
+        {/* badge top-right */}
+        <div style={{
+          position: 'absolute', top: 24, right: 24,
+          display: 'inline-flex', alignItems: 'center',
+          fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.72rem',
+          letterSpacing: '.14em', textTransform: 'uppercase',
+          color: 'var(--brand)', background: 'var(--brand-tint)',
+          border: '1px solid var(--brand-tint-2)',
+          borderRadius: 99, padding: '.4em 1em',
+        }}>
+          {t('label')}
+        </div>
+
+        <div style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
+
+          {/* check icon */}
+          <motion.div
+            initial={{ scale: 0.7, opacity: 0, rotate: -8 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              width: 80, height: 80, borderRadius: '50%',
+              background: 'var(--brand)',
+              boxShadow: '0 18px 40px rgba(29,78,216,.32)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              margin: '0 auto 24px',
+            }}
+          >
+            <FiCheck size={36} color="#fff" />
+          </motion.div>
+
+          {/* eyebrow badge */}
+          <span style={{
+            display: 'inline-flex', alignItems: 'center',
+            fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.72rem',
+            letterSpacing: '.18em', textTransform: 'uppercase',
+            color: 'var(--brand)', background: 'var(--brand-tint)',
+            border: '1px solid var(--brand-tint-2)',
+            borderRadius: 99, padding: '.4em 1.1em', marginBottom: 20,
+          }}>
+            {t('badge')}
+          </span>
+
+          {/* title */}
+          <h1 style={{
+            fontFamily: 'var(--fd)', fontWeight: 700,
+            fontSize: 'clamp(2rem,5vw,3.4rem)',
+            letterSpacing: '-.04em', lineHeight: 1.02,
+            color: 'var(--ink)', marginBottom: 20,
+          }}>
+            {t('title')}
+          </h1>
+
+          {/* desc */}
+          <p style={{
+            fontFamily: 'var(--fb)', fontSize: 'clamp(.95rem,1.4vw,1.1rem)',
+            color: 'var(--muted)', lineHeight: 1.65,
+            maxWidth: '48ch', margin: '0 auto 32px',
+          }}>
+            {t('desc')}
+          </p>
+
+          {/* CTAs */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, marginBottom: 36 }}>
+            <Link href="/" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.95rem',
+              background: 'var(--brand)', color: '#fff',
+              borderRadius: 99, padding: '.9em 1.8em',
+              textDecoration: 'none', transition: 'transform .25s, box-shadow .25s',
+            }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 14px 30px rgba(29,78,216,.38)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}
             >
-              <FiCheck className="text-4xl text-white" />
-            </motion.div>
+              <FiHome size={16} /> {t('home')}
+            </Link>
 
-            <p className="mb-4 inline-flex rounded-full border border-[#007aff]/15 bg-[#eef5ff] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-[#007aff]">
-              {t('badge')}
-            </p>
-
-            <h1 className="mx-auto max-w-[12ch] text-4xl font-semibold tracking-[-0.04em] text-slate-950 sm:text-5xl md:text-6xl">
-              {t('title')}
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-[48ch] text-base leading-7 text-slate-600 sm:text-lg">
-              {t('desc')}
-            </p>
-
-            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link
-                href="/"
-                className="group inline-flex min-h-[54px] w-full items-center justify-center gap-2 rounded-full bg-[#007aff] px-7 py-3.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(0,122,255,0.25)] transition hover:-translate-y-0.5 hover:bg-[#006ae0] sm:w-auto"
-              >
-                <FiHome />
-                {t('home')}
-              </Link>
-
-              <Link
-                href="/projects"
-                className="group inline-flex min-h-[54px] w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white/70 px-7 py-3.5 text-sm font-semibold text-slate-800 transition hover:-translate-y-0.5 hover:border-[#007aff]/30 hover:bg-white sm:w-auto"
-              >
-                {t('projects')}
-                <FiArrowRight className="transition group-hover:translate-x-1" />
-              </Link>
-            </div>
-
-            <div className="mx-auto mt-10 grid max-w-xl gap-3 text-left sm:grid-cols-3">
-              <div className="rounded-2xl border border-slate-200/70 bg-white/55 p-4">
-                <p className="text-xs font-semibold text-slate-950">01</p>
-                <p className="mt-1 text-xs leading-5 text-slate-500">{t('step1')}</p>
-              </div>
-              <div className="rounded-2xl border border-slate-200/70 bg-white/55 p-4">
-                <p className="text-xs font-semibold text-slate-950">02</p>
-                <p className="mt-1 text-xs leading-5 text-slate-500">{t('step2')}</p>
-              </div>
-              <div className="rounded-2xl border border-slate-200/70 bg-white/55 p-4">
-                <p className="text-xs font-semibold text-slate-950">03</p>
-                <p className="mt-1 text-xs leading-5 text-slate-500">{t('step3')}</p>
-              </div>
-            </div>
+            <Link href="/projects" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.95rem',
+              color: 'var(--ink)', background: 'rgba(255,255,255,.7)',
+              border: '1.5px solid var(--line)',
+              borderRadius: 99, padding: '.9em 1.8em',
+              textDecoration: 'none', transition: 'border-color .2s, transform .25s',
+            }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--brand)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--line)'; (e.currentTarget as HTMLElement).style.transform = ''; }}
+            >
+              {t('projects')} <FiArrowRight size={15} />
+            </Link>
           </div>
-        </motion.div>
-      </section>
+
+          {/* steps */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+            gap: 12,
+          }}>
+            {(['step1', 'step2', 'step3'] as const).map((key, i) => (
+              <div key={key} style={{
+                background: 'rgba(255,255,255,.6)',
+                border: '1px solid var(--line)',
+                borderRadius: 'var(--r)',
+                padding: '16px 14px',
+                textAlign: 'left',
+              }}>
+                <p style={{
+                  fontFamily: 'var(--fd)', fontWeight: 700,
+                  fontSize: '.75rem', color: 'var(--brand)', marginBottom: 6,
+                }}>
+                  0{i + 1}
+                </p>
+                <p style={{
+                  fontFamily: 'var(--fb)', fontSize: '.82rem',
+                  color: 'var(--muted)', lineHeight: 1.55, margin: 0,
+                }}>
+                  {t(key)}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </motion.div>
     </main>
   );
 }

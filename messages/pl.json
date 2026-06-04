@@ -8,17 +8,22 @@
   },
 "hero": {
   "badge": "Strony dla firm • WordPress i Next.js • współpraca zdalna",
-  "title": "Tworzę strony dla firm, które chcą wyglądać profesjonalnie",
-  "description": "Pomagam firmom zaistnieć w internecie — z dobrym projektem, czystym kodem i spokojną współpracą.",
+  "title": "Pomagamy firmom tworzyć nowoczesne strony, które się wyróżniają.",
+ "description": "Projektujemy nowoczesne strony dla małych firm, usług lokalnych i marek osobistych. Łączymy estetyczny design, szybkość działania i rozwiązania, które wspierają rozwój biznesu.",
   "primary_cta": "Zapytaj o wycenę",
   "secondary_cta": "Zobacz realizacje",
   "highlights": "od 1500 zł • 7–14 dni • indywidualny projekt",
-  "image_alt": "Nowoczesne projekty stron internetowych dla firm"
+  "image_alt": "Nowoczesne projekty stron internetowych dla firm",
+  "meta_days": "dni do startu",
+    "meta_custom": "indywidualny design",
+    "meta_rating": "ocena klientów",
+    "stat_bookings": "więcej rezerwacji",
+    "stat_loadtime": "czas ładowania"
 },
 "featuredProjects": {
   "badge": "Wybrane projekty",
-  "title": "Zobacz przykłady stron, które pokazują styl i podejście do projektu",
-  "cta": "Zobacz projekt",
+  "title": "Strony, które pracują tak ciężko jak firmy, które za nimi stoją.",
+  "cta": "Zobacz case study",
   "ctaText": "Masz podobny projekt? Zobacz realizacje albo wyślij krótkie zapytanie.",
   "allProjects": "Zobacz wszystkie projekty",
   "askQuote": "Zapytaj o wycenę",
@@ -27,52 +32,59 @@
     "spiro": {
       "title": "Spiro Pilates & Mobility",
       "category": "Strona dla studia pilates",
-      "description": "Nowoczesna strona usługowa z przejrzystą ofertą i harmonogramem zajęć."
+      "description": "Nowoczesna strona usługowa z przejrzystą ofertą i harmonogramem zajęć.",
+       "stat1": "więcej zapisów",
+        "stat2": "14 dni"
     },
 
     "crescent": {
       "title": "Crescent Development",
       "category": "Strona dla branży nieruchomości",
-      "description": "Elegancka prezentacja inwestycji, lokali i oferty dla klientów."
+      "description": "Elegancka prezentacja inwestycji, lokali i oferty dla klientów.",
+      "stat1": "więcej zapytań",
+      "stat2": "leadów"
     },
 
-    "luisowka": {
-      "title": "Luisówka",
-      "category": "Strona dla obiektu noclegowego",
-      "description": "Klimatyczna strona z galerią, ofertą i formularzem rezerwacji."
-    }
+    "accounting": {
+  "title": "Biuro Rachunkowe",
+  "category": "Strona dla biura rachunkowego",
+  "description": "Profesjonalna strona z ofertą usług księgowych, informacjami dla klientów i formularzem kontaktowym.",
+  "stat1": "więcej zapytań",
+  "stat2": "prostszy kontakt"
+}
   }
 },
 
 "pricing": {
   "title": "Ile kosztuje strona internetowa dla Twojej firmy?",
+  "badge": "Cennik",
   "subtitle": "Wybierz pakiet lub napisz do mnie — pomogę dobrać rozwiązanie dopasowane do Twojej branży i budżetu.",
 
   "highlights": "✔ od 1500 zł • ✔ realizacja 7–14 dni • ✔ indywidualna wycena",
 
-  "cta": "Zapytaj o wycenę",
+  "cta_button": "Zapytaj o wycenę",
   "cta_subtext": "Nie wiesz, który pakiet wybrać? Napisz — doradzę najlepsze rozwiązanie.",
 
   "package_aria": "Co zawiera pakiet",
   "price_aria": "Cena",
   "image_alt": "Przykładowe elementy projektu strony — layout, typografia, sekcje",
 
-  "items": {
+  "packages": {
     "landing": {
-      "title": "Strona wizytówka / Landing Page",
+      "label": "Strona wizytówka / Landing Page",
       "priceLabel": "od 1 500 zł",
       "badge": "Dobry na start",
       "description": "Prosta, nowoczesna strona, która jasno pokazuje ofertę i ułatwia kontakt z klientem.",
       "features": [
-        "Układ one-page lub krótka strona główna",
-        "Formularz kontaktowy i przyciski CTA",
-        "Responsywny design (mobile + desktop)",
-        "Podstawowa optymalizacja SEO"
+        "Projekt dopasowany do marki",
+        "Responsywny widok mobile",
+        "Sekcja kontaktowa",
+        "Podstawowe SEO"
       ]
     },
 
     "company": {
-      "title": "Strona firmowa",
+      "label": "Strona firmowa",
       "priceLabel": "od 3 000 zł",
       "badge": "Najczęściej wybierana",
       "description": "Rozbudowana strona dla firm, które chcą wyglądać profesjonalnie i zdobywać więcej klientów.",
@@ -85,7 +97,7 @@
     },
 
     "premium": {
-      "title": "Rozbudowana strona / Premium",
+      "label": "Rozbudowana strona / Premium",
       "priceLabel": "od 5 000 zł",
       "badge": "Dla większych projektów",
       "description": "Zaawansowana strona z większą liczbą sekcji, dopracowanym UX i większym potencjałem rozwoju.",
@@ -121,27 +133,32 @@
   }
 },
 "process": {
-  "badge": "Jak wygląda współpraca",
-  "title": "Od briefu do gotowej strony",
-  "description": "Prosty proces bez chaosu — wiesz, co robimy, na jakim etapie jesteśmy i kiedy strona będzie gotowa.",
-  "tags": ["Jasna wycena", "Projekt + wdrożenie", "Wsparcie po starcie"],
-  "primary_cta": "Zacznij projekt",
+  "badge": "Jak pracujemy",
+  "title": "Jasna droga od pomysłu do startu.",
+  "description": "Przejrzysty proces współpracy bez zbędnych komplikacji. Na każdym etapie wiesz, co robimy i czego możesz się spodziewać.",
+  "tags": ["Przejrzysty proces", "Stały kontakt", "Wsparcie po wdrożeniu"],
+  "primary_cta": "Rozpocznij projekt",
   "secondary_cta": "Zobacz realizacje",
   "steps": [
     {
       "step": "01",
-      "title": "Brief i kierunek",
-      "text": "Ustalamy cel strony, zakres i najważniejsze informacje o Twojej firmie."
+      "title": "Odkrywanie",
+      "text": "Poznaję Twoją firmę, cele i odbiorców, aby określić kierunek projektu."
     },
     {
       "step": "02",
-      "title": "Projekt i realizacja",
-      "text": "Przygotowuję układ, treści i wdrażam stronę w WordPressie lub Next.js."
+      "title": "Projekt",
+      "text": "Tworzę indywidualny projekt dopasowany do marki i potrzeb Twoich klientów."
     },
     {
       "step": "03",
-      "title": "Wdrożenie i wsparcie",
-      "text": "Publikuję stronę, sprawdzam działanie i pokazuję, jak z niej korzystać."
+      "title": "Wdrożenie",
+      "text": "Buduję szybką i responsywną stronę, która działa na każdym urządzeniu."
+    },
+    {
+      "step": "04",
+      "title": "Start",
+      "text": "Publikuję stronę, przeprowadzam testy i zapewniam wsparcie po uruchomieniu."
     }
   ]
 },
@@ -153,6 +170,8 @@
   "write_email": "Napisz maila",
   "error": "Nie udało się wysłać formularza. Spróbuj ponownie lub napisz na",
   "sending": "Wysyłanie…",
+  "primary_cta": "Rozpocznij projekt →",
+  "response_time": "Odpowiadam zwykle w ciągu 24 godzin",
   "form": {
     "name": "Imię i nazwisko",
     "email": "Email",
@@ -187,7 +206,8 @@
     "contactBottom": "Kontakt",
     "contactAria": "Przejdź do sekcji kontakt",
     "projectButton": "Zobacz projekt",
-    "projectDetailsAria": "Zobacz szczegóły: {title}"
+    "projectDetailsAria": "Zobacz szczegóły: {title}",
+    "backToProjects": "← Powrót do projektów"
 },
    "dropdownMenu": {
     "home": "Start",
@@ -205,7 +225,8 @@
 
   "cookieConsent": {
     "text": "Używamy plików cookie do analityki i poprawy działania serwisu.",
-    "accept": "Akceptuję"
+    "accept": "Akceptuję",
+    "decline": "Odrzuć"
   },
 
   "projectDetail": {
@@ -225,19 +246,6 @@
   "imageAlt": "{title} — długi zrzut strony"
 },
 
-"projectsPage": {
-  "title": "Wybrane projekty",
-  "subtitle": "Strony zaprojektowane tak, aby były estetyczne, czytelne i wspierały rozwój marki.",
-  "home": "Strona główna",
-  "homeAria": "Wróć do strony głównej",
-  "contactTop": "Porozmawiajmy o projekcie",
-  "contactBottom": "Napisz do mnie",
-  "contactAria": "Przejdź do sekcji kontakt",
-  "projectButton": "Zobacz projekt",
-  "projectDetailsAria": "Zobacz szczegóły projektu {title}",
-  "backToProjects": "Projekty",
-  "backToProjectsAria": "Wróć do listy projektów"
-},
 
 "thankYou": {
   "badge": "Wiadomość wysłana",

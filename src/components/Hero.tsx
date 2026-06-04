@@ -1,160 +1,155 @@
 'use client';
 
-import Image from 'next/image';
-import dynamic from 'next/dynamic';
-import { FiArrowRight } from 'react-icons/fi';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { motion, useReducedMotion } from 'framer-motion';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
+import dynamic from 'next/dynamic';
+import HeroVideo from '@/components/HeroVideo';
 
-const QuoteModal = dynamic(() => import('@/components/QuoteModal'), {
-  ssr: false,
-});
-
-const textReveal = {
-  hidden: { opacity: 0, y: 16 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.45,
-      ease: [0.22, 1, 0.36, 1] as const,
-      staggerChildren: 0.06,
-      delayChildren: 0.04,
-    },
-  },
-};
-
-const itemReveal = {
-  hidden: { opacity: 0, y: 12 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  },
-};
+const QuoteModal = dynamic(() => import('@/components/QuoteModal'), { ssr: false });
 
 export default function Hero() {
   const t = useTranslations('hero');
-  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-
-  const floatAnimation = useMemo(() => {
-    if (prefersReducedMotion) return undefined;
-
-    return {
-      y: [0, -4, 0],
-      transition: {
-        duration: 7,
-        repeat: Infinity,
-        ease: 'easeInOut' as const,
-      },
-    };
-  }, [prefersReducedMotion]);
+  const locale = useLocale();
+  const [quoteOpen, setQuoteOpen] = useState(false);
 
   return (
-    <section className="relative overflow-hidden bg-[#007aff] text-white">
-      <div className="absolute inset-0 bg-[linear-gradient(135deg,#007aff_0%,#0a72ea_40%,#006bde_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.06),transparent_24%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.04),transparent_24%)]" />
+    <section id="top" style={{
+      position: 'relative', overflow: 'hidden', background: 'var(--bg)',
+      paddingTop: 'clamp(90px,13vh,140px)', paddingBottom: 'clamp(48px,8vw,100px)',
+    }}>
+      <div aria-hidden style={{
+        position: 'absolute', inset: 0, zIndex: 0,
+        backgroundImage: 'linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px)',
+        backgroundSize: '52px 52px',
+        maskImage: 'radial-gradient(ellipse 80% 70% at 60% 30%,black,transparent)',
+        WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 60% 30%,black,transparent)',
+      }} />
+      <div aria-hidden style={{ position: 'absolute', top: -200, right: -120, width: 560, height: 560, borderRadius: '50%', background: 'radial-gradient(circle,var(--brand-tint-2),transparent 68%)', zIndex: 0 }} />
+      <div aria-hidden style={{ position: 'absolute', bottom: -140, left: -100, width: 420, height: 420, borderRadius: '50%', background: 'radial-gradient(circle,#eaf0ff,transparent 70%)', opacity: .7, zIndex: 0 }} />
 
-      <div className="absolute left-[-10%] top-[10%] h-40 w-40 rounded-full bg-white/8 blur-xl sm:h-56 sm:w-56" />
-      <div className="absolute bottom-[-10%] right-[-10%] h-48 w-48 rounded-full bg-white/8 blur-xl sm:h-64 sm:w-64" />
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
+        <style>{`
+          .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 36px;
+            align-items: center;
+          }
+          @media (min-width: 600px) and (max-width: 859px) {
+            .hero-inner { gap: 32px; }
+            .hero-video-col { max-width: 520px; margin: 0 auto; width: 100%; }
+          }
+          @media (min-width: 860px) {
+            .hero-inner { grid-template-columns: 1fr 1fr; gap: 56px; }
+            .hero-video-col { max-width: none; margin: 0; }
+          }
+          @keyframes heroFloat {
+            0%,100% { transform: translateY(0px); }
+            50%      { transform: translateY(-12px); }
+          }
+          .video-float { animation: heroFloat 6s ease-in-out infinite; }
+          @media (prefers-reduced-motion: reduce) { .video-float { animation: none; } }
+        `}</style>
 
-      <div className="relative mx-auto w-full max-w-[1440px] px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16 2xl:px-20">
-        <div className="grid min-h-[calc(100svh-80px)] items-center gap-10 py-24 sm:py-28 md:py-32 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:gap-12 xl:gap-16">
-          <motion.div
-            variants={textReveal}
-            initial="hidden"
-            animate="visible"
-            className="order-1 mx-auto max-w-[640px] text-center lg:mx-0 lg:max-w-[560px] lg:text-left xl:max-w-[620px]"
-          >
-            <motion.div
-              variants={itemReveal}
-              className="mb-5 inline-flex max-w-full rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] sm:text-sm"
-            >
-              <span className="truncate sm:whitespace-normal">{t('badge')}</span>
-            </motion.div>
+        <div className="hero-inner">
 
-            <motion.h1
-  variants={itemReveal}
-  className="font-serif text-[1.9rem] font-medium leading-[1.08] tracking-[-0.035em] sm:text-[2.3rem] md:text-[2.6rem] lg:text-[2.9rem] xl:text-[3.2rem] 2xl:text-[3.6rem]"
->
-  {t('title')}
-</motion.h1>
+          {/* Copy */}
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
-            <motion.p
-              variants={itemReveal}
-              className="mt-5 text-[15px] leading-7 text-white/90 sm:mt-6 sm:text-[17px] sm:leading-8 md:text-lg lg:max-w-[52ch]"
-            >
+            <div className="fade-up" style={{ marginBottom: 22, animationDelay: '0ms' }}>
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '7px 14px 7px 10px', borderRadius: 99,
+                background: 'var(--surface)', border: '1px solid var(--line)',
+                fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.82rem', color: 'var(--ink-soft)',
+              }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#22c55e', boxShadow: '0 0 0 3px rgba(34,197,94,.2)', flexShrink: 0 }} />
+                {t('badge')}
+              </span>
+            </div>
+
+            <h1
+              className="fade-up"
+              style={{
+                fontFamily: 'var(--fd)', fontWeight: 600, letterSpacing: '-.035em',
+                lineHeight: .97, color: 'var(--ink)',
+                fontSize: 'clamp(1.9rem,3.8vw,3.2rem)',
+                marginBottom: '1rem',
+                animationDelay: '80ms',
+              }}>
+              {t('title')}
+            </h1>
+
+            <p
+              className="fade-up"
+              style={{
+                fontFamily: 'var(--fb)', fontSize: 'clamp(.92rem,1.3vw,1.1rem)',
+                color: 'var(--muted)', lineHeight: 1.6,
+                maxWidth: '52ch', marginBottom: '1.6rem',
+                animationDelay: '160ms',
+              }}>
               {t('description')}
-            </motion.p>
+            </p>
 
-            <motion.div
-              variants={itemReveal}
-              className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start"
-            >
+            <div
+              className="fade-up"
+              style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: '1.6rem', animationDelay: '240ms' }}>
               <button
-                type="button"
-                onClick={() => setIsQuoteOpen(true)}
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-medium text-[#007aff] shadow-lg transition hover:-translate-y-0.5"
-              >
-                {t('primary_cta')}
-                <FiArrowRight />
+                onClick={() => setQuoteOpen(true)}
+                style={{
+                  fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.95rem',
+                  background: 'var(--brand)', color: '#fff',
+                  borderRadius: 99, padding: '.85em 1.8em',
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  transition: 'transform .3s, box-shadow .3s',
+                  border: 'none', cursor: 'pointer',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 18px 36px rgba(29,78,216,.45)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
+                {t('primary_cta')} <span>→</span>
               </button>
 
               <Link
                 href="/projects"
-                className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/40 px-6 py-3.5 text-sm font-medium transition hover:bg-white/10"
-              >
+                locale={locale}
+                style={{
+                  fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.95rem',
+                  color: 'var(--ink)', borderRadius: 99, padding: '.85em 1.8em',
+                  border: '1.5px solid var(--line)',
+                  display: 'inline-flex', alignItems: 'center',
+                  transition: 'border-color .2s, color .2s', textDecoration: 'none',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--brand)'; (e.currentTarget as HTMLElement).style.color = 'var(--brand)'; }}
+onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--line)'; (e.currentTarget as HTMLElement).style.color = 'var(--ink)'; }}>
                 {t('secondary_cta')}
               </Link>
-            </motion.div>
+            </div>
 
-            <motion.p
-              variants={itemReveal}
-              className="mt-5 text-sm leading-6 text-white/75 sm:mt-6"
-            >
-              {t('highlights')}
-            </motion.p>
-          </motion.div>
-
-          <div className="order-2 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[520px] sm:max-w-[620px] md:max-w-[760px] lg:max-w-[700px] xl:max-w-[860px]">
-              <div className="absolute left-1/2 top-1/2 h-[58%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/8 blur-xl" />
-
-              <motion.div
-                animate={floatAnimation}
-                className="will-change-transform"
-              >
-                <Image
-                  src="/Hero (1).webp"
-                  alt={t('image_alt')}
-                  width={1600}
-                  height={1100}
-                  priority
-                  fetchPriority="high"
-                  quality={80}
-                  placeholder="blur"
-                  blurDataURL="data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAwCdASoQAAoAAUAmJaQAA3AA/v89WAAAAA=="
-                  sizes="(min-width: 1536px) 860px, (min-width: 1280px) 760px, (min-width: 1024px) 48vw, (min-width: 768px) 78vw, 92vw"
-                  className="h-auto w-full object-contain drop-shadow-[0_18px_44px_rgba(0,0,0,0.16)]"
-                />
-              </motion.div>
+            <div
+              className="fade-up"
+              style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 22px', animationDelay: '320ms' }}>
+              {[
+                { num: '7–14', label: t('meta_days')   ?? 'dni do startu' },
+                { num: '100%', label: t('meta_custom') ?? 'indywidualny design' },
+                { num: '5★',   label: t('meta_rating') ?? 'ocena klientów' },
+              ].map(({ num, label }) => (
+                <span key={num} style={{ fontFamily: 'var(--fb)', fontSize: '.85rem', color: 'var(--muted)' }}>
+                  <strong style={{ fontFamily: 'var(--fd)', fontWeight: 700, color: 'var(--ink)' }}>{num}</strong> {label}
+                </span>
+              ))}
             </div>
           </div>
+
+          {/* Video */}
+          <div className="fade-up video-float hero-video-col" style={{ animationDelay: '100ms' }}>
+            <HeroVideo />
+          </div>
+
         </div>
       </div>
 
-      {isQuoteOpen && (
-        <QuoteModal
-          isOpen={isQuoteOpen}
-          onClose={() => setIsQuoteOpen(false)}
-        />
-      )}
+      {quoteOpen && <QuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />}
     </section>
   );
 }

@@ -1,225 +1,257 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from '@/i18n/navigation';
-import { FiArrowRight, FiClock, FiCalendar, FiArrowLeft, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { FiClock, FiArrowLeft } from 'react-icons/fi';
 import Header from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 import Footer from '@/components/Footer';
 import type { Post } from '@/lib/blog';
 
-type Props = {
-  posts: Post[];
-  locale: string;
-};
-
+type Props = { posts: Post[]; locale: string; };
 const POSTS_PER_PAGE = 6;
 
 export default function BlogPageClient({ posts, locale }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen((prev) => !prev);
-  const isEn = locale === 'en';
-
+  const [isOpen, setIsOpen]     = useState(false);
+  const toggleMenu              = () => setIsOpen(p => !p);
+  const isEn                    = locale === 'en';
   const [activeTag, setActiveTag] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
+  const [page, setPage]         = useState(1);
+  const gridRef                 = useRef<HTMLDivElement>(null);
 
-  // Collect all unique tags
   const allTags = useMemo(() => {
     const tags = new Set<string>();
-    posts.forEach((p) => p.tags.forEach((t) => tags.add(t)));
+    posts.forEach(p => p.tags.forEach(t => tags.add(t)));
     return Array.from(tags);
   }, [posts]);
 
-  // Filter by tag
-  const filtered = useMemo(() => {
-    if (!activeTag) return posts;
-    return posts.filter((p) => p.tags.includes(activeTag));
-  }, [posts, activeTag]);
+  const filtered = useMemo(() =>
+    activeTag ? posts.filter(p => p.tags.includes(activeTag)) : posts,
+  [posts, activeTag]);
 
-  // Paginate
   const totalPages = Math.ceil(filtered.length / POSTS_PER_PAGE);
-  const paginated = filtered.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
+  const paginated  = filtered.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
 
-  const handleTagClick = (tag: string) => {
-    setActiveTag((prev) => (prev === tag ? null : tag));
-    setPage(1);
-  };
+  // animacja kart
+  useEffect(() => {
+    const cards = gridRef.current?.querySelectorAll<HTMLElement>('.blog-card');
+    if (!cards) return;
+    cards.forEach(c => c.classList.remove('blog-card--visible'));
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target as HTMLElement;
+          const d  = parseInt(el.dataset.delay ?? '0');
+          setTimeout(() => el.classList.add('blog-card--visible'), d);
+          obs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.08 });
+    setTimeout(() => cards.forEach(c => obs.observe(c)), 50);
+    return () => obs.disconnect();
+  }, [paginated, activeTag]);
 
   return (
     <>
+      <style>{`
+        .blog-card {
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+          border-radius: 10px;
+          border: 1px solid var(--line);
+          background: var(--bg);
+          overflow: hidden;
+          opacity: 0;
+          transform: translateY(18px);
+          transition: opacity .5s ease, transform .5s ease, border-color .2s ease;
+        }
+        .blog-card--visible { opacity: 1; transform: translateY(0); }
+        .blog-card:hover { border-color: var(--ink); }
+        .blog-card:hover .blog-arrow { transform: translateX(4px); opacity: 1; }
+
+        .blog-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: clamp(14px,2vw,20px);
+        }
+        @media (max-width: 860px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 560px) { .blog-grid { grid-template-columns: 1fr; } }
+
+        .tag-btn {
+          font-family: var(--fd);
+          font-weight: 600;
+          font-size: .78rem;
+          border-radius: 99px;
+          padding: 6px 14px;
+          border: 1.5px solid var(--line);
+          background: transparent;
+          color: var(--muted);
+          cursor: pointer;
+          transition: all .2s;
+          white-space: nowrap;
+        }
+        .tag-btn:hover { border-color: var(--ink); color: var(--ink); }
+        .tag-btn--active { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+        .blog-arrow {
+          opacity: 0;
+          transition: transform .25s ease, opacity .25s ease;
+          flex-shrink: 0;
+        }
+      `}</style>
+
       <Header isOpen={isOpen} toggleMenu={toggleMenu} />
       <DropdownMenu isOpen={isOpen} toggleMenu={toggleMenu} />
 
-      <main className="relative min-h-screen w-full overflow-hidden bg-[#f4f8ff] text-[#0f172a]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(0,122,255,0.08),transparent_30%),radial-gradient(circle_at_85%_80%,rgba(0,122,255,0.06),transparent_30%)]" />
+      <main style={{ background: 'var(--bg)', minHeight: '100vh' }}>
 
-        <div className="relative mx-auto max-w-[1360px] px-5 py-20 sm:px-8 sm:py-28 md:px-10 lg:px-12 xl:px-16 2xl:px-20">
+        {/* ── HERO ── */}
+        <section style={{
+          paddingTop: 'clamp(100px,14vh,140px)',
+          paddingBottom: 'clamp(40px,6vw,64px)',
+          borderBottom: '1px solid var(--line)',
+        }}>
+          <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
+            <Link href="/" locale={locale}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--fd)', fontSize: '.82rem', color: 'var(--muted)', textDecoration: 'none', marginBottom: 28, transition: 'color .2s' }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'var(--brand)'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--muted)'}>
+              <FiArrowLeft size={13} /> {isEn ? 'Back to home' : 'Wróć na stronę główną'}
+            </Link>
 
-          {/* Back to home */}
-          <Link
-            href="/"
-            className="group mb-10 inline-flex items-center gap-2 text-sm text-slate-500 transition hover:text-[#007aff]"
-          >
-            <FiArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
-            {isEn ? 'Back to home' : 'Wróć na stronę główną'}
-          </Link>
-
-          {/* Header */}
-          <div className="mb-10 max-w-2xl">
-            <span className="mb-4 inline-flex rounded-full border border-[#007aff]/15 bg-white/75 px-4 py-2 text-xs text-[#007aff] backdrop-blur-md sm:text-sm">
+            <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--brand)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ width: 24, height: 2, background: 'currentColor', display: 'inline-block' }} />
               Blog
-            </span>
-            <h1 className="font-serif text-[2.2rem] leading-[1.04] tracking-[-0.04em] sm:text-[2.8rem] md:text-[3.2rem] lg:text-[3.6rem]">
-              {isEn ? 'Articles & tips' : 'Artykuły i porady'}
+            </p>
+            <h1 style={{ fontFamily: 'var(--fd)', fontWeight: 800, fontSize: 'clamp(2.2rem,5.5vw,4.2rem)', letterSpacing: '-.04em', color: 'var(--ink)', lineHeight: .97, marginBottom: 16, maxWidth: '16ch' }}>
+              {isEn ? 'Articles & tips for your business.' : 'Artykuły i porady dla Twojego biznesu.'}
             </h1>
-            <p className="mt-4 text-[15px] leading-7 text-slate-600 sm:text-base sm:leading-8">
+            <p style={{ fontFamily: 'var(--fb)', fontSize: 'clamp(.9rem,1.3vw,1rem)', color: 'var(--muted)', lineHeight: 1.65, maxWidth: '52ch' }}>
               {isEn
                 ? 'Practical knowledge about websites, WordPress, Next.js and online presence for businesses.'
                 : 'Praktyczna wiedza o stronach internetowych, WordPress, Next.js i obecności firm w sieci.'}
             </p>
           </div>
+        </section>
 
-          {/* Tag filters */}
-          {allTags.length > 0 && (
-            <div className="mb-8 flex flex-wrap gap-2">
-              <button
-                onClick={() => { setActiveTag(null); setPage(1); }}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition duration-200 ${
-                  activeTag === null
-                    ? 'bg-[#007aff] text-white shadow-md'
-                    : 'border border-slate-200 bg-white/80 text-slate-600 hover:border-[#007aff]/40 hover:text-[#007aff]'
-                }`}
-              >
-                {isEn ? 'All' : 'Wszystkie'}
-              </button>
-              {allTags.map((tag) => (
-                <button
-                  key={tag}
-                  onClick={() => handleTagClick(tag)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition duration-200 ${
-                    activeTag === tag
-                      ? 'bg-[#007aff] text-white shadow-md'
-                      : 'border border-slate-200 bg-white/80 text-slate-600 hover:border-[#007aff]/40 hover:text-[#007aff]'
-                  }`}
-                >
-                  {tag}
-                </button>
-              ))}
-            </div>
-          )}
+        {/* ── GRID SECTION ── */}
+        <section style={{ padding: 'clamp(40px,6vw,64px) 0 clamp(64px,10vw,120px)' }}>
+          <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
-          {/* Results count */}
-          <p className="mb-6 text-sm text-slate-400">
-            {isEn
-              ? `${filtered.length} article${filtered.length !== 1 ? 's' : ''}${activeTag ? ` in "${activeTag}"` : ''}`
-              : `${filtered.length} artykuł${filtered.length === 1 ? '' : filtered.length < 5 ? 'y' : 'ów'}${activeTag ? ` w kategorii "${activeTag}"` : ''}`}
-          </p>
+            {/* Filters */}
+            {allTags.length > 0 && (
+              <div style={{ marginBottom: 'clamp(24px,4vw,36px)' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  <button
+                    className={`tag-btn${activeTag === null ? ' tag-btn--active' : ''}`}
+                    onClick={() => { setActiveTag(null); setPage(1); }}>
+                    {isEn ? 'All' : 'Wszystkie'}
+                  </button>
+                  {allTags.map(tag => (
+                    <button
+                      key={tag}
+                      className={`tag-btn${activeTag === tag ? ' tag-btn--active' : ''}`}
+                      onClick={() => { setActiveTag(p => p === tag ? null : tag); setPage(1); }}>
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
-          {/* Posts grid */}
-          {paginated.length === 0 ? (
-            <div className="rounded-[24px] border border-slate-200 bg-white/70 px-8 py-16 text-center">
-              <p className="text-slate-500">
-                {isEn ? 'No articles found.' : 'Brak artykułów.'}
-              </p>
-            </div>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {paginated.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="group flex flex-col rounded-[22px] border border-slate-100 bg-white/80 p-6 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(0,122,255,0.10)] sm:p-7"
-                >
-                  {post.tags.length > 0 && (
-                    <div className="mb-4 flex flex-wrap gap-2">
-                      {post.tags.slice(0, 2).map((tag) => (
-                        <span
-                          key={tag}
-                          className={`rounded-full px-3 py-1 text-[11px] font-medium transition ${
-                            activeTag === tag
-                              ? 'bg-[#007aff] text-white'
-                              : 'bg-[#007aff]/8 text-[#007aff]'
-                          }`}
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  <h2 className="flex-1 font-serif text-[1.15rem] leading-snug tracking-[-0.02em] text-slate-900 sm:text-[1.25rem]">
-                    {post.title}
-                  </h2>
-
-                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-500">
-                    {post.description}
-                  </p>
-
-                  <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
-                    <div className="flex items-center gap-4 text-xs text-slate-400">
-                      <span className="flex items-center gap-1">
-                        <FiCalendar className="h-3.5 w-3.5" />
-                        {new Date(post.date).toLocaleDateString(
-                          isEn ? 'en-GB' : 'pl-PL',
-                          { day: 'numeric', month: 'short', year: 'numeric' }
-                        )}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <FiClock className="h-3.5 w-3.5" />
-                        {post.readingTime} min
-                      </span>
-                    </div>
-                    <FiArrowRight className="h-4 w-4 text-[#007aff] transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="mt-12 flex items-center justify-center gap-2">
-              <button
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                disabled={page === 1}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-[#007aff]/40 hover:text-[#007aff] disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label={isEn ? 'Previous page' : 'Poprzednia strona'}
-              >
-                <FiChevronLeft className="h-4 w-4" />
-              </button>
-
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                <button
-                  key={p}
-                  onClick={() => setPage(p)}
-                  className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium transition ${
-                    p === page
-                      ? 'bg-[#007aff] text-white shadow-md'
-                      : 'border border-slate-200 bg-white text-slate-600 hover:border-[#007aff]/40 hover:text-[#007aff]'
-                  }`}
-                >
-                  {p}
-                </button>
-              ))}
-
-              <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page === totalPages}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-[#007aff]/40 hover:text-[#007aff] disabled:opacity-30 disabled:cursor-not-allowed"
-                aria-label={isEn ? 'Next page' : 'Następna strona'}
-              >
-                <FiChevronRight className="h-4 w-4" />
-              </button>
-            </div>
-          )}
-
-          {/* Page info */}
-          {totalPages > 1 && (
-            <p className="mt-4 text-center text-xs text-slate-400">
-              {isEn ? `Page ${page} of ${totalPages}` : `Strona ${page} z ${totalPages}`}
+            <p style={{ fontFamily: 'var(--fd)', fontSize: '.75rem', fontWeight: 500, color: 'var(--muted-2)', marginBottom: 24, letterSpacing: '.04em' }}>
+              {isEn
+                ? `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`
+                : `${filtered.length} artykuł${filtered.length === 1 ? '' : filtered.length < 5 ? 'y' : 'ów'}`}
+              {activeTag && <span style={{ color: 'var(--brand)' }}> — {activeTag}</span>}
             </p>
-          )}
-        </div>
+
+            {/* Grid */}
+            {paginated.length === 0 ? (
+              <div style={{ border: '1px solid var(--line)', padding: '48px 32px', textAlign: 'center', borderRadius: 10 }}>
+                <p style={{ fontFamily: 'var(--fb)', color: 'var(--muted)' }}>{isEn ? 'No articles found.' : 'Brak artykułów.'}</p>
+              </div>
+            ) : (
+              <div ref={gridRef} className="blog-grid">
+                {paginated.map((post, index) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="blog-card"
+                    data-delay={String(index * 60)}
+                  >
+                    {/* Body */}
+                    <div style={{ padding: '20px 22px 22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+
+                      {/* Tags */}
+                      {post.tags.length > 0 && (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
+                          {post.tags.slice(0, 2).map(tag => (
+                            <span key={tag} style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.62rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--brand)' }}>
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+
+                      <h2 style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(.95rem,1.5vw,1.1rem)', letterSpacing: '-.02em', color: 'var(--ink)', lineHeight: 1.3, flex: 1, marginBottom: 10 }}>
+                        {post.title}
+                      </h2>
+
+                      <p style={{ fontFamily: 'var(--fb)', fontSize: '.83rem', color: 'var(--muted)', lineHeight: 1.65, marginBottom: 18, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' as const, overflow: 'hidden' }}>
+                        {post.description}
+                      </p>
+
+                      {/* Footer */}
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 14, borderTop: '1px solid var(--line)', marginTop: 'auto' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                          <span style={{ fontFamily: 'var(--fd)', fontSize: '.72rem', color: 'var(--muted-2)', fontWeight: 500 }}>
+                            {new Date(post.date).toLocaleDateString(isEn ? 'en-GB' : 'pl-PL', { day: 'numeric', month: 'short', year: 'numeric' })}
+                          </span>
+                          <span style={{ display: 'flex', alignItems: 'center', gap: 4, fontFamily: 'var(--fd)', fontSize: '.72rem', color: 'var(--muted-2)', fontWeight: 500 }}>
+                            <FiClock size={11} /> {post.readingTime} min
+                          </span>
+                        </div>
+                        <svg className="blog-arrow" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--muted)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M2 7h10M8 3l4 4-4 4"/>
+                        </svg>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <nav style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4, marginTop: 48, paddingTop: 32, borderTop: '1px solid var(--line)' }}>
+                <button
+                  onClick={() => setPage(p => Math.max(1, p - 1))}
+                  disabled={page === 1}
+                  style={{ fontFamily: 'var(--fd)', fontWeight: 500, fontSize: '.85rem', color: 'var(--muted)', background: 'none', border: 'none', cursor: 'pointer', padding: '.5em 1em', opacity: page === 1 ? .4 : 1, transition: 'color .2s' }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'var(--ink)'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--muted)'}>
+                  ← {isEn ? 'Prev' : 'Poprzednia'}
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+                  <button key={p} onClick={() => setPage(p)}
+                    style={{ display: 'grid', placeItems: 'center', width: 36, height: 36, fontFamily: 'var(--fd)', fontWeight: p === page ? 700 : 500, fontSize: '.85rem', color: p === page ? 'var(--ink)' : 'var(--muted)', background: 'none', border: 'none', borderBottom: `2px solid ${p === page ? 'var(--ink)' : 'transparent'}`, cursor: 'pointer', transition: 'all .2s' }}>
+                    {p}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                  disabled={page === totalPages}
+                  style={{ fontFamily: 'var(--fd)', fontWeight: 500, fontSize: '.85rem', color: 'var(--muted)', background: 'none', border: 'none', cursor: 'pointer', padding: '.5em 1em', opacity: page === totalPages ? .4 : 1, transition: 'color .2s' }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'var(--ink)'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--muted)'}>
+                  {isEn ? 'Next' : 'Następna'} →
+                </button>
+              </nav>
+            )}
+          </div>
+        </section>
       </main>
 
       <Footer />

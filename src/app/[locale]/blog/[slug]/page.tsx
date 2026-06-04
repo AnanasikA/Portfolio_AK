@@ -1,5 +1,5 @@
 import { getPost, getAllPosts } from '@/lib/blog';
-import { getLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import BlogPostClient from './BlogPostClient';
@@ -52,11 +52,16 @@ const mdxComponents = {
   ),
   hr: () => <hr className="my-8 border-slate-200" />,
 };
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const locale = await getLocale();
-  const post = getPost(slug, locale);
 
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}) {
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+
+  const post = getPost(slug, locale);
   if (!post) notFound();
 
   const mdxContent = <MDXRemote source={post.content} components={mdxComponents} />;

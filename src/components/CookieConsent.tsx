@@ -1,4 +1,3 @@
-// components/CookieConsent.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -10,7 +9,6 @@ export default function CookieConsent() {
   const t = useTranslations('cookieConsent');
   const [visible, setVisible] = useState(false);
 
-  // Utwórz/znajdź kontener portalu w <body>
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -24,11 +22,9 @@ export default function CookieConsent() {
     }
     setRoot(el);
 
-    // Pokaż tylko, gdy brak decyzji
     const hasDecision = !!localStorage.getItem('cookie-consent');
     setVisible(!hasDecision);
 
-    // Reaguj na zmianę w innej karcie
     const onStorage = (e: StorageEvent) => {
       if (e.key === 'cookie-consent') setVisible(!e.newValue);
     };
@@ -36,7 +32,6 @@ export default function CookieConsent() {
 
     return () => {
       window.removeEventListener('storage', onStorage);
-      // Sprzątanie tylko gdy to my stworzyliśmy kontener i on jeszcze jest w DOM
       if (created && el && el.parentNode) {
         el.parentNode.removeChild(el);
       }
@@ -44,29 +39,92 @@ export default function CookieConsent() {
   }, []);
 
   const decide = (value: '1' | '0') => {
-    try {
-      localStorage.setItem('cookie-consent', value);
-    } catch {
-      // ignorujemy, np. tryb prywatny
-    }
-    // Po decyzji po prostu chowamy baner; kontener usunie cleanup efektu przy unmount
+    try { localStorage.setItem('cookie-consent', value); } catch {}
     setVisible(false);
   };
 
   if (!root || !visible) return null;
 
   return createPortal(
-    <div className="fixed inset-x-0 bottom-0 z-[9999]">
-      <div className="mx-auto max-w-5xl m-4 rounded-2xl bg-white/95 text-black p-4 shadow-lg flex flex-wrap items-center gap-3">
-        <p className="text-sm">
-  {t('text')}
-</p>
-        <div className="ml-auto flex gap-2">
+    <div style={{
+      position: 'fixed', inset: '0 0 0 0', bottom: 0, top: 'auto',
+      zIndex: 9999, padding: '0 clamp(12px,3vw,24px) clamp(12px,2vw,20px)',
+    }}>
+      <div style={{
+        maxWidth: 860,
+        margin: '0 auto',
+        background: 'rgba(255,255,255,0.97)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderRadius: 'var(--r-l)',
+        border: '1px solid var(--line)',
+        boxShadow: 'var(--sh)',
+        padding: 'clamp(14px,2vw,20px) clamp(16px,3vw,28px)',
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        gap: '12px 20px',
+      }}>
+        <p style={{
+          fontFamily: 'var(--fb)',
+          fontSize: 'clamp(.82rem,1.1vw,.9rem)',
+          color: 'var(--muted)',
+          lineHeight: 1.55,
+          flex: '1 1 240px',
+          margin: 0,
+        }}>
+          {t('text')}
+        </p>
+
+        <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+          <button
+            type="button"
+            onClick={() => decide('0')}
+            style={{
+              fontFamily: 'var(--fd)', fontWeight: 600,
+              fontSize: '.85rem',
+              padding: '.6em 1.2em',
+              borderRadius: 99,
+              border: '1.5px solid var(--line)',
+              background: 'transparent',
+              color: 'var(--muted)',
+              cursor: 'pointer',
+              transition: 'border-color .2s, color .2s',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.borderColor = 'var(--muted)';
+              (e.currentTarget as HTMLElement).style.color = 'var(--ink)';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.borderColor = 'var(--line)';
+              (e.currentTarget as HTMLElement).style.color = 'var(--muted)';
+            }}
+          >
+            {t('decline') ?? 'Odrzuć'}
+          </button>
 
           <button
             type="button"
             onClick={() => decide('1')}
-            className="px-4 py-2 rounded-full bg-[#007aff] text-white hover:opacity-90 transition text-sm"
+            style={{
+              fontFamily: 'var(--fd)', fontWeight: 600,
+              fontSize: '.85rem',
+              padding: '.6em 1.2em',
+              borderRadius: 99,
+              border: 'none',
+              background: 'var(--brand)',
+              color: '#fff',
+              cursor: 'pointer',
+              transition: 'opacity .2s, transform .2s',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.opacity = '.88';
+              (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.opacity = '1';
+              (e.currentTarget as HTMLElement).style.transform = '';
+            }}
           >
             {t('accept')}
           </button>

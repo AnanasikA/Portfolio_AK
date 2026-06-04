@@ -10,6 +10,38 @@ type QuoteModalProps = {
   onClose: () => void;
 };
 
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  borderRadius: 12,
+  border: '1px solid var(--line)',
+  background: '#fff',
+  padding: '10px 14px',
+  fontSize: '.9rem',
+  fontFamily: 'var(--fb)',
+  color: 'var(--ink)',
+  outline: 'none',
+  transition: 'border-color .2s, box-shadow .2s',
+};
+
+const labelStyle: React.CSSProperties = {
+  display: 'block',
+  marginBottom: 6,
+  fontSize: '.78rem',
+  fontFamily: 'var(--fd)',
+  fontWeight: 600,
+  color: 'var(--muted)',
+  letterSpacing: '.02em',
+};
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <label style={labelStyle}>{label}</label>
+      {children}
+    </div>
+  );
+}
+
 export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const locale = useLocale();
   const isEn = locale === 'en';
@@ -18,6 +50,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     name: '',
     email: '',
     websiteType: '',
+    budget: '',
     message: '',
   });
 
@@ -35,7 +68,16 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   if (!isOpen) return null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.style.borderColor = 'var(--brand)';
+    e.currentTarget.style.boxShadow = '0 0 0 3px var(--brand-tint)';
+  };
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.style.borderColor = 'var(--line)';
+    e.currentTarget.style.boxShadow = 'none';
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -47,14 +89,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       name: form.name,
       email: form.email,
       site_type: form.websiteType,
-      budget: '',
+      budget: form.budget,
       message: form.message,
       locale,
     });
 
     if (result.ok) {
       setStatus('success');
-      setForm({ name: '', email: '', websiteType: '', message: '' });
+      setForm({ name: '', email: '', websiteType: '', budget: '', message: '' });
       setTimeout(() => {
         window.location.href = isEn ? '/en/thank-you' : '/pl/thank-you';
       }, 500);
@@ -63,60 +105,134 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     }
   };
 
-  const inp = 'w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none transition focus:border-[#007aff] focus:ring-2 focus:ring-[#007aff]/10';
-  const lbl = 'mb-1 block text-xs font-medium text-slate-700';
+  const budgetOptions = isEn ? [
+    { value: '', label: 'Choose...' },
+    { value: 'under-500', label: 'Under €500' },
+    { value: '500-1000', label: '€500 – €1,000' },
+    { value: '1000-2000', label: '€1,000 – €2,000' },
+    { value: '2000-5000', label: '€2,000 – €5,000' },
+    { value: 'over-5000', label: 'Over €5,000' },
+    { value: 'unknown', label: "I'm not sure yet" },
+  ] : [
+    { value: '', label: 'Wybierz...' },
+    { value: 'under-2000', label: 'Do 2 000 zł' },
+    { value: '2000-4000', label: '2 000 – 4 000 zł' },
+    { value: '4000-8000', label: '4 000 – 8 000 zł' },
+    { value: '8000-15000', label: '8 000 – 15 000 zł' },
+    { value: 'over-15000', label: 'Powyżej 15 000 zł' },
+    { value: 'unknown', label: 'Nie wiem jeszcze' },
+  ];
 
   return (
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#0b1220]/55 backdrop-blur-sm p-4">
-      <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 999,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      background: 'rgba(11,18,32,.55)',
+      backdropFilter: 'blur(6px)',
+      WebkitBackdropFilter: 'blur(6px)',
+      padding: 'clamp(12px,3vw,24px)',
+    }}>
+      <div style={{ position: 'absolute', inset: 0 }} onClick={onClose} aria-hidden="true" />
 
-      <div
-        className="relative z-10 w-full max-w-lg rounded-[20px] bg-white shadow-[0_8px_40px_rgba(0,0,0,0.2)]"
-        style={{ maxHeight: '88dvh', overflowY: 'auto', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
-      >
+      <div style={{
+        position: 'relative', zIndex: 10,
+        width: '100%', maxWidth: 520,
+        maxHeight: '88dvh', overflowY: 'auto',
+        borderRadius: 'var(--r-xl)',
+        background: '#fff',
+        boxShadow: 'var(--sh-l)',
+      }}>
         {/* Header */}
-        <div className="sticky top-0 z-10 rounded-t-[20px] bg-white px-5 pb-2 pt-4 sm:px-6">
+        <div style={{
+          position: 'sticky', top: 0, zIndex: 10,
+          background: '#fff',
+          borderRadius: 'var(--r-xl) var(--r-xl) 0 0',
+          padding: 'clamp(18px,3vw,24px) clamp(18px,3vw,24px) 12px',
+          borderBottom: '1px solid var(--line)',
+        }}>
           <button
             type="button"
             onClick={onClose}
-            className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#f3f7ff] text-[#1e293b] transition hover:bg-[#e8f0ff]"
             aria-label={isEn ? 'Close' : 'Zamknij'}
+            style={{
+              position: 'absolute', top: 16, right: 16,
+              width: 32, height: 32, borderRadius: '50%',
+              background: 'var(--surface)', border: 'none', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: 'var(--ink)', transition: 'background .2s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.background = 'var(--brand-tint)')}
+            onMouseLeave={e => (e.currentTarget.style.background = 'var(--surface)')}
           >
-            <FiX className="h-4 w-4" />
+            <FiX size={16} />
           </button>
-          <span className="mb-1.5 inline-flex rounded-full bg-[#eef5ff] px-3 py-1 text-xs font-medium text-[#007aff]">
+
+          <span style={{
+            display: 'inline-flex', alignItems: 'center',
+            fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.72rem',
+            letterSpacing: '.14em', textTransform: 'uppercase',
+            color: 'var(--brand)', background: 'var(--brand-tint)',
+            border: '1px solid var(--brand-tint-2)',
+            borderRadius: 99, padding: '.3em .9em', marginBottom: 10,
+          }}>
             {isEn ? 'Free quote' : 'Bezpłatna wycena'}
           </span>
-          <h2 className="pr-8 text-base font-semibold tracking-[-0.02em] text-[#0f172a] sm:text-lg">
-            {isEn ? 'Tell me about your project' : 'Opowiedź mi o swoim projekcie'}
+
+          <h2 style={{
+            fontFamily: 'var(--fd)', fontWeight: 700,
+            fontSize: 'clamp(1rem,2.5vw,1.2rem)',
+            letterSpacing: '-.02em', color: 'var(--ink)',
+            paddingRight: 36, margin: 0,
+          }}>
+            {isEn ? 'Tell me about your project' : 'Opowiedz mi o swoim projekcie'}
           </h2>
         </div>
 
         {/* Form */}
-        <div className="px-5 pb-5 pt-2 sm:px-6 sm:pb-6">
+        <div style={{ padding: 'clamp(16px,3vw,24px)' }}>
           {status === 'error' && (
-            <div className="mb-3 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">
+            <div style={{
+              marginBottom: 16, borderRadius: 12,
+              border: '1px solid #fecaca', background: '#fef2f2',
+              padding: '10px 14px', fontSize: '.85rem',
+              fontFamily: 'var(--fb)', color: '#b91c1c',
+            }}>
               {isEn ? 'Oops… something went wrong. Please try again.' : 'Ups… nie udało się wysłać. Spróbuj ponownie.'}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-2.5">
-            <div className="grid gap-2.5 sm:grid-cols-2">
-              <div>
-                <label className={lbl}>{isEn ? 'Name' : 'Imię i nazwisko'}</label>
-                <input type="text" name="name" required value={form.name} onChange={handleChange}
-                  placeholder={isEn ? 'Your name' : 'Twoje imię'} className={inp} />
-              </div>
-              <div>
-                <label className={lbl}>E-mail</label>
-                <input type="email" name="email" required value={form.email} onChange={handleChange}
-                  placeholder="twoj@email.com" className={inp} />
-              </div>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+
+            {/* Name + Email */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+              <Field label={isEn ? 'Name' : 'Imię i nazwisko'}>
+                <input
+                  type="text" name="name" required
+                  value={form.name} onChange={handleChange}
+                  onFocus={handleFocus} onBlur={handleBlur}
+                  placeholder={isEn ? 'Your name' : 'Twoje imię'}
+                  style={inputStyle}
+                />
+              </Field>
+              <Field label="E-mail">
+                <input
+                  type="email" name="email" required
+                  value={form.email} onChange={handleChange}
+                  onFocus={handleFocus} onBlur={handleBlur}
+                  placeholder="twoj@email.com"
+                  style={inputStyle}
+                />
+              </Field>
             </div>
 
-            <div>
-              <label className={lbl}>{isEn ? 'Type of website' : 'Typ strony'}</label>
-              <select name="websiteType" value={form.websiteType} onChange={handleChange} className={inp}>
+            {/* Website type */}
+            <Field label={isEn ? 'Type of website' : 'Typ strony'}>
+              <select
+                name="websiteType"
+                value={form.websiteType} onChange={handleChange}
+                onFocus={handleFocus} onBlur={handleBlur}
+                style={inputStyle}
+              >
                 <option value="">{isEn ? 'Choose...' : 'Wybierz...'}</option>
                 <option value="Landing page">Landing page</option>
                 <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
@@ -124,24 +240,60 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 <option value="Sklep internetowy">{isEn ? 'Online store' : 'Sklep internetowy'}</option>
                 <option value="Nie wiem jeszcze">{isEn ? 'Not sure yet' : 'Nie wiem jeszcze'}</option>
               </select>
-            </div>
+            </Field>
 
-            <div>
-              <label className={lbl}>{isEn ? 'Project description' : 'Opis projektu'}</label>
-              <textarea name="message" required rows={3} value={form.message} onChange={handleChange}
+            {/* Budget */}
+            <Field label={isEn ? 'Approximate budget' : 'Orientacyjny budżet'}>
+              <select
+                name="budget"
+                value={form.budget} onChange={handleChange}
+                onFocus={handleFocus} onBlur={handleBlur}
+                style={inputStyle}
+              >
+                {budgetOptions.map(o => (
+                  <option key={o.value} value={o.value}>{o.label}</option>
+                ))}
+              </select>
+            </Field>
+
+            {/* Message */}
+            <Field label={isEn ? 'Project description' : 'Opis projektu'}>
+              <textarea
+                name="message" required rows={3}
+                value={form.message} onChange={handleChange}
+                onFocus={handleFocus} onBlur={handleBlur}
                 placeholder={isEn ? 'Briefly describe what you need.' : 'Napisz krótko, czego potrzebujesz.'}
-                className={`${inp} resize-none`} />
-            </div>
+                style={{ ...inputStyle, resize: 'none', lineHeight: 1.55 }}
+              />
+            </Field>
 
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="w-full min-h-[44px] rounded-full bg-[#007aff] px-6 py-2.5 text-sm font-medium text-white transition hover:-translate-y-0.5 hover:bg-[#006ae0] disabled:opacity-60"
+              style={{
+                width: '100%', minHeight: 48,
+                borderRadius: 99, border: 'none', cursor: 'pointer',
+                background: 'var(--brand)', color: '#fff',
+                fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.95rem',
+                transition: 'transform .2s, box-shadow .2s, opacity .2s',
+                opacity: status === 'sending' ? .6 : 1,
+              }}
+              onMouseEnter={e => {
+                if (status !== 'sending') {
+                  (e.currentTarget).style.transform = 'translateY(-2px)';
+                  (e.currentTarget).style.boxShadow = '0 14px 30px rgba(29,78,216,.38)';
+                }
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget).style.transform = '';
+                (e.currentTarget).style.boxShadow = '';
+              }}
             >
               {status === 'sending'
-                ? isEn ? 'Sending...' : 'Wysyłanie...'
-                : isEn ? 'Send request' : 'Wyślij zapytanie'}
+                ? isEn ? 'Sending…' : 'Wysyłanie…'
+                : isEn ? 'Send request →' : 'Wyślij zapytanie →'}
             </button>
+
           </form>
         </div>
       </div>
