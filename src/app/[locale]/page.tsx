@@ -5,7 +5,7 @@ import Footer     from '@/components/Footer';
 
 const ClientMarquee    = dynamic(() => import('@/components/ClientMarquee'));
 const FeaturedProjects = dynamic(() => import('@/components/FeaturedProjects'));
-const Pricing          = dynamic(() => import('@/components/Pricing'));
+const PricingBanner = dynamic(() => import('@/components/PricingBanner'));
 const ProcessSection   = dynamic(() => import('@/components/ProcessSection'));
 const WhyUs            = dynamic(() => import('@/components/WhyUs'));
 const FAQ              = dynamic(() => import('@/components/FAQ'));
