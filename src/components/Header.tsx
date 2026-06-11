@@ -8,6 +8,7 @@ import PaperPlaneButton from '@/components/PaperPlane';
 import dynamic from 'next/dynamic';
 
 const QuoteModal = dynamic(() => import('@/components/QuoteModal'), { ssr: false });
+const DropdownMenu = dynamic(() => import('@/components/DropdownMenu'), { ssr: false });
 
 interface HeaderProps { isOpen: boolean; toggleMenu: () => void; }
 
@@ -65,6 +66,27 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
         .nav-links    { display: flex !important; align-items: center; gap: 2px; }
         .nav-cta-btn  { display: inline-flex !important; }
         .nav-burger   { display: none !important; }
+        .nav-quote-btn {
+          font-family: var(--fd);
+          font-weight: 600;
+          font-size: .88rem;
+          background: transparent;
+          color: var(--brand);
+          border: 1.5px solid var(--brand);
+          border-radius: 99px;
+          padding: .6em 1.3em;
+          cursor: pointer;
+          white-space: nowrap;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          transition: background .18s, color .18s, border-color .18s;
+        }
+        .nav-quote-btn:hover {
+          background: var(--brand);
+          color: #fff;
+          border-color: var(--brand);
+        }
         @media (max-width: 1023px) {
           .nav-links   { display: none !important; }
           .nav-cta-btn { display: inline-flex !important; }
@@ -109,6 +131,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
           {/* Right side */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
             <LangSwitcher />
+
             <PaperPlaneButton
               onClick={() => setBriefOpen(true)}
               className="nav-cta-btn"
@@ -118,6 +141,14 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
             >
               {isEn ? 'Start a project' : 'Rozpocznij projekt'}
             </PaperPlaneButton>
+
+            <Link
+              href="/wycena"
+              locale={locale}
+              className="nav-quote-btn nav-cta-btn"
+            >
+              {isEn ? 'Get a quote' : 'Wycena'}
+            </Link>
 
             {/* Burger */}
             <button className="nav-burger" onClick={toggleMenu} aria-label={isOpen ? 'Zamknij menu' : 'Otwórz menu'}
@@ -130,6 +161,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
         </div>
       </nav>
 
+      <DropdownMenu isOpen={isOpen} toggleMenu={toggleMenu} />
       <QuoteModal isOpen={briefOpen} onClose={() => setBriefOpen(false)} />
     </>
   );

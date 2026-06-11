@@ -40,7 +40,7 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 
 body {
   font-family: var(--fb);
@@ -61,6 +61,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 *::-webkit-scrollbar-track { background: transparent; }
 *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 99px; }
 * { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+
+.qw-sidebar { scrollbar-width: none !important; }
 
 /* ---------- Skip link ---------- */
 .skip-link {
@@ -114,4 +116,13 @@ body.is-locked { overflow: hidden !important; }
 
 .fade-up {
   animation: fadeUp .55s cubic-bezier(.22,1,.36,1) both;
+}
+
+.nav-quote-btn {
+  transition: background .18s, color .18s, border-color .18s;
+}
+.nav-quote-btn:hover {
+  background: var(--brand);
+  color: #fff;
+  border-color: var(--brand);
 }

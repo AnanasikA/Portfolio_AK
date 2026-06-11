@@ -246,7 +246,6 @@
   "imageAlt": "{title} — długi zrzut strony"
 },
 
-
 "thankYou": {
   "badge": "Wiadomość wysłana",
   "title": "Dziękuję za kontakt!",
@@ -258,6 +257,79 @@
   "step2": "Analiza zakresu",
   "step3": "Odpowiedź wkrótce"
 },
+
+  "calculator": {
+    "badge": "AK Web & Design",
+    "title": "Sprawdź ile kosztuje Twoja strona — bez sprzedawcy, bez presji.",
+    "subtitle": "Skonfiguruj projekt krok po kroku. Wycena aktualizuje się na żywo. Ostateczną, stałą cenę potwierdzam po krótkiej rozmowie — gwarantuję, że się nie zmieni.",
+    "step1": "Co chcesz osiągnąć?",
+    "step2": "Ile podstron?",
+    "step3": "Czego potrzebujesz?",
+    "step3hint": "Opcjonalnie",
+    "step4": "Kiedy potrzebujesz gotowej strony?",
+    "extraPages": "+{count} dodatkowych podstron ponad pakiet (+{price} zł)",
+    "sidebarTitle": "TWOJA WYCENA",
+    "sidebarFrom": "od {price} zł",
+    "sidebarRange": "{low} – {high} zł",
+    "sidebarNote": "szacowany zakres · netto",
+    "careLabel": "Opieka miesięczna",
+    "careSuffix": "/ mies.",
+    "cta": "Wyślij wycenę — odezwę się jutro →",
+    "ctaEmailPre": "lub",
+    "ctaEmailLink": "napisz bezpośrednio na e-mail",
+    "guarantee1": "Cena nie zmieni się po konsultacji",
+    "guarantee2": "Odpowiedź w ciągu 24h",
+    "guarantee3": "Bez zobowiązań · Bez spamu",
+    "speed_standard_label": "W normalnym tempie",
+    "speed_standard_sub": "4–6 tygodni",
+    "speed_priority_label": "Ekspresowo",
+    "speed_priority_sub": "2–3 tygodnie",
+    "speed_priority_badge": "+25%",
+    "breakdown_pages": "+{count} dodatkowych podstron",
+    "breakdown_priority": "Realizacja ekspresowa (+25%)",
+    "modalTitle": "Wyślij wycenę",
+    "modalSubtitle": "Uzupełnij dane — odezwę się z ostateczną ofertą. Bez zobowiązań.",
+    "fieldName": "Imię i nazwisko *",
+    "fieldEmail": "E-mail *",
+    "fieldPhone": "Telefon",
+    "fieldCompany": "Firma",
+    "fieldMessage": "Dodatkowe uwagi",
+    "fieldMessagePlaceholder": "Termin, dodatkowe wymagania…",
+    "fieldNamePlaceholder": "Jan Kowalski",
+    "fieldEmailPlaceholder": "jan@firma.pl",
+    "fieldPhonePlaceholder": "+48 500 000 000",
+    "fieldCompanyPlaceholder": "Nazwa firmy (opcjonalnie)",
+    "submit": "Wyślij wycenę — odezwę się jutro →",
+    "submitting": "Wysyłanie…",
+    "submitNote": "Bez zobowiązań · Bez spamu · Odpowiedź w 24h",
+    "successTitle": "Wycena wysłana!",
+    "successDesc": "Odezwę się w ciągu 1–2 dni roboczych z ostateczną ofertą.",
+    "errorMsg": "Coś poszło nie tak. Napisz bezpośrednio: kontakt@anastasiiakupriianets.pl",
+    "siteTypes": {
+      "landing":   { "label": "Landing page",          "desc": "Jedna strona, jeden cel — maksymalna konwersja.",                  "subdesc": "Idealny dla kampanii, produktu lub usługi." },
+      "business":  { "label": "Strona firmowa",         "desc": "Wielopodstronowa strona która sprzedaje Twoją firmę 24/7.",        "subdesc": "O nas, usługi, kontakt, blog — wszystko w jednym miejscu." },
+      "wordpress": { "label": "Strona na WordPress",    "desc": "Edytujesz treści samodzielnie, bez programisty.",                  "subdesc": "Prosty panel, pełna kontrola nad contentem." },
+      "redesign":  { "label": "Odświeżenie strony",     "desc": "Nowy wygląd, ta sama treść — bez przepisywania od zera.",         "subdesc": "Szybciej i taniej niż nowa strona." },
+      "premium":   { "label": "Premium i Custom",       "desc": "Autorski projekt, animacje, zaawansowane funkcje.",                "subdesc": "Dla firm które chcą wyróżniać się na tle konkurencji." }
+    },
+    "extras": {
+      "seo":      { "label": "SEO — znajdź się w Google",        "desc": "Meta tagi, sitemap, robots, OG — gotowe pod wyszukiwarki." },
+      "copy":     { "label": "Copywriting",                       "desc": "Teksty na wszystkie podstrony, gotowe do publikacji." },
+      "booking":  { "label": "System rezerwacji online",          "desc": "Klienci umawiają się sami — bez telefonu, bez e-maili." },
+      "shop":     { "label": "Sklep online",                      "desc": "Produkty, koszyk, płatności — kompletny e-commerce." },
+      "lang":     { "label": "Dodatkowa wersja językowa",         "desc": "Strona w dwóch językach — np. PL + EN." },
+      "blog":     { "label": "Blog / aktualności",                "desc": "Budujesz autorytet i przyciągasz ruch z Google." },
+      "branding": { "label": "Logo i identyfikacja wizualna",     "desc": "Logotyp, paleta kolorów, typografia — spójny brand." },
+      "care":     { "label": "Opieka miesięczna",                 "desc": "Drobne zmiany, aktualizacje, spokój głowy — do 1h/mies." }
+    },
+    "pageOptions": {
+      "1":  { "label": "1 podstrona",    "hint": "Landing page" },
+      "3":  { "label": "2–3 podstrony",  "hint": "Start, Usługi, Kontakt" },
+      "5":  { "label": "4–6 podstron",   "hint": "Typowa strona firmowa" },
+      "10": { "label": "7–12 podstron",  "hint": "Rozbudowany serwis" },
+      "15": { "label": "13+",            "hint": "Duży projekt" }
+    }
+  },
 
 "projects": {
   "biuro-ksiegowe": {
