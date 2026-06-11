@@ -18,7 +18,7 @@ export default function Home() {
         <Hero />
         <ClientMarquee />
         <FeaturedProjects />
-        <Pricing />
+        <PricingBanner />
         <ProcessSection />
         <WhyUs />
         <FAQ />
