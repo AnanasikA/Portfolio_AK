@@ -185,16 +185,16 @@
   "cookies": "Cookies",
   "legal_aria": "Legal links"
 },
-  "cookie": {
-    "message": "We use cookies to ensure the best experience on our website.",
-    "accept": "Accept",
-    "decline": "Decline",
-    "learn_more": "Learn more"
-  },
-  "meta": {
-    "title": "Anastasiia | Portfolio",
-    "description": "Front-End Developer portfolio (Next.js, Tailwind). UX/UI, performance and accessibility."
-  },  
+ "cookie": {
+  "message": "We use cookies to ensure the best experience on our website.",
+  "accept": "Accept",
+  "decline": "Decline",
+  "learn_more": "Learn more"
+},
+"meta": {
+  "title": "Anastasiia | Portfolio",
+  "description": "Front-End Developer Portfolio (Next.js, Tailwind). UX/UI, performance, and accessibility."
+}, 
   "projectsPage": {
     "ariaLabel": "Projects",
     "title": "My projects online",
@@ -223,7 +223,7 @@
   "cookieContent": {
     "text": "We use cookies for analytics and to improve the website.",
     "accept": "Accept",
-  "decline": "Odrzuć"
+  "decline": "Decline"
   },
 
   "projectDetail": {
