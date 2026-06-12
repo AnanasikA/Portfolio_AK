@@ -220,12 +220,13 @@
     "closeAria": "Close menu",
     "smallText": "Modern websites for businesses across Poland."
   },
-  "cookieContent": {
-    "text": "We use cookies for analytics and to improve the website.",
+ 
+  "cookieConsent": {
+    "text": "We use cookies to ensure the best experience on our website.",
     "accept": "Accept",
-  "decline": "Decline"
+    "decline": "Decline",
+    "learn_more": "Learn more"
   },
-
   "projectDetail": {
   "overviewTitle": "About the project",
   "timeframeLabel": "Timeline",
