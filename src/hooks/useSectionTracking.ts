@@ -2,12 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
-
 /**
  * Śledzi czas spędzony w sekcji i wysyła eventy do GA4.
  * Użycie: const ref = useSectionTracking("hero");
@@ -27,7 +21,8 @@ export function useSectionTracking(sectionName: string) {
           enterTime.current = Date.now();
 
           // GA4: sekcja weszła w viewport
-          window.gtag?.("event", "section_view", {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (window as any).gtag?.("event", "section_view", {
             section_name: sectionName,
           });
         } else if (enterTime.current) {
@@ -37,7 +32,8 @@ export function useSectionTracking(sectionName: string) {
 
           // GA4: czas spędzony w sekcji (tylko jeśli >= 2s żeby nie śmiecić)
           if (timeSpentSec >= 2) {
-            window.gtag?.("event", "section_time_spent", {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (window as any).gtag?.("event", "section_time_spent", {
               section_name: sectionName,
               time_seconds: timeSpentSec,
             });
