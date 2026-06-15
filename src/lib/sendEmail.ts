@@ -126,20 +126,76 @@ export async function sendEmail(data: EmailData): Promise<{ ok: boolean; error?:
     </div>
   `;
 
+try {
+  const info = await transporter.sendMail({
+    from: `"Portfolio AK" <${process.env.SMTP_USER}>`,
+    to: process.env.SMTP_TO,
+    replyTo: email,
+    subject: isEn
+      ? `New quote request from ${name}`
+      : `Nowe zapytanie od ${name}`,
+    html,
+  });
+
+  const logHtml = `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+      <h2>Log wysyłki formularza</h2>
+      <p><strong>Status:</strong> OK</p>
+      <p><strong>Data:</strong> ${new Date().toISOString()}</p>
+      <p><strong>Message ID:</strong> ${info.messageId || 'brak'}</p>
+      <p><strong>SMTP response:</strong> ${info.response || 'brak'}</p>
+      <p><strong>Od użytkownika:</strong> ${name}</p>
+      <p><strong>Email użytkownika:</strong> ${email}</p>
+      <p><strong>Telefon:</strong> ${phone || 'brak'}</p>
+      <p><strong>Typ strony:</strong> ${site_type || 'brak'}</p>
+      <p><strong>Budżet:</strong> ${budget || 'brak'}</p>
+      <p><strong>Logo:</strong> ${has_logo || 'brak'}</p>
+      <p><strong>Locale:</strong> ${locale || 'brak'}</p>
+      <p><strong>Wysłano do:</strong> ${process.env.SMTP_TO}</p>
+    </div>
+  `;
+
+  await transporter.sendMail({
+    from: `"Portfolio AK Logs" <${process.env.SMTP_USER}>`,
+    to: process.env.SMTP_TO,
+    subject: `LOG: formularz wysłany — ${name}`,
+    html: logHtml,
+  });
+
+  console.log('Email sent successfully:', {
+    messageId: info.messageId,
+    response: info.response,
+    to: process.env.SMTP_TO,
+    replyTo: email,
+    name,
+    date: new Date().toISOString(),
+  });
+
+  return { ok: true };
+} catch (error) {
+  console.error('Email send error:', error);
+
   try {
     await transporter.sendMail({
-      from: `"Portfolio AK" <${process.env.SMTP_USER}>`,
+      from: `"Portfolio AK Logs" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_TO,
-      replyTo: email,
-      subject: isEn
-        ? `New quote request from ${name}`
-        : `Nowe zapytanie od ${name}`,
-      html,
+      subject: `ERROR: formularz nie został wysłany`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+          <h2>Błąd wysyłki formularza</h2>
+          <p><strong>Data:</strong> ${new Date().toISOString()}</p>
+          <p><strong>Błąd:</strong> ${String(error)}</p>
+          <p><strong>Od użytkownika:</strong> ${name}</p>
+          <p><strong>Email użytkownika:</strong> ${email}</p>
+          <p><strong>Wiadomość:</strong></p>
+          <pre>${message}</pre>
+        </div>
+      `,
     });
-
-    return { ok: true };
-  } catch (error) {
-    console.error('Email send error:', error);
-    return { ok: false, error: String(error) };
+  } catch (logError) {
+    console.error('Log email send error:', logError);
   }
+
+  return { ok: false, error: String(error) };
+}
 }
