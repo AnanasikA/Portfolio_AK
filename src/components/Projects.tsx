@@ -121,7 +121,7 @@ const categoryMap: Record<string, string[]> = {
   realestate: ['crescent-development', 'realestate'],
   tourism:    ['luisowka'],
   wellness:   ['spiro-pilates-mobility', 'zdrowie-plus'],
-  personal:   ['photographer', 'luxenails', 'quest-for-paws', 'studybuddy'],
+  personal: ['photographer', 'luxenails', 'quest-for-paws', 'studybuddy', 'marcin-kowal'],
 };
   const totalPages = Math.ceil(projects.length / PER_PAGE);
   const safePage   = Math.min(Math.max(currentPage, 1), Math.max(totalPages, 1));
@@ -431,6 +431,7 @@ function ProjectCard({ project, index, tProjects, tPage, locale }: {
   const href        = `/projects/${project.slug}`;
 
 const categoryLabels: Record<string, { pl: string; en: string }> = {
+  'marcin-kowal': { pl: 'Marka osobista', en: 'Personal brand' },
   'biuro-ksiegowe':         { pl: 'Strona firmowa',         en: 'Business website' },
   'crescent-development':   { pl: 'Deweloper nieruchomości', en: 'Real estate' },
   'luisowka':               { pl: 'Turystyka i noclegi',     en: 'Tourism & stays' },

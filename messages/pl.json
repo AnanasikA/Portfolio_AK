@@ -29,13 +29,13 @@
   "askQuote": "Zapytaj o wycenę",
 
   "projects": {
-    "spiro": {
-      "title": "Spiro Pilates & Mobility",
-      "category": "Strona dla studia pilates",
-      "description": "Nowoczesna strona usługowa z przejrzystą ofertą i harmonogramem zajęć.",
-       "stat1": "więcej zapisów",
-        "stat2": "14 dni"
-    },
+   "marcinkowal": {
+  "category": "Marka osobista",
+  "title": "Marcin Kowal – Trener Personalny",
+  "description": "Strona dla trenera personalnego w Warszawie. Bold typografia, animacje przy scrollu i popup z formularzem przy wyborze planu.",
+  "stat1": "sekcji z animacjami",
+  "stat2": "responsywna"
+},
 
     "crescent": {
       "title": "Crescent Development",
@@ -332,6 +332,27 @@
   },
 
 "projects": {
+  "marcin-kowal": {
+  "title": "Marcin Kowal – Trener Personalny",
+  "description": "Strona internetowa dla trenera personalnego z Warszawy. Bold typografia, animowane sekcje i interaktywny formularz kontaktowy.",
+  "overview": "Projekt strony dla trenera personalnego Marcina Kowala, zaprojektowanej w atletycznym, odważnym stylu — czarne tło, masywna typografia i pomarańczowy akcent marki.",
+  "workTitle": "Zakres prac",
+  "work": ["Projekt UX/UI w stylu bold & athletic", "Kodowanie w Next.js 14 + Tailwind CSS", "Animacje CSS przy scrollu (IntersectionObserver)", "Interaktywny popup z formularzem kontaktowym", "Ticker, count-up numbers, hero z animacją typografii", "Responsywność mobile-first"],
+  "resultsTitle": "Efekt",
+  "timeframeLabel": "Czas realizacji",
+  "timeframe": "1–2 tygodnie",
+  "highlights": ["Wyraźna identyfikacja wizualna trenera", "Wysoka konwersja dzięki CTA i formularzowi w popupie", "Szybkie ładowanie i pełna responsywność", "Animacje angażujące użytkownika na każdej sekcji"],
+  "challengesTitle": "Wyzwania",
+  "challenges": [
+    { "problem": "Strona musiała wyglądać premium i atletycznie jednocześnie.", "solution": "Masywna typografia clamp(), outline text, pomarańczowy akcent jako jedyny kolor." },
+    { "problem": "Duża ilość treści bez przytłoczenia użytkownika.", "solution": "Podział na sekcje z animowanym wjazdem — każda pojawia się dopiero przy scrollu." },
+    { "problem": "Konwersja — zachęcenie do kontaktu.", "solution": "Popup z formularzem otwierający się po kliknięciu planu cenowego — zero kliknięć do zapytania." }
+  ],
+  "decisionsTitle": "Decyzje projektowe",
+  "decisions": ["Next.js 14 App Router dla wydajności", "Tailwind CSS zamiast Framer Motion — czyste CSS transitions", "Barlow Condensed jako font display — atletyczny charakter", "Czarne tło + jeden kolor akcent = mocna identyfikacja"],
+  "integrationsTitle": "Integracje",
+  "integrations": ["Formularz kontaktowy w modalu", "Animowany ticker i count-up numbers", "Responsywny popup z planem cenowym", "Scroll-triggered animations"]
+},
   "biuro-ksiegowe": {
   "title": "Nowoczesne Biuro Księgowe",
   "description": "Nowoczesna strona internetowa dla biura księgowego, zaprojektowana w lekkim, przejrzystym stylu z naciskiem na zaufanie, czytelność oferty i generowanie kontaktów.",

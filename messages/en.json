@@ -29,13 +29,13 @@
   "allProjects": "View all projects",
 
   "projects": {
-    "spiro": {
-      "title": "Spiro Pilates & Mobility",
-      "category": "Website for a pilates studio",
-      "description": "A modern service website with a clear offer and class schedule.",
-      "stat1": "more bookings",
-      "stat2": "14 days"
-    },
+    "marcinkowal": {
+  "category": "Personal brand",
+  "title": "Marcin Kowal – Personal Trainer",
+  "description": "Website for a Warsaw-based personal trainer. Bold typography, scroll animations and a contact popup triggered by pricing plan selection.",
+  "stat1": "animated sections",
+  "stat2": "fully responsive"
+},
 
     "crescent": {
       "title": "Crescent Development",
@@ -330,6 +330,27 @@
 
 
 "projects": {
+  "marcin-kowal": {
+  "title": "Marcin Kowal – Personal Trainer",
+  "description": "Website for a Warsaw-based personal trainer. Bold typography, animated sections and an interactive contact popup.",
+  "overview": "A website for personal trainer Marcin Kowal, designed in an athletic, bold style — black background, massive typography and an orange brand accent.",
+  "workTitle": "Scope of work",
+  "work": ["UX/UI design in bold & athletic style", "Next.js 14 + Tailwind CSS development", "Scroll-triggered CSS animations (IntersectionObserver)", "Interactive popup with contact form", "Ticker, count-up numbers, animated typography hero", "Mobile-first responsiveness"],
+  "resultsTitle": "Results",
+  "timeframeLabel": "Timeline",
+  "timeframe": "1–2 weeks",
+  "highlights": ["Strong visual identity for the trainer", "High conversion thanks to CTA and popup form", "Fast loading and full responsiveness", "Animations engaging users throughout the page"],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    { "problem": "The site needed to look premium and athletic at the same time.", "solution": "Massive clamp() typography, outline text and orange as the single accent color." },
+    { "problem": "A lot of content without overwhelming the user.", "solution": "Sections split with animated entrances — each appears only on scroll." },
+    { "problem": "Conversion — encouraging visitors to get in touch.", "solution": "Popup with a contact form that opens when clicking a pricing plan — zero extra clicks to inquiry." }
+  ],
+  "decisionsTitle": "Design decisions",
+  "decisions": ["Next.js 14 App Router for performance", "Tailwind CSS over Framer Motion — pure CSS transitions", "Barlow Condensed as display font — athletic character", "Black background + single accent color = strong identity"],
+  "integrationsTitle": "Integrations",
+  "integrations": ["Contact form inside modal", "Animated ticker and count-up numbers", "Responsive pricing plan popup", "Scroll-triggered animations"]
+},
   "biuro-ksiegowe": {
   "title": "Modern Accounting Office",
   "description": "A modern website for an accounting office, designed in a clean and professional style with a focus on trust, clarity of services, and generating client inquiries.",

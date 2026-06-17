@@ -33,17 +33,17 @@ export default function FeaturedProjects() {
   const ryRef     = useRef(0);
 
   const projects = [
-    {
-      index: '01', cat: t('projects.spiro.category'), title: t('projects.spiro.title'),
-      chips: ['Harmonogram zajęć', 'Czytelna oferta', 'WordPress'],
-      desc: t('projects.spiro.description'),
-      stats: [
-        { num: '50%',    label: t('projects.spiro.stat1')    ?? 'więcej zapisów' },
-        { num: '14 dni', label: t('projects.spiro.stat2')    ?? 'od briefu do startu' },
-      ],
-      image: '/projects/spiro/hero.webp',
-      href: '/projects/spiro-pilates-mobility',
-    },
+   {
+  index: '01', cat: t('projects.marcinkowal.category'), title: t('projects.marcinkowal.title'),
+  chips: ['Bold typografia', 'Animacje CSS', 'Next.js'],
+  desc: t('projects.marcinkowal.description'),
+  stats: [
+    { num: '5',    label: t('projects.marcinkowal.stat1') ?? 'sekcji z animacjami' },
+    { num: '100%', label: t('projects.marcinkowal.stat2') ?? 'responsywna' },
+  ],
+  image: '/projects/marcin-kowal1.webp',
+  href: '/projects/marcin-kowal',
+},
     {
       index: '02', cat: t('projects.crescent.category'), title: t('projects.crescent.title'),
       chips: ['Prezentacja inwestycji', 'Pozyskiwanie leadów', 'Next.js'],

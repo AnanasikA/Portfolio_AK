@@ -9,6 +9,20 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
+    slug: 'marcin-kowal',
+    image: '/projects/marcin-kowal1.webp',
+    cardImage: '/projects/marcin-kowal.webp',
+    tech: [
+      'Next.js',
+      'Tailwind CSS',
+      'TypeScript',
+      'CSS Animations',
+      'Responsive Design',
+      'UI/UX Design',
+    ],
+    link: 'https://marcin-kowal.vercel.app/',
+  },
+  {
   slug: 'biuro-ksiegowe',
   image: '/projects/BiuroKsiegowe1.webp',
   cardImage: '/projects/BiuroKsiegowe.webp',
