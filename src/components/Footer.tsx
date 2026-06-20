@@ -3,6 +3,9 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
+type NavLink = { label: string; href: string; external?: boolean };
+type NavCol = { head: string; links: NavLink[] };
+
 export default function Footer() {
   const t = useTranslations('footer');
   const locale = useLocale();
@@ -20,14 +23,14 @@ export default function Footer() {
     contactPoint: [{ '@type': 'ContactPoint', contactType: isEn ? 'customer support' : 'obsługa klienta', email, availableLanguage: ['Polish', 'English'] }],
   };
 
-  const cols = [
+  const cols: NavCol[] = [
     {
       head: isEn ? 'Navigation' : 'Nawigacja',
       links: [
         { label: isEn ? 'Home' : 'Start', href: '/' },
-        { label: isEn ? 'Projects' : 'Projekty', href: '/projects' },
+        { label: isEn ? 'Projects' : 'Projekty', href: '/#projects' },
         { label: isEn ? 'Process' : 'Proces', href: '/#process' },
-        { label: isEn ? 'Pricing' : 'Cennik', href: '/#pricing' },
+        { label: isEn ? 'Estimate' : 'Wycena', href: '/wycena' },
         { label: 'FAQ', href: '/#faq' },
       ],
     },
@@ -112,7 +115,7 @@ export default function Footer() {
                         {label}
                       </a>
                     ) : (
-                      <Link href={href as string} className="ft-link" style={linkStyle}>
+                      <Link href={href} className="ft-link" style={linkStyle}>
                         {label}
                       </Link>
                     )}
