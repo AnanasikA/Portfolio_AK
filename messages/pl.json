@@ -44,13 +44,12 @@
       "stat1": "więcej zapytań",
       "stat2": "leadów"
     },
-
-    "accounting": {
-  "title": "Biuro Rachunkowe",
-  "category": "Strona dla biura rachunkowego",
-  "description": "Profesjonalna strona z ofertą usług księgowych, informacjami dla klientów i formularzem kontaktowym.",
-  "stat1": "więcej zapytań",
-  "stat2": "prostszy kontakt"
+"accounting": {
+  "category": "Biuro księgowe",
+  "title": "Strona biura księgowego",
+  "description": "Profesjonalna strona biura rachunkowego z ofertą usług, formularzem kontaktowym i integracją Google Maps.",
+  "stat1": "Czytelna oferta",
+  "stat2": "Łatwy kontakt"
 }
   }
 },

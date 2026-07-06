@@ -1,28 +1,58 @@
 'use client';
 
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
 interface Props { isOpen: boolean; toggleMenu: () => void; }
 
+const SERVICE_LINKS_PL = [
+  { href: '/services/tworzenie-stron-internetowych', label: 'Tworzenie stron' },
+  { href: '/services/projektowanie-stron',           label: 'Projektowanie stron' },
+  { href: '/services/strony-dla-firm',               label: 'Strony dla firm' },
+  { href: '/services/wordpress',                     label: 'WordPress' },
+  { href: '/services/landing-page',                  label: 'Landing page' },
+  { href: '/services/sklepy-internetowe',            label: 'Sklepy internetowe' },
+  { href: '/services/administracja-stron',           label: 'Administracja stron' },
+  { href: '/services/opieka-nad-stronami',           label: 'Opieka nad stronami' },
+  { href: '/services/modernizacja-stron',            label: 'Modernizacja stron' },
+];
+
+const SERVICE_LINKS_EN = [
+  { href: '/services/tworzenie-stron-internetowych', label: 'Website Development' },
+  { href: '/services/projektowanie-stron',           label: 'Web Design' },
+  { href: '/services/strony-dla-firm',               label: 'Business Websites' },
+  { href: '/services/wordpress',                     label: 'WordPress' },
+  { href: '/services/landing-page',                  label: 'Landing Pages' },
+  { href: '/services/sklepy-internetowe',            label: 'Online Stores' },
+  { href: '/services/administracja-stron',           label: 'Website Administration' },
+  { href: '/services/opieka-nad-stronami',           label: 'Website Care' },
+  { href: '/services/modernizacja-stron',            label: 'Website Redesign' },
+];
+
 export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
-  const locale = useLocale();
-  const isEn = locale === 'en';
+  const locale           = useLocale();
+  const isEn             = locale === 'en';
+  const [servOpen, setServOpen] = useState(false);
+
+  const serviceLinks = isEn ? SERVICE_LINKS_EN : SERVICE_LINKS_PL;
 
   const links = [
-    { href: '/',          label: isEn ? 'Home'       : 'Start'        },
-    { href: '/projects',  label: isEn ? 'Work'       : 'Projekty'     },
-    { href: '/#process',  label: isEn ? 'Process'    : 'Proces'       },
-    { href: '/#why-us',   label: isEn ? 'Why us'     : 'Dlaczego my'  },
-    { href: '/blog',      label: 'Blog'                               },
-    { href: '/#contact',  label: isEn ? 'Contact'    : 'Kontakt'      },
+    { href: '/',         label: isEn ? 'Home'    : 'Start'       },
+    { href: '/projects', label: isEn ? 'Work'    : 'Projekty'    },
+    { href: '/#process', label: isEn ? 'Process' : 'Proces'      },
+    { href: '/#why-us',  label: isEn ? 'Why us'  : 'Dlaczego my' },
+    // Usługi accordion wchodzi po tym — renderowane osobno
+    { href: '/blog',     label: 'Blog'                           },
+    { href: '/#contact', label: isEn ? 'Contact' : 'Kontakt'    },
   ];
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
+          {/* Overlay */}
           <motion.div
             key="overlay"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -30,6 +60,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
             style={{ position: 'fixed', inset: 0, zIndex: 90, background: 'rgba(0,0,0,.45)', backdropFilter: 'blur(4px)' }}
           />
 
+          {/* Panel */}
           <motion.div
             key="panel"
             initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
@@ -43,7 +74,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
               boxSizing: 'border-box',
             }}
           >
-            {/* top row */}
+            {/* Top row */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 40, flexShrink: 0 }}>
               <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '1rem', color: '#fff', letterSpacing: '-.01em' }}>
                 AK Web & Design
@@ -56,9 +87,11 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
               </button>
             </div>
 
-            {/* links */}
+            {/* Links */}
             <nav style={{ flex: 1, overflowY: 'auto' }}>
-              {links.map(({ href, label }, i) => (
+
+              {/* Start, Projekty, Proces, Dlaczego my */}
+              {links.slice(0, 4).map(({ href, label }, i) => (
                 <motion.div
                   key={href}
                   initial={{ opacity: 0, x: 20 }}
@@ -73,9 +106,112 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
                   </Link>
                 </motion.div>
               ))}
-            </nav>
 
-            {/* bottom */}
+              {/* Usługi — accordion */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 4 * 0.05 + 0.1 }}
+              >
+                {/* Trigger */}
+                <button
+                  onClick={() => setServOpen(v => !v)}
+                  style={{
+                    width:       '100%',
+                    display:     'flex',
+                    alignItems:  'center',
+                    justifyContent: 'space-between',
+                    padding:     '15px 4px',
+                    fontFamily:  'var(--fd)',
+                    fontWeight:  600,
+                    fontSize:    '1.25rem',
+                    color:       'rgba(255,255,255,.88)',
+                    letterSpacing: '-.01em',
+                    borderBottom: '1px solid rgba(255,255,255,.1)',
+                    background:  'transparent',
+                    border:      'none',
+                    borderBottomWidth: '1px',
+                    borderBottomStyle: 'solid',
+                    borderBottomColor: 'rgba(255,255,255,.1)',
+                    cursor:      'pointer',
+                    textAlign:   'left',
+                  }}
+                  aria-expanded={servOpen}
+                >
+                  {isEn ? 'Services' : 'Usługi'}
+                  <svg
+                    width="16" height="16" viewBox="0 0 16 16" fill="none"
+                    style={{ transition: 'transform .25s', transform: servOpen ? 'rotate(180deg)' : 'none', flexShrink: 0 }}
+                  >
+                    <path d="M3 6L8 11L13 6" stroke="rgba(255,255,255,.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+
+                {/* Accordion body */}
+                <AnimatePresence>
+                  {servOpen && (
+                    <motion.div
+                      key="services-list"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: 'easeInOut' }}
+                      style={{ overflow: 'hidden' }}
+                    >
+                      <div style={{ paddingLeft: 12, paddingBottom: 4, paddingTop: 4 }}>
+                        {serviceLinks.map(({ href, label }, i) => (
+                          <motion.div
+                            key={href}
+                            initial={{ opacity: 0, x: 10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.03 }}
+                          >
+                            <Link
+                              href={href}
+                              onClick={toggleMenu}
+                              style={{
+                                display:     'block',
+                                padding:     '11px 4px',
+                                fontFamily:  'var(--fd)',
+                                fontWeight:  500,
+                                fontSize:    '1rem',
+                                color:       'rgba(255,255,255,.72)',
+                                letterSpacing: '-.01em',
+                                borderBottom: '1px solid rgba(255,255,255,.07)',
+                                textDecoration: 'none',
+                                transition:  'color .15s',
+                              }}
+                              onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,.72)')}
+                            >
+                              {label}
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
+              {/* Blog, Kontakt */}
+              {links.slice(4).map(({ href, label }, i) => (
+                <motion.div
+                  key={href}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: (5 + i) * 0.05 + 0.1 }}
+                >
+                  <Link
+                    href={href}
+                    onClick={toggleMenu}
+                    style={{ display: 'block', padding: '15px 4px', fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '1.25rem', color: 'rgba(255,255,255,.88)', letterSpacing: '-.01em', borderBottom: '1px solid rgba(255,255,255,.1)', textDecoration: 'none' }}>
+                    {label}
+                  </Link>
+                </motion.div>
+              ))}
+
+            </nav>
             <div style={{ marginTop: 32, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
               <button
                 onClick={() => { toggleMenu(); window.dispatchEvent(new Event('open-brief')); }}

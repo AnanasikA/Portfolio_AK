@@ -44,14 +44,13 @@
       "stat1": "more inquiries",
       "stat2": "qualified leads"
     },
-
-    "luisowka": {
-      "title": "Luisówka",
-      "category": "Website for a mountain cabin rental",
-      "description": "A cozy website with a gallery, offer section and reservation form.",
-      "stat1": "more direct bookings",
-      "stat2": "better occupancy"
-    }
+"accounting": {
+  "category": "Accounting Office",
+  "title": "Accounting Office Website",
+  "description": "A professional website for an accounting office with a clear service offer, contact form and Google Maps integration.",
+  "stat1": "Clear offer",
+  "stat2": "Easy contact"
+}
   }
 },
 "pricing": {
