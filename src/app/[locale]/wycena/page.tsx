@@ -10,13 +10,13 @@ import Footer from '@/components/Footer';
 const SITE_TYPES = [
   { id: 'landing',   base: 1500, pages: 1,  pricePerPage: 0,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> },
-  { id: 'business',  base: 2800, pages: 5,  pricePerPage: 400,
+  { id: 'business',  base: 2500, pages: 5,  pricePerPage: 400,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg> },
-  { id: 'wordpress', base: 2400, pages: 5,  pricePerPage: 350,
+  { id: 'wordpress', base: 2600, pages: 5,  pricePerPage: 350,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4"/></svg> },
-  { id: 'redesign',  base: 2000, pages: 5,  pricePerPage: 300,
+  { id: 'redesign',  base: 1800, pages: 5,  pricePerPage: 300,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> },
-  { id: 'premium',   base: 6000, pages: 10, pricePerPage: 500,
+  { id: 'premium',   base: 4500, pages: 10, pricePerPage: 500,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> },
 ];
 
@@ -25,8 +25,8 @@ const PAGE_VALUES = [1, 3, 5, 10, 15];
 const EXTRA_IDS = ['seo','copy','booking','shop','lang','blog','branding','care'] as const;
 type ExtraId = typeof EXTRA_IDS[number];
 const EXTRA_PRICES: Record<ExtraId, number> = {
-  seo: 600, copy: 700, booking: 900, shop: 2500,
-  lang: 1200, blog: 700, branding: 1500, care: 120,
+  seo: 500, copy: 600, booking: 800, shop: 2200,
+  lang: 800, blog: 500, branding: 1000, care: 120,
 };
 const CARE_ID: ExtraId = 'care';
 
