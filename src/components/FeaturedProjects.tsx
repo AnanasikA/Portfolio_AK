@@ -45,16 +45,16 @@ export default function FeaturedProjects() {
   href: '/projects/marcin-kowal',
 },
     {
-      index: '02', cat: t('projects.crescent.category'), title: t('projects.crescent.title'),
-      chips: ['Prezentacja inwestycji', 'Pozyskiwanie leadów', 'Next.js'],
-      desc: t('projects.crescent.description'),
-      stats: [
-        { num: '3x', label: t('projects.crescent.stat1') ?? 'więcej zapytań' },
-        { num: '95', label: t('projects.crescent.stat2') ?? 'wynik PageSpeed' },
-      ],
-      image: '/projects/crescent/hero.webp',
-      href: '/projects/crescent-development',
-    },
+  index: '02', cat: t('projects.studioforma.category'), title: t('projects.studioforma.title'),
+  chips: ['Architektura wnętrz', 'Framer Motion', 'Next.js'],
+  desc: t('projects.studioforma.description'),
+  stats: [
+    { num: '6',   label: t('projects.studioforma.stat1') ?? 'stron usług' },
+    { num: '100%', label: t('projects.studioforma.stat2') ?? 'responsywna' },
+  ],
+  image: '/projects/studio-forma/hero.webp',
+  href: '/projects/studio-forma',
+},
     {
       index: '03',
       cat: t('projects.accounting.category'),

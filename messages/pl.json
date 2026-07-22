@@ -37,13 +37,13 @@
   "stat2": "responsywna"
 },
 
-    "crescent": {
-      "title": "Crescent Development",
-      "category": "Strona dla branży nieruchomości",
-      "description": "Elegancka prezentacja inwestycji, lokali i oferty dla klientów.",
-      "stat1": "więcej zapytań",
-      "stat2": "leadów"
-    },
+    "studioforma": {
+  "category": "Architektura wnętrz",
+  "title": "Studio Forma",
+  "description": "Kompleksowa strona dla pracowni projektowania wnętrz — z dynamicznymi podstronami usług, animacjami nawiązującymi do designu wnętrz i systemem konsultacji online.",
+  "stat1": "stron usług",
+  "stat2": "responsywna"
+},
 "accounting": {
   "category": "Biuro księgowe",
   "title": "Strona biura księgowego",
@@ -331,6 +331,27 @@
   },
 
 "projects": {
+  "studio-forma": {
+  "title": "Studio Forma – Architektura Wnętrz",
+  "description": "Strona internetowa dla pracowni projektowania wnętrz. Minimalistyczny, edytorialny design z dynamicznymi podstronami usług i animacjami nawiązującymi do designu wnętrz.",
+  "overview": "Kompleksowa strona dla pracowni architektury wnętrz Studio Forma, zaprojektowana w stonowanej, ponadczasowej stylistyce — kremowe tło, oliwkowy akcent i typografia łącząca Cormorant Garamond z Jost.",
+  "workTitle": "Zakres prac",
+  "work": ["Projekt UX/UI w stylu minimalistyczno-edytorialnym", "Kodowanie w Next.js 14 + TypeScript", "Dynamiczny system podstron usług generowany z jednego pliku danych", "Rozwijane menu usług w navbarze i stopce", "Animacje scroll-reveal nawiązujące do designu wnętrz (żaluzje, plan architektoniczny)", "Modal konsultacji z portalem React (createPortal)", "Pełna responsywność mobile-first", "Wdrożenie na Vercel z automatycznym deployem z GitHub"],
+  "resultsTitle": "Efekt",
+  "timeframeLabel": "Czas realizacji",
+  "timeframe": "2–3 tygodnie",
+  "highlights": ["Spójna identyfikacja wizualna pracowni na wszystkich podstronach", "Skalowalna struktura usług — nowa usługa to jeden wpis w danych, nie nowy plik", "Animacje nawiązujące tematycznie do architektury wnętrz (linia procesu, narożniki planu, żaluzje)", "Szybkie ładowanie dzięki statycznemu generowaniu podstron usług"],
+  "challengesTitle": "Wyzwania",
+  "challenges": [
+    { "problem": "Sześć różnych usług wymagało osobnych podstron bez duplikowania kodu.", "solution": "Jeden dynamiczny szablon [slug] czytający dane z centralnego pliku services.ts — dodanie usługi to wpis do tablicy, nie nowa strona." },
+    { "problem": "Modal konsultacji renderował się nieprawidłowo wewnątrz animowanych kontenerów.", "solution": "Przeniesienie modala przez React Portal bezpośrednio do document.body, niezależnie od transformów CSS przodków." },
+    { "problem": "Animacje musiały pasować tematycznie do branży, a nie być generycznym fade-in.", "solution": "Zaprojektowanie autorskich efektów — rozwijana żaluzja na kartach usług, rysująca się linia procesu, narożniki jak na planie architektonicznym." }
+  ],
+  "decisionsTitle": "Decyzje projektowe",
+  "decisions": ["Next.js 14 App Router z generateStaticParams dla stron usług", "CSS transitions zamiast JS setTimeout dla płynniejszych animacji stopki", "Cormorant Garamond jako font display — elegancki, edytorialny charakter", "Kremowe tło + oliwkowy akcent = ciepła, ponadczasowa identyfikacja", "Dane usług oddzielone od widoku (services.ts) dla łatwej rozbudowy"],
+  "integrationsTitle": "Integracje",
+  "integrations": ["Modal konsultacji przez React Portal", "Newsletter w stopce z lokalnym stanem formularza", "Rozwijane menu usług (dropdown + mobile accordion)", "IntersectionObserver do scroll-reveal na każdej sekcji", "Automatyczny CI/CD przez Vercel + GitHub"]
+},
   "marcin-kowal": {
   "title": "Marcin Kowal – Trener Personalny",
   "description": "Strona internetowa dla trenera personalnego z Warszawy. Bold typografia, animowane sekcje i interaktywny formularz kontaktowy.",

@@ -37,13 +37,13 @@
   "stat2": "fully responsive"
 },
 
-    "crescent": {
-      "title": "Crescent Development",
-      "category": "Website for the real estate industry",
-      "description": "An elegant presentation of properties, apartments and client offers.",
-      "stat1": "more inquiries",
-      "stat2": "qualified leads"
-    },
+  "studioforma": {
+  "category": "Interior Architecture",
+  "title": "Studio Forma",
+  "description": "A comprehensive website for an interior design studio, featuring dynamic service pages, interior design-inspired animations, and an online consultation booking system.",
+  "stat1": "service pages",
+  "stat2": "responsive"
+},
 "accounting": {
   "category": "Accounting Office",
   "title": "Accounting Office Website",
@@ -329,6 +329,62 @@
 
 
 "projects": {
+  "studio-forma": {
+  "title": "Studio Forma – Interior Architecture",
+  "description": "A website for an interior design studio featuring a minimalist editorial aesthetic, dynamic service pages, and animations inspired by interior architecture.",
+  "overview": "A comprehensive website for Studio Forma, designed in a timeless, understated style with a warm cream background, olive accents, and typography combining Cormorant Garamond with Jost.",
+  "workTitle": "Scope of Work",
+  "work": [
+    "UX/UI design in a minimalist editorial style",
+    "Development with Next.js 14 + TypeScript",
+    "Dynamic service page system generated from a single data source",
+    "Expandable service navigation in the header and footer",
+    "Interior architecture-inspired scroll reveal animations (blinds, architectural blueprint effects)",
+    "Consultation booking modal powered by React Portal (createPortal)",
+    "Fully responsive, mobile-first implementation",
+    "Deployment on Vercel with automatic GitHub CI/CD"
+  ],
+  "resultsTitle": "Outcome",
+  "timeframeLabel": "Project Timeline",
+  "timeframe": "2–3 weeks",
+  "highlights": [
+    "Consistent visual identity across every page",
+    "Scalable service architecture — adding a new service requires only a single data entry, not a new page",
+    "Custom animations inspired by interior architecture (process line, blueprint corners, window blinds)",
+    "Fast loading through static generation of service pages"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    {
+      "problem": "Six different services required separate pages without duplicating code.",
+      "solution": "A single dynamic [slug] template reads data from a centralized services.ts file, allowing new services to be added by extending the data array instead of creating new pages."
+    },
+    {
+      "problem": "The consultation modal rendered incorrectly inside animated containers.",
+      "solution": "The modal was moved to document.body using React Portal, making it independent of parent CSS transforms."
+    },
+    {
+      "problem": "Animations needed to reflect the interior design industry instead of relying on generic fade-in effects.",
+      "solution": "Custom animations were created, including unfolding blinds on service cards, a hand-drawn process line, and blueprint-inspired corner decorations."
+    }
+  ],
+  "decisionsTitle": "Design Decisions",
+  "decisions": [
+    "Next.js 14 App Router with generateStaticParams for static service pages",
+    "CSS transitions instead of JavaScript setTimeout for smoother footer animations",
+    "Cormorant Garamond as the display font for an elegant editorial feel",
+    "A warm cream background paired with olive accents to create a timeless visual identity",
+    "Service data separated from presentation (services.ts) for easier scalability"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Consultation booking modal powered by React Portal",
+    "Footer newsletter form with local state management",
+    "Expandable service navigation (desktop dropdown + mobile accordion)",
+    "IntersectionObserver-powered scroll reveal animations across all sections",
+    "Automatic deployment pipeline with Vercel and GitHub"
+  ]
+},
   "marcin-kowal": {
   "title": "Marcin Kowal – Personal Trainer",
   "description": "Website for a Warsaw-based personal trainer. Bold typography, animated sections and an interactive contact popup.",

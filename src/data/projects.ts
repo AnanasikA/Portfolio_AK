@@ -9,6 +9,19 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
+  slug: 'studio-forma',
+  image: '/projects/studio-forma-hero.webp',
+  cardImage: '/projects/studio-forma-card.webp',
+  tech: [
+    'Next.js',
+    'TypeScript',
+    'CSS Animations',
+    'Responsive Design',
+    'UI/UX Design',
+  ],
+  link: 'https://studio-forma.vercel.app/',
+},
+  {
     slug: 'marcin-kowal',
     image: '/projects/marcin-kowal1.webp',
     cardImage: '/projects/marcin-kowal.webp',
