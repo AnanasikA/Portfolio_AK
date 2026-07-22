@@ -52,7 +52,7 @@ export default function FeaturedProjects() {
     { num: '6',   label: t('projects.studioforma.stat1') ?? 'stron usług' },
     { num: '100%', label: t('projects.studioforma.stat2') ?? 'responsywna' },
   ],
-  image: '/projects/studio-forma/hero.webp',
+  image: '/projects/studio-forma-hero.webp',
   href: '/projects/studio-forma',
 },
     {
