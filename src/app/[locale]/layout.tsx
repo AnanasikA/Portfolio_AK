@@ -6,7 +6,7 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import CookieConsent from '@/components/CookieConsent';
-import '@/app/globals.css';
+import '../globals.css';
 
 const BASE_URL = 'https://anastasiiakupriianets.pl';
 

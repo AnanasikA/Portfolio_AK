@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { trackEvent } from '@/lib/gtag';
 
 // ─── Dane statyczne (ceny / ID) ───────────────────────────────────────────────
 
@@ -109,7 +110,15 @@ export default function WycenaPage() {
 
   function toggleExtra(id: ExtraId) {
     setHasInteracted(true);
-    setExtras(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+    setExtras(prev => {
+      const n = new Set(prev);
+      if (n.has(id)) {
+        n.delete(id);
+      } else {
+        n.add(id);
+      }
+      return n;
+    });
   }
 
   function interact() { setHasInteracted(true); }
@@ -148,6 +157,9 @@ export default function WycenaPage() {
         }),
       });
       const data = await res.json();
+      if (data.ok) {
+        trackEvent('form_submit', { form_name: 'calculator_brief', site_type: siteType });
+      }
       setFormStatus(data.ok ? 'ok' : 'error');
     } catch { setFormStatus('error'); }
   }
@@ -498,7 +510,11 @@ export default function WycenaPage() {
               {/* Drugorzędny */}
               <p style={{ fontFamily: 'var(--fd)', fontSize: '.78rem', color: 'rgba(255,255,255,.4)', textAlign: 'center', marginBottom: '1.3rem' }}>
                 {c('ctaEmailPre')}{' '}
-                <a href="mailto:kontakt@anastasiiakupriianets.pl" style={{ color: 'rgba(255,255,255,.65)', textDecoration: 'underline', textUnderlineOffset: 3 }}>
+                <a
+                  href="mailto:kontakt@anastasiiakupriianets.pl"
+                  onClick={() => trackEvent('email_click', { location: 'wycena_sidebar' })}
+                  style={{ color: 'rgba(255,255,255,.65)', textDecoration: 'underline', textUnderlineOffset: 3 }}
+                >
                   {c('ctaEmailLink')}
                 </a>
               </p>

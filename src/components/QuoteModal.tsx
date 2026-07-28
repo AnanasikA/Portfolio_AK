@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import { useLocale } from 'next-intl';
 import { sendEmail } from '@/lib/sendEmail';
+import { trackEvent } from '@/lib/gtag';
 
 type QuoteModalProps = {
   isOpen: boolean;
@@ -95,6 +96,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     });
 
     if (result.ok) {
+      trackEvent('form_submit', { form_name: 'quote_modal', site_type: form.websiteType || 'unspecified' });
       setStatus('success');
       setForm({ name: '', email: '', websiteType: '', budget: '', message: '' });
       setTimeout(() => {

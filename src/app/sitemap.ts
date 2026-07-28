@@ -11,6 +11,8 @@ const blogSlugsPL = [
   'jak-przygotowac-sie-do-rozmowy-z-webdeveloperem',
   'czy-twoja-strona-jest-gotowa-na-klientow',
   'ile-trwa-stworzenie-strony-internetowej',
+  'ile-kosztuje-sklep-internetowy-2026',
+  'jak-wybrac-wykonawce-strony-internetowej',
 ];
 
 const blogSlugsEN = [
@@ -22,12 +24,27 @@ const blogSlugsEN = [
   'how-to-prepare-for-working-with-a-web-developer',
   'is-your-website-ready-for-clients',
   'how-long-does-it-take-to-build-a-website',
+  'how-much-does-an-online-store-cost-2026',
+  'how-to-choose-a-web-designer',
 ];
 
 const projectSlugsPL = [
-  'spiro-pilates-mobility',
+  'studio-forma',
+  'marcin-kowal',
+  'biuro-ksiegowe',
   'crescent-development',
+  'spiro-pilates-mobility',
+  'lion-force-weld',
   'luisowka',
+  'zdrowie-plus',
+  'quest-for-paws',
+  'realestate',
+  'marecki-24-7',
+  'goports',
+  'studybuddy',
+  'photographer',
+  'luxenails',
+  'booknest',
 ];
 
 const serviceSlugs = [
@@ -88,6 +105,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority:        0.7,
   }));
 
+  // Slugi projektów są te same w obu językach (nie są tłumaczone),
+  // więc obie listy (PL/EN) celowo korzystają z tego samego źródła.
   const projectsPL: MetadataRoute.Sitemap = projectSlugsPL.map(slug => ({
     url:             `${BASE_URL}/pl/projects/${slug}`,
     lastModified:    now,

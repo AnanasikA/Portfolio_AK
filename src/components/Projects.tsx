@@ -6,22 +6,8 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { projects } from '@/data/projects';
 import type { ProjectItem } from '@/data/projects';
+import { trackEvent } from '@/lib/gtag';
 
-
-function useInViewNative(ref: React.RefObject<Element | null>, margin = '-60px') {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { rootMargin: margin }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [margin]);
-  return inView;
-}
 
 function CountUp({ to, suffix = '', delay = 0 }: { to: number; suffix?: string; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -92,6 +78,14 @@ function CountUp({ to, suffix = '', delay = 0 }: { to: number; suffix?: string; 
 
 const PER_PAGE = 6;
 
+const categoryMap: Record<string, string[]> = {
+  business:   ['biuro-ksiegowe', 'lion-force-weld', 'marecki-24-7', 'goports', 'booknest'],
+  realestate: ['crescent-development', 'realestate'],
+  tourism:    ['luisowka'],
+  wellness:   ['spiro-pilates-mobility', 'zdrowie-plus'],
+  personal:   ['photographer', 'luxenails', 'quest-for-paws', 'studybuddy', 'marcin-kowal', 'studio-forma'],
+};
+
 export default function Projects({ currentPage = 1 }: { currentPage?: number }) {
   const tPage     = useTranslations('projectsPage');
   const tProjects = useTranslations('projects');
@@ -116,13 +110,6 @@ export default function Projects({ currentPage = 1 }: { currentPage?: number }) 
     { key: 'personal',   label: 'Marki osobiste' },
   ];
 
-const categoryMap: Record<string, string[]> = {
-  business:   ['biuro-ksiegowe', 'lion-force-weld', 'marecki-24-7', 'goports'],
-  realestate: ['crescent-development', 'realestate'],
-  tourism:    ['luisowka'],
-  wellness:   ['spiro-pilates-mobility', 'zdrowie-plus'],
-  personal:   ['photographer', 'luxenails', 'quest-for-paws', 'studybuddy', 'marcin-kowal', 'studio-forma'],
-};
   const totalPages = Math.ceil(projects.length / PER_PAGE);
   const safePage   = Math.min(Math.max(currentPage, 1), Math.max(totalPages, 1));
   const startIndex = (safePage - 1) * PER_PAGE;
@@ -395,7 +382,10 @@ const stats = isEn ? [
               : 'Napisz krótko o swojej firmie. Otrzymasz odpowiedź z kierunkiem i wyceną — zwykle w 1–2 dni robocze.'}
           </p>
           <button
-            onClick={() => window.dispatchEvent(new Event('open-brief'))}
+            onClick={() => {
+              trackEvent('generate_lead', { source: 'projects_page_cta' });
+              window.dispatchEvent(new Event('open-brief'));
+            }}
             style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', background: '#fff', color: 'var(--brand)', borderRadius: 99, padding: '.9em 2.2em', border: 'none', cursor: 'pointer', transition: 'transform .2s, box-shadow .2s', marginBottom: 28 }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(0,0,0,.2)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
@@ -446,6 +436,7 @@ const categoryLabels: Record<string, { pl: string; en: string }> = {
   'studybuddy':             { pl: 'Edukacja',               en: 'Education' },
   'photographer':           { pl: 'Marka osobista',          en: 'Personal brand' },
   'luxenails':              { pl: 'Uroda i styl',            en: 'Beauty & style' },
+  'booknest':               { pl: 'Sklep internetowy',       en: 'Online store' },
 };
   const cat = categoryLabels[project.slug];
   const catLabel = cat ? (locale === 'en' ? cat.en : cat.pl) : '';

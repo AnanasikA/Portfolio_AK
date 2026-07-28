@@ -14,7 +14,7 @@ export default function Analytics() {
 
   useEffect(() => {
     if (typeof window.gtag !== 'undefined') {
-      window.gtag('config', 'G-CLP2M6E6WT', {
+      window.gtag('config', 'G-CLP2ME6EWT', {
         page_path: pathname,
       });
     }
