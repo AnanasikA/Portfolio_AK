@@ -57,16 +57,16 @@ export default function FeaturedProjects() {
 },
     {
       index: '03',
-      cat: t('projects.accounting.category'),
-      title: t('projects.accounting.title'),
-      chips: ['Oferta usług', 'Formularz kontaktowy', 'WordPress'],
-      desc: t('projects.accounting.description'),
+      cat: t('projects.booknest.category'),
+      title: t('projects.booknest.title'),
+      chips: ['Next.js', 'Supabase', 'Stripe', 'Sklep z ebookami'],
+      desc: t('projects.booknest.description'),
       stats: [
-        { num: '+40%', label: t('projects.accounting.stat1') ?? 'więcej zapytań' },
-        { num: '2x',   label: t('projects.accounting.stat2') ?? 'prostszy kontakt' },
+        { num: '100%', label: t('projects.booknest.stat1') ?? 'cyfrowa dostawa' },
+        { num: '8+',   label: t('projects.booknest.stat2') ?? 'kategorii książek' },
       ],
-      image: '/projects/accounting/hero.webp',
-      href: '/projects/accounting',
+      image: '/projects/booknest1.webp',
+      href: '/projects/booknest',
     },
   ];
 

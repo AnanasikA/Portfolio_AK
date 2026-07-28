@@ -44,12 +44,12 @@
   "stat1": "stron usług",
   "stat2": "responsywna"
 },
-"accounting": {
-  "category": "Biuro księgowe",
-  "title": "Strona biura księgowego",
-  "description": "Profesjonalna strona biura rachunkowego z ofertą usług, formularzem kontaktowym i integracją Google Maps.",
-  "stat1": "Czytelna oferta",
-  "stat2": "Łatwy kontakt"
+"booknest": {
+  "category": "Sklep internetowy",
+  "title": "BookNest — sklep z ebookami",
+  "description": "Pełny sklep e-commerce z ebookami: katalog z filtrowaniem po kategoriach i autorach, koszyk, płatności Stripe, konto użytkownika z historią zamówień i natychmiastowe pobieranie po zakupie.",
+  "stat1": "Płatności online",
+  "stat2": "Natychmiastowy dostęp"
 }
   }
 },
@@ -331,6 +331,55 @@
   },
 
 "projects": {
+  "booknest": {
+  "title": "BookNest – Sklep z ebookami",
+  "description": "Pełny sklep e-commerce sprzedający ebooki: katalog z filtrowaniem, koszyk, płatności Stripe, konta użytkowników i natychmiastowe pobieranie po zakupie.",
+  "overview": "Kompletny sklep cyfrowy zbudowany od zera na Next.js i Supabase — od katalogu produktów, przez koszyk i płatności Stripe, po panel konta z historią zamówień i bezpiecznym pobieraniem plików. Model czysto cyfrowy (bez wysyłki fizycznej) z naciskiem na natychmiastowy dostęp po opłaceniu.",
+  "workTitle": "Zakres prac",
+  "work": [
+    "Katalog produktów z paginacją, filtrowaniem po kategorii i autorze oraz wyszukiwarką pełnotekstową",
+    "Koszyk i checkout w jednym przepływie — bez zbędnych kroków pośrednich",
+    "Integracja Stripe Checkout z webhookiem potwierdzającym płatność",
+    "Uwierzytelnianie Supabase Auth (rejestracja, logowanie, middleware odświeżający sesję)",
+    "Panel konta z zakładkami: dane osobowe, historia zamówień, lista życzeń, adresy dostawy, zmiana hasła",
+    "Bezpieczne pobieranie ebooków — podpisane linki generowane dopiero po weryfikacji opłaconego zamówienia",
+    "Kontekst koszyka i listy życzeń (React Context) z memoizacją dla wydajności przy wielu kartach naraz",
+    "Generowane okładki produktów (kolorowa nakładka + typografia) jako legalna alternatywa dla praw autorskich do prawdziwych okładek",
+    "Pełna responsywność — od Hero po panel konta, siatki produktów skalujące się 2→3→5 kolumn",
+    "Skrypty seedujące katalog z realnych, darmowych źródeł (Project Gutenberg / Google Books API)"
+  ],
+  "resultsTitle": "Efekt",
+  "timeframeLabel": "Czas realizacji",
+  "timeframe": "iteracyjnie, sesja po sesji",
+  "highlights": [
+    "Pełny, działający przepływ zakupowy: katalog → koszyk → Stripe → potwierdzenie → pobranie pliku",
+    "Zero pustych placeholderów — każda książka bez zdjęcia dostaje spójną, wygenerowaną okładkę zamiast szarej ikony",
+    "Bezpieczny model dostępu do plików — prywatny bucket w Supabase Storage, linki ważne tylko chwilę i tylko dla opłaconych zamówień",
+    "Responsywny na każdej szerokości ekranu, od telefonu po duży desktop"
+  ],
+  "challengesTitle": "Wyzwania",
+  "challenges": [
+    { "problem": "Anonimowy zakup (bez logowania) wywalał się przy tworzeniu zamówienia w Supabase z błędem RLS, mimo poprawnej polityki INSERT.", "solution": "Źródłem był zwrotny odczyt po insercie (.select().single()), podlegający osobnej, bardziej restrykcyjnej polityce SELECT. Rozwiązanie: generowanie ID zamówienia po stronie serwera, bez potrzeby odczytu zwrotnego." },
+    { "problem": "Realne okładki książek (skany z Open Library, Google Books) wyglądały niespójnie i część z nich naruszałaby prawa autorskie przy komercyjnym użyciu.", "solution": "Zaprojektowanie komponentu generującego okładkę: zdjęcie tła + kolorowa nakładka zależna od kategorii + typografia tytułu/autora — spójne wizualnie i bezpieczne prawnie." },
+    { "problem": "Katalog wymagał realnych, legalnych do sprzedaży treści cyfrowych, nie tylko metadanych.", "solution": "Skrypt pobierający prawdziwe pliki .epub z domeny publicznej (Project Gutenberg przez Gutendex API) i wgrywający je bezpośrednio do prywatnego bucketu Supabase Storage." }
+  ],
+  "decisionsTitle": "Decyzje projektowe",
+  "decisions": [
+    "Next.js App Router z mieszanką Server i Client Components — dane pobierane server-side, interaktywność (koszyk, formularze) client-side",
+    "Model czysto cyfrowy zamiast hybrydowego — prostszy checkout bez adresu dostawy i wyboru kuriera",
+    "Supabase jako jedyne źródło prawdy: Postgres + Auth + Storage w jednym, z RLS pilnującym dostępu do danych",
+    "Kontekst React (Cart/Wishlist) zmemoizowany przez useMemo, żeby dodanie jednej pozycji nie przerenderowywało całej siatki produktów",
+    "Generowane okładki jako świadomy wybór estetyczny i prawny, zamiast polegania na niepewnych źródłach zdjęć"
+  ],
+  "integrationsTitle": "Integracje",
+  "integrations": [
+    "Stripe Checkout + webhook (potwierdzenie płatności, aktualizacja statusu zamówienia)",
+    "Supabase Auth (e-mail/hasło, middleware odświeżający sesję)",
+    "Supabase Storage (prywatny bucket na pliki ebooków, podpisane linki do pobrania)",
+    "Google Books API i Project Gutenberg / Gutendex — źródła danych i plików do katalogu",
+    "next/image z konfiguracją zdalnych hostów dla wielu źródeł okładek"
+  ]
+},
   "studio-forma": {
   "title": "Studio Forma – Architektura Wnętrz",
   "description": "Strona internetowa dla pracowni projektowania wnętrz. Minimalistyczny, edytorialny design z dynamicznymi podstronami usług i animacjami nawiązującymi do designu wnętrz.",

@@ -9,6 +9,20 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
+    slug: 'booknest',
+    image: '/projects/booknest.webp',
+    cardImage: '/projects/booknest1.webp',
+    tech: [
+      'Next.js',
+      'Supabase',
+      'Stripe',
+      'TypeScript',
+      'Framer Motion',
+      'E-commerce',
+    ],
+    link: 'https://book-nest-seven-tau.vercel.app/',
+  },
+  {
   slug: 'studio-forma',
   image: '/projects/studio-forma-hero.webp',
   cardImage: '/projects/studio-forma-card.webp',

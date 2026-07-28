@@ -44,12 +44,12 @@
   "stat1": "service pages",
   "stat2": "responsive"
 },
-"accounting": {
-  "category": "Accounting Office",
-  "title": "Accounting Office Website",
-  "description": "A professional website for an accounting office with a clear service offer, contact form and Google Maps integration.",
-  "stat1": "Clear offer",
-  "stat2": "Easy contact"
+"booknest": {
+  "category": "Online Store",
+  "title": "BookNest – Ebook Store",
+  "description": "A full e-commerce ebook store with a filterable catalog, cart, Stripe payments, user accounts and instant download after purchase.",
+  "stat1": "Online payments",
+  "stat2": "Instant access"
 }
   }
 },
@@ -329,6 +329,55 @@
 
 
 "projects": {
+  "booknest": {
+  "title": "BookNest – Ebook Store",
+  "description": "A full e-commerce store selling ebooks: filterable catalog, cart, Stripe payments, user accounts and instant download after purchase.",
+  "overview": "A complete digital storefront built from scratch on Next.js and Supabase — from the product catalog, through cart and Stripe checkout, to an account panel with order history and secure file downloads. A fully digital model (no physical shipping) with a focus on instant access right after payment.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Product catalog with pagination, category/author filtering, and full-text search",
+    "Cart and checkout combined into a single flow — no unnecessary intermediate steps",
+    "Stripe Checkout integration with a webhook confirming payment",
+    "Supabase Auth authentication (sign-up, sign-in, session-refreshing middleware)",
+    "Account panel with tabs: personal details, order history, wishlist, delivery addresses, password change",
+    "Secure ebook downloads — signed links generated only after verifying a paid order",
+    "Cart and wishlist context (React Context) memoized for performance across many product cards at once",
+    "Generated product covers (color overlay + typography) as a legally safe alternative to real copyrighted cover art",
+    "Fully responsive — from the hero section to the account panel, product grids scaling 2→3→5 columns",
+    "Seed scripts pulling catalog data from real, free sources (Project Gutenberg / Google Books API)"
+  ],
+  "resultsTitle": "Result",
+  "timeframeLabel": "Timeframe",
+  "timeframe": "iterative, session by session",
+  "highlights": [
+    "A complete, working purchase flow: catalog → cart → Stripe → confirmation → file download",
+    "No empty placeholders — every book without a photo gets a consistent, generated cover instead of a gray icon",
+    "Secure file access model — private Supabase Storage bucket, links valid only briefly and only for paid orders",
+    "Responsive at every screen width, from phone to large desktop"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    { "problem": "Anonymous checkout (without login) kept failing when creating an order in Supabase with an RLS error, despite a correct INSERT policy.", "solution": "The cause was the return read after the insert (.select().single()), which fell under a separate, more restrictive SELECT policy. Fix: generating the order ID server-side, removing the need for that return read entirely." },
+    { "problem": "Real book covers (scans from Open Library, Google Books) looked inconsistent, and some would infringe copyright if used commercially.", "solution": "Designed a cover-generating component: background photo + category-based color overlay + title/author typography — visually consistent and legally safe." },
+    { "problem": "The catalog needed real, legally sellable digital content, not just metadata.", "solution": "A script that downloads actual public-domain .epub files (Project Gutenberg via the Gutendex API) and uploads them directly into a private Supabase Storage bucket." }
+  ],
+  "decisionsTitle": "Design decisions",
+  "decisions": [
+    "Next.js App Router with a mix of Server and Client Components — data fetched server-side, interactivity (cart, forms) client-side",
+    "Purely digital model instead of hybrid — a simpler checkout with no delivery address or carrier selection",
+    "Supabase as the single source of truth: Postgres + Auth + Storage in one place, with RLS guarding data access",
+    "React context (Cart/Wishlist) memoized with useMemo so adding one item doesn't re-render the entire product grid",
+    "Generated covers as a deliberate aesthetic and legal choice, instead of relying on uncertain image sources"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Stripe Checkout + webhook (payment confirmation, order status updates)",
+    "Supabase Auth (email/password, session-refreshing middleware)",
+    "Supabase Storage (private bucket for ebook files, signed download links)",
+    "Google Books API and Project Gutenberg / Gutendex — data and file sources for the catalog",
+    "next/image configured with multiple remote hosts for various cover sources"
+  ]
+},
   "studio-forma": {
   "title": "Studio Forma – Interior Architecture",
   "description": "A website for an interior design studio featuring a minimalist editorial aesthetic, dynamic service pages, and animations inspired by interior architecture.",
