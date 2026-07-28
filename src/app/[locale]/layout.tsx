@@ -42,14 +42,22 @@ export default async function LocaleLayout({
 
   return (
     <>
-      {/* ===== GOOGLE ANALYTICS 4 ===== */}
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-CLP2ME6EWT" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">{`
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-CLP2ME6EWT');
-      `}</Script>
+      {/* ===== GOOGLE ANALYTICS 4 + CONSENT MODE V2 ===== */}
+<Script src="https://www.googletagmanager.com/gtag/js?id=G-CLP2ME6EWT" strategy="afterInteractive" />
+<Script id="google-analytics" strategy="afterInteractive">{`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+
+  gtag('js', new Date());
+  gtag('config', 'G-CLP2ME6EWT');
+`}</Script>
 
       {/* ===== MICROSOFT CLARITY ===== */}
       <Script id="microsoft-clarity" strategy="afterInteractive">{`

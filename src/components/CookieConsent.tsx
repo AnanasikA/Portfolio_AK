@@ -4,6 +4,19 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useTranslations } from 'next-intl';
 
+function updateConsent(granted: boolean) {
+  if (typeof window === 'undefined') return;
+  const w = window as typeof window & { gtag?: (...args: unknown[]) => void };
+  if (typeof w.gtag !== 'function') return;
+  const state = granted ? 'granted' : 'denied';
+  w.gtag('consent', 'update', {
+    ad_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+    analytics_storage: state,
+  });
+}
+
 export default function CookieConsent() {
   const [root, setRoot] = useState<HTMLElement | null>(null);
   const t = useTranslations('cookieConsent');
@@ -22,8 +35,15 @@ export default function CookieConsent() {
     }
     setRoot(el);
 
-    const hasDecision = !!localStorage.getItem('cookie-consent');
-    setVisible(!hasDecision);
+    const stored = localStorage.getItem('cookie-consent');
+    setVisible(!stored);
+
+    // Powrót użytkownika, który już wcześniej podjął decyzję — od razu
+    // aktualizujemy consent mode zgodnie z tym co zapisał, zamiast
+    // czekać aż ponownie kliknie (bo nie zobaczy już bannera).
+    if (stored === '1' || stored === '0') {
+      updateConsent(stored === '1');
+    }
 
     const onStorage = (e: StorageEvent) => {
       if (e.key === 'cookie-consent') setVisible(!e.newValue);
@@ -40,6 +60,7 @@ export default function CookieConsent() {
 
   const decide = (value: '1' | '0') => {
     try { localStorage.setItem('cookie-consent', value); } catch {}
+    updateConsent(value === '1');
     setVisible(false);
   };
 
