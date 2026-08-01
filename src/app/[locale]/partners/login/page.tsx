@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { createBrowserSupabase } from "@/lib/supabase-browser";
-import { Link } from "@/i18n/navigation";
 import PartnersShell from "@/components/PartnersShell";
 
 function IconMail({ size = 22, color = "currentColor" }: { size?: number; color?: string }) {
@@ -219,7 +218,7 @@ export default function PartnerLoginPage() {
                   </AnimatePresence>
                 </form>
 
-                <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 24 }}>
+                <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 24, flexWrap: "wrap" }}>
                   <button
                     onClick={() => {
                       setStep("email");
@@ -355,9 +354,12 @@ export default function PartnerLoginPage() {
 
                 <p style={{ fontSize: 13, color: "var(--muted)", marginTop: 32 }}>
                   Nie masz jeszcze konta?{" "}
-                  <Link href="/partners/offer" style={{ color: "var(--brand)", fontWeight: 600, textDecoration: "underline" }}>
+                  <a
+                    href="https://www.anastasiiakupriianets.pl/pl/partners/apply"
+                    style={{ color: "var(--brand)", fontWeight: 600, textDecoration: "underline" }}
+                  >
                     Dołącz do programu
-                  </Link>
+                  </a>
                 </p>
               </motion.div>
             )}
