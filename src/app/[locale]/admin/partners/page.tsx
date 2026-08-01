@@ -331,6 +331,14 @@ export default async function AdminPartnersPage({
 
   return (
     <PartnersShell>
+      <style>{`
+        @media (max-width: 480px) {
+          .admin-rank-label {
+            width: 84px !important;
+            font-size: 11px !important;
+          }
+        }
+      `}</style>
       <div
         style={{
           maxWidth: 1040,
@@ -446,7 +454,7 @@ export default async function AdminPartnersPage({
                     <div style={{ border: "1px solid var(--line, #e2e2e2)", borderRadius: 8, padding: "20px 20px", display: "grid", gap: 10 }}>
                       {leaderboard.map((l) => (
                         <div key={l.code} style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                          <span style={{ fontSize: 13, width: 140, flexShrink: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <span className="admin-rank-label" style={{ fontSize: 13, width: 140, flexShrink: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             {l.name}
                           </span>
                           <div style={{ flex: 1, background: "var(--surface, #f5f5f5)", borderRadius: 4, height: 18, position: "relative" }}>

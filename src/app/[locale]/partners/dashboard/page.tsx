@@ -676,6 +676,7 @@ export default async function PartnerDashboardPage({
                       title="Oferta PDF"
                       body="Gotowa oferta do przesłania klientowi z Twoim poleceniem."
                       href="/materials/oferta-ak-web-design.pdf"
+                      note="Plik do podmiany — wgraj go do /public/materials/."
                     />
                     <MaterialCard
                       icon={<IconTarget size={22} />}
@@ -1024,7 +1025,7 @@ function SalesKitBlock({
         marginBottom: isLast ? 24 : 20,
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18, flexWrap: "wrap" }}>
         <div
           style={{
             width: 34,
@@ -1091,7 +1092,7 @@ function MessageCard({ label, text }: { label: string; text: string }) {
         gap: 10,
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
         <span style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 13 }}>{label}</span>
         <CopyTextButton text={text} />
       </div>

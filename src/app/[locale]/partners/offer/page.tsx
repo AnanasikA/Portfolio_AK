@@ -21,7 +21,7 @@ function OfferContent() {
     <PartnersShell>
       <div style={{ fontFamily: "var(--fb)", color: "var(--ink, #111)" }}>
         <GlobalStyle />
-        <Hero name={name} />
+        <Hero name={name} applyHref={applyHref} />
         <WhyWorth />
         <Timeline />
         <Calculator applyHref={applyHref} />
@@ -178,6 +178,33 @@ function GlobalStyle() {
         .po-calc-grid {
           grid-template-columns: 1fr !important;
         }
+        .po-hero-grid {
+          grid-template-columns: 1fr !important;
+        }
+      }
+      @media (max-width: 520px) {
+        .po-chart-yaxis {
+          display: none !important;
+        }
+        .po-chart-card {
+          padding: 20px 14px 16px !important;
+          gap: 0 !important;
+        }
+        .po-chart-bars {
+          gap: 10px !important;
+          padding-left: 0 !important;
+        }
+        .po-chart-value {
+          font-size: 10px !important;
+        }
+        .po-chart-labels {
+          margin-left: 0 !important;
+          gap: 10px !important;
+          font-size: 11px !important;
+        }
+        .po-cta-card {
+          padding: 32px 20px 40px !important;
+        }
       }
     `}</style>
   );
@@ -276,7 +303,7 @@ function IconBadge({ children, size = 52 }: { children: React.ReactNode; size?: 
    1. HERO
    ============================================================ */
 
-function Hero({ name }: { name: string }) {
+function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
   return (
     <div style={{ position: "relative", overflow: "hidden" }}>
       <div
@@ -305,6 +332,7 @@ function Hero({ name }: { name: string }) {
 
       <SectionWrap style={{ paddingTop: 120, paddingBottom: 80, position: "relative" }}>
         <div
+          className="po-hero-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "1.2fr 0.8fr",
@@ -364,13 +392,13 @@ function Hero({ name }: { name: string }) {
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 36 }}>
-              <a
-                href="mailto:kontakt@anastasiiakupriianets.pl?subject=Rozmowa%20o%20programie%20partnerskim"
+              <Link
+                href={applyHref}
                 className="po-btn-primary"
                 style={primaryBtnStyle}
               >
-                Porozmawiajmy <span aria-hidden>→</span>
-              </a>
+                Dołącz do programu <span aria-hidden>→</span>
+              </Link>
               <a
                 href={`mailto:kontakt@anastasiiakupriianets.pl?subject=${encodeURIComponent("Pytanie o program partnerski")}`}
                 className="po-btn-secondary"
@@ -430,33 +458,33 @@ function Hero({ name }: { name: string }) {
 const BENEFITS = [
   {
     Icon: IconTrendingUp,
-    title: "Dodatkowy dochód",
-    body: "Zarabiaj przy okazji tego, co i tak robisz — bez dodatkowej pracy.",
+    title: "Dodatkowe wynagrodzenie",
+    body: "Polecasz nasze usługi, a za każdą zakończoną realizację otrzymujesz prowizję.",
   },
   {
     Icon: IconFileText,
-    title: "Brak formalności",
-    body: "Żadnych umów, papierów ani zobowiązań — polecasz, kiedy masz okazję.",
+    title: "Proste zasady",
+    body: "Minimum formalności i jasne warunki współpracy od samego początku.",
   },
   {
     Icon: IconClock,
-    title: "Szybkie realizacje",
-    body: "Standardowy projekt startuje w ciągu kilku dni od kontaktu.",
+    title: "Sprawny proces",
+    body: "Szybko reagujemy na polecenia i sprawnie przeprowadzamy klienta przez kolejne etapy współpracy.",
   },
   {
     Icon: IconPhone,
-    title: "Pełna opieka nad klientem",
-    body: "Ja się zajmuję resztą — kontaktem, wyceną i realizacją.",
+    title: "Kompleksowa obsługa",
+    body: "Przejmujemy kontakt, wycenę i realizację, dbając o profesjonalne doświadczenie Twojego klienta.",
   },
   {
     Icon: IconShield,
-    title: "Nie odbieramy klientów partnerom",
-    body: "Klient zostaje przypisany do Ciebie na stałe w systemie.",
+    title: "Twój klient pozostaje Twój",
+    body: "Szanujemy Twoje relacje biznesowe. Polecony klient pozostaje przypisany do Ciebie w programie partnerskim.",
   },
   {
     Icon: IconPalette,
-    title: "Indywidualne projekty",
-    body: "Każda realizacja szyta na miarę — nie szablony z gotowca.",
+    title: "Projekty dopasowane do klienta",
+    body: "Każdą stronę tworzymy indywidualnie, dopasowując rozwiązania do marki, potrzeb i celów biznesowych klienta.",
   },
 ];
 
@@ -465,7 +493,7 @@ function WhyWorth() {
     <SectionWrap>
       <p style={eyebrowStyle}>Dlaczego warto?</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 44px" }}>
-        Współpraca bez ryzyka i bez papierologii
+        Partnerstwo, które działa po prostu
       </h2>
       <div
         style={{
@@ -520,10 +548,10 @@ function WhyWorth() {
    ============================================================ */
 
 const STEPS = [
-  { n: "1", title: "Polecasz klienta", body: "Przekazujesz kontakt lub udostępniasz swój link partnerski." },
-  { n: "2", title: "My zajmujemy się resztą", body: "Kontaktujemy się z klientem, poznajemy jego potrzeby i przygotowujemy indywidualną ofertę." },
-  { n: "3", title: "Realizujemy projekt", body: "Projektujemy i wdrażamy rozwiązanie, zapewniając profesjonalną obsługę na każdym etapie współpracy." },
-  { n: "4", title: "Otrzymujesz prowizję", body: "Po zakończeniu i rozliczeniu projektu wypłacamy należną prowizję zgodnie z zasadami programu." },
+  { n: "1", title: "Polecasz klienta", body: "Wysyłasz swój link albo po prostu dajesz mi znać, kogo polecasz." },
+  { n: "2", title: "Ja kontaktuję się z klientem", body: "Rozmawiam z klientem, ustalam zakres i wycenę projektu." },
+  { n: "3", title: "Realizuję projekt", body: "Projektuję i wdrażam stronę — Ty nie musisz się niczym zajmować." },
+  { n: "4", title: "Ty otrzymujesz prowizję", body: "Po zakończeniu i rozliczeniu projektu wypłacam Twoją prowizję." },
 ];
 
 function Timeline() {
@@ -531,7 +559,7 @@ function Timeline() {
     <SectionWrap tinted>
       <p style={eyebrowStyle}>Jak wygląda współpraca?</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 52px" }}>
-        To prostsze, niż myślisz
+        Cztery proste kroki
       </h2>
       <div style={{ display: "grid", gap: 0 }}>
         {STEPS.map((s, i) => (
@@ -612,7 +640,7 @@ function Calculator({ applyHref }: { applyHref: ApplyHref }) {
       />
       <p style={eyebrowStyle}>Kalkulator prowizji</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 44px" }}>
-        Zobacz, ile możesz otrzymać za polecenie
+        Sprawdź, ile możesz zarobić na jednym poleceniu
       </h2>
 
       <div
@@ -646,7 +674,7 @@ function Calculator({ applyHref }: { applyHref: ApplyHref }) {
 
           <div>
             <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 14, fontSize: 14 }}>
-              <span style={{ color: "var(--muted, #555)" }}>Wartość projektu</span>
+              <span style={{ color: "var(--muted, #555)" }}>Cena projektu</span>
               <span style={{ fontFamily: "var(--fd)", fontWeight: 700, fontSize: 18 }}>
                 {value.toLocaleString("pl-PL")} zł
               </span>
@@ -668,7 +696,8 @@ function Calculator({ applyHref }: { applyHref: ApplyHref }) {
           </div>
 
           <p style={{ fontSize: 13, color: "var(--muted, #555)", lineHeight: 1.5 }}>
-            Ustaw orientacyjną wartość projektu, aby sprawdzić wysokość prowizji. Za każdą zakończoną i rozliczoną realizację otrzymujesz 15% wartości netto.
+            Przesuń suwak, żeby zobaczyć prowizję dla różnych wielkości projektu.
+            Każda realizacja to 15% wartości netto.
           </p>
         </div>
 
@@ -695,7 +724,7 @@ function Calculator({ applyHref }: { applyHref: ApplyHref }) {
               opacity: 0.75,
             }}
           >
-            Twoja prowizja przy stawce 15%
+            Twoja prowizja (15%)
           </span>
           <AnimatePresence mode="popLayout">
             <motion.p
@@ -735,7 +764,7 @@ function Calculator({ applyHref }: { applyHref: ApplyHref }) {
               marginTop: 8,
             }}
           >
-            Dołącz do programu<span aria-hidden>→</span>
+            Zostań partnerem <span aria-hidden>→</span>
           </Link>
         </div>
       </div>
@@ -749,28 +778,29 @@ function Calculator({ applyHref }: { applyHref: ApplyHref }) {
    ============================================================ */
 
 const EARNINGS_DATA = [
-  { label: "1 realizacja", value: 300 },
-  { label: "2 realizacje", value: 600 },
-  { label: "3 realizacje", value: 900 },
-  { label: "5 realizacji", value: 1500 },
+  { label: "1 klient", value: 200 },
+  { label: "2 klientów", value: 400 },
+  { label: "3 klientów", value: 600 },
+  { label: "5 klientów", value: 1000 },
 ];
+
 function EarningsChart() {
-  const max = 1500;
-  const gridLines = [0, 300, 600, 900, 1200, 1500];
+  const max = 1000;
+  const gridLines = [0, 200, 400, 600, 800, 1000];
 
   return (
     <SectionWrap tinted>
-      <p style={eyebrowStyle}>Przykładowe prowizje</p>
+      <p style={eyebrowStyle}>Przykładowe zarobki</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 8px" }}>
-        Zobacz potencjał regularnych poleceń
+        Ile partner może zarobić miesięcznie
       </h2>
       <p style={{ fontSize: 14, color: "var(--muted, #555)", marginBottom: 44 }}>
-        Przykładowa symulacja przy prowizji 15% i średniej wartości projektu
-  wynoszącej 2000 zł netto. Rzeczywista wysokość prowizji zależy od liczby
-  poleconych klientów oraz wartości zrealizowanych projektów.
+        Symulacja przy prowizji 10% od wartości projektu, przy przykładowej
+        średniej wartości ok. 2000 zł za realizację.
       </p>
 
       <div
+        className="po-chart-card"
         style={{
           background: "#fff",
           border: "1px solid var(--line, #e2e2e2)",
@@ -780,13 +810,13 @@ function EarningsChart() {
           gap: 32,
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", fontSize: 11, color: "var(--muted-2, #888)", height: 220, paddingBottom: 24 }}>
+        <div className="po-chart-yaxis" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", fontSize: 11, color: "var(--muted-2, #888)", height: 220, paddingBottom: 24 }}>
           {[...gridLines].reverse().map((g) => (
             <span key={g}>{g.toLocaleString("pl-PL")} zł</span>
           ))}
         </div>
 
-        <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: 24, height: 220, borderLeft: "1px solid var(--line, #e2e2e2)", borderBottom: "1px solid var(--line, #e2e2e2)", paddingLeft: 16 }}>
+        <div className="po-chart-bars" style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: 24, height: 220, borderLeft: "1px solid var(--line, #e2e2e2)", borderBottom: "1px solid var(--line, #e2e2e2)", paddingLeft: 16 }}>
           {EARNINGS_DATA.map((d, i) => (
             <div key={d.label} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 8, height: "100%", justifyContent: "flex-end" }}>
               <motion.div
@@ -802,6 +832,7 @@ function EarningsChart() {
                 }}
               >
                 <span
+                  className="po-chart-value"
                   style={{
                     position: "absolute",
                     top: -22,
@@ -820,7 +851,7 @@ function EarningsChart() {
           ))}
         </div>
       </div>
-      <div style={{ display: "flex", gap: 24, marginLeft: 56, marginTop: 12 }}>
+      <div className="po-chart-labels" style={{ display: "flex", gap: 24, marginLeft: 56, marginTop: 12 }}>
         {EARNINGS_DATA.map((d) => (
           <span key={d.label} style={{ flex: 1, textAlign: "center", fontSize: 13, color: "var(--muted, #555)", fontWeight: 500 }}>
             {d.label}
@@ -836,18 +867,18 @@ function EarningsChart() {
    ============================================================ */
 
 const PERKS = [
-  { Icon: IconFolder, title: "Materiały sprzedażowe", body: "Dostęp do portfolio i materiałów, które ułatwią prezentację naszych usług klientom." },
-  { Icon: IconFileText, title: "Gotowa oferta", body: "Profesjonalna oferta, którą możesz szybko przekazać klientowi i wykorzystać podczas rozmów." },
-  { Icon: IconTarget, title: "Wsparcie na każdym etapie", body: "Pomagamy przygotować się do rozmowy z klientem i odpowiadamy na pytania dotyczące współpracy." },
-  { Icon: IconPhone, title: "Bezpośredni kontakt", body: "Masz szybki kontakt z naszym zespołem, dzięki czemu sprawnie uzyskasz potrzebne informacje." },
+  { Icon: IconFolder, title: "Portfolio", body: "Dostęp do materiałów portfolio, którymi możesz się posłużyć w rozmowie." },
+  { Icon: IconFileText, title: "Oferta PDF", body: "Gotowa oferta do przesłania klientowi, którą możesz podpisać własnym poleceniem." },
+  { Icon: IconTarget, title: "Pomoc sprzedażowa", body: "Podpowiem, jak rozmawiać o projekcie i jakie pytania warto zadać klientowi." },
+  { Icon: IconPhone, title: "Szybki kontakt", body: "Bezpośrednia linia do mnie — bez czekania w kolejce jak zwykły klient." },
 ];
 
 function WhatYouGet() {
   return (
     <SectionWrap>
-      <p style={eyebrowStyle}>Wsparcie dla partnerów</p>
+      <p style={eyebrowStyle}>Co otrzymuje partner?</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 44px" }}>
-        Otrzymujesz więcej niż prowizję
+        Wsparcie, nie tylko prowizja
       </h2>
       <div
         style={{
@@ -884,28 +915,28 @@ function WhatYouGet() {
 
 const FAQ_ITEMS = [
   {
-    q: "Jak naliczana jest prowizja?",
-    a: "Prowizja wynosi 15% wartości netto każdego zrealizowanego i opłaconego projektu pozyskanego w ramach programu partnerskiego.",
+    q: "Jak liczona jest prowizja?",
+    a: "Prowizja wynosi 15% wartości netto zrealizowanego projektu. Wysokość zawsze widzisz w swoim panelu partnera po zaakceptowaniu zgłoszenia.",
   },
   {
-    q: "Kiedy otrzymam prowizję?",
-    a: "Prowizja jest wypłacana po zakończeniu realizacji oraz opłaceniu projektu przez klienta. Status każdego polecenia możesz na bieżąco śledzić w panelu partnera.",
+    q: "Kiedy jest wypłacana?",
+    a: "Po zakończeniu projektu i opłaceniu go przez klienta. Status każdego zgłoszenia widzisz na bieżąco w dashboardzie.",
   },
   {
-    q: "Czy udział w programie wymaga podpisania umowy?",
-    a: "Nie. Dołączenie do programu partnerskiego nie wymaga podpisywania umowy ani wiązania się długoterminowymi zobowiązaniami. W razie potrzeby możemy również potwierdzić warunki współpracy w wiadomości e-mail.",
+    q: "Czy podpisujemy umowę?",
+    a: "Nie ma formalnej umowy ani zobowiązań — polecasz, kiedy masz okazję. Jeśli wolisz mieć to na piśmie, mogę przygotować krótkie potwierdzenie warunków mailowo.",
   },
   {
     q: "Czy mogę polecić więcej niż jednego klienta?",
-    a: "Tak. Nie ma żadnych limitów – każde skuteczne polecenie jest rozliczane indywidualnie zgodnie z zasadami programu.",
+    a: "Tak, bez ograniczeń. Każde polecenie jest liczone i rozliczane osobno.",
   },
   {
-    q: "Czy mogę polecać klientów spoza Polski?",
-    a: "Tak. Współpracujemy z klientami z Polski i z zagranicy. Wystarczy, że komunikacja może odbywać się w języku polskim lub angielskim.",
+    q: "Czy mogę polecać firmy spoza Polski?",
+    a: "Tak, pracuję zdalnie z klientami z całego świata — jeśli komunikacja może być po polsku lub angielsku, nie ma problemu.",
   },
   {
-    q: "Czy polecony klient pozostaje przypisany do mnie?",
-    a: "Tak. Szanujemy relacje naszych partnerów biznesowych. Polecony klient pozostaje przypisany do Twojego konta w programie partnerskim, dlatego kolejne kwalifikujące się realizacje również są rozliczane z uwzględnieniem Twojego polecenia.",
+    q: "Czy odbieracie moich klientów?",
+    a: "Nie. Klient zostaje przypisany do Ciebie na stałe w systemie — jeśli wróci z kolejnym projektem, prowizja nadal należy się Tobie.",
   },
 ];
 
@@ -1001,6 +1032,7 @@ function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
   return (
     <SectionWrap style={{ paddingBottom: 130 }}>
       <div
+        className="po-cta-card"
         style={{
           position: "relative",
           overflow: "hidden",
