@@ -195,6 +195,8 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
   const [briefOpen,  setBriefOpen]  = useState(false);
   const locale  = useLocale();
   const isEn    = locale === 'en';
+  const pathname = usePathname();
+  const isPartnerPage = pathname.includes('/partners');
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 24);
@@ -216,6 +218,8 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
 
   const links = [
     { href: '/projects',  label: isEn ? 'Work'    : 'Projekty'    },
+    ...(isEn ? [] : [{ href: '/partners/offer', label: 'Współpraca' }]),
+
     { href: '/#process',  label: isEn ? 'Process' : 'Proces'      },
     { href: '/#why-us',   label: isEn ? 'Why us'  : 'Dlaczego my' },
     // Usługi dropdown wchodzi tutaj — renderowane osobno poniżej
@@ -301,7 +305,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
 
           {/* Right side */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-            <LangSwitcher />
+            {!isPartnerPage && <LangSwitcher />}
 
             <Link href="/wycena" locale={locale} className="nav-quote-btn nav-cta-btn">
               {isEn ? 'Get a quote' : 'Wycena'}

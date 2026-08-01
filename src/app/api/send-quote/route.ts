@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { attributeReferralConversion } from '@/lib/attribute-conversion';
 
 export async function POST(req: Request) {
   const body = await req.json();
@@ -71,6 +72,15 @@ export async function POST(req: Request) {
       replyTo: email,
       subject: `Wycena z kalkulatora: ${quote.low.toLocaleString('pl-PL')}–${quote.high.toLocaleString('pl-PL')} zł — ${name}`,
       html,
+    });
+
+    // Jeśli gość przyszedł z linku partnerskiego (cookie ak_ref) —
+    // utwórz powiązane zgłoszenie w programie partnerskim.
+    await attributeReferralConversion({
+      clientName: name,
+      clientEmail: email,
+      sourcePath: '/wycena',
+      projectValueEstimate: quote.high,
     });
 
     return NextResponse.json({ ok: true });

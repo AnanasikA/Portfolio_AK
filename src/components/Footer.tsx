@@ -29,6 +29,7 @@ export default function Footer() {
       links: [
         { label: isEn ? 'Home'     : 'Start',    href: '/'         },
         { label: isEn ? 'Projects' : 'Projekty', href: '/projects' },
+        ...(isEn ? [] : [{ href: '/partners/offer', label: 'Współpraca' }]),
         { label: isEn ? 'Process'  : 'Proces',   href: '/#process'  },
         { label: isEn ? 'Estimate' : 'Wycena',   href: '/wycena'    },
         { label: 'FAQ',                           href: '/#faq'      },
