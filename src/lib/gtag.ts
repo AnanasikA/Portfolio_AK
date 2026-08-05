@@ -19,5 +19,8 @@ export function trackEvent(
   if (typeof window === "undefined") return;
   const w = window as typeof window & { gtag?: (...args: unknown[]) => void };
   if (!w.gtag) return;
-  w.gtag("event", event, params);
+  w.gtag("event", event, {
+    ...params,
+    transport_type: "beacon",
+  });
 }
