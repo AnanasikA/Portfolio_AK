@@ -1,10 +1,84 @@
 'use client';
 
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useAnimation, useInView } from 'framer-motion';
 import { useState, useEffect, useRef, useCallback } from 'react';
+
+/**
+ * ScrollingScreenshot
+ * Pokazuje pełny (wysoki) zrzut strony w kadrze o stałej wysokości.
+ * Gdy kadr wjeżdża w viewport, obrazek płynnie przewija się od góry do dołu,
+ * ujawniając całą stronę. Gdy kadr znika z widoku, wraca do pozycji startowej.
+ */
+function ScrollingScreenshot({
+  src,
+  alt,
+  active,
+  frameHeight = 460,
+}: {
+  src: string;
+  alt: string;
+  active: boolean;
+  frameHeight?: number;
+}) {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const imgElRef = useRef<HTMLImageElement>(null);
+  const [scrollDistance, setScrollDistance] = useState(0);
+  const controls = useAnimation();
+  const isInView = useInView(frameRef, { amount: 0.5 });
+
+  // Zmierz, o ile pikseli trzeba przewinąć (wysokość obrazka po przeskalowaniu do szerokości kadru minus wysokość kadru)
+  useEffect(() => {
+    const measure = () => {
+      if (!frameRef.current || !imgElRef.current) return;
+      const frameW = frameRef.current.clientWidth;
+      const natW = imgElRef.current.naturalWidth || frameW;
+      const natH = imgElRef.current.naturalHeight || frameHeight;
+      const renderedH = (natH / natW) * frameW;
+      setScrollDistance(Math.max(0, renderedH - frameHeight));
+    };
+    if (imgElRef.current?.complete) measure();
+    const img = imgElRef.current;
+    img?.addEventListener('load', measure);
+    window.addEventListener('resize', measure);
+    return () => {
+      img?.removeEventListener('load', measure);
+      window.removeEventListener('resize', measure);
+    };
+  }, [src, frameHeight]);
+
+  useEffect(() => {
+    if (isInView && active && scrollDistance > 0) {
+      // czas trwania proporcjonalny do dystansu — dłuższa strona = dłuższe przewijanie, z sensownymi granicami
+      const duration = Math.min(16, Math.max(5, scrollDistance / 110));
+      controls.start({
+        y: -scrollDistance,
+        transition: { duration, ease: 'linear', delay: 0.5 },
+      });
+    } else {
+      controls.start({ y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } });
+    }
+  }, [isInView, active, scrollDistance, controls]);
+
+  return (
+    <div ref={frameRef} style={{ position: 'relative', height: frameHeight, overflow: 'hidden', background: '#f8fafc' }}>
+      <motion.div
+        animate={controls}
+        initial={{ y: 0 }}
+        style={{ position: 'absolute', top: 0, left: 0, right: 0, willChange: 'transform' }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          ref={imgElRef}
+          src={src}
+          alt={alt}
+          style={{ width: '100%', display: 'block' }}
+        />
+      </motion.div>
+    </div>
+  );
+}
 
 const fade = {
   hidden: { opacity: 0, y: 24 },
@@ -42,6 +116,7 @@ export default function FeaturedProjects() {
     { num: '100%', label: t('projects.marcinkowal.stat2') ?? 'responsywna' },
   ],
   image: '/projects/marcin-kowal1.webp',
+  imageFull: '/projects/marcin-kowal1.webp', // pełny zrzut całej strony
   href: '/projects/marcin-kowal',
 },
     {
@@ -52,7 +127,8 @@ export default function FeaturedProjects() {
     { num: '6',   label: t('projects.studioforma.stat1') ?? 'stron usług' },
     { num: '100%', label: t('projects.studioforma.stat2') ?? 'responsywna' },
   ],
-  image: '/projects/studio-forma-hero.webp',
+  image: '/projects/studio-forma-card.webp',
+  imageFull: '/projects/studio-forma-card.webp', // pełny zrzut całej strony
   href: '/projects/studio-forma',
 },
     {
@@ -65,7 +141,8 @@ export default function FeaturedProjects() {
         { num: '100%', label: t('projects.booknest.stat1') ?? 'cyfrowa dostawa' },
         { num: '8+',   label: t('projects.booknest.stat2') ?? 'kategorii książek' },
       ],
-      image: '/projects/booknest1.webp',
+      image: '/projects/booknest.webp',
+      imageFull: '/projects/booknest.webp', // pełny zrzut całej strony
       href: '/projects/booknest',
     },
   ];
@@ -221,7 +298,7 @@ export default function FeaturedProjects() {
               <div style={{ marginLeft:12, height:20, flex:1, borderRadius:99, background:'#eef2f7' }} />
             </div>
 
-            {/* image — responsywne proporcje, tylko góra */}
+            {/* image — pełny zrzut strony, auto-scroll gdy kadr jest widoczny na ekranie */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -229,19 +306,12 @@ export default function FeaturedProjects() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
-                style={{
-                  position: 'relative',
-                  width: '100%',
-                  aspectRatio: '4/3',
-                }}
               >
-                <Image
-                  src={p.image}
+                <ScrollingScreenshot
+                  src={p.imageFull}
                   alt={p.title}
-                  fill
-                  priority={current === 0}
-                  sizes="(min-width:860px) 40vw, 90vw"
-                  style={{ objectFit: 'cover', objectPosition: 'top' }}
+                  active={true}
+                  frameHeight={460}
                 />
               </motion.div>
             </AnimatePresence>

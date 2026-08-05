@@ -1,6 +1,9 @@
 export type ProjectItem = {
   slug: string;
   image: string;
+  /** Pełny zrzut całej strony (długi, do przewijanego podglądu na stronie projektu).
+   *  Jeśli nie podany, ProjectView użyje `image` — wtedy po prostu nie będzie się przewijać. */
+  fullImage?: string;
   cardImage: string;
   ratio?: number;
   tech: string[];
@@ -11,7 +14,8 @@ export const projects: ProjectItem[] = [
   {
     slug: 'booknest',
     image: '/projects/booknest.webp',
-    cardImage: '/projects/booknest1.webp',
+    fullImage: '/projects/booknest.webp', // TODO: podmień na faktyczny pełny zrzut strony
+    cardImage: '/projects/booknest.webp',
     tech: [
       'Next.js',
       'Supabase',
@@ -24,7 +28,8 @@ export const projects: ProjectItem[] = [
   },
   {
   slug: 'studio-forma',
-  image: '/projects/studio-forma-hero.webp',
+  image: '/projects/studio-forma-card.webp',
+  fullImage: '/projects/studio-forma-card.webp', // TODO: podmień na faktyczny pełny zrzut strony
   cardImage: '/projects/studio-forma-card.webp',
   tech: [
     'Next.js',
@@ -33,12 +38,13 @@ export const projects: ProjectItem[] = [
     'Responsive Design',
     'UI/UX Design',
   ],
-  link: 'https://studio-forma.vercel.app/',
+  link: 'https://studio-forma-chi.vercel.app/',
 },
   {
     slug: 'marcin-kowal',
     image: '/projects/marcin-kowal1.webp',
-    cardImage: '/projects/marcin-kowal.webp',
+    fullImage: '/projects/marcin-kowal1.webp', 
+    cardImage: '/projects/marcin-kowal1.webp',
     tech: [
       'Next.js',
       'Tailwind CSS',

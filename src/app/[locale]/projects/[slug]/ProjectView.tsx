@@ -1,10 +1,11 @@
 'use client';
 
 import Script from 'next/script';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { useTranslations, useLocale } from 'next-intl';
+import { useInView, animate, motion } from 'framer-motion';
 import Header from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 import { FiChevronLeft, FiExternalLink } from 'react-icons/fi';
@@ -13,6 +14,7 @@ import Footer from '@/components/Footer';
 type Project = {
   slug: string;
   image: string;
+  fullImage?: string;
   cardImage: string;
   ratio?: number;
   tech: string[];
@@ -37,12 +39,64 @@ const chip = (active = false): React.CSSProperties => ({
   whiteSpace: 'nowrap' as const,
 });
 
+/**
+ * Hook: automatycznie przewija kontener w dół, gdy wjeżdża w viewport.
+ * Zatrzymuje się na hover (żeby user mógł się zatrzymać i przyjrzeć),
+ * i wraca na górę, gdy element opuszcza viewport.
+ */
+function useAutoScrollScreenshot(
+  containerRef: React.RefObject<HTMLDivElement | null>,
+  imgLoaded: boolean,
+) {
+  const isInView = useInView(containerRef, { amount: 0.35 });
+  const isPausedRef = useRef(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || !imgLoaded) return;
+
+    let controls: ReturnType<typeof animate> | null = null;
+
+    const start = () => {
+      const maxScroll = el.scrollHeight - el.clientHeight;
+      if (maxScroll <= 0) return;
+      // czas trwania proporcjonalny do wysokości strony — dłuższa strona = wolniejszy, spokojniejszy scroll
+      const duration = Math.min(22, Math.max(6, maxScroll / 100));
+      controls = animate(el.scrollTop, maxScroll, {
+        duration,
+        delay: 0.6,
+        ease: 'linear',
+        onUpdate: (v) => {
+          if (!isPausedRef.current) el.scrollTop = v;
+        },
+      });
+    };
+
+    if (isInView) {
+      start();
+    } else {
+      el.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    return () => controls?.stop();
+  }, [isInView, imgLoaded, containerRef]);
+
+  return {
+    onMouseEnter: () => { isPausedRef.current = true; },
+    onMouseLeave: () => { isPausedRef.current = false; },
+  };
+}
+
 export default function ProjectView({ project: p }: { project: Project }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
   const locale  = useLocale();
   const t       = useTranslations('projects');
   const tPage   = useTranslations('projectsPage');
   const tDetail = useTranslations('projectDetail');
+
+  const screenshotRef = useRef<HTMLDivElement>(null);
+  const scrollHandlers = useAutoScrollScreenshot(screenshotRef, imgLoaded);
 
   const title       = t(`${p.slug}.title`);
   const description = t(`${p.slug}.description`);
@@ -110,18 +164,49 @@ export default function ProjectView({ project: p }: { project: Project }) {
           </nav>
 
           {/* Hero header */}
-          <header style={{ marginBottom: 40 }}>
-            <h1 style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(2rem,5vw,3.6rem)', letterSpacing: '-.035em', lineHeight: .97, color: 'var(--ink)', marginBottom: 16 }}>
-              {title}
-            </h1>
-            <p style={{ fontFamily: 'var(--fb)', fontSize: 'clamp(1rem,1.4vw,1.18rem)', color: 'var(--muted)', lineHeight: 1.6, maxWidth: '64ch', marginBottom: 20 }}>
-              {description}
-            </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {p.tech.map(tech => (
-                <span key={tech} style={chip(true)}>{tech}</span>
-              ))}
+          <header style={{ marginBottom: 40, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
+            <div style={{ flex: '1 1 320px' }}>
+              <h1 style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(2rem,5vw,3.6rem)', letterSpacing: '-.035em', lineHeight: .97, color: 'var(--ink)', marginBottom: 16 }}>
+                {title}
+              </h1>
+              <p style={{ fontFamily: 'var(--fb)', fontSize: 'clamp(1rem,1.4vw,1.18rem)', color: 'var(--muted)', lineHeight: 1.6, maxWidth: '64ch', marginBottom: 20 }}>
+                {description}
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {p.tech.map(tech => (
+                  <span key={tech} style={chip(true)}>{tech}</span>
+                ))}
+              </div>
             </div>
+
+            {/* Ikonka "scroll mouse" — zachęta do przewijania w dół */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, flexShrink: 0, paddingBottom: 4 }}
+            >
+              <div
+                style={{
+                  width: 26,
+                  height: 42,
+                  borderRadius: 13,
+                  border: '2px solid var(--line)',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingTop: 6,
+                }}
+              >
+                <motion.span
+                  animate={{ y: [0, 14, 0], opacity: [1, 0.2, 1] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+                  style={{ width: 4, height: 8, borderRadius: 2, background: 'var(--brand)', display: 'block' }}
+                />
+              </div>
+              <span style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.68rem', letterSpacing: '.06em', color: 'var(--muted)', whiteSpace: 'nowrap' }}>
+                {tDetail.has('scrollHint') ? tDetail('scrollHint') : (locale === 'en' ? 'Scroll' : 'Przewiń')}
+              </span>
+            </motion.div>
           </header>
 
           {/* Screenshot browser frame */}
@@ -139,11 +224,17 @@ export default function ProjectView({ project: p }: { project: Project }) {
                 </span>
               </div>
             </div>
-            {/* screenshot scrollable */}
-            <div style={{ maxHeight: '72svh', overflowY: 'auto', background: 'var(--surface)' }}>
+            {/* screenshot — auto-scroll gdy sekcja wjeżdża w viewport, pauza na hover */}
+            <div
+              ref={screenshotRef}
+              onMouseEnter={scrollHandlers.onMouseEnter}
+              onMouseLeave={scrollHandlers.onMouseLeave}
+              style={{ maxHeight: '72svh', overflowY: 'auto', background: 'var(--surface)', scrollbarWidth: 'thin' }}
+            >
               <Image
-                src={p.image} alt={tDetail('imageAlt', { title })}
+                src={p.fullImage ?? p.image} alt={tDetail('imageAlt', { title })}
                 priority draggable={false}
+                onLoad={() => setImgLoaded(true)}
                 sizes="(min-width:1024px) 75vw, 95vw"
                 style={{ width: '100%', height: 'auto', display: 'block' }}
                 width={2000} height={1000}

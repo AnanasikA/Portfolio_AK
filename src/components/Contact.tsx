@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FiMail, FiPhone, FiGlobe } from 'react-icons/fi';
-import { useTranslations, useLocale } from 'next-intl';
+import { useLocale } from 'next-intl';
 import { useRef } from 'react';
 import { usePaperPlane } from '@/components/PaperPlane';
 
@@ -12,7 +12,7 @@ const fade = {
 };
 
 export default function Contact() {
-  const t      = useTranslations('contact');
+
   const locale = useLocale();
   const isEn   = locale === 'en';
   const btnRef = useRef<HTMLButtonElement>(null);

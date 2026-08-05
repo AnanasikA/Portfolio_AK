@@ -47,7 +47,7 @@ function useInViewNative(ref: React.RefObject<Element | null>) {
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  });
   return inView;
 }
 
