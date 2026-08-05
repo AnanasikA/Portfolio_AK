@@ -205,7 +205,7 @@
     "contactAria": "Go to the contact section",
     "projectButton": "View project",
     "projectDetailsAria": "View details: {title}",
-    "backToProjects": "← Back to projects"
+    "backToProjects": "Back to projects"
   },
   "dropdownMenu": {
     "home": "Home",
