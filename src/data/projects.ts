@@ -58,7 +58,7 @@ export const projects: ProjectItem[] = [
   {
   slug: 'biuro-ksiegowe',
   image: '/projects/BiuroKsiegowe1.webp',
-  cardImage: '/projects/BiuroKsiegowe.webp',
+  cardImage: '/projects/BiuroKsiegowe1.webp',
   tech: [
     'Next.js',
     'Tailwind CSS',
@@ -72,7 +72,7 @@ export const projects: ProjectItem[] = [
   {
   slug: 'crescent-development',
   image: '/projects/Crescent1.webp',
-  cardImage: '/projects/Crescent.webp',
+  cardImage: '/projects/Crescent1.webp',
   tech: [
     'Next.js',
     'Tailwind CSS',
@@ -86,7 +86,7 @@ export const projects: ProjectItem[] = [
   {
     slug: 'spiro-pilates-mobility',
     image: '/projects/SpiroPilates1.webp',
-    cardImage: '/projects/SpiroPilates.webp',
+    cardImage: '/projects/SpiroPilates1.webp',
     tech: [
       'WordPress',
       'Custom Theme',
@@ -100,13 +100,13 @@ export const projects: ProjectItem[] = [
   {
     slug: 'lion-force-weld',
     image: '/projects/LionForceWeld(1).webp',
-    cardImage: '/projects/LionForceWeld.webp',
+    cardImage: '/projects/LionForceWeld(1).webp',
     tech: ['WordPress', 'ACF', 'Tailwind CSS', 'SEO'],
     link: 'https://lionforceweld.pl',
   },
   {
     slug: 'luisowka',
-    image: '/projects/Luisowka.webp',
+    image: '/projects/Luisowka1.webp',
     cardImage: '/projects/Luisowka1.webp',
     tech: [
       'Next.js',
@@ -122,7 +122,7 @@ export const projects: ProjectItem[] = [
   {
     slug: 'zdrowie-plus',
     image: '/projects/Zdrowie+1.webp',
-    cardImage: '/projects/Zdrowie+.webp',
+    cardImage: '/projects/Zdrowie+1.webp',
     ratio: 1.6,
     tech: [
       'React',
@@ -137,7 +137,7 @@ export const projects: ProjectItem[] = [
   {
     slug: 'quest-for-paws',
     image: '/projects/Paws1.webp',
-    cardImage: '/projects/Paws.webp',
+    cardImage: '/projects/Paws1.webp',
     tech: [
       'React',
       'Tailwind CSS',
@@ -151,7 +151,7 @@ export const projects: ProjectItem[] = [
   {
     slug: 'realestate',
     image: '/projects/RealEstate1.webp',
-    cardImage: '/projects/RealEstate.webp',
+    cardImage: '/projects/RealEstate1.webp',
     tech: [
       'React',
       'Tailwind CSS',
@@ -165,7 +165,7 @@ export const projects: ProjectItem[] = [
   {
     slug: 'marecki-24-7',
     image: '/projects/Warsztat1.webp',
-    cardImage: '/projects/Warsztat.webp',
+    cardImage: '/projects/Warsztat1.webp',
     tech: [
       'Next.js',
       'Tailwind CSS',
@@ -179,7 +179,7 @@ export const projects: ProjectItem[] = [
   {
     slug: 'goports',
     image: '/projects/goports21.webp',
-    cardImage: '/projects/goports2.webp',
+    cardImage: '/projects/goports21.webp',
     tech: [
       'WordPress',
       'PHP',
@@ -207,7 +207,7 @@ export const projects: ProjectItem[] = [
   {
     slug: 'photographer',
     image: '/projects/photographer-site1.webp',
-    cardImage: '/projects/photographer-site.webp',
+    cardImage: '/projects/photographer-site1.webp',
     tech: [
       'Next.js',
       'Tailwind CSS',

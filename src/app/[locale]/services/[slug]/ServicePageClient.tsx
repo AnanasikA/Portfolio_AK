@@ -1,14 +1,13 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import Header from '@/components/Header';
 import QuoteModal from '@/components/QuoteModal';
 import Footer from '@/components/Footer';
-import { projects } from '@/data/projects';
+import { getProjectsForService } from '@/data/serviceProjects';
 import type { ServiceData } from '@/data/services';
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
+import { AnimatePresence, motion, useAnimation, useInView } from 'framer-motion';
 
 const W = {
   maxWidth: 1200,
@@ -67,10 +66,11 @@ const TEXT = {
     faqText:
       'Nie znalazłeś odpowiedzi? Napisz krótką wiadomość — otrzymasz konkretną odpowiedź, bez presji sprzedaży.',
     askQuestion: 'Zadaj pytanie →',
-    ctaLabel: '— Zbudujmy coś razem —',
-    ctaTitle: 'Zbudujmy stronę, która pomoże rozwinąć Twój biznes.',
+    ctaLabel: '— Piszesz dziś, odpowiadam dziś —',
+    ctaTitle: 'Masz pomysł na stronę? Napiszmy o nim.',
     ctaText:
-      'Napisz krótko o swojej firmie i potrzebach. Otrzymasz przyjazną odpowiedź z kierunkiem i wyceną — zwykle w 1–2 dni robocze.',
+      'Krótka wiadomość wystarczy — kilka zdań o firmie i o tym, czego potrzebujesz. Odpiszę z konkretną propozycją, zwykle jeszcze tego samego dnia.',
+    ctaButton: 'Napisz dziś →',
     email: 'Napisz e-mail',
     quoteUrl: '/wycena',
     projectsUrl: '/projects',
@@ -123,10 +123,11 @@ const TEXT = {
     faqText:
       'Didn’t find your answer? Send a short message and you’ll receive a clear reply without sales pressure.',
     askQuestion: 'Ask a question →',
-    ctaLabel: '— Let’s build something together —',
-    ctaTitle: 'Let’s build a website that helps grow your business.',
+    ctaLabel: '— Write today, hear back today —',
+    ctaTitle: 'Have an idea for a website? Let’s talk about it.',
     ctaText:
-      'Tell me briefly about your business and needs. You’ll receive a friendly reply with direction and an estimate — usually within 1–2 business days.',
+      'A short message is enough — a few lines about your business and what you need. I’ll reply with a clear proposal, usually the same day.',
+    ctaButton: 'Message me today →',
     email: 'Send an email',
     quoteUrl: '/wycena',
     projectsUrl: '/projects',
@@ -598,10 +599,78 @@ function Process({ s, locale }: { s: ServiceData; locale: string }) {
   );
 }
 
-function Projects({ locale }: { locale: string }) {
+/**
+ * ScrollingScreenshot
+ * Pokazuje pełny (wysoki) zrzut strony w kadrze o stałej wysokości.
+ * Gdy kadr wjeżdża w viewport, obrazek płynnie przewija się od góry do dołu,
+ * ujawniając całą stronę. Gdy kadr znika z widoku, wraca do pozycji startowej.
+ */
+function ScrollingScreenshot({
+  src,
+  alt,
+  active,
+  frameHeight = 340,
+}: {
+  src: string;
+  alt: string;
+  active: boolean;
+  frameHeight?: number;
+}) {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const imgElRef = useRef<HTMLImageElement>(null);
+  const [scrollDistance, setScrollDistance] = useState(0);
+  const controls = useAnimation();
+  const isInView = useInView(frameRef, { amount: 0.5 });
+
+  useEffect(() => {
+    const measure = () => {
+      if (!frameRef.current || !imgElRef.current) return;
+      const frameW = frameRef.current.clientWidth;
+      const natW = imgElRef.current.naturalWidth || frameW;
+      const natH = imgElRef.current.naturalHeight || frameHeight;
+      const renderedH = (natH / natW) * frameW;
+      setScrollDistance(Math.max(0, renderedH - frameHeight));
+    };
+    if (imgElRef.current?.complete) measure();
+    const img = imgElRef.current;
+    img?.addEventListener('load', measure);
+    window.addEventListener('resize', measure);
+    return () => {
+      img?.removeEventListener('load', measure);
+      window.removeEventListener('resize', measure);
+    };
+  }, [src, frameHeight]);
+
+  useEffect(() => {
+    if (isInView && active && scrollDistance > 0) {
+      const duration = Math.min(16, Math.max(5, scrollDistance / 110));
+      controls.start({
+        y: -scrollDistance,
+        transition: { duration, ease: 'linear', delay: 0.5 },
+      });
+    } else {
+      controls.start({ y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } });
+    }
+  }, [isInView, active, scrollDistance, controls]);
+
+  return (
+    <div ref={frameRef} style={{ position: 'relative', height: frameHeight, overflow: 'hidden', background: '#f8fafc' }}>
+      <motion.div
+        animate={controls}
+        initial={{ y: 0 }}
+        style={{ position: 'absolute', top: 0, left: 0, right: 0, willChange: 'transform' }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img ref={imgElRef} src={src} alt={alt} style={{ width: '100%', display: 'block' }} />
+      </motion.div>
+    </div>
+  );
+}
+
+function Projects({ locale, serviceSlug }: { locale: string; serviceSlug: string }) {
   const t = getText(locale);
   const isEn = locale === 'en';
-  const featured = projects.slice(0, 6);
+  const featured = getProjectsForService(serviceSlug, 3);
   const [current, setCurrent] = useState(0);
   const imgRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
@@ -678,17 +747,13 @@ function Projects({ locale }: { locale: string }) {
             </div>
 
             <AnimatePresence mode="wait">
-              <motion.div key={current} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} style={{ position: 'relative', width: '100%', aspectRatio: '4/3' }}>
-                <Image
-  src={p.cardImage}
-  alt={p.slug}
-  fill
-  sizes="(max-width: 860px) 100vw, 50vw"
-  style={{
-    objectFit: 'cover',
-    objectPosition: 'top',
-  }}
-/>
+              <motion.div key={current} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+                <ScrollingScreenshot
+                  src={p.fullImage ?? p.cardImage}
+                  alt={p.slug}
+                  active={true}
+                  frameHeight={340}
+                />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -910,7 +975,7 @@ function CTA({ open, locale }: { open: () => void; locale: string }) {
 
             <motion.div variants={fade} custom={0.16} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px 12px', marginBottom: 'clamp(28px,5vw,44px)' }}>
               <motion.button onClick={open} whileHover={{ y: -2, boxShadow: '0 12px 32px rgba(0,0,0,.28)' }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.2 }} style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(.9rem,1.2vw,1rem)', background: '#fff', color: '#1d4ed8', borderRadius: 99, padding: '.88em 2em', border: 'none', cursor: 'pointer' }}>
-                {t.startProject}
+                {t.ctaButton}
               </motion.button>
 
               <motion.a href="mailto:kontakt@anastasiiakupriianets.pl" whileHover={{ background: 'rgba(255,255,255,.12)', borderColor: 'rgba(255,255,255,.7)' }} whileTap={{ scale: 0.97 }} transition={{ duration: 0.2 }} style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(.9rem,1.2vw,1rem)', color: '#fff', borderRadius: 99, padding: '.88em 2em', border: '1.5px solid rgba(255,255,255,.35)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
@@ -1093,7 +1158,7 @@ export default function ServicePageClient({
         <Why s={service} locale={locale} />
         <What s={service} locale={locale} />
         <Process s={service} locale={locale} />
-        <Projects locale={locale} />
+        <Projects locale={locale} serviceSlug={service.slug} />
         <Pricing s={service} open={() => setModalOpen(true)} locale={locale} />
         <FAQ s={service} open={() => setModalOpen(true)} locale={locale} />
         <CTA open={() => setModalOpen(true)} locale={locale} />
