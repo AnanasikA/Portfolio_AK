@@ -39,13 +39,14 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
   const serviceLinks = isEn ? SERVICE_LINKS_EN : SERVICE_LINKS_PL;
 
   const links = [
-    { href: '/',         label: isEn ? 'Home'    : 'Start'       },
-    { href: '/projects', label: isEn ? 'Work'    : 'Projekty'    },
-    { href: '/#process', label: isEn ? 'Process' : 'Proces'      },
-    { href: '/#why-us',  label: isEn ? 'Why us'  : 'Dlaczego my' },
+    { href: '/',              label: isEn ? 'Home'        : 'Start'        },
+    { href: '/projects',      label: isEn ? 'Work'        : 'Projekty'     },
+    { href: '/#process',      label: isEn ? 'Process'     : 'Proces'       },
+    { href: '/#why-us',       label: isEn ? 'Why us'      : 'Dlaczego my'  },
     // Usługi accordion wchodzi po tym — renderowane osobno
-    { href: '/blog',     label: 'Blog'                           },
-    { href: '/#contact', label: isEn ? 'Contact' : 'Kontakt'    },
+    { href: '/blog',          label: 'Blog'                                },
+    { href: '/partners/offer',label: isEn ? 'Partnership' : 'Współpraca'   },
+    { href: '/#contact',      label: isEn ? 'Contact'     : 'Kontakt'     },
   ];
 
   return (
@@ -194,7 +195,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
                 </AnimatePresence>
               </motion.div>
 
-              {/* Blog, Kontakt */}
+              {/* Blog, Współpraca, Kontakt */}
               {links.slice(4).map(({ href, label }, i) => (
                 <motion.div
                   key={href}
