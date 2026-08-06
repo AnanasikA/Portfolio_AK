@@ -692,11 +692,10 @@ export default async function PartnerDashboardPage({
                       Sales Kit partnera
                     </h3>
                     <p style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 32, maxWidth: 580 }}>
-                      Nie musisz być specjalistą od stron internetowych ani prowadzić rozmów
-                      handlowych. Wystarczy, że polecisz osobę lub firmę zainteresowaną nową
-                      stroną internetową. Cały proces — od pierwszego kontaktu, przez
-                      przygotowanie oferty, aż po realizację projektu — przejmujemy po naszej
-                      stronie.
+                      Nie musisz być specjalistą od stron internetowych. Możesz swobodnie
+                      rozmawiać z klientem i przedstawić mu ofertę AK Web &amp; Design — a gdy
+                      pojawi się realne zainteresowanie, ja przejmuję dalszą rozmowę,
+                      przygotowuję wycenę i realizuję projekt.
                     </p>
 
                     {/* 1. GOTOWE WIADOMOŚCI */}
@@ -782,10 +781,10 @@ export default async function PartnerDashboardPage({
                     {/* 4. JAK PRZEKAZAĆ KLIENTA */}
                     <SalesKitBlock icon={<IconHandoff size={19} />} title="Jak przekazać klienta">
                       <p style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.6, marginBottom: 18 }}>
-                        Rolą partnera jest polecenie zainteresowanego klienta. Nie musisz
-                        przygotowywać oferty, negocjować warunków ani odpowiadać na pytania
-                        techniczne. Po przekazaniu kontaktu przejmujemy dalszą komunikację oraz
-                        przygotowanie indywidualnej wyceny.
+                        Twoja rola to przedstawienie oferty i wstępna rozmowa z zainteresowanym
+                        klientem. Nie musisz negocjować warunków ani odpowiadać na szczegółowe
+                        pytania techniczne — po przekazaniu kontaktu przejmuję dalszą komunikację
+                        oraz przygotowanie indywidualnej wyceny.
                       </p>
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>
                         <div>
@@ -809,7 +808,7 @@ export default async function PartnerDashboardPage({
                             items={[
                               "Przekaż kontakt bezpośrednio, podając namiary klientowi",
                               "Albo dodaj zgłoszenie w zakładce „Zgłoszenia” — odezwiemy się do klienta",
-                              "Wystarczy zainteresowanie, resztą zajmujemy się my",
+                              "Wystarczy, że przedstawisz ofertę — wyceną i realizacją zajmuję się ja",
                             ]}
                           />
                         </div>

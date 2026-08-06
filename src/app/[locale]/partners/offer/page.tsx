@@ -365,13 +365,13 @@ function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
               style={{
                 fontFamily: "var(--fd, sans-serif)",
                 fontWeight: 600,
-                fontSize: "clamp(36px, 5.2vw, 54px)",
+                fontSize: "clamp(28px, 4vw, 42px)",
                 lineHeight: 1.08,
                 letterSpacing: "-0.02em",
                 margin: "18px 0 20px",
               }}
             >
-              Polecaj markę,{" "}
+              Polecaj sprawdzone rozwiązania,{" "}
               <span
                 style={{
                   background: "linear-gradient(135deg, var(--brand, #1d4ed8), #6d8bf5)",
@@ -380,15 +380,16 @@ function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
                   backgroundClip: "text",
                 }}
               >
-                której możesz zaufać.
+                zarabiaj na każdym poleceniu.
               </span>
             </h1>
             <p style={{ fontSize: 18, lineHeight: 1.65, color: "var(--muted, #555)", maxWidth: 540 }}>
-              Dołącz do programu partnerskiego AK Web &amp; Design i polecaj
-              swoim klientom profesjonalne strony internetowe oraz
-              rozwiązania cyfrowe, za którymi stoi jakość, terminowość i
-              indywidualne podejście. My zajmujemy się realizacją projektów,
-              a Ty otrzymujesz prowizję za każdą zakończoną współpracę.
+              Dołącz do programu partnerskiego AK Web &amp; Design, rozmawiaj
+              ze swoimi kontaktami i przedstawiaj im profesjonalne strony
+              internetowe oraz rozwiązania cyfrowe poparte jakością,
+              terminowością i indywidualnym podejściem. Ja zajmuję się
+              wyceną, ustaleniami i realizacją projektu — a Ty otrzymujesz
+              prowizję za każdą zakończoną współpracę.
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 36 }}>
@@ -404,7 +405,7 @@ function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
                 className="po-btn-secondary"
                 style={secondaryBtnStyle}
               >
-                Napisz wiadomość
+                Napisz do mnie
               </a>
             </div>
 
@@ -458,33 +459,33 @@ function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
 const BENEFITS = [
   {
     Icon: IconTrendingUp,
-    title: "Dodatkowe wynagrodzenie",
-    body: "Polecasz nasze usługi, a za każdą zakończoną realizację otrzymujesz prowizję.",
+    title: "Realne źródło dodatkowego dochodu",
+    body: "Poleć klienta raz i otrzymuj prowizję za każdą zakończoną realizację. Bez sprzedaży, bez obsługi projektu i bez zbędnych formalności.",
   },
   {
     Icon: IconFileText,
-    title: "Proste zasady",
-    body: "Minimum formalności i jasne warunki współpracy od samego początku.",
+    title: "Przejrzyste warunki współpracy",
+    body: "Dołączasz w kilka minut. Od początku dokładnie wiesz, jak działa program i ile zarabiasz.",
   },
   {
     Icon: IconClock,
-    title: "Sprawny proces",
-    body: "Szybko reagujemy na polecenia i sprawnie przeprowadzamy klienta przez kolejne etapy współpracy.",
+    title: "Szybka realizacja zgłoszeń",
+    body: "Gdy przedstawisz klientowi ofertę, ja od razu przejmuję temat — przygotowuję wycenę i prowadzę cały proces aż do zakończenia projektu.",
   },
   {
     Icon: IconPhone,
-    title: "Kompleksowa obsługa",
-    body: "Przejmujemy kontakt, wycenę i realizację, dbając o profesjonalne doświadczenie Twojego klienta.",
+    title: "Ty rozmawiasz, ja domykam",
+    body: "Przedstawiasz klientowi naszą ofertę, a ja przejmuję wycenę, ustalenia i realizację projektu. Twój czas kończy się na rozmowie.",
   },
   {
     Icon: IconShield,
-    title: "Twój klient pozostaje Twój",
-    body: "Szanujemy Twoje relacje biznesowe. Polecony klient pozostaje przypisany do Ciebie w programie partnerskim.",
+    title: "Twoje relacje są bezpieczne",
+    body: "Dbamy o długofalową współpracę. Każdy polecony klient pozostaje przypisany do Twojego konta, również przy kolejnych projektach.",
   },
   {
     Icon: IconPalette,
-    title: "Projekty dopasowane do klienta",
-    body: "Każdą stronę tworzymy indywidualnie, dopasowując rozwiązania do marki, potrzeb i celów biznesowych klienta.",
+    title: "Indywidualne rozwiązania zamiast gotowych szablonów",
+    body: "Każdy projekt powstaje od podstaw z myślą o celach biznesowych klienta, jego marce i planach rozwoju.",
   },
 ];
 
@@ -493,7 +494,7 @@ function WhyWorth() {
     <SectionWrap>
       <p style={eyebrowStyle}>Dlaczego warto?</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 44px" }}>
-        Partnerstwo, które działa po prostu
+        Polecaj klientów i zarabiaj na każdej zrealizowanej współpracy
       </h2>
       <div
         style={{
@@ -548,10 +549,10 @@ function WhyWorth() {
    ============================================================ */
 
 const STEPS = [
-  { n: "1", title: "Polecasz klienta", body: "Wysyłasz swój link albo po prostu dajesz mi znać, kogo polecasz." },
-  { n: "2", title: "Ja kontaktuję się z klientem", body: "Rozmawiam z klientem, ustalam zakres i wycenę projektu." },
-  { n: "3", title: "Realizuję projekt", body: "Projektuję i wdrażam stronę — Ty nie musisz się niczym zajmować." },
-  { n: "4", title: "Ty otrzymujesz prowizję", body: "Po zakończeniu i rozliczeniu projektu wypłacam Twoją prowizję." },
+  { n: "1", title: "Rozmawiasz z klientem", body: "Przedstawiasz klientowi naszą ofertę i wstępnie ustalasz, czego potrzebuje, a potem przekazujesz mi kontakt." },
+  { n: "2", title: "Ja domykam szczegóły i wycenę", body: "Kontaktuję się z klientem, potwierdzam zakres i przygotowuję dokładną wycenę projektu." },
+  { n: "3", title: "Realizuję projekt", body: "Projektuję i wdrażam stronę od podstaw — Ty nie angażujesz w to swojego czasu." },
+  { n: "4", title: "Ty otrzymujesz prowizję", body: "Po zakończeniu i rozliczeniu projektu od razu wypłacam Twoją prowizję." },
 ];
 
 function Timeline() {
@@ -559,7 +560,7 @@ function Timeline() {
     <SectionWrap tinted>
       <p style={eyebrowStyle}>Jak wygląda współpraca?</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 52px" }}>
-        Cztery proste kroki
+        Współpraca w czterech krokach
       </h2>
       <div style={{ display: "grid", gap: 0 }}>
         {STEPS.map((s, i) => (
@@ -696,8 +697,8 @@ function Calculator({ applyHref }: { applyHref: ApplyHref }) {
           </div>
 
           <p style={{ fontSize: 13, color: "var(--muted, #555)", lineHeight: 1.5 }}>
-            Przesuń suwak, żeby zobaczyć prowizję dla różnych wielkości projektu.
-            Każda realizacja to 15% wartości netto.
+            Przesuń suwak i sprawdź wysokość prowizji dla różnych wielkości
+            projektu. Każda zrealizowana współpraca to 15% wartości netto dla Ciebie.
           </p>
         </div>
 
@@ -792,11 +793,11 @@ function EarningsChart() {
     <SectionWrap tinted>
       <p style={eyebrowStyle}>Przykładowe zarobki</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 8px" }}>
-        Ile partner może zarobić miesięcznie
+        Ile możesz zarobić miesięcznie
       </h2>
       <p style={{ fontSize: 14, color: "var(--muted, #555)", marginBottom: 44 }}>
-        Symulacja przy prowizji 10% od wartości projektu, przy przykładowej
-        średniej wartości ok. 2000 zł za realizację.
+        Przykładowa symulacja przy prowizji 10% od wartości projektu i
+        średniej cenie realizacji na poziomie ok. 2000 zł.
       </p>
 
       <div
@@ -867,10 +868,10 @@ function EarningsChart() {
    ============================================================ */
 
 const PERKS = [
-  { Icon: IconFolder, title: "Portfolio", body: "Dostęp do materiałów portfolio, którymi możesz się posłużyć w rozmowie." },
-  { Icon: IconFileText, title: "Oferta PDF", body: "Gotowa oferta do przesłania klientowi, którą możesz podpisać własnym poleceniem." },
-  { Icon: IconTarget, title: "Pomoc sprzedażowa", body: "Podpowiem, jak rozmawiać o projekcie i jakie pytania warto zadać klientowi." },
-  { Icon: IconPhone, title: "Szybki kontakt", body: "Bezpośrednia linia do mnie — bez czekania w kolejce jak zwykły klient." },
+  { Icon: IconFolder, title: "Portfolio realizacji", body: "Otrzymujesz profesjonalne materiały i portfolio, które ułatwią przedstawienie naszej oferty." },
+  { Icon: IconFileText, title: "Gotowa oferta", body: "Dostajesz gotowe materiały sprzedażowe, które możesz od razu przekazać klientowi." },
+  { Icon: IconTarget, title: "Wsparcie sprzedażowe", body: "Otrzymasz materiały i wskazówki, które pomogą Ci pewnie przedstawić ofertę i rozpoznać potrzeby klienta." },
+  { Icon: IconPhone, title: "Priorytetowy kontakt", body: "Masz bezpośredni kontakt i priorytetową komunikację na każdym etapie współpracy." },
 ];
 
 function WhatYouGet() {
@@ -878,7 +879,7 @@ function WhatYouGet() {
     <SectionWrap>
       <p style={eyebrowStyle}>Co otrzymuje partner?</p>
       <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 30, margin: "12px 0 44px" }}>
-        Wsparcie, nie tylko prowizja
+        Realne wsparcie, nie tylko prowizja
       </h2>
       <div
         style={{
@@ -916,27 +917,27 @@ function WhatYouGet() {
 const FAQ_ITEMS = [
   {
     q: "Jak liczona jest prowizja?",
-    a: "Prowizja wynosi 15% wartości netto zrealizowanego projektu. Wysokość zawsze widzisz w swoim panelu partnera po zaakceptowaniu zgłoszenia.",
+    a: "Prowizja wynosi 15% wartości netto każdego zakończonego projektu. Wszystkie zgłoszenia i należne prowizje możesz na bieżąco śledzić w panelu partnera.",
   },
   {
-    q: "Kiedy jest wypłacana?",
-    a: "Po zakończeniu projektu i opłaceniu go przez klienta. Status każdego zgłoszenia widzisz na bieżąco w dashboardzie.",
+    q: "Kiedy otrzymuję wypłatę?",
+    a: "Prowizja jest wypłacana po zakończeniu projektu oraz opłaceniu faktury przez klienta. Status każdego polecenia jest widoczny w Twoim panelu.",
   },
   {
     q: "Czy podpisujemy umowę?",
-    a: "Nie ma formalnej umowy ani zobowiązań — polecasz, kiedy masz okazję. Jeśli wolisz mieć to na piśmie, mogę przygotować krótkie potwierdzenie warunków mailowo.",
+    a: "Bazowo działamy bez długich umów — wystarczy krótkie ustalenie zasad. Jeśli reprezentujesz naszą ofertę wobec klientów i potrzebujesz pisemnego potwierdzenia warunków współpracy, przygotuję je dla Ciebie bez problemu.",
   },
   {
     q: "Czy mogę polecić więcej niż jednego klienta?",
-    a: "Tak, bez ograniczeń. Każde polecenie jest liczone i rozliczane osobno.",
+    a: "Tak. Liczba poleceń jest nieograniczona, a każde zgłoszenie rozliczane jest indywidualnie.",
   },
   {
     q: "Czy mogę polecać firmy spoza Polski?",
-    a: "Tak, pracuję zdalnie z klientami z całego świata — jeśli komunikacja może być po polsku lub angielsku, nie ma problemu.",
+    a: "Tak. Współpracujemy z klientami z całego świata. Wystarczy możliwość komunikacji w języku polskim lub angielskim.",
   },
   {
     q: "Czy odbieracie moich klientów?",
-    a: "Nie. Klient zostaje przypisany do Ciebie na stałe w systemie — jeśli wróci z kolejnym projektem, prowizja nadal należy się Tobie.",
+    a: "Nie. Polecony klient pozostaje przypisany do Twojego konta partnerskiego. Jeżeli wróci z kolejnym projektem, prowizja nadal przysługuje Tobie.",
   },
 ];
 
@@ -1117,7 +1118,7 @@ function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
               marginBottom: 16,
             }}
           >
-            Rozwijaj się razem z marką, której możesz zaufać
+            Buduj dochód razem ze sprawdzoną marką
           </h2>
           <p
             style={{
@@ -1129,8 +1130,9 @@ function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
               marginRight: "auto",
             }}
           >
-            Dołącz do programu partnerskiego AK Web &amp; Design i polecaj sprawdzone
-            usługi, za którymi stoją jakość, doświadczenie i realne efekty dla klientów.
+            Dołącz do programu partnerskiego AK Web &amp; Design i polecaj
+            usługi poparte jakością, doświadczeniem i realnymi efektami dla
+            Twoich klientów.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Link

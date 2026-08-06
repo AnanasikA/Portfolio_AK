@@ -111,7 +111,7 @@ const STEPS = [
   {
     n: "3",
     title: "Otrzymujesz dostęp",
-    body: "Aktywujemy konto, panel partnera oraz Twój indywidualny link do poleceń.",
+    body: "Aktywujemy konto, panel partnera oraz materiały, które pomogą Ci rozmawiać z klientami i przedstawiać ofertę.",
   },
 ];
 
@@ -245,8 +245,8 @@ function PartnerApplyForm() {
                       }}
                     >
                       Dołączenie do programu zajmuje tylko kilka minut. Po akceptacji zgłoszenia
-                      otrzymasz dostęp do panelu partnera, materiały oraz swój indywidualny link
-                      partnerski.
+                      otrzymasz dostęp do panelu partnera, materiały sprzedażowe oraz wsparcie,
+                      które pomoże Ci pewnie rozmawiać z klientami i przedstawiać ofertę.
                     </p>
                   </div>
 
@@ -298,7 +298,7 @@ function PartnerApplyForm() {
                       <div>
                         <label style={labelStyle}>
                           <IconMessage size={16} />
-                          Skąd będziesz polecać klientów?
+                          Jak będziesz docierać do klientów?
                         </label>
                         <textarea
                           name="audienceNote"
@@ -484,7 +484,7 @@ function SuccessState() {
       </h2>
       <p style={{ color: "var(--muted)", lineHeight: 1.6, marginBottom: 32 }}>
         Dziękuję! Sprawdzę Twoje zgłoszenie i odezwę się mailowo w ciągu
-        kilku dni z decyzją i linkiem partnerskim.
+        kilku dni z decyzją oraz dostępem do panelu partnera.
       </p>
       <Link
         href="/"
