@@ -2,9 +2,26 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
-
 type NavLink = { label: string; href: string; external?: boolean };
 type NavCol  = { head: string; links: NavLink[] };
+
+// lucide-react nie eksportuje już ikon marek (Facebook, LinkedIn itd.),
+// więc trzymamy je jako lokalne SVG.
+function LinkedinIcon({ size = 15 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ size = 15 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M13.5 21v-8.1h2.72l.41-3.16h-3.13V7.73c0-.91.25-1.53 1.56-1.53h1.67V3.38C15.94 3.28 15 3.2 13.9 3.2c-2.32 0-3.9 1.42-3.9 4.02v2.52H7.27v3.16H10v8.1h3.5Z" />
+    </svg>
+  );
+}
 
 export default function Footer() {
   const t    = useTranslations('footer');
@@ -16,10 +33,16 @@ export default function Footer() {
   const website = 'anastasiiakupriianets.pl';
   const nip     = '8961662887';
 
+  const social = [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/ak-web-design-anastasiia-kupriianets/', Icon: LinkedinIcon },
+    { label: 'Facebook', href: 'https://www.facebook.com/akwebdesign.pol/',                                Icon: FacebookIcon },
+  ];
+
   const schema = {
     '@context': 'https://schema.org', '@type': 'Organization',
     name: 'AK Web & Design | Anastasiia Kupriianets',
     url: 'https://anastasiiakupriianets.pl', email, taxID: nip,
+    sameAs: social.map(s => s.href),
     contactPoint: [{ '@type': 'ContactPoint', contactType: isEn ? 'customer support' : 'obsługa klienta', email, availableLanguage: ['Polish', 'English'] }],
   };
 
@@ -104,6 +127,7 @@ export default function Footer() {
             .ft-brand-col { grid-column: 1; }
           }
           .ft-link:hover { color: var(--brand) !important; }
+          .ft-social:hover { background: var(--brand) !important; border-color: var(--brand) !important; color: #fff !important; }
         `}</style>
 
         <div className="ft-grid">
@@ -121,28 +145,58 @@ export default function Footer() {
                 ? 'Web design studio — fast, modern sites built for real results.'
                 : 'Studio projektowania stron — nowoczesne, szybkie witryny nastawione na efekty.'}
             </p>
+
             {/* Social / email shortcut */}
-            <a
-              href="mailto:kontakt@anastasiiakupriianets.pl"
-              style={{
-                display:      'inline-flex',
-                alignItems:   'center',
-                gap:          8,
-                fontFamily:   'var(--fd)',
-                fontWeight:   600,
-                fontSize:     '.82rem',
-                color:        'var(--brand)',
-                textDecoration: 'none',
-                padding:      '6px 14px',
-                border:       '1.5px solid var(--brand)',
-                borderRadius: 99,
-                transition:   'background .18s, color .18s',
-              }}
-              onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'var(--brand)'; el.style.color = '#fff'; }}
-              onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'transparent'; el.style.color = 'var(--brand)'; }}
-            >
-              ✉ {isEn ? 'Write to me' : 'Napisz do mnie'}
-            </a>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' as const }}>
+              <a
+                href="mailto:kontakt@anastasiiakupriianets.pl"
+                style={{
+                  display:      'inline-flex',
+                  alignItems:   'center',
+                  gap:          8,
+                  fontFamily:   'var(--fd)',
+                  fontWeight:   600,
+                  fontSize:     '.82rem',
+                  color:        'var(--brand)',
+                  textDecoration: 'none',
+                  padding:      '6px 14px',
+                  border:       '1.5px solid var(--brand)',
+                  borderRadius: 99,
+                  transition:   'background .18s, color .18s',
+                }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'var(--brand)'; el.style.color = '#fff'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'transparent'; el.style.color = 'var(--brand)'; }}
+              >
+                ✉ {isEn ? 'Write to me' : 'Napisz do mnie'}
+              </a>
+
+              {social.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
+                  className="ft-social"
+                  style={{
+                    display:      'flex',
+                    alignItems:   'center',
+                    justifyContent: 'center',
+                    width:        34,
+                    height:       34,
+                    borderRadius: 99,
+                    border:       '1.5px solid var(--line)',
+                    color:        'var(--muted)',
+                    background:   'transparent',
+                    transition:   'background .18s, border-color .18s, color .18s',
+                    flexShrink:   0,
+                  }}
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Nav cols */}

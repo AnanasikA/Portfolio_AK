@@ -100,7 +100,7 @@ export default function Contact() {
                 whileTap={{ scale: .97 }}
                 transition={{ duration: .2 }}
                 style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(.9rem,1.2vw,1rem)', background:'#fff', color:'#1d4ed8', borderRadius:99, padding:'.88em 2em', border:'none', cursor:'pointer' }}>
-                {isEn ? 'Start a project →' : 'Rozpocznij projekt →'}
+                {isEn ? 'Get a Quote' : 'Otrzymaj wycenę'}
               </motion.button>
 
               <motion.a

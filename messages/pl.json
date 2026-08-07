@@ -136,7 +136,7 @@
   "title": "Jasna droga od pomysłu do startu.",
   "description": "Przejrzysty proces współpracy bez zbędnych komplikacji. Na każdym etapie wiesz, co robimy i czego możesz się spodziewać.",
   "tags": ["Przejrzysty proces", "Stały kontakt", "Wsparcie po wdrożeniu"],
-  "primary_cta": "Rozpocznij projekt",
+  "primary_cta": "Porozmawiajmy o projekcie",
   "secondary_cta": "Zobacz realizacje",
   "steps": [
     {
@@ -169,7 +169,7 @@
   "write_email": "Napisz maila",
   "error": "Nie udało się wysłać formularza. Spróbuj ponownie lub napisz na",
   "sending": "Wysyłanie…",
-  "primary_cta": "Rozpocznij projekt →",
+  "primary_cta": "Otrzymaj wycenę",
   "response_time": "Odpowiadam zwykle w ciągu 24 godzin",
   "form": {
     "name": "Imię i nazwisko",
@@ -215,7 +215,7 @@
     "projects": "Portfolio",
     "pricing": "Cennik",
     "blog": "Blog",
-    "cta": "Poproś o wycenę",
+    "cta": "Zapytaj o wycenę",
     "ctaAria": "Otwórz formularz wyceny",
     "menuAria": "Menu nawigacyjne",
     "closeAria": "Zamknij menu",

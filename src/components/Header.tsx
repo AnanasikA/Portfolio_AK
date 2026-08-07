@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 import PaperPlaneButton from '@/components/PaperPlane';
 import { getTranslatedServiceSlug } from '@/data/services';
 import dynamic from 'next/dynamic';
+import { Calculator } from 'lucide-react';
 
 const QuoteModal  = dynamic(() => import('@/components/QuoteModal'),  { ssr: false });
 const DropdownMenu = dynamic(() => import('@/components/DropdownMenu'), { ssr: false });
@@ -241,15 +242,50 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
           color: var(--brand);
           border: 1.5px solid var(--brand);
           border-radius: 99px;
-          padding: .6em 1.3em;
+          width: 40px;
+          height: 40px;
           cursor: pointer;
           white-space: nowrap;
           text-decoration: none;
           display: inline-flex;
           align-items: center;
+          justify-content: center;
           transition: background .18s, color .18s;
         }
         .nav-quote-btn:hover { background: var(--brand); color: #fff; }
+        .nav-quote-wrap { position: relative; display: inline-flex; }
+        .nav-quote-tip {
+          position: absolute;
+          top: calc(100% + 10px);
+          left: 50%;
+          transform: translateX(-50%) translateY(-4px);
+          background: var(--ink);
+          color: #fff;
+          font-family: var(--fb);
+          font-weight: 500;
+          font-size: .78rem;
+          line-height: 1.4;
+          white-space: nowrap;
+          padding: 7px 12px;
+          border-radius: 10px;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity .18s, transform .18s;
+          z-index: 300;
+        }
+        .nav-quote-tip::before {
+          content: '';
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          border: 5px solid transparent;
+          border-bottom-color: var(--ink);
+        }
+        .nav-quote-wrap:hover .nav-quote-tip {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+        }
         @media (max-width: 1023px) {
           .nav-links   { display: none !important; }
           .nav-cta-btn { display: inline-flex !important; }
@@ -307,9 +343,19 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
             {!isPartnerPage && <LangSwitcher />}
 
-            <Link href="/wycena" locale={locale} className="nav-quote-btn nav-cta-btn">
-              {isEn ? 'Get a quote' : 'Wycena'}
-            </Link>
+            <div className="nav-quote-wrap nav-cta-btn">
+              <Link
+                href="/wycena"
+                locale={locale}
+                className="nav-quote-btn"
+                aria-label={isEn ? 'Get a quote — calculate the price yourself' : 'Wycena — oblicz cenę samodzielnie'}
+              >
+                <Calculator size={17} strokeWidth={2} />
+              </Link>
+              <span className="nav-quote-tip">
+                {isEn ? 'Calculate your price yourself' : 'Wyceń projekt samodzielnie'}
+              </span>
+            </div>
 
             <PaperPlaneButton
               onClick={() => setBriefOpen(true)}
@@ -318,7 +364,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = '.85'}
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = '1'}
             >
-              {isEn ? 'Start a project' : 'Rozpocznij projekt'}
+              {isEn ? 'Request a Quote' : 'Zapytaj o wycenę'}
             </PaperPlaneButton>
 
             {/* Burger */}

@@ -219,7 +219,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
                 style={{ width: '100%', fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '1rem', background: '#fff', color: 'var(--brand)', borderRadius: 99, padding: '.85em 1.5em', border: 'none', cursor: 'pointer', transition: 'opacity .2s' }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '.88')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
-                {isEn ? 'Start a project' : 'Rozpocznij projekt'}
+                {isEn ? 'Request a Quote' : 'Zapytaj o wycene'}
               </button>
 
               <Link
