@@ -12,20 +12,19 @@ export type ProjectItem = {
 
 export const projects: ProjectItem[] = [
   {
-    slug: 'booknest',
-    image: '/projects/booknest.webp',
-    fullImage: '/projects/booknest.webp', // TODO: podmień na faktyczny pełny zrzut strony
-    cardImage: '/projects/booknest.webp',
-    tech: [
-      'Next.js',
-      'Supabase',
-      'Stripe',
-      'TypeScript',
-      'Framer Motion',
-      'E-commerce',
-    ],
-    link: 'https://book-nest-seven-tau.vercel.app/',
-  },
+  slug: 'camerahub',
+  image: '/projects/camerahub.webp',
+  fullImage: '/projects/camerahub.webp', // TODO: podmień na faktyczny pełny zrzut strony
+  cardImage: '/projects/camerahub.webp',
+  tech: [
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'Framer Motion',
+    'E-commerce',
+  ],
+  link: 'https://camerahub-delta.vercel.app/', // TODO: podmień na dokładny adres z Twojego Vercela
+},
   {
   slug: 'studio-forma',
   image: '/projects/studio-forma-card.webp',

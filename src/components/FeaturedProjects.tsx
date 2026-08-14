@@ -132,19 +132,19 @@ export default function FeaturedProjects() {
   href: '/projects/studio-forma',
 },
     {
-      index: '03',
-      cat: t('projects.booknest.category'),
-      title: t('projects.booknest.title'),
-      chips: ['Next.js', 'Supabase', 'Stripe', 'Sklep z ebookami'],
-      desc: t('projects.booknest.description'),
-      stats: [
-        { num: '100%', label: t('projects.booknest.stat1') ?? 'cyfrowa dostawa' },
-        { num: '8+',   label: t('projects.booknest.stat2') ?? 'kategorii książek' },
-      ],
-      image: '/projects/booknest.webp',
-      imageFull: '/projects/booknest.webp', // pełny zrzut całej strony
-      href: '/projects/booknest',
-    },
+  index: '03', 
+  cat: t('projects.camerahub.category'),
+  title: t('projects.camerahub.title'),
+  chips: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+  desc: t('projects.camerahub.description'),
+  stats: [
+    { num: '16+', label: t('projects.camerahub.stat1') ?? 'produktów w katalogu' },
+    { num: '8',   label: t('projects.camerahub.stat2') ?? 'kategorii sprzętu' },
+  ],
+  image: '/projects/camerahub.webp',
+  imageFull: '/projects/camerahub.webp', // pełny zrzut całej strony
+  href: '/projects/camerahub',
+},
   ];
 
   const p = projects[current];

@@ -79,7 +79,7 @@ function CountUp({ to, suffix = '', delay = 0 }: { to: number; suffix?: string; 
 const PER_PAGE = 6;
 
 const categoryMap: Record<string, string[]> = {
-  business:   ['biuro-ksiegowe', 'lion-force-weld', 'marecki-24-7', 'goports', 'booknest'],
+  business:   ['biuro-ksiegowe', 'lion-force-weld', 'marecki-24-7', 'goports', 'booknest', 'camerahub'],
   realestate: ['crescent-development', 'realestate'],
   tourism:    ['luisowka'],
   wellness:   ['spiro-pilates-mobility', 'zdrowie-plus'],
@@ -437,6 +437,7 @@ const categoryLabels: Record<string, { pl: string; en: string }> = {
   'photographer':           { pl: 'Marka osobista',          en: 'Personal brand' },
   'luxenails':              { pl: 'Uroda i styl',            en: 'Beauty & style' },
   'booknest':               { pl: 'Sklep internetowy',       en: 'Online store' },
+  'camerahub':              { pl: 'Sklep internetowy',       en: 'Online store' },
 };
   const cat = categoryLabels[project.slug];
   const catLabel = cat ? (locale === 'en' ? cat.en : cat.pl) : '';

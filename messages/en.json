@@ -44,12 +44,12 @@
   "stat1": "service pages",
   "stat2": "responsive"
 },
-"booknest": {
-  "category": "Online Store",
-  "title": "BookNest – Ebook Store",
-  "description": "A full e-commerce ebook store with a filterable catalog, cart, Stripe payments, user accounts and instant download after purchase.",
-  "stat1": "Online payments",
-  "stat2": "Instant access"
+"camerahub": {
+  "category": "E-commerce store",
+  "title": "CameraHub",
+  "description": "A store for professional camera gear — a full product catalog with filtering, cart, checkout, and search, built with Next.js and Tailwind CSS.",
+  "stat1": "products in catalog",
+  "stat2": "gear categories"
 }
   }
 },
@@ -329,6 +329,55 @@
 
 
 "projects": {
+  "camerahub": {
+  "title": "CameraHub – Camera Store",
+  "description": "An e-commerce store for professional camera gear: multi-level filtering, cart, checkout, live search, and full responsiveness — built with Next.js and Tailwind CSS.",
+  "overview": "A portfolio e-commerce build from the ground up on Next.js (App Router) and Tailwind CSS — from a product catalog with multi-level filtering, through cart and checkout, to a search that matches across multiple fields at once. Deliberately designed as a frontend-only project without a real backend — login, registration, and checkout are fully designed, visually working flows clearly marked as a demo, instead of bolting on an unnecessary server.",
+  "workTitle": "Scope of work",
+  "work": [
+    "Catalog of 16 products across 8 categories (mirrorless cameras, DSLRs, cinema cameras, lenses, drones, lighting, audio, accessories)",
+    "Filter panel: price (slider), brand, camera type, sensor, video resolution, availability, and sale status — every filter shows a live count of matching products, even when it's zero",
+    "Search that matches each typed word individually against name, brand, category, description, and technical specs — instead of matching the whole phrase literally",
+    "Cart (React Context + localStorage) accessible from every page as a slide-out panel",
+    "3-step checkout (shipping → payment → review) with animated transitions between steps",
+    "Login and registration pages — full form UI with validation, clearly marked as demo functionality",
+    "Photo gallery in a bento layout with a lightbox (arrow, keyboard navigation, image counter)",
+    "Placeholder system: every product image automatically falls back to a styled block with a label if the file doesn't exist yet",
+    "Full responsiveness: mobile menu with an accordion for categories, filter panel as a bottom sheet on phones, product cards switching from horizontal to stacked layout on narrow screens",
+    "Support pages (shipping, warranty, returns, contact) with a working contact form"
+  ],
+  "resultsTitle": "Results",
+  "timeframeLabel": "Timeframe",
+  "timeframe": "iterative, session by session",
+  "highlights": [
+    "A complete purchase flow: catalog → filtering → cart → checkout → confirmation, all connected and working",
+    "A filter panel that never shows an empty or broken state — inactive options are grayed out with a (0) count instead of disappearing",
+    "Zero broken images: any product photo not yet on disk gracefully falls back to a styled placeholder instead of a broken icon",
+    "Responsive at every screen width — from narrow phones to large desktops, with a purpose-built layout for each key component"
+  ],
+  "challengesTitle": "Challenges",
+  "challenges": [
+    { "problem": "Search returned no results even for phrases that should have matched existing products (e.g. \"full frame mirrorless\").", "solution": "The issue was matching the entire typed phrase as a single string. Fix: split the query into individual words and require each one to appear anywhere across an expanded set of fields (name, brand, category, description, camera type, sensor, resolution)." },
+    { "problem": "The login popup and search panel rendered in the wrong place, partially behind the sticky header, instead of on top of the whole page.", "solution": "The modals were nested inside the `<header>` element, which had its own positioning context (sticky), breaking their `position: fixed`. Fix: moved both overlays up to render at the layout level, as siblings of the header, controlled by a shared context." },
+    { "problem": "The automatic masonry grid (CSS columns) for the photo gallery left random empty gaps with only 5 curated images.", "solution": "Switched from auto-balancing CSS columns to a hand-designed CSS Grid with fixed positions — with a small, fixed number of items, predictable layout matters more than fully natural image proportions." }
+  ],
+  "decisionsTitle": "Design decisions",
+  "decisions": [
+    "Next.js App Router with Client Components only where interactivity is needed (cart, filters, search), everything else rendered statically",
+    "Deliberately skipped a real backend (Supabase was considered) — for a purely frontend portfolio project, a fully working visual UI clearly labeled \"this is a demo\" was a better choice than an unnecessary external dependency",
+    "Placeholder system treated as a first-class part of the design, not a stopgap — lets the project be shown at any stage of adding real photos without ever looking broken",
+    "A shared `FiltersContent` component used in both the desktop panel and the mobile bottom sheet — zero duplicated filtering logic",
+    "Filters always show the full list of possible options (grayed out with a 0 count) instead of hiding nonexistent combinations — interface predictability mattered more than minimalism"
+  ],
+  "integrationsTitle": "Integrations",
+  "integrations": [
+    "Framer Motion — animated transitions (cart, search, checkout, gallery lightbox, mobile menu)",
+    "next/image with an automatic placeholder fallback when a file is missing (`onError`)",
+    "lucide-react — a consistent icon set across the whole interface",
+    "No external backend — a deliberate design decision, see \"Design decisions\""
+  ]
+},
+
   "booknest": {
   "title": "BookNest – Ebook Store",
   "description": "A full e-commerce store selling ebooks: filterable catalog, cart, Stripe payments, user accounts and instant download after purchase.",

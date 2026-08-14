@@ -44,12 +44,12 @@
   "stat1": "stron usług",
   "stat2": "responsywna"
 },
-"booknest": {
-  "category": "Sklep internetowy",
-  "title": "BookNest — sklep z ebookami",
-  "description": "Pełny sklep e-commerce z ebookami: katalog z filtrowaniem po kategoriach i autorach, koszyk, płatności Stripe, konto użytkownika z historią zamówień i natychmiastowe pobieranie po zakupie.",
-  "stat1": "Płatności online",
-  "stat2": "Natychmiastowy dostęp"
+"camerahub": {
+  "category": "Sklep e-commerce",
+  "title": "CameraHub",
+  "description": "Sklep z profesjonalnym sprzętem fotograficznym — pełny katalog produktów z filtrowaniem, koszykiem, checkoutem i wyszukiwarką, zbudowany w Next.js i Tailwind CSS.",
+  "stat1": "produktów w katalogu",
+  "stat2": "kategorii sprzętu"
 }
   }
 },
@@ -331,6 +331,54 @@
   },
 
 "projects": {
+  "camerahub": {
+  "title": "CameraHub – Sklep z aparatami",
+  "description": "Sklep e-commerce z profesjonalnym sprzętem fotograficznym: katalog z zaawansowanymi filtrami, koszyk, checkout, wyszukiwarka i pełna responsywność — zbudowany w Next.js i Tailwind CSS.",
+  "overview": "Portfolio-owy sklep e-commerce zbudowany od zera na Next.js (App Router) i Tailwind CSS — od katalogu produktów z wielopoziomowym filtrowaniem, przez koszyk i checkout, po wyszukiwarkę działającą na wielu polach naraz. Świadomie zaprojektowany jako projekt frontendowy bez prawdziwego backendu — logowanie, rejestracja i checkout są w pełni zaprojektowanymi, działającymi wizualnie przepływami z jasną informacją, że to demo, zamiast na siłę podpinanego, niepotrzebnego serwera.",
+  "workTitle": "Zakres prac",
+  "work": [
+    "Katalog 16 produktów w 8 kategoriach (aparaty bezlusterkowe, lustrzanki, kamery kinowe, obiektywy, drony, oświetlenie, audio, akcesoria)",
+    "Panel filtrów: cena (suwak), marka, typ aparatu, matryca, rozdzielczość wideo, dostępność i wyprzedaż — każdy filtr pokazuje liczbę pasujących produktów, nawet gdy wynosi zero",
+    "Wyszukiwarka dopasowująca każde wpisane słowo osobno do nazwy, marki, kategorii, opisu i parametrów technicznych — zamiast szukania całej frazy dosłownie",
+    "Koszyk (React Context + localStorage) dostępny z każdej podstrony jako wysuwany panel",
+    "3-etapowy checkout (dostawa → płatność → podsumowanie) z animowanymi przejściami między krokami",
+    "Strony logowania i rejestracji — pełny UI formularzy z walidacją, świadomie oznaczone jako wersja demo",
+    "Galeria zdjęć w układzie bento z lightboxem (nawigacja strzałkami, klawiaturą, licznik zdjęć)",
+    "System placeholderów: każde zdjęcie produktu ma automatyczny fallback na stylizowany blok z podpisem, jeśli plik jeszcze nie istnieje",
+    "Pełna responsywność: mobilne menu z akordeonem kategorii, panel filtrów jako wysuwany od dołu bottom sheet na telefonie, karty produktów przełączające się z układu poziomego na pionowy przy wąskich ekranach",
+    "Podstrony wsparcia (dostawa, gwarancja, zwroty, kontakt) z formularzem kontaktowym"
+  ],
+  "resultsTitle": "Efekt",
+  "timeframeLabel": "Czas realizacji",
+  "timeframe": "iteracyjnie, sesja po sesji",
+  "highlights": [
+    "Pełny przepływ zakupowy: katalog → filtrowanie → koszyk → checkout → potwierdzenie, wszystko połączone i działające",
+    "Panel filtrów, który nigdy nie pokazuje pustego lub niedziałającego stanu — nieaktywne opcje są wyszarzone z licznikiem (0) zamiast znikać",
+    "Zero connected crashy: każde zdjęcie, którego jeszcze nie ma na dysku, elegancko przechodzi na stylizowany placeholder zamiast pokazywać złamaną ikonkę",
+    "Responsywny na każdej szerokości ekranu — od wąskiego telefonu po duży desktop, z osobno przemyślanym układem dla każdego kluczowego komponentu"
+  ],
+  "challengesTitle": "Wyzwania",
+  "challenges": [
+    { "problem": "Wyszukiwarka nie zwracała wyników nawet dla fraz, które powinny trafiać w istniejące produkty (np. „pełna klatka bezlusterkowy”).", "solution": "Problem leżał w dopasowywaniu całej wpisanej frazy jako jednego ciągu znaków. Rozwiązanie: podział zapytania na pojedyncze słowa i wymaganie, żeby każde z nich pojawiło się gdziekolwiek w rozszerzonym zestawie pól (nazwa, marka, kategoria, opis, typ aparatu, matryca, rozdzielczość)." },
+    { "problem": "Popup logowania i panel wyszukiwania renderowały się w złym miejscu, częściowo pod sticky nagłówkiem, zamiast na wierzchu całej strony.", "solution": "Modale były zagnieżdżone wewnątrz elementu `<header>` z własnym kontekstem pozycjonowania (sticky), co psuło ich `position: fixed`. Rozwiązanie: przeniesienie renderowania obu okien na poziom całego layoutu, jako rodzeństwo nagłówka, sterowanych współdzielonym kontekstem." },
+    { "problem": "Automatyczna siatka masonry (kolumny CSS) dla galerii zdjęć zostawiała przypadkowe puste miejsca przy tylko 5 kuratorskich zdjęciach.", "solution": "Zamiana z automatycznie balansujących kolumn CSS na ręcznie zaprojektowaną siatkę CSS Grid z ustalonymi z góry pozycjami — przy stałej, niewielkiej liczbie elementów przewidywalny układ jest ważniejszy niż w pełni naturalne proporcje zdjęć." }
+  ],
+  "decisionsTitle": "Decyzje projektowe",
+  "decisions": [
+    "Next.js App Router z komponentami klienckimi tam, gdzie potrzebna jest interaktywność (koszyk, filtry, wyszukiwarka), a resztą renderowaną statycznie",
+    "Świadoma rezygnacja z prawdziwego backendu (rozważano Supabase) — dla czysto frontendowego projektu portfolio lepszym wyborem był w pełni działający wizualnie UI z jasną informacją „to demo” niż niepotrzebna zależność zewnętrzna",
+    "System placeholderów jako pierwszoklasowa część designu, nie prowizorka — pozwala pokazywać projekt na każdym etapie uzupełniania zdjęć bez połamanego wyglądu",
+    "Wspólny komponent `FiltersContent` używany zarówno w panelu desktopowym, jak i mobilnym bottom sheet — zero duplikacji logiki filtrowania",
+    "Filtry pokazujące zawsze pełną listę możliwych opcji (z licznikiem 0, wyszarzone) zamiast ukrywania nieistniejących kombinacji — przewidywalność interfejsu ważniejsza niż minimalizm"
+  ],
+  "integrationsTitle": "Integracje",
+  "integrations": [
+    "Framer Motion — animowane przejścia (koszyk, wyszukiwarka, checkout, lightbox galerii, mobilne menu)",
+    "next/image z automatycznym fallbackiem na placeholder przy braku pliku (`onError`)",
+    "lucide-react — spójny zestaw ikon w całym interfejsie",
+    "Brak zewnętrznego backendu — świadoma decyzja projektowa, patrz sekcja „Decyzje projektowe”"
+  ]
+},
   "booknest": {
   "title": "BookNest – Sklep z ebookami",
   "description": "Pełny sklep e-commerce sprzedający ebooki: katalog z filtrowaniem, koszyk, płatności Stripe, konta użytkowników i natychmiastowe pobieranie po zakupie.",
