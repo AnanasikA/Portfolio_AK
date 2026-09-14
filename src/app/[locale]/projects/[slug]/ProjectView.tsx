@@ -141,7 +141,7 @@ export default function ProjectView({ project: p }: { project: Project }) {
   );
 
   return (
-    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' ,  overflowX: 'hidden'}}>
       <Script src="https://cdn.lordicon.com/lordicon.js" strategy="afterInteractive" />
       <Script id={`project-schema-${p.slug}`} type="application/ld+json" strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
@@ -218,11 +218,32 @@ export default function ProjectView({ project: p }: { project: Project }) {
                   <span key={c} style={{ width: 12, height: 12, borderRadius: '50%', background: c, display: 'block' }} />
                 ))}
               </div>
-              <div style={{ flex: 1, height: 26, background: 'var(--bg)', borderRadius: 6, border: '1px solid var(--line)', display: 'flex', alignItems: 'center', padding: '0 10px' }}>
-                <span style={{ fontFamily: 'var(--fb)', fontSize: 12, color: 'var(--muted)' }}>
-                  {p.link ?? `anastasiiakuprianets.pl/projects/${p.slug}`}
-                </span>
-              </div>
+              <div style={{ flex: 1, minWidth: 0, height: 26, background: 'var(--bg)', borderRadius: 6, border: '1px solid var(--line)', display: 'flex', alignItems: 'center', padding: '0 10px' }}>
+  {p.link ? (
+    <a
+      href={p.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        fontFamily: 'var(--fb)', fontSize: 12, color: 'var(--muted)',
+        whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+        display: 'block', width: '100%', textDecoration: 'none', cursor: 'pointer',
+      }}
+      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--brand)'; }}
+      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; }}
+    >
+      {p.link}
+    </a>
+  ) : (
+    <span style={{
+      fontFamily: 'var(--fb)', fontSize: 12, color: 'var(--muted)',
+      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+      display: 'block', width: '100%',
+    }}>
+      {`anastasiiakuprianets.pl/projects/${p.slug}`}
+    </span>
+  )}
+</div>
             </div>
             {/* screenshot — auto-scroll gdy sekcja wjeżdża w viewport, pauza na hover */}
             <div
@@ -251,7 +272,7 @@ export default function ProjectView({ project: p }: { project: Project }) {
           <div className="pv-grid">
 
             {/* Main content */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 48 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 48, minWidth: 0 }}>
 
               {overview && (
                 <section>
@@ -269,7 +290,7 @@ export default function ProjectView({ project: p }: { project: Project }) {
               {work.length > 0 && (
                 <section>
                   <SectionTitle>{tDetail('workTitle')}</SectionTitle>
-                  <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(240px,1fr))', gap: 12, listStyle: 'none' }}>
+                  <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(240px, 100%),1fr))', gap: 12, listStyle: 'none' }}>
                     {work.map(item => (
                       <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '12px 16px', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--r)' }}>
                         <span style={{ color: 'var(--brand)', marginTop: 2, flexShrink: 0 }}>✓</span>
