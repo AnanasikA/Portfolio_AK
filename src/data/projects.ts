@@ -8,11 +8,19 @@ export type ProjectItem = {
   ratio?: number;
   tech: string[];
   link?: string;
+  /**
+   * Slug usługi (z src/data/services), z którą to case study jest najsilniej
+   * powiązane — wyliczony wg tej samej logiki tagów co serviceProjects.ts
+   * (patrz getProjectsForService), tylko w drugą stronę: projekt → usługa.
+   * Używany do renderowania sekcji „Powiązana usługa” na stronie realizacji.
+   */
+  relatedService?: string;
 };
 
 export const projects: ProjectItem[] = [
   {
   slug: 'camerahub',
+  relatedService: 'sklepy-internetowe',
   image: '/projects/camerahub.webp',
   fullImage: '/projects/camerahub.webp', // TODO: podmień na faktyczny pełny zrzut strony
   cardImage: '/projects/camerahub.webp',
@@ -27,6 +35,7 @@ export const projects: ProjectItem[] = [
 },
   {
   slug: 'studio-forma',
+  relatedService: 'strony-dla-firm',
   image: '/projects/studio-forma-card.webp',
   fullImage: '/projects/studio-forma-card.webp', // TODO: podmień na faktyczny pełny zrzut strony
   cardImage: '/projects/studio-forma-card.webp',
@@ -41,6 +50,7 @@ export const projects: ProjectItem[] = [
 },
   {
     slug: 'marcin-kowal',
+    relatedService: 'strony-dla-firm',
     image: '/projects/marcin-kowal1.webp',
     fullImage: '/projects/marcin-kowal1.webp', 
     cardImage: '/projects/marcin-kowal1.webp',
@@ -56,6 +66,7 @@ export const projects: ProjectItem[] = [
   },
   {
   slug: 'biuro-ksiegowe',
+  relatedService: 'strony-dla-firm',
   image: '/projects/BiuroKsiegowe1.webp',
   cardImage: '/projects/BiuroKsiegowe1.webp',
   tech: [
@@ -70,6 +81,7 @@ export const projects: ProjectItem[] = [
 },
   {
   slug: 'crescent-development',
+  relatedService: 'strony-dla-firm',
   image: '/projects/Crescent1.webp',
   cardImage: '/projects/Crescent1.webp',
   tech: [
@@ -84,6 +96,7 @@ export const projects: ProjectItem[] = [
 },
   {
     slug: 'spiro-pilates-mobility',
+    relatedService: 'wordpress',
     image: '/projects/SpiroPilates1.webp',
     cardImage: '/projects/SpiroPilates1.webp',
     tech: [
@@ -98,6 +111,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'lion-force-weld',
+    relatedService: 'wordpress',
     image: '/projects/LionForceWeld(1).webp',
     cardImage: '/projects/LionForceWeld(1).webp',
     tech: ['WordPress', 'ACF', 'Tailwind CSS', 'SEO'],
@@ -105,6 +119,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'luisowka',
+    relatedService: 'tworzenie-stron-internetowych',
     image: '/projects/Luisowka1.webp',
     cardImage: '/projects/Luisowka1.webp',
     tech: [
@@ -120,6 +135,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'zdrowie-plus',
+    relatedService: 'landing-page',
     image: '/projects/Zdrowie+1.webp',
     cardImage: '/projects/Zdrowie+1.webp',
     ratio: 1.6,
@@ -135,6 +151,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'quest-for-paws',
+    relatedService: 'landing-page',
     image: '/projects/Paws1.webp',
     cardImage: '/projects/Paws1.webp',
     tech: [
@@ -149,6 +166,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'realestate',
+    relatedService: 'landing-page',
     image: '/projects/RealEstate1.webp',
     cardImage: '/projects/RealEstate1.webp',
     tech: [
@@ -163,6 +181,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'marecki-24-7',
+    relatedService: 'landing-page',
     image: '/projects/Warsztat1.webp',
     cardImage: '/projects/Warsztat1.webp',
     tech: [
@@ -177,6 +196,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'goports',
+    relatedService: 'wordpress',
     image: '/projects/goports21.webp',
     cardImage: '/projects/goports21.webp',
     tech: [
@@ -191,6 +211,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'studybuddy',
+    relatedService: 'projektowanie-stron',
     image: '/projects/studybuddy1.webp',
     cardImage: '/projects/studybuddy.webp',
     tech: [
@@ -205,6 +226,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'photographer',
+    relatedService: 'projektowanie-stron',
     image: '/projects/photographer-site1.webp',
     cardImage: '/projects/photographer-site1.webp',
     tech: [
@@ -219,6 +241,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'luxenails',
+    relatedService: 'projektowanie-stron',
     image: '/projects/startup-site1.webp',
     cardImage: '/projects/startup-site.webp',
     tech: [

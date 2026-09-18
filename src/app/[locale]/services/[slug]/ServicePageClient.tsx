@@ -360,6 +360,28 @@ function Hero({ s, open, locale }: { s: ServiceData; open: () => void; locale: s
             {s.subtitle}
           </p>
 
+          {s.relatedService && (
+            <p
+              style={{
+                fontFamily: 'var(--fd)',
+                fontSize: '.92rem',
+                color: 'rgba(255,255,255,.7)',
+                lineHeight: 1.6,
+                maxWidth: '56ch',
+                marginTop: '-1.5rem',
+                marginBottom: '2rem',
+              }}
+            >
+              {s.relatedService.note}{' '}
+              <Link
+                href={`/services/${s.relatedService.slug}`}
+                style={{ color: '#fff', textDecoration: 'underline', textUnderlineOffset: '.2em' }}
+              >
+                {s.relatedService.linkLabel} →
+              </Link>
+            </p>
+          )}
+
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: '3.5rem' }}>
             <button
               onClick={open}

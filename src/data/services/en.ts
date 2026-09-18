@@ -1024,15 +1024,15 @@ const websiteMaintenance: ServiceData = {
   slug: 'website-maintenance',
   title: 'Website Maintenance',
   subtitle:
-    'I keep your website updated, secure, and running smoothly, so you can focus on your business.',
+    'Technical website maintenance — you report what you need (an update, a fix, a technical issue), and I take care of it within your plan.',
   description:
-    'I provide website maintenance for WordPress and Next.js websites, including updates, backups, technical fixes, and ongoing support.',
+    'I handle technical maintenance for WordPress and Next.js websites: updates, backups, security, and fixing issues as they come up.',
   keywords: [
     'website maintenance',
-    'website management',
     'WordPress maintenance',
-    'website support',
-    'website updates',
+    'technical website management',
+    'website updates and security',
+    'website technical support',
   ],
   heroVideo: '/videos/services/web-development.mp4',
   heroPoster: '/videos/services/web-development-poster.webp',
@@ -1092,8 +1092,13 @@ const websiteMaintenance: ServiceData = {
   schema: {
     name: 'Website Maintenance',
     description:
-      'Website maintenance for WordPress and Next.js websites including updates, backups, monitoring, and technical support.',
+      'Technical maintenance for WordPress and Next.js websites including updates, backups, monitoring, and technical support.',
     serviceType: 'WebSiteMaintenance',
+  },
+  relatedService: {
+    slug: 'website-support',
+    note: 'Looking for ongoing, monthly support instead of one-off fixes?',
+    linkLabel: 'See website support',
   },
 };
 
@@ -1101,14 +1106,14 @@ const websiteSupport: ServiceData = {
   slug: 'website-support',
   title: 'Website Support',
   subtitle:
-    'Monthly technical support for your website, including updates, backups, small content changes, and help whenever you need it.',
+    'Ongoing, monthly website support — regular updates, backups, and help whenever you need it, without worrying about the technical side.',
   description:
-    'I provide ongoing support for WordPress and Next.js websites with regular updates, backups, content changes, and technical assistance.',
+    'I provide ongoing, monthly support for WordPress and Next.js websites. It is a long-term partnership: regular updates, security, backups, and small content changes, so you can focus on running your business.',
   keywords: [
     'website support',
+    'ongoing website care',
+    'monthly website support',
     'website maintenance service',
-    'technical website support',
-    'website care',
     'WordPress support',
   ],
   heroVideo: '/videos/services/web-development.mp4',
@@ -1169,8 +1174,13 @@ const websiteSupport: ServiceData = {
   schema: {
     name: 'Website Support',
     description:
-      'Monthly website support including updates, backups, content changes, monitoring, and technical assistance.',
+      'Ongoing, monthly website support including updates, backups, content changes, monitoring, and technical assistance.',
     serviceType: 'WebSiteMaintenance',
+  },
+  relatedService: {
+    slug: 'website-maintenance',
+    note: 'Need a one-off technical fix without an ongoing monthly plan?',
+    linkLabel: 'See website maintenance',
   },
 };
 const websiteRedesign: ServiceData = {

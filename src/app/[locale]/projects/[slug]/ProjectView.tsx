@@ -1,7 +1,7 @@
 'use client';
 
 import Script from 'next/script';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { useTranslations, useLocale } from 'next-intl';
@@ -10,6 +10,7 @@ import Header from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 import { FiChevronLeft, FiExternalLink } from 'react-icons/fi';
 import Footer from '@/components/Footer';
+import { getService, getTranslatedServiceSlug } from '@/data/services';
 
 type Project = {
   slug: string;
@@ -19,14 +20,13 @@ type Project = {
   ratio?: number;
   tech: string[];
   link?: string;
+  relatedService?: string;
 };
 
 type Challenge = {
   problem: string;
   solution: string;
 };
-
-const SITE_URL = 'https://anastasiiakupriianets.pl';
 
 /* ── shared inline style helpers ── */
 const chip = (active = false): React.CSSProperties => ({
@@ -108,31 +108,22 @@ export default function ProjectView({ project: p }: { project: Project }) {
   const decisions   = t.has(`${p.slug}.decisions`)   ? (t.raw(`${p.slug}.decisions`)   as string[])    : [];
   const integrations= t.has(`${p.slug}.integrations`)? (t.raw(`${p.slug}.integrations`)as string[])    : [];
 
+  // Powiązana usługa (case study → usługa) — mapowanie z src/data/projects.ts,
+  // wyliczone na podstawie tych samych tagów co serviceProjects.ts. Patrz
+  // strategia SEO ETAP 3, sekcja D / ETAP 4 pkt 4.
+  const relatedServiceSlug = p.relatedService
+    ? getTranslatedServiceSlug('pl', locale, p.relatedService)
+    : undefined;
+  const relatedService = relatedServiceSlug ? getService(locale, relatedServiceSlug) : undefined;
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     return () => { document.body.style.overflow = 'auto'; };
   }, [isOpen]);
 
-  const absoluteProjectUrl = `${SITE_URL}/projects/${p.slug}`;
-  const absoluteImageUrl   = `${SITE_URL}${p.cardImage ?? p.image}`;
-
-  const structuredData = useMemo(() => ([
-    {
-      '@context': 'https://schema.org', '@type': 'CreativeWork',
-      name: title, description, url: absoluteProjectUrl, image: absoluteImageUrl,
-      author: { '@type': 'Person', name: 'Anastasiia Kupriianets', url: SITE_URL },
-      publisher: { '@type': 'Organization', name: 'AK Web & Design', url: SITE_URL },
-      inLanguage: locale === 'en' ? 'en' : 'pl', keywords: p.tech.join(', '),
-    },
-    {
-      '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: locale === 'en' ? 'Home' : 'Strona główna', item: SITE_URL },
-        { '@type': 'ListItem', position: 2, name: locale === 'en' ? 'Projects' : 'Projekty', item: `${SITE_URL}/projects` },
-        { '@type': 'ListItem', position: 3, name: title, item: absoluteProjectUrl },
-      ],
-    },
-  ]), [absoluteImageUrl, absoluteProjectUrl, description, locale, p.tech, title]);
+  // Dane strukturalne (CreativeWork + BreadcrumbList) są teraz renderowane
+  // po stronie serwera w page.tsx, z poprawnym prefiksem locale w URL-ach —
+  // patrz audyt SEO, H6/M4. Nie duplikujemy ich tutaj.
 
   const SectionTitle = ({ children }: { children: React.ReactNode }) => (
     <h2 style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(1.3rem,2vw,1.6rem)', letterSpacing: '-.02em', color: 'var(--ink)', marginBottom: 20, lineHeight: 1.2 }}>
@@ -143,8 +134,6 @@ export default function ProjectView({ project: p }: { project: Project }) {
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' ,  overflowX: 'hidden'}}>
       <Script src="https://cdn.lordicon.com/lordicon.js" strategy="afterInteractive" />
-      <Script id={`project-schema-${p.slug}`} type="application/ld+json" strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
       <Header isOpen={isOpen} toggleMenu={() => setIsOpen(p => !p)} />
       <DropdownMenu isOpen={isOpen} toggleMenu={() => setIsOpen(p => !p)} />
@@ -219,31 +208,31 @@ export default function ProjectView({ project: p }: { project: Project }) {
                 ))}
               </div>
               <div style={{ flex: 1, minWidth: 0, height: 26, background: 'var(--bg)', borderRadius: 6, border: '1px solid var(--line)', display: 'flex', alignItems: 'center', padding: '0 10px' }}>
-  {p.link ? (
-    <a
-      href={p.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        fontFamily: 'var(--fb)', fontSize: 12, color: 'var(--muted)',
-        whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-        display: 'block', width: '100%', textDecoration: 'none', cursor: 'pointer',
-      }}
-      onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--brand)'; }}
-      onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; }}
-    >
-      {p.link}
-    </a>
-  ) : (
-    <span style={{
-      fontFamily: 'var(--fb)', fontSize: 12, color: 'var(--muted)',
-      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-      display: 'block', width: '100%',
-    }}>
-      {`anastasiiakuprianets.pl/projects/${p.slug}`}
-    </span>
-  )}
-</div>
+                {p.link ? (
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontFamily: 'var(--fb)', fontSize: 12, color: 'var(--muted)',
+                      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                      display: 'block', width: '100%', textDecoration: 'none', cursor: 'pointer',
+                    }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--brand)'; }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; }}
+                  >
+                    {p.link}
+                  </a>
+                )  : (
+                  <span style={{
+                    fontFamily: 'var(--fb)', fontSize: 12, color: 'var(--muted)',
+                    whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                    display: 'block', width: '100%',
+                  }}>
+                    {`anastasiiakuprianets.pl/projects/${p.slug}`}
+                  </span>
+                )} 
+              </div>
             </div>
             {/* screenshot — auto-scroll gdy sekcja wjeżdża w viewport, pauza na hover */}
             <div
@@ -386,7 +375,31 @@ export default function ProjectView({ project: p }: { project: Project }) {
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--line)'; (e.currentTarget as HTMLElement).style.color = 'var(--ink)'; }}>
                   {tDetail('contact')}
                 </Link>
+
+                <Link href="/wycena" locale={locale}
+                  style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.85rem', color: 'var(--muted)', borderRadius: 99, padding: '.6em 1.2em', textDecoration: 'underline', textUnderlineOffset: '.2em', transition: 'color .2s' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--brand)'; }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; }}>
+                  {locale === 'en' ? 'Get a quote' : 'Poproś o wycenę'}
+                </Link>
               </div>
+
+              {relatedService && relatedServiceSlug && (
+                <div style={{ marginTop: 16, background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--r-l)', padding: 'clamp(20px,3vw,28px)' }}>
+                  <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.7rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: 10 }}>
+                    {locale === 'en' ? 'Related service' : 'Powiązana usługa'}
+                  </p>
+                  <p style={{ fontFamily: 'var(--fb)', fontSize: '.9rem', color: 'var(--muted)', lineHeight: 1.55, marginBottom: 14 }}>
+                    {locale === 'en'
+                      ? `This project was built as part of ${relatedService.title.toLowerCase()}.`
+                      : `Ten projekt powstał w ramach usługi: ${relatedService.title.toLowerCase()}.`}
+                  </p>
+                  <Link href={`/services/${relatedServiceSlug}`} locale={locale}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.88rem', color: 'var(--brand)', textDecoration: 'none' }}>
+                    {relatedService.title} →
+                  </Link>
+                </div>
+              )}
             </aside>
 
           </div>

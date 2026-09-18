@@ -47,4 +47,15 @@ export interface ServiceData {
     description: string;
     serviceType: string;
   };
+  /**
+   * Optional natural cross-link to a closely related service whose search
+   * intent could otherwise overlap with this one (e.g. administracja-stron
+   * vs opieka-nad-stronami). Rendered as a small note + link near the hero,
+   * helping both users and search engines tell the two services apart.
+   */
+  relatedService?: {
+    slug: string;
+    note: string;
+    linkLabel: string;
+  };
 }

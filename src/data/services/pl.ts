@@ -1000,15 +1000,15 @@ const websiteMaintenance: ServiceData = {
   slug: 'administracja-stron',
   title: 'Administracja stron internetowych',
   subtitle:
-    'Dbam o aktualizacje, bezpieczeństwo i bieżące zmiany na stronie, dzięki czemu możesz skupić się na prowadzeniu swojej firmy.',
+    'Techniczna administracja strony — zgłaszasz potrzebę (aktualizację, poprawkę, problem techniczny), a ja się nią zajmuję w ramach wybranego pakietu.',
   description:
-    'Oferuję administrację stron internetowych WordPress i Next.js. Zajmuję się aktualizacjami, kopiami zapasowymi, drobnymi zmianami oraz bieżącą opieką techniczną.',
+    'Zajmuję się techniczną administracją stron WordPress i Next.js: aktualizacjami, kopiami zapasowymi, bezpieczeństwem i usuwaniem usterek. Zgłaszasz, co jest potrzebne, a ja to wykonuję.',
   keywords: [
-    'administracja strony internetowej',
-    'opieka nad stroną internetową',
-    'zarządzanie stroną',
-    'aktualizacje wordpress',
-    'serwis strony',
+    'administracja stron internetowych',
+    'administracja strony WordPress',
+    'zarządzanie techniczne stroną',
+    'aktualizacje i bezpieczeństwo strony',
+    'serwis techniczny strony',
   ],
   heroVideo: '/videos/services/web-development.mp4',
   heroPoster: '/videos/services/web-development-poster.webp',
@@ -1068,23 +1068,28 @@ const websiteMaintenance: ServiceData = {
   schema: {
     name: 'Administracja stron internetowych',
     description:
-      'Administracja i opieka nad stronami internetowymi WordPress oraz Next.js. Aktualizacje, kopie zapasowe i bieżące wsparcie techniczne.',
+      'Techniczna administracja stronami internetowymi WordPress oraz Next.js. Aktualizacje, kopie zapasowe i bieżące wsparcie techniczne.',
     serviceType: 'WebSiteMaintenance',
+  },
+  relatedService: {
+    slug: 'opieka-nad-stronami',
+    note: 'Szukasz stałej, comiesięcznej współpracy zamiast pojedynczych zgłoszeń?',
+    linkLabel: 'Zobacz opiekę nad stronami',
   },
 };
 const websiteSupport: ServiceData = {
   slug: 'opieka-nad-stronami',
   title: 'Opieka nad stronami internetowymi',
   subtitle:
-    'Miesięczna opieka techniczna nad stroną — aktualizacje, kopie zapasowe, drobne zmiany i wsparcie, gdy coś przestaje działać.',
+    'Stała, comiesięczna opieka nad stroną internetową — regularne aktualizacje, kopie zapasowe i wsparcie zawsze wtedy, gdy go potrzebujesz.',
   description:
-    'Oferuję miesięczną opiekę nad stronami internetowymi WordPress i Next.js. Zajmuję się aktualizacjami, backupami, drobnymi zmianami i wsparciem technicznym.',
+    'Zapewniam stałą, miesięczną opiekę nad stronami WordPress i Next.js. To długofalowa współpraca: regularnie aktualizuję stronę, dbam o bezpieczeństwo, backupy i drobne zmiany treści, żebyś mogła/mógł skupić się na prowadzeniu firmy.',
   keywords: [
     'opieka nad stroną internetową',
-    'serwis strony www',
-    'wsparcie techniczne strony',
+    'stała opieka nad stroną',
+    'miesięczna opieka techniczna',
     'utrzymanie strony internetowej',
-    'administracja strony internetowej',
+    'serwis strony www',
   ],
   heroVideo: '/videos/services/web-development.mp4',
   heroPoster: '/videos/services/web-development-poster.webp',
@@ -1144,8 +1149,13 @@ const websiteSupport: ServiceData = {
   schema: {
     name: 'Opieka nad stronami internetowymi',
     description:
-      'Miesięczna opieka techniczna nad stronami internetowymi. Aktualizacje, kopie zapasowe, drobne zmiany i wsparcie techniczne.',
+      'Stała, miesięczna opieka nad stronami internetowymi. Aktualizacje, kopie zapasowe, drobne zmiany i wsparcie techniczne.',
     serviceType: 'WebSiteMaintenance',
+  },
+  relatedService: {
+    slug: 'administracja-stron',
+    note: 'Potrzebujesz jednorazowej, technicznej poprawki bez stałej współpracy?',
+    linkLabel: 'Zobacz administrację stron',
   },
 };
 

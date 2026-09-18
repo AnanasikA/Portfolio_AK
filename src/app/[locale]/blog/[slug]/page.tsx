@@ -1,8 +1,61 @@
+import type { Metadata } from 'next';
 import { getPost, getAllPosts } from '@/lib/blog';
+import { getTranslatedBlogSlug } from '@/data/blogSlugMap';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import BlogPostClient from './BlogPostClient';
+
+const BASE_URL = 'https://anastasiiakupriianets.pl';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const post = getPost(slug, locale);
+  if (!post) return {};
+
+  const canonical = `${BASE_URL}/${locale}/blog/${slug}`;
+  const translatedSlug = getTranslatedBlogSlug(locale, locale === 'en' ? 'pl' : 'en', slug);
+
+  // hreflang tylko dla par artykułów, które faktycznie mają tłumaczenie
+  // (patrz src/data/blogSlugMap.ts) — nie wskazujemy na nieistniejące strony.
+  const languages: Record<string, string> = {
+    [locale]: canonical,
+  };
+  if (translatedSlug) {
+    const otherLocale = locale === 'en' ? 'pl' : 'en';
+    languages[otherLocale] = `${BASE_URL}/${otherLocale}/blog/${translatedSlug}`;
+  }
+  const plUrl = locale === 'pl' ? canonical : (translatedSlug ? `${BASE_URL}/pl/blog/${translatedSlug}` : undefined);
+  if (plUrl) languages['x-default'] = plUrl;
+
+  return {
+    title: post.title,
+    description: post.description,
+    alternates: {
+      canonical,
+      languages,
+    },
+    openGraph: {
+      type: 'article',
+      url: canonical,
+      title: post.title,
+      description: post.description,
+      siteName: 'AK Web & Design',
+      locale: locale === 'en' ? 'en_US' : 'pl_PL',
+      publishedTime: post.date || undefined,
+      tags: post.tags,
+    },
+    twitter: {
+      card: 'summary',
+      title: post.title,
+      description: post.description,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const locales = ['pl', 'en'];
@@ -66,5 +119,54 @@ export default async function BlogPostPage({
 
   const mdxContent = <MDXRemote source={post.content} components={mdxComponents} />;
 
-  return <BlogPostClient post={post} locale={locale} mdxContent={mdxContent} />;
+  const canonical = `${BASE_URL}/${locale}/blog/${slug}`;
+  const blogUrl = `${BASE_URL}/${locale}/blog`;
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date || undefined,
+    dateModified: post.date || undefined,
+    inLanguage: locale === 'en' ? 'en' : 'pl',
+    author: {
+      '@type': 'Person',
+      name: 'Anastasiia Kupriianets',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'AK Web & Design',
+      url: BASE_URL,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonical,
+    },
+    url: canonical,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'AK Web & Design', item: BASE_URL },
+      { '@type': 'ListItem', position: 2, name: locale === 'en' ? 'Blog' : 'Blog', item: blogUrl },
+      { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <BlogPostClient post={post} locale={locale} mdxContent={mdxContent} />
+    </>
+  );
 }

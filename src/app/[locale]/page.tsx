@@ -1,66 +1,72 @@
-'use client';
+import type { Metadata } from 'next';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import HomeSections from '@/components/HomeSections';
 
-import dynamic from 'next/dynamic';
-import Hero       from '@/components/Hero';
-import HomeClient from '@/components/HomeClient';
-import Footer     from '@/components/Footer';
-import { useSectionTracking } from '@/hooks/useSectionTracking';
-import { useExitTracking }    from '@/hooks/useExitTracking';
+const BASE_URL = 'https://anastasiiakupriianets.pl';
 
-const ClientMarquee    = dynamic(() => import('@/components/ClientMarquee'));
-const FeaturedProjects = dynamic(() => import('@/components/FeaturedProjects'));
-const PricingBanner    = dynamic(() => import('@/components/PricingBanner'));
-const ProcessSection   = dynamic(() => import('@/components/ProcessSection'));
-const WhyUs            = dynamic(() => import('@/components/WhyUs'));
-const FAQ              = dynamic(() => import('@/components/FAQ'));
-const Contact          = dynamic(() => import('@/components/Contact'));
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isEn = locale === 'en';
+  const t = await getTranslations({ locale, namespace: 'meta' });
 
-export default function Home() {
-  // Śledzi z której sekcji użytkownik opuszcza stronę
-  useExitTracking();
+  const canonical = `${BASE_URL}/${locale}`;
 
-  // Ref dla każdej sekcji — wysyła eventy section_view i section_time_spent do GA4
-  const heroRef     = useSectionTracking('home');
-  const projectsRef = useSectionTracking('projects');
-  const pricingRef  = useSectionTracking('pricing');
-  const processRef  = useSectionTracking('process');
-  const whyUsRef    = useSectionTracking('why_us');
-  const faqRef      = useSectionTracking('faq');
-  const contactRef  = useSectionTracking('contact');
+  return {
+    title: t('title'),
+    description: t('description'),
+    alternates: {
+      canonical,
+      languages: {
+        pl: `${BASE_URL}/pl`,
+        en: `${BASE_URL}/en`,
+        'x-default': `${BASE_URL}/pl`,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      url: canonical,
+      title: t('title'),
+      description: t('description'),
+      siteName: 'AK Web & Design',
+      locale: isEn ? 'en_US' : 'pl_PL',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+    },
+  };
+}
+
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const isEn = locale === 'en';
+
+  // WebSite JSON-LD — generowane po stronie serwera (patrz audyt SEO, H6).
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'AK Web & Design',
+    url: `${BASE_URL}/${locale}`,
+    inLanguage: isEn ? 'en' : 'pl',
+  };
 
   return (
     <>
-      <HomeClient>
-        <section ref={heroRef} data-section="home">
-          <Hero />
-          <ClientMarquee />
-        </section>
-
-        <section ref={projectsRef} data-section="projects">
-          <FeaturedProjects />
-        </section>
-
-        <section ref={pricingRef} data-section="pricing">
-          <PricingBanner />
-        </section>
-
-        <section ref={processRef} data-section="process">
-          <ProcessSection />
-        </section>
-
-        <section ref={whyUsRef} data-section="why_us">
-          <WhyUs />
-        </section>
-
-        <section ref={faqRef} data-section="faq">
-          <FAQ />
-        </section>
-
-        <section ref={contactRef} data-section="contact">
-          <Contact />
-        </section>
-      </HomeClient>
-      <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <HomeSections />
     </>
   );
 }

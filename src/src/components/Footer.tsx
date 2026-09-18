@@ -33,32 +33,18 @@ export default function Footer() {
   const email   = 'kontakt@anastasiiakupriianets.pl';
   const website = 'anastasiiakupriianets.pl';
   const nip     = '8961662887';
-  const phone   = '+48576564682';
 
   const social = [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/company/ak-web-design-anastasiia-kupriianets/', Icon: LinkedinIcon },
     { label: 'Facebook', href: 'https://www.facebook.com/akwebdesign.pol/',                                Icon: FacebookIcon },
   ];
 
-  // Organization + ProfessionalService — tylko dane, które faktycznie
-  // znajdują się na stronie (email, NIP, telefon, miasto z metadanych
-  // usług). Bez wymyślonego adresu, ocen czy opinii — patrz audyt SEO, M3.
   const schema = {
-    '@context': 'https://schema.org',
-    '@type': ['Organization', 'ProfessionalService'],
+    '@context': 'https://schema.org', '@type': 'Organization',
     name: 'AK Web & Design | Anastasiia Kupriianets',
-    url: 'https://anastasiiakupriianets.pl',
-    email,
-    telephone: phone,
-    taxID: nip,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Wrocław',
-      addressCountry: 'PL',
-    },
-    areaServed: isEn ? ['PL', 'Europe', 'Worldwide'] : 'PL',
+    url: 'https://anastasiiakupriianets.pl', email, taxID: nip,
     sameAs: social.map(s => s.href),
-    contactPoint: [{ '@type': 'ContactPoint', contactType: isEn ? 'customer support' : 'obsługa klienta', email, telephone: phone, availableLanguage: ['Polish', 'English'] }],
+    contactPoint: [{ '@type': 'ContactPoint', contactType: isEn ? 'customer support' : 'obsługa klienta', email, availableLanguage: ['Polish', 'English'] }],
   };
 
   const cols: NavCol[] = [

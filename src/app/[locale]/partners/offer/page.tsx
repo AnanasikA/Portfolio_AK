@@ -20,6 +20,14 @@ function OfferContent() {
   return (
     <PartnersShell>
       <div style={{ fontFamily: "var(--fb)", color: "var(--ink, #111)" }}>
+        {/* Strona publiczna (program partnerski), bez własnego generateMetadata
+            (komponent kliencki) — bez tego dziedziczyłaby title/description
+            strony głównej. Patrz audyt SEO, punkt 6. Dostępna tylko w PL. */}
+        <title>Program partnerski | AK Web & Design</title>
+        <meta
+          name="description"
+          content="Polecaj strony internetowe AK Web & Design i zarabiaj prowizję od każdego zrealizowanego projektu. Sprawdź zasady programu partnerskiego."
+        />
         <GlobalStyle />
         <Hero name={name} applyHref={applyHref} />
         <WhyWorth />

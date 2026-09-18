@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useLocale } from 'next-intl';
 import { useTranslations } from 'next-intl';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -62,6 +63,8 @@ function useAnimatedNumber(target: number) {
 
 export default function WycenaPage() {
   const c = useTranslations('calculator');
+  const locale = useLocale();
+  const isEn = locale === 'en';
 
   const [menuOpen,  setMenuOpen]  = useState(false);
   const [briefOpen, setBriefOpen] = useState(false);
@@ -196,6 +199,18 @@ export default function WycenaPage() {
 
   return (
     <>
+      {/* Kalkulator wyceny — strona publiczna, ale bez własnego generateMetadata
+          (komponent kliencki), więc bez tego dziedziczyłaby title/description
+          strony głównej. Patrz audyt SEO, punkt 6. */}
+      <title>{isEn ? 'Website Quote Calculator | AK Web & Design' : 'Kalkulator wyceny strony internetowej | AK Web & Design'}</title>
+      <meta
+        name="description"
+        content={
+          isEn
+            ? 'Estimate the cost of your website in a few steps — choose the site type, pages and extras to get an instant price range.'
+            : 'Oszacuj koszt swojej strony internetowej w kilku krokach — wybierz typ strony, liczbę podstron i dodatkowe funkcje, aby zobaczyć orientacyjną wycenę.'
+        }
+      />
       <style>{`
         .qw-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .qw-grid2 > *:last-child:nth-child(odd) { grid-column: 1 / -1; }

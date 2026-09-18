@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import { useRef, useEffect, useState } from 'react';
+import { Link } from '@/i18n/navigation';
 
 const fade = {
   hidden:  { opacity: 0, y: 24 },
@@ -54,7 +55,13 @@ function useInViewNative(ref: React.RefObject<Element | null>) {
 function CountUp({ to, suffix = '', delay = 0 }: { to: number; suffix?: string; delay?: number }) {
   const ref    = useRef<HTMLSpanElement>(null);
   const inView = useInViewNative(ref as React.RefObject<Element | null>);
-  const [val, setVal] = useState(0);
+  // Wartość początkowa = docelowa liczba, nie 0 — żeby wygenerowany na
+  // serwerze HTML (i pierwszy render przed hydracją) zawsze pokazywał
+  // prawdziwą wartość ("40+", nie "0+"). Animacja licznika w dół-do-góry
+  // uruchamia się dopiero w przeglądarce, po wejściu w viewport — jest
+  // czysto kosmetyczna i nie zmienia tego, co widzi crawler. Patrz audyt
+  // SEO, M1.
+  const [val, setVal] = useState(to);
 
   useEffect(() => {
     if (!inView) return;
@@ -170,8 +177,8 @@ export default function WhyUs() {
               <motion.p variants={fade} custom={.12} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 style={{ fontFamily:'var(--fb)', fontSize:'clamp(.95rem,1.3vw,1.1rem)', color:'var(--muted)', lineHeight:1.65 }}>
                 {isEn
-                  ? 'No corporate overhead or passing work to interns. You work directly with the people who design and build your site.'
-                  : 'Bez korporacyjnego narzutu i przekazywania pracy stażystom. Współpracujesz bezpośrednio z osobami, które projektują i budują Twoją stronę.'}
+                  ? <>No corporate overhead or passing work to interns. You work directly with the people who design and build your site — see how we approach <Link href="/services/web-development" style={{ color: 'var(--brand)', textDecoration: 'underline', textUnderlineOffset: '.2em' }}>website development</Link>.</>
+                  : <>Bez korporacyjnego narzutu i przekazywania pracy stażystom. Współpracujesz bezpośrednio z osobami, które projektują i budują Twoją stronę — zobacz, jak wygląda u nas <Link href="/services/tworzenie-stron-internetowych" style={{ color: 'var(--brand)', textDecoration: 'underline', textUnderlineOffset: '.2em' }}>tworzenie stron internetowych</Link>.</>}
               </motion.p>
             </div>
 

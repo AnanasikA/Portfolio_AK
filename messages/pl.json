@@ -6,185 +6,177 @@
     "projects": "Projekty",
     "blog": "Blog"
   },
-"hero": {
-  "badge": "Strony dla firm • WordPress i Next.js • współpraca zdalna",
-  "title": "Pomagamy firmom tworzyć nowoczesne strony, które się wyróżniają.",
- "description": "Projektujemy nowoczesne strony dla małych firm, usług lokalnych i marek osobistych. Łączymy estetyczny design, szybkość działania i rozwiązania, które wspierają rozwój biznesu.",
-  "primary_cta": "Zapytaj o wycenę",
-  "secondary_cta": "Zobacz realizacje",
-  "highlights": "od 1500 zł • 7–14 dni • indywidualny projekt",
-  "image_alt": "Nowoczesne projekty stron internetowych dla firm",
-  "meta_days": "dni do startu",
+  "hero": {
+    "badge": "Strony dla firm • WordPress i Next.js • współpraca zdalna",
+    "title": "Tworzymy strony internetowe dla firm, które się wyróżniają.",
+    "description": "Projektujemy i tworzymy strony internetowe dla małych firm, usług lokalnych i marek osobistych. Łączymy estetyczny design, szybkość działania i rozwiązania, które wspierają rozwój biznesu.",
+    "primary_cta": "Zapytaj o wycenę",
+    "secondary_cta": "Zobacz realizacje",
+    "highlights": "od 1500 zł • 7–14 dni • indywidualny projekt",
+    "image_alt": "Nowoczesne projekty stron internetowych dla firm",
+    "meta_days": "dni do startu",
     "meta_custom": "indywidualny design",
     "meta_rating": "ocena klientów",
     "stat_bookings": "więcej rezerwacji",
     "stat_loadtime": "czas ładowania"
-},
-"featuredProjects": {
-  "badge": "Wybrane projekty",
-  "title": "Strony, które pracują tak ciężko jak firmy, które za nimi stoją.",
-  "cta": "Zobacz case study",
-  "ctaText": "Masz podobny projekt? Zobacz realizacje albo wyślij krótkie zapytanie.",
-  "allProjects": "Zobacz wszystkie projekty",
-  "askQuote": "Zapytaj o wycenę",
-
-  "projects": {
-   "marcinkowal": {
-  "category": "Marka osobista",
-  "title": "Marcin Kowal – Trener Personalny",
-  "description": "Strona dla trenera personalnego w Warszawie. Bold typografia, animacje przy scrollu i popup z formularzem przy wyborze planu.",
-  "stat1": "sekcji z animacjami",
-  "stat2": "responsywna"
-},
-
-    "studioforma": {
-  "category": "Architektura wnętrz",
-  "title": "Studio Forma",
-  "description": "Kompleksowa strona dla pracowni projektowania wnętrz — z dynamicznymi podstronami usług, animacjami nawiązującymi do designu wnętrz i systemem konsultacji online.",
-  "stat1": "stron usług",
-  "stat2": "responsywna"
-},
-"camerahub": {
-  "category": "Sklep e-commerce",
-  "title": "CameraHub",
-  "description": "Sklep z profesjonalnym sprzętem fotograficznym — pełny katalog produktów z filtrowaniem, koszykiem, checkoutem i wyszukiwarką, zbudowany w Next.js i Tailwind CSS.",
-  "stat1": "produktów w katalogu",
-  "stat2": "kategorii sprzętu"
-}
-  }
-},
-
-"pricing": {
-  "title": "Ile kosztuje strona internetowa dla Twojej firmy?",
-  "badge": "Cennik",
-  "subtitle": "Wybierz pakiet lub napisz do mnie — pomogę dobrać rozwiązanie dopasowane do Twojej branży i budżetu.",
-
-  "highlights": "✔ od 1500 zł • ✔ realizacja 7–14 dni • ✔ indywidualna wycena",
-
-  "cta_button": "Zapytaj o wycenę",
-  "cta_subtext": "Nie wiesz, który pakiet wybrać? Napisz — doradzę najlepsze rozwiązanie.",
-
-  "package_aria": "Co zawiera pakiet",
-  "price_aria": "Cena",
-  "image_alt": "Przykładowe elementy projektu strony — layout, typografia, sekcje",
-
-  "packages": {
-    "landing": {
-      "label": "Strona wizytówka / Landing Page",
-      "priceLabel": "od 1 500 zł",
-      "badge": "Dobry na start",
-      "description": "Prosta, nowoczesna strona, która jasno pokazuje ofertę i ułatwia kontakt z klientem.",
-      "features": [
-        "Projekt dopasowany do marki",
-        "Responsywny widok mobile",
-        "Sekcja kontaktowa",
-        "Podstawowe SEO"
-      ]
-    },
-
-    "company": {
-      "label": "Strona firmowa",
-      "priceLabel": "od 3 000 zł",
-      "badge": "Najczęściej wybierana",
-      "description": "Rozbudowana strona dla firm, które chcą wyglądać profesjonalnie i zdobywać więcej klientów.",
-      "features": [
-        "2–6 podstron (np. O nas, Oferta, Kontakt)",
-        "Indywidualny projekt dopasowany do marki",
-        "Lepsza struktura sprzedażowa i UX",
-        "Optymalizacja szybkości i SEO"
-      ]
-    },
-
-    "premium": {
-      "label": "Rozbudowana strona / Premium",
-      "priceLabel": "od 5 000 zł",
-      "badge": "Dla większych projektów",
-      "description": "Zaawansowana strona z większą liczbą sekcji, dopracowanym UX i większym potencjałem rozwoju.",
-      "features": [
-        "Więcej podstron i sekcji",
-        "Zaawansowany UX i lepszy flow użytkownika",
-        "Premium design i dopracowane detale",
-        "Gotowość pod dalszą rozbudowę"
-      ]
+  },
+  "featuredProjects": {
+    "badge": "Wybrane projekty",
+    "title": "Strony, które pracują tak ciężko jak firmy, które za nimi stoją.",
+    "cta": "Zobacz case study",
+    "ctaText": "Masz podobny projekt? Zobacz realizacje albo wyślij krótkie zapytanie.",
+    "allProjects": "Zobacz wszystkie projekty",
+    "askQuote": "Zapytaj o wycenę",
+    "projects": {
+      "marcinkowal": {
+        "category": "Marka osobista",
+        "title": "Marcin Kowal – Trener Personalny",
+        "description": "Strona dla trenera personalnego w Warszawie. Bold typografia, animacje przy scrollu i popup z formularzem przy wyborze planu.",
+        "stat1": "sekcji z animacjami",
+        "stat2": "responsywna"
+      },
+      "studioforma": {
+        "category": "Architektura wnętrz",
+        "title": "Studio Forma",
+        "description": "Kompleksowa strona dla pracowni projektowania wnętrz — z dynamicznymi podstronami usług, animacjami nawiązującymi do designu wnętrz i systemem konsultacji online.",
+        "stat1": "stron usług",
+        "stat2": "responsywna"
+      },
+      "camerahub": {
+        "category": "Sklep e-commerce",
+        "title": "CameraHub",
+        "description": "Sklep z profesjonalnym sprzętem fotograficznym — pełny katalog produktów z filtrowaniem, koszykiem, checkoutem i wyszukiwarką, zbudowany w Next.js i Tailwind CSS.",
+        "stat1": "produktów w katalogu",
+        "stat2": "kategorii sprzętu"
+      }
     }
   },
-
-  "modal": {
-    "title": "Szybkie zapytanie o wycenę",
-    "subtitle": "Opisz krótko swój projekt — wrócę z propozycją i orientacyjną ceną.",
-    "close": "Zamknij"
+  "pricing": {
+    "title": "Ile kosztuje strona internetowa dla Twojej firmy?",
+    "badge": "Cennik",
+    "subtitle": "Wybierz pakiet lub napisz do mnie — pomogę dobrać rozwiązanie dopasowane do Twojej branży i budżetu.",
+    "highlights": "✔ od 1500 zł • ✔ realizacja 7–14 dni • ✔ indywidualna wycena",
+    "cta_button": "Zapytaj o wycenę",
+    "cta_subtext": "Nie wiesz, który pakiet wybrać? Napisz — doradzę najlepsze rozwiązanie.",
+    "package_aria": "Co zawiera pakiet",
+    "price_aria": "Cena",
+    "image_alt": "Przykładowe elementy projektu strony — layout, typografia, sekcje",
+    "packages": {
+      "landing": {
+        "label": "Strona wizytówka / Landing Page",
+        "priceLabel": "od 1 500 zł",
+        "badge": "Dobry na start",
+        "description": "Prosta, nowoczesna strona, która jasno pokazuje ofertę i ułatwia kontakt z klientem.",
+        "features": [
+          "Projekt dopasowany do marki",
+          "Responsywny widok mobile",
+          "Sekcja kontaktowa",
+          "Podstawowe SEO"
+        ]
+      },
+      "company": {
+        "label": "Strona firmowa",
+        "priceLabel": "od 3 000 zł",
+        "badge": "Najczęściej wybierana",
+        "description": "Rozbudowana strona dla firm, które chcą wyglądać profesjonalnie i zdobywać więcej klientów.",
+        "features": [
+          "2–6 podstron (np. O nas, Oferta, Kontakt)",
+          "Indywidualny projekt dopasowany do marki",
+          "Lepsza struktura sprzedażowa i UX",
+          "Optymalizacja szybkości i SEO"
+        ]
+      },
+      "premium": {
+        "label": "Rozbudowana strona / Premium",
+        "priceLabel": "od 5 000 zł",
+        "badge": "Dla większych projektów",
+        "description": "Zaawansowana strona z większą liczbą sekcji, dopracowanym UX i większym potencjałem rozwoju.",
+        "features": [
+          "Więcej podstron i sekcji",
+          "Zaawansowany UX i lepszy flow użytkownika",
+          "Premium design i dopracowane detale",
+          "Gotowość pod dalszą rozbudowę"
+        ]
+      }
+    },
+    "modal": {
+      "title": "Szybkie zapytanie o wycenę",
+      "subtitle": "Opisz krótko swój projekt — wrócę z propozycją i orientacyjną ceną.",
+      "close": "Zamknij"
+    },
+    "form": {
+      "name": "Imię i nazwisko",
+      "email": "Email",
+      "websiteType": "Rodzaj strony",
+      "budget": "Budżet",
+      "description": "Opisz, czego potrzebujesz",
+      "choose": "Wybierz...",
+      "submit": "Wyślij zapytanie",
+      "options": {
+        "landing": "Strona wizytówka / Landing Page",
+        "company": "Strona firmowa",
+        "premium": "Rozbudowana strona / Premium"
+      }
+    }
   },
-
-  "form": {
-    "name": "Imię i nazwisko",
-    "email": "Email",
-    "websiteType": "Rodzaj strony",
-    "budget": "Budżet",
-    "description": "Opisz, czego potrzebujesz",
-    "choose": "Wybierz...",
-    "submit": "Wyślij zapytanie",
-
-    "options": {
-      "landing": "Strona wizytówka / Landing Page",
-      "company": "Strona firmowa",
-      "premium": "Rozbudowana strona / Premium"
+  "process": {
+    "badge": "Jak pracujemy",
+    "title": "Jasna droga od pomysłu do startu.",
+    "description": "Przejrzysty proces współpracy bez zbędnych komplikacji. Na każdym etapie wiesz, co robimy i czego możesz się spodziewać.",
+    "tags": [
+      "Przejrzysty proces",
+      "Stały kontakt",
+      "Wsparcie po wdrożeniu"
+    ],
+    "primary_cta": "Porozmawiajmy o projekcie",
+    "secondary_cta": "Zobacz realizacje",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Odkrywanie",
+        "text": "Poznaję Twoją firmę, cele i odbiorców, aby określić kierunek projektu."
+      },
+      {
+        "step": "02",
+        "title": "Projekt",
+        "text": "Tworzę indywidualny projekt dopasowany do marki i potrzeb Twoich klientów."
+      },
+      {
+        "step": "03",
+        "title": "Wdrożenie",
+        "text": "Buduję szybką i responsywną stronę, która działa na każdym urządzeniu."
+      },
+      {
+        "step": "04",
+        "title": "Start",
+        "text": "Publikuję stronę, przeprowadzam testy i zapewniam wsparcie po uruchomieniu."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Masz pomysł na stronę?",
+    "success_title": "Dziękuję za wiadomość",
+    "success_text": "Formularz został wysłany poprawnie. Odpowiem najczęściej w ciągu 24 godzin w dni robocze.",
+    "send_another": "Wyślij kolejną wiadomość",
+    "write_email": "Napisz maila",
+    "error": "Nie udało się wysłać formularza. Spróbuj ponownie lub napisz na",
+    "sending": "Wysyłanie…",
+    "primary_cta": "Otrzymaj wycenę",
+    "response_time": "Odpowiadam zwykle w ciągu 24 godzin",
+    "form": {
+      "name": "Imię i nazwisko",
+      "email": "Email",
+      "message": "Wiadomość",
+      "submit": "Wyślij wiadomość"
     }
-  }
-},
-"process": {
-  "badge": "Jak pracujemy",
-  "title": "Jasna droga od pomysłu do startu.",
-  "description": "Przejrzysty proces współpracy bez zbędnych komplikacji. Na każdym etapie wiesz, co robimy i czego możesz się spodziewać.",
-  "tags": ["Przejrzysty proces", "Stały kontakt", "Wsparcie po wdrożeniu"],
-  "primary_cta": "Porozmawiajmy o projekcie",
-  "secondary_cta": "Zobacz realizacje",
-  "steps": [
-    {
-      "step": "01",
-      "title": "Odkrywanie",
-      "text": "Poznaję Twoją firmę, cele i odbiorców, aby określić kierunek projektu."
-    },
-    {
-      "step": "02",
-      "title": "Projekt",
-      "text": "Tworzę indywidualny projekt dopasowany do marki i potrzeb Twoich klientów."
-    },
-    {
-      "step": "03",
-      "title": "Wdrożenie",
-      "text": "Buduję szybką i responsywną stronę, która działa na każdym urządzeniu."
-    },
-    {
-      "step": "04",
-      "title": "Start",
-      "text": "Publikuję stronę, przeprowadzam testy i zapewniam wsparcie po uruchomieniu."
-    }
-  ]
-},
-"contact": {
-  "title": "Masz pomysł na stronę?",
-  "success_title": "Dziękuję za wiadomość",
-  "success_text": "Formularz został wysłany poprawnie. Odpowiem najczęściej w ciągu 24 godzin w dni robocze.",
-  "send_another": "Wyślij kolejną wiadomość",
-  "write_email": "Napisz maila",
-  "error": "Nie udało się wysłać formularza. Spróbuj ponownie lub napisz na",
-  "sending": "Wysyłanie…",
-  "primary_cta": "Otrzymaj wycenę",
-  "response_time": "Odpowiadam zwykle w ciągu 24 godzin",
-  "form": {
-    "name": "Imię i nazwisko",
-    "email": "Email",
-    "message": "Wiadomość",
-    "submit": "Wyślij wiadomość"
-  }
-},
+  },
   "footer": {
-  "description": "Projektuję i koduję nowoczesne strony internetowe — funkcjonalne, estetyczne i gotowe do działania. Skupiam się na UX/UI, dostępności i dobrym kodzie.",
-  "privacy": "Polityka prywatności",
-  "terms": "Regulamin",
-  "cookies": "Cookies",
-  "legal_aria": "Linki prawne"
-},
+    "description": "Projektuję i koduję nowoczesne strony internetowe — funkcjonalne, estetyczne i gotowe do działania. Skupiam się na UX/UI, dostępności i dobrym kodzie.",
+    "privacy": "Polityka prywatności",
+    "terms": "Regulamin",
+    "cookies": "Cookies",
+    "legal_aria": "Linki prawne"
+  },
   "cookie": {
     "message": "Używamy plików cookie, aby zapewnić najlepsze doświadczenia na naszej stronie.",
     "accept": "Akceptuję",
@@ -192,8 +184,8 @@
     "learn_more": "Dowiedz się więcej"
   },
   "meta": {
-    "title": "Anastasiia | Portfolio",
-    "description": "Portfolio Front-End Developerki (Next.js, Tailwind). UX/UI, wydajność i dostępność."
+    "title": "Tworzenie stron internetowych dla firm",
+    "description": "Tworzymy strony internetowe dla firm i usług lokalnych — z Wrocławia, dla klientów z całej Polski i zdalnie. Szybkie, nowoczesne strony zaprojektowane pod konwersję."
   },
   "projectsPage": {
     "ariaLabel": "Projekty",
@@ -207,8 +199,8 @@
     "projectButton": "Zobacz projekt",
     "projectDetailsAria": "Zobacz szczegóły: {title}",
     "backToProjects": "Powrót do projektów"
-},
-   "dropdownMenu": {
+  },
+  "dropdownMenu": {
     "home": "Start",
     "services": "Usługi",
     "process": "Proces",
@@ -221,42 +213,38 @@
     "closeAria": "Zamknij menu",
     "smallText": "Nowoczesne strony internetowe dla firm w całej Polsce."
   },
-
   "cookieConsent": {
     "text": "Używamy plików cookie do analityki i poprawy działania serwisu.",
     "accept": "Akceptuję",
     "decline": "Odrzuć"
   },
-
   "projectDetail": {
-  "overviewTitle": "O projekcie",
-  "timeframeLabel": "Czas realizacji",
-  "workTitle": "Co zrobiłam w projekcie",
-  "resultsTitle": "Efekt",
-  "challengesTitle": "Wyzwania i rozwiązania",
-  "challengeLabel": "Wyzwanie",
-  "solutionLabel": "Rozwiązanie",
-  "decisionsTitle": "Kluczowe decyzje projektowe",
-  "integrationsTitle": "Integracje i połączenia",
-  "sidebarText": "Masz pytania lub chcesz podobny efekt? Po prostu napisz — odezwę się z propozycją.",
-  "viewOnline": "Zobacz online",
-  "contact": "Skontaktuj się",
-  "imagePreviewAria": "Podgląd pełnej strony projektu {title} — przewijaj w ramce, aby zobaczyć całość",
-  "imageAlt": "{title} — długi zrzut strony"
-},
-
-"thankYou": {
-  "badge": "Wiadomość wysłana",
-  "title": "Dziękuję za kontakt!",
-  "desc": "Otrzymałam Twoje zapytanie. Odpowiem możliwie szybko.",
-  "home": "Wróć na stronę główną",
-  "projects": "Zobacz realizacje",
-  "label": "Zapytanie z portfolio",
-  "step1": "Brief otrzymany",
-  "step2": "Analiza zakresu",
-  "step3": "Odpowiedź wkrótce"
-},
-
+    "overviewTitle": "O projekcie",
+    "timeframeLabel": "Czas realizacji",
+    "workTitle": "Co zrobiłam w projekcie",
+    "resultsTitle": "Efekt",
+    "challengesTitle": "Wyzwania i rozwiązania",
+    "challengeLabel": "Wyzwanie",
+    "solutionLabel": "Rozwiązanie",
+    "decisionsTitle": "Kluczowe decyzje projektowe",
+    "integrationsTitle": "Integracje i połączenia",
+    "sidebarText": "Masz pytania lub chcesz podobny efekt? Po prostu napisz — odezwę się z propozycją.",
+    "viewOnline": "Zobacz online",
+    "contact": "Skontaktuj się",
+    "imagePreviewAria": "Podgląd pełnej strony projektu {title} — przewijaj w ramce, aby zobaczyć całość",
+    "imageAlt": "{title} — długi zrzut strony"
+  },
+  "thankYou": {
+    "badge": "Wiadomość wysłana",
+    "title": "Dziękuję za kontakt!",
+    "desc": "Otrzymałam Twoje zapytanie. Odpowiem możliwie szybko.",
+    "home": "Wróć na stronę główną",
+    "projects": "Zobacz realizacje",
+    "label": "Zapytanie z portfolio",
+    "step1": "Brief otrzymany",
+    "step2": "Analiza zakresu",
+    "step3": "Odpowiedź wkrótce"
+  },
   "calculator": {
     "badge": "AK Web & Design",
     "title": "Sprawdź ile kosztuje Twoja strona — bez sprzedawcy, bez presji.",
@@ -305,720 +293,861 @@
     "successDesc": "Odezwę się w ciągu 1–2 dni roboczych z ostateczną ofertą.",
     "errorMsg": "Coś poszło nie tak. Napisz bezpośrednio: kontakt@anastasiiakupriianets.pl",
     "siteTypes": {
-      "landing":   { "label": "Landing page",          "desc": "Jedna strona, jeden cel — maksymalna konwersja.",                  "subdesc": "Idealny dla kampanii, produktu lub usługi." },
-      "business":  { "label": "Strona firmowa",         "desc": "Wielopodstronowa strona która sprzedaje Twoją firmę 24/7.",        "subdesc": "O nas, usługi, kontakt, blog — wszystko w jednym miejscu." },
-      "wordpress": { "label": "Strona na WordPress",    "desc": "Edytujesz treści samodzielnie, bez programisty.",                  "subdesc": "Prosty panel, pełna kontrola nad contentem." },
-      "redesign":  { "label": "Odświeżenie strony",     "desc": "Nowy wygląd, ta sama treść — bez przepisywania od zera.",         "subdesc": "Szybciej i taniej niż nowa strona." },
-      "premium":   { "label": "Premium i Custom",       "desc": "Autorski projekt, animacje, zaawansowane funkcje.",                "subdesc": "Dla firm które chcą wyróżniać się na tle konkurencji." }
+      "landing": {
+        "label": "Landing page",
+        "desc": "Jedna strona, jeden cel — maksymalna konwersja.",
+        "subdesc": "Idealny dla kampanii, produktu lub usługi."
+      },
+      "business": {
+        "label": "Strona firmowa",
+        "desc": "Wielopodstronowa strona która sprzedaje Twoją firmę 24/7.",
+        "subdesc": "O nas, usługi, kontakt, blog — wszystko w jednym miejscu."
+      },
+      "wordpress": {
+        "label": "Strona na WordPress",
+        "desc": "Edytujesz treści samodzielnie, bez programisty.",
+        "subdesc": "Prosty panel, pełna kontrola nad contentem."
+      },
+      "redesign": {
+        "label": "Odświeżenie strony",
+        "desc": "Nowy wygląd, ta sama treść — bez przepisywania od zera.",
+        "subdesc": "Szybciej i taniej niż nowa strona."
+      },
+      "premium": {
+        "label": "Premium i Custom",
+        "desc": "Autorski projekt, animacje, zaawansowane funkcje.",
+        "subdesc": "Dla firm które chcą wyróżniać się na tle konkurencji."
+      }
     },
     "extras": {
-      "seo":      { "label": "SEO — znajdź się w Google",        "desc": "Meta tagi, sitemap, robots, OG — gotowe pod wyszukiwarki." },
-      "copy":     { "label": "Copywriting",                       "desc": "Teksty na wszystkie podstrony, gotowe do publikacji." },
-      "booking":  { "label": "System rezerwacji online",          "desc": "Klienci umawiają się sami — bez telefonu, bez e-maili." },
-      "shop":     { "label": "Sklep online",                      "desc": "Produkty, koszyk, płatności — kompletny e-commerce." },
-      "lang":     { "label": "Dodatkowa wersja językowa",         "desc": "Strona w dwóch językach — np. PL + EN." },
-      "blog":     { "label": "Blog / aktualności",                "desc": "Budujesz autorytet i przyciągasz ruch z Google." },
-      "branding": { "label": "Logo i identyfikacja wizualna",     "desc": "Logotyp, paleta kolorów, typografia — spójny brand." },
-      "care":     { "label": "Opieka miesięczna",                 "desc": "Drobne zmiany, aktualizacje, spokój głowy — do 1h/mies." }
+      "seo": {
+        "label": "SEO — znajdź się w Google",
+        "desc": "Meta tagi, sitemap, robots, OG — gotowe pod wyszukiwarki."
+      },
+      "copy": {
+        "label": "Copywriting",
+        "desc": "Teksty na wszystkie podstrony, gotowe do publikacji."
+      },
+      "booking": {
+        "label": "System rezerwacji online",
+        "desc": "Klienci umawiają się sami — bez telefonu, bez e-maili."
+      },
+      "shop": {
+        "label": "Sklep online",
+        "desc": "Produkty, koszyk, płatności — kompletny e-commerce."
+      },
+      "lang": {
+        "label": "Dodatkowa wersja językowa",
+        "desc": "Strona w dwóch językach — np. PL + EN."
+      },
+      "blog": {
+        "label": "Blog / aktualności",
+        "desc": "Budujesz autorytet i przyciągasz ruch z Google."
+      },
+      "branding": {
+        "label": "Logo i identyfikacja wizualna",
+        "desc": "Logotyp, paleta kolorów, typografia — spójny brand."
+      },
+      "care": {
+        "label": "Opieka miesięczna",
+        "desc": "Drobne zmiany, aktualizacje, spokój głowy — do 1h/mies."
+      }
     },
     "pageOptions": {
-      "1":  { "label": "1 podstrona",    "hint": "Landing page" },
-      "3":  { "label": "2–3 podstrony",  "hint": "Start, Usługi, Kontakt" },
-      "5":  { "label": "4–6 podstron",   "hint": "Typowa strona firmowa" },
-      "10": { "label": "7–12 podstron",  "hint": "Rozbudowany serwis" },
-      "15": { "label": "13+",            "hint": "Duży projekt" }
+      "1": {
+        "label": "1 podstrona",
+        "hint": "Landing page"
+      },
+      "3": {
+        "label": "2–3 podstrony",
+        "hint": "Start, Usługi, Kontakt"
+      },
+      "5": {
+        "label": "4–6 podstron",
+        "hint": "Typowa strona firmowa"
+      },
+      "10": {
+        "label": "7–12 podstron",
+        "hint": "Rozbudowany serwis"
+      },
+      "15": {
+        "label": "13+",
+        "hint": "Duży projekt"
+      }
     }
   },
-
-"projects": {
-  "camerahub": {
-  "title": "CameraHub – Sklep z aparatami",
-  "description": "Sklep e-commerce z profesjonalnym sprzętem fotograficznym: katalog z zaawansowanymi filtrami, koszyk, checkout, wyszukiwarka i pełna responsywność — zbudowany w Next.js i Tailwind CSS.",
-  "overview": "Portfolio-owy sklep e-commerce zbudowany od zera na Next.js (App Router) i Tailwind CSS — od katalogu produktów z wielopoziomowym filtrowaniem, przez koszyk i checkout, po wyszukiwarkę działającą na wielu polach naraz. Świadomie zaprojektowany jako projekt frontendowy bez prawdziwego backendu — logowanie, rejestracja i checkout są w pełni zaprojektowanymi, działającymi wizualnie przepływami z jasną informacją, że to demo, zamiast na siłę podpinanego, niepotrzebnego serwera.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Katalog 16 produktów w 8 kategoriach (aparaty bezlusterkowe, lustrzanki, kamery kinowe, obiektywy, drony, oświetlenie, audio, akcesoria)",
-    "Panel filtrów: cena (suwak), marka, typ aparatu, matryca, rozdzielczość wideo, dostępność i wyprzedaż — każdy filtr pokazuje liczbę pasujących produktów, nawet gdy wynosi zero",
-    "Wyszukiwarka dopasowująca każde wpisane słowo osobno do nazwy, marki, kategorii, opisu i parametrów technicznych — zamiast szukania całej frazy dosłownie",
-    "Koszyk (React Context + localStorage) dostępny z każdej podstrony jako wysuwany panel",
-    "3-etapowy checkout (dostawa → płatność → podsumowanie) z animowanymi przejściami między krokami",
-    "Strony logowania i rejestracji — pełny UI formularzy z walidacją, świadomie oznaczone jako wersja demo",
-    "Galeria zdjęć w układzie bento z lightboxem (nawigacja strzałkami, klawiaturą, licznik zdjęć)",
-    "System placeholderów: każde zdjęcie produktu ma automatyczny fallback na stylizowany blok z podpisem, jeśli plik jeszcze nie istnieje",
-    "Pełna responsywność: mobilne menu z akordeonem kategorii, panel filtrów jako wysuwany od dołu bottom sheet na telefonie, karty produktów przełączające się z układu poziomego na pionowy przy wąskich ekranach",
-    "Podstrony wsparcia (dostawa, gwarancja, zwroty, kontakt) z formularzem kontaktowym"
-  ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "iteracyjnie, sesja po sesji",
-  "highlights": [
-    "Pełny przepływ zakupowy: katalog → filtrowanie → koszyk → checkout → potwierdzenie, wszystko połączone i działające",
-    "Panel filtrów, który nigdy nie pokazuje pustego lub niedziałającego stanu — nieaktywne opcje są wyszarzone z licznikiem (0) zamiast znikać",
-    "Zero connected crashy: każde zdjęcie, którego jeszcze nie ma na dysku, elegancko przechodzi na stylizowany placeholder zamiast pokazywać złamaną ikonkę",
-    "Responsywny na każdej szerokości ekranu — od wąskiego telefonu po duży desktop, z osobno przemyślanym układem dla każdego kluczowego komponentu"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    { "problem": "Wyszukiwarka nie zwracała wyników nawet dla fraz, które powinny trafiać w istniejące produkty (np. „pełna klatka bezlusterkowy”).", "solution": "Problem leżał w dopasowywaniu całej wpisanej frazy jako jednego ciągu znaków. Rozwiązanie: podział zapytania na pojedyncze słowa i wymaganie, żeby każde z nich pojawiło się gdziekolwiek w rozszerzonym zestawie pól (nazwa, marka, kategoria, opis, typ aparatu, matryca, rozdzielczość)." },
-    { "problem": "Popup logowania i panel wyszukiwania renderowały się w złym miejscu, częściowo pod sticky nagłówkiem, zamiast na wierzchu całej strony.", "solution": "Modale były zagnieżdżone wewnątrz elementu `<header>` z własnym kontekstem pozycjonowania (sticky), co psuło ich `position: fixed`. Rozwiązanie: przeniesienie renderowania obu okien na poziom całego layoutu, jako rodzeństwo nagłówka, sterowanych współdzielonym kontekstem." },
-    { "problem": "Automatyczna siatka masonry (kolumny CSS) dla galerii zdjęć zostawiała przypadkowe puste miejsca przy tylko 5 kuratorskich zdjęciach.", "solution": "Zamiana z automatycznie balansujących kolumn CSS na ręcznie zaprojektowaną siatkę CSS Grid z ustalonymi z góry pozycjami — przy stałej, niewielkiej liczbie elementów przewidywalny układ jest ważniejszy niż w pełni naturalne proporcje zdjęć." }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Next.js App Router z komponentami klienckimi tam, gdzie potrzebna jest interaktywność (koszyk, filtry, wyszukiwarka), a resztą renderowaną statycznie",
-    "Świadoma rezygnacja z prawdziwego backendu (rozważano Supabase) — dla czysto frontendowego projektu portfolio lepszym wyborem był w pełni działający wizualnie UI z jasną informacją „to demo” niż niepotrzebna zależność zewnętrzna",
-    "System placeholderów jako pierwszoklasowa część designu, nie prowizorka — pozwala pokazywać projekt na każdym etapie uzupełniania zdjęć bez połamanego wyglądu",
-    "Wspólny komponent `FiltersContent` używany zarówno w panelu desktopowym, jak i mobilnym bottom sheet — zero duplikacji logiki filtrowania",
-    "Filtry pokazujące zawsze pełną listę możliwych opcji (z licznikiem 0, wyszarzone) zamiast ukrywania nieistniejących kombinacji — przewidywalność interfejsu ważniejsza niż minimalizm"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Framer Motion — animowane przejścia (koszyk, wyszukiwarka, checkout, lightbox galerii, mobilne menu)",
-    "next/image z automatycznym fallbackiem na placeholder przy braku pliku (`onError`)",
-    "lucide-react — spójny zestaw ikon w całym interfejsie",
-    "Brak zewnętrznego backendu — świadoma decyzja projektowa, patrz sekcja „Decyzje projektowe”"
-  ]
-},
-  "booknest": {
-  "title": "BookNest – Sklep z ebookami",
-  "description": "Pełny sklep e-commerce sprzedający ebooki: katalog z filtrowaniem, koszyk, płatności Stripe, konta użytkowników i natychmiastowe pobieranie po zakupie.",
-  "overview": "Kompletny sklep cyfrowy zbudowany od zera na Next.js i Supabase — od katalogu produktów, przez koszyk i płatności Stripe, po panel konta z historią zamówień i bezpiecznym pobieraniem plików. Model czysto cyfrowy (bez wysyłki fizycznej) z naciskiem na natychmiastowy dostęp po opłaceniu.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Katalog produktów z paginacją, filtrowaniem po kategorii i autorze oraz wyszukiwarką pełnotekstową",
-    "Koszyk i checkout w jednym przepływie — bez zbędnych kroków pośrednich",
-    "Integracja Stripe Checkout z webhookiem potwierdzającym płatność",
-    "Uwierzytelnianie Supabase Auth (rejestracja, logowanie, middleware odświeżający sesję)",
-    "Panel konta z zakładkami: dane osobowe, historia zamówień, lista życzeń, adresy dostawy, zmiana hasła",
-    "Bezpieczne pobieranie ebooków — podpisane linki generowane dopiero po weryfikacji opłaconego zamówienia",
-    "Kontekst koszyka i listy życzeń (React Context) z memoizacją dla wydajności przy wielu kartach naraz",
-    "Generowane okładki produktów (kolorowa nakładka + typografia) jako legalna alternatywa dla praw autorskich do prawdziwych okładek",
-    "Pełna responsywność — od Hero po panel konta, siatki produktów skalujące się 2→3→5 kolumn",
-    "Skrypty seedujące katalog z realnych, darmowych źródeł (Project Gutenberg / Google Books API)"
-  ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "iteracyjnie, sesja po sesji",
-  "highlights": [
-    "Pełny, działający przepływ zakupowy: katalog → koszyk → Stripe → potwierdzenie → pobranie pliku",
-    "Zero pustych placeholderów — każda książka bez zdjęcia dostaje spójną, wygenerowaną okładkę zamiast szarej ikony",
-    "Bezpieczny model dostępu do plików — prywatny bucket w Supabase Storage, linki ważne tylko chwilę i tylko dla opłaconych zamówień",
-    "Responsywny na każdej szerokości ekranu, od telefonu po duży desktop"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    { "problem": "Anonimowy zakup (bez logowania) wywalał się przy tworzeniu zamówienia w Supabase z błędem RLS, mimo poprawnej polityki INSERT.", "solution": "Źródłem był zwrotny odczyt po insercie (.select().single()), podlegający osobnej, bardziej restrykcyjnej polityce SELECT. Rozwiązanie: generowanie ID zamówienia po stronie serwera, bez potrzeby odczytu zwrotnego." },
-    { "problem": "Realne okładki książek (skany z Open Library, Google Books) wyglądały niespójnie i część z nich naruszałaby prawa autorskie przy komercyjnym użyciu.", "solution": "Zaprojektowanie komponentu generującego okładkę: zdjęcie tła + kolorowa nakładka zależna od kategorii + typografia tytułu/autora — spójne wizualnie i bezpieczne prawnie." },
-    { "problem": "Katalog wymagał realnych, legalnych do sprzedaży treści cyfrowych, nie tylko metadanych.", "solution": "Skrypt pobierający prawdziwe pliki .epub z domeny publicznej (Project Gutenberg przez Gutendex API) i wgrywający je bezpośrednio do prywatnego bucketu Supabase Storage." }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Next.js App Router z mieszanką Server i Client Components — dane pobierane server-side, interaktywność (koszyk, formularze) client-side",
-    "Model czysto cyfrowy zamiast hybrydowego — prostszy checkout bez adresu dostawy i wyboru kuriera",
-    "Supabase jako jedyne źródło prawdy: Postgres + Auth + Storage w jednym, z RLS pilnującym dostępu do danych",
-    "Kontekst React (Cart/Wishlist) zmemoizowany przez useMemo, żeby dodanie jednej pozycji nie przerenderowywało całej siatki produktów",
-    "Generowane okładki jako świadomy wybór estetyczny i prawny, zamiast polegania na niepewnych źródłach zdjęć"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Stripe Checkout + webhook (potwierdzenie płatności, aktualizacja statusu zamówienia)",
-    "Supabase Auth (e-mail/hasło, middleware odświeżający sesję)",
-    "Supabase Storage (prywatny bucket na pliki ebooków, podpisane linki do pobrania)",
-    "Google Books API i Project Gutenberg / Gutendex — źródła danych i plików do katalogu",
-    "next/image z konfiguracją zdalnych hostów dla wielu źródeł okładek"
-  ]
-},
-  "studio-forma": {
-  "title": "Studio Forma – Architektura Wnętrz",
-  "description": "Strona internetowa dla pracowni projektowania wnętrz. Minimalistyczny, edytorialny design z dynamicznymi podstronami usług i animacjami nawiązującymi do designu wnętrz.",
-  "overview": "Kompleksowa strona dla pracowni architektury wnętrz Studio Forma, zaprojektowana w stonowanej, ponadczasowej stylistyce — kremowe tło, oliwkowy akcent i typografia łącząca Cormorant Garamond z Jost.",
-  "workTitle": "Zakres prac",
-  "work": ["Projekt UX/UI w stylu minimalistyczno-edytorialnym", "Kodowanie w Next.js 14 + TypeScript", "Dynamiczny system podstron usług generowany z jednego pliku danych", "Rozwijane menu usług w navbarze i stopce", "Animacje scroll-reveal nawiązujące do designu wnętrz (żaluzje, plan architektoniczny)", "Modal konsultacji z portalem React (createPortal)", "Pełna responsywność mobile-first", "Wdrożenie na Vercel z automatycznym deployem z GitHub"],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "2–3 tygodnie",
-  "highlights": ["Spójna identyfikacja wizualna pracowni na wszystkich podstronach", "Skalowalna struktura usług — nowa usługa to jeden wpis w danych, nie nowy plik", "Animacje nawiązujące tematycznie do architektury wnętrz (linia procesu, narożniki planu, żaluzje)", "Szybkie ładowanie dzięki statycznemu generowaniu podstron usług"],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    { "problem": "Sześć różnych usług wymagało osobnych podstron bez duplikowania kodu.", "solution": "Jeden dynamiczny szablon [slug] czytający dane z centralnego pliku services.ts — dodanie usługi to wpis do tablicy, nie nowa strona." },
-    { "problem": "Modal konsultacji renderował się nieprawidłowo wewnątrz animowanych kontenerów.", "solution": "Przeniesienie modala przez React Portal bezpośrednio do document.body, niezależnie od transformów CSS przodków." },
-    { "problem": "Animacje musiały pasować tematycznie do branży, a nie być generycznym fade-in.", "solution": "Zaprojektowanie autorskich efektów — rozwijana żaluzja na kartach usług, rysująca się linia procesu, narożniki jak na planie architektonicznym." }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": ["Next.js 14 App Router z generateStaticParams dla stron usług", "CSS transitions zamiast JS setTimeout dla płynniejszych animacji stopki", "Cormorant Garamond jako font display — elegancki, edytorialny charakter", "Kremowe tło + oliwkowy akcent = ciepła, ponadczasowa identyfikacja", "Dane usług oddzielone od widoku (services.ts) dla łatwej rozbudowy"],
-  "integrationsTitle": "Integracje",
-  "integrations": ["Modal konsultacji przez React Portal", "Newsletter w stopce z lokalnym stanem formularza", "Rozwijane menu usług (dropdown + mobile accordion)", "IntersectionObserver do scroll-reveal na każdej sekcji", "Automatyczny CI/CD przez Vercel + GitHub"]
-},
-  "marcin-kowal": {
-  "title": "Marcin Kowal – Trener Personalny",
-  "description": "Strona internetowa dla trenera personalnego z Warszawy. Bold typografia, animowane sekcje i interaktywny formularz kontaktowy.",
-  "overview": "Projekt strony dla trenera personalnego Marcina Kowala, zaprojektowanej w atletycznym, odważnym stylu — czarne tło, masywna typografia i pomarańczowy akcent marki.",
-  "workTitle": "Zakres prac",
-  "work": ["Projekt UX/UI w stylu bold & athletic", "Kodowanie w Next.js 14 + Tailwind CSS", "Animacje CSS przy scrollu (IntersectionObserver)", "Interaktywny popup z formularzem kontaktowym", "Ticker, count-up numbers, hero z animacją typografii", "Responsywność mobile-first"],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "1–2 tygodnie",
-  "highlights": ["Wyraźna identyfikacja wizualna trenera", "Wysoka konwersja dzięki CTA i formularzowi w popupie", "Szybkie ładowanie i pełna responsywność", "Animacje angażujące użytkownika na każdej sekcji"],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    { "problem": "Strona musiała wyglądać premium i atletycznie jednocześnie.", "solution": "Masywna typografia clamp(), outline text, pomarańczowy akcent jako jedyny kolor." },
-    { "problem": "Duża ilość treści bez przytłoczenia użytkownika.", "solution": "Podział na sekcje z animowanym wjazdem — każda pojawia się dopiero przy scrollu." },
-    { "problem": "Konwersja — zachęcenie do kontaktu.", "solution": "Popup z formularzem otwierający się po kliknięciu planu cenowego — zero kliknięć do zapytania." }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": ["Next.js 14 App Router dla wydajności", "Tailwind CSS zamiast Framer Motion — czyste CSS transitions", "Barlow Condensed jako font display — atletyczny charakter", "Czarne tło + jeden kolor akcent = mocna identyfikacja"],
-  "integrationsTitle": "Integracje",
-  "integrations": ["Formularz kontaktowy w modalu", "Animowany ticker i count-up numbers", "Responsywny popup z planem cenowym", "Scroll-triggered animations"]
-},
-  "biuro-ksiegowe": {
-  "title": "Nowoczesne Biuro Księgowe",
-  "description": "Nowoczesna strona internetowa dla biura księgowego, zaprojektowana w lekkim, przejrzystym stylu z naciskiem na zaufanie, czytelność oferty i generowanie kontaktów.",
-  "overview": "Projekt strony dla biura rachunkowego, którego celem było stworzenie profesjonalnej, spokojnej wizualnie witryny, ułatwiającej klientom zrozumienie oferty i szybki kontakt.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt UX/UI w nowoczesnym, minimalistycznym stylu",
-    "Kodowanie strony w Next.js + Tailwind CSS",
-    "Budowa sekcji usług (księgowość, kadry, doradztwo)",
-    "Projekt sekcji zaufania (opinie, statystyki, liczby)",
-    "Stworzenie czytelnego hero z CTA",
-    "Optymalizacja pod responsywność i wydajność"
-  ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "1–3 tygodnie",
-  "highlights": [
-    "Przejrzysty i spokojny design budujący zaufanie",
-    "Jasna prezentacja usług i korzyści dla klienta",
-    "Lepsza konwersja dzięki CTA i formularzowi kontaktowemu",
-    "Nowoczesny wygląd wyróżniający się na tle konkurencji"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Strona musiała być prosta i zrozumiała dla klientów bez wiedzy księgowej.",
-      "solution": "Użycie prostego języka, czytelnych sekcji i ikon wspierających komunikację."
+  "projects": {
+    "camerahub": {
+      "title": "CameraHub – Sklep z aparatami",
+      "description": "Sklep e-commerce z profesjonalnym sprzętem fotograficznym: katalog z zaawansowanymi filtrami, koszyk, checkout, wyszukiwarka i pełna responsywność — zbudowany w Next.js i Tailwind CSS.",
+      "overview": "Portfolio-owy sklep e-commerce zbudowany od zera na Next.js (App Router) i Tailwind CSS — od katalogu produktów z wielopoziomowym filtrowaniem, przez koszyk i checkout, po wyszukiwarkę działającą na wielu polach naraz. Świadomie zaprojektowany jako projekt frontendowy bez prawdziwego backendu — logowanie, rejestracja i checkout są w pełni zaprojektowanymi, działającymi wizualnie przepływami z jasną informacją, że to demo, zamiast na siłę podpinanego, niepotrzebnego serwera.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Katalog 16 produktów w 8 kategoriach (aparaty bezlusterkowe, lustrzanki, kamery kinowe, obiektywy, drony, oświetlenie, audio, akcesoria)",
+        "Panel filtrów: cena (suwak), marka, typ aparatu, matryca, rozdzielczość wideo, dostępność i wyprzedaż — każdy filtr pokazuje liczbę pasujących produktów, nawet gdy wynosi zero",
+        "Wyszukiwarka dopasowująca każde wpisane słowo osobno do nazwy, marki, kategorii, opisu i parametrów technicznych — zamiast szukania całej frazy dosłownie",
+        "Koszyk (React Context + localStorage) dostępny z każdej podstrony jako wysuwany panel",
+        "3-etapowy checkout (dostawa → płatność → podsumowanie) z animowanymi przejściami między krokami",
+        "Strony logowania i rejestracji — pełny UI formularzy z walidacją, świadomie oznaczone jako wersja demo",
+        "Galeria zdjęć w układzie bento z lightboxem (nawigacja strzałkami, klawiaturą, licznik zdjęć)",
+        "System placeholderów: każde zdjęcie produktu ma automatyczny fallback na stylizowany blok z podpisem, jeśli plik jeszcze nie istnieje",
+        "Pełna responsywność: mobilne menu z akordeonem kategorii, panel filtrów jako wysuwany od dołu bottom sheet na telefonie, karty produktów przełączające się z układu poziomego na pionowy przy wąskich ekranach",
+        "Podstrony wsparcia (dostawa, gwarancja, zwroty, kontakt) z formularzem kontaktowym"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "iteracyjnie, sesja po sesji",
+      "highlights": [
+        "Pełny przepływ zakupowy: katalog → filtrowanie → koszyk → checkout → potwierdzenie, wszystko połączone i działające",
+        "Panel filtrów, który nigdy nie pokazuje pustego lub niedziałającego stanu — nieaktywne opcje są wyszarzone z licznikiem (0) zamiast znikać",
+        "Zero connected crashy: każde zdjęcie, którego jeszcze nie ma na dysku, elegancko przechodzi na stylizowany placeholder zamiast pokazywać złamaną ikonkę",
+        "Responsywny na każdej szerokości ekranu — od wąskiego telefonu po duży desktop, z osobno przemyślanym układem dla każdego kluczowego komponentu"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Wyszukiwarka nie zwracała wyników nawet dla fraz, które powinny trafiać w istniejące produkty (np. „pełna klatka bezlusterkowy”).",
+          "solution": "Problem leżał w dopasowywaniu całej wpisanej frazy jako jednego ciągu znaków. Rozwiązanie: podział zapytania na pojedyncze słowa i wymaganie, żeby każde z nich pojawiło się gdziekolwiek w rozszerzonym zestawie pól (nazwa, marka, kategoria, opis, typ aparatu, matryca, rozdzielczość)."
+        },
+        {
+          "problem": "Popup logowania i panel wyszukiwania renderowały się w złym miejscu, częściowo pod sticky nagłówkiem, zamiast na wierzchu całej strony.",
+          "solution": "Modale były zagnieżdżone wewnątrz elementu `<header>` z własnym kontekstem pozycjonowania (sticky), co psuło ich `position: fixed`. Rozwiązanie: przeniesienie renderowania obu okien na poziom całego layoutu, jako rodzeństwo nagłówka, sterowanych współdzielonym kontekstem."
+        },
+        {
+          "problem": "Automatyczna siatka masonry (kolumny CSS) dla galerii zdjęć zostawiała przypadkowe puste miejsca przy tylko 5 kuratorskich zdjęciach.",
+          "solution": "Zamiana z automatycznie balansujących kolumn CSS na ręcznie zaprojektowaną siatkę CSS Grid z ustalonymi z góry pozycjami — przy stałej, niewielkiej liczbie elementów przewidywalny układ jest ważniejszy niż w pełni naturalne proporcje zdjęć."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Next.js App Router z komponentami klienckimi tam, gdzie potrzebna jest interaktywność (koszyk, filtry, wyszukiwarka), a resztą renderowaną statycznie",
+        "Świadoma rezygnacja z prawdziwego backendu (rozważano Supabase) — dla czysto frontendowego projektu portfolio lepszym wyborem był w pełni działający wizualnie UI z jasną informacją „to demo” niż niepotrzebna zależność zewnętrzna",
+        "System placeholderów jako pierwszoklasowa część designu, nie prowizorka — pozwala pokazywać projekt na każdym etapie uzupełniania zdjęć bez połamanego wyglądu",
+        "Wspólny komponent `FiltersContent` używany zarówno w panelu desktopowym, jak i mobilnym bottom sheet — zero duplikacji logiki filtrowania",
+        "Filtry pokazujące zawsze pełną listę możliwych opcji (z licznikiem 0, wyszarzone) zamiast ukrywania nieistniejących kombinacji — przewidywalność interfejsu ważniejsza niż minimalizm"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Framer Motion — animowane przejścia (koszyk, wyszukiwarka, checkout, lightbox galerii, mobilne menu)",
+        "next/image z automatycznym fallbackiem na placeholder przy braku pliku (`onError`)",
+        "lucide-react — spójny zestaw ikon w całym interfejsie",
+        "Brak zewnętrznego backendu — świadoma decyzja projektowa, patrz sekcja „Decyzje projektowe”"
+      ]
     },
-    {
-      "problem": "Branża księgowa często wygląda przestarzale i mało atrakcyjnie.",
-      "solution": "Zastosowanie nowoczesnego layoutu, lekkich kolorów i estetycznego UI."
+    "booknest": {
+      "title": "BookNest – Sklep z ebookami",
+      "description": "Pełny sklep e-commerce sprzedający ebooki: katalog z filtrowaniem, koszyk, płatności Stripe, konta użytkowników i natychmiastowe pobieranie po zakupie.",
+      "overview": "Kompletny sklep cyfrowy zbudowany od zera na Next.js i Supabase — od katalogu produktów, przez koszyk i płatności Stripe, po panel konta z historią zamówień i bezpiecznym pobieraniem plików. Model czysto cyfrowy (bez wysyłki fizycznej) z naciskiem na natychmiastowy dostęp po opłaceniu.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Katalog produktów z paginacją, filtrowaniem po kategorii i autorze oraz wyszukiwarką pełnotekstową",
+        "Koszyk i checkout w jednym przepływie — bez zbędnych kroków pośrednich",
+        "Integracja Stripe Checkout z webhookiem potwierdzającym płatność",
+        "Uwierzytelnianie Supabase Auth (rejestracja, logowanie, middleware odświeżający sesję)",
+        "Panel konta z zakładkami: dane osobowe, historia zamówień, lista życzeń, adresy dostawy, zmiana hasła",
+        "Bezpieczne pobieranie ebooków — podpisane linki generowane dopiero po weryfikacji opłaconego zamówienia",
+        "Kontekst koszyka i listy życzeń (React Context) z memoizacją dla wydajności przy wielu kartach naraz",
+        "Generowane okładki produktów (kolorowa nakładka + typografia) jako legalna alternatywa dla praw autorskich do prawdziwych okładek",
+        "Pełna responsywność — od Hero po panel konta, siatki produktów skalujące się 2→3→5 kolumn",
+        "Skrypty seedujące katalog z realnych, darmowych źródeł (Project Gutenberg / Google Books API)"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "iteracyjnie, sesja po sesji",
+      "highlights": [
+        "Pełny, działający przepływ zakupowy: katalog → koszyk → Stripe → potwierdzenie → pobranie pliku",
+        "Zero pustych placeholderów — każda książka bez zdjęcia dostaje spójną, wygenerowaną okładkę zamiast szarej ikony",
+        "Bezpieczny model dostępu do plików — prywatny bucket w Supabase Storage, linki ważne tylko chwilę i tylko dla opłaconych zamówień",
+        "Responsywny na każdej szerokości ekranu, od telefonu po duży desktop"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Anonimowy zakup (bez logowania) wywalał się przy tworzeniu zamówienia w Supabase z błędem RLS, mimo poprawnej polityki INSERT.",
+          "solution": "Źródłem był zwrotny odczyt po insercie (.select().single()), podlegający osobnej, bardziej restrykcyjnej polityce SELECT. Rozwiązanie: generowanie ID zamówienia po stronie serwera, bez potrzeby odczytu zwrotnego."
+        },
+        {
+          "problem": "Realne okładki książek (skany z Open Library, Google Books) wyglądały niespójnie i część z nich naruszałaby prawa autorskie przy komercyjnym użyciu.",
+          "solution": "Zaprojektowanie komponentu generującego okładkę: zdjęcie tła + kolorowa nakładka zależna od kategorii + typografia tytułu/autora — spójne wizualnie i bezpieczne prawnie."
+        },
+        {
+          "problem": "Katalog wymagał realnych, legalnych do sprzedaży treści cyfrowych, nie tylko metadanych.",
+          "solution": "Skrypt pobierający prawdziwe pliki .epub z domeny publicznej (Project Gutenberg przez Gutendex API) i wgrywający je bezpośrednio do prywatnego bucketu Supabase Storage."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Next.js App Router z mieszanką Server i Client Components — dane pobierane server-side, interaktywność (koszyk, formularze) client-side",
+        "Model czysto cyfrowy zamiast hybrydowego — prostszy checkout bez adresu dostawy i wyboru kuriera",
+        "Supabase jako jedyne źródło prawdy: Postgres + Auth + Storage w jednym, z RLS pilnującym dostępu do danych",
+        "Kontekst React (Cart/Wishlist) zmemoizowany przez useMemo, żeby dodanie jednej pozycji nie przerenderowywało całej siatki produktów",
+        "Generowane okładki jako świadomy wybór estetyczny i prawny, zamiast polegania na niepewnych źródłach zdjęć"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Stripe Checkout + webhook (potwierdzenie płatności, aktualizacja statusu zamówienia)",
+        "Supabase Auth (e-mail/hasło, middleware odświeżający sesję)",
+        "Supabase Storage (prywatny bucket na pliki ebooków, podpisane linki do pobrania)",
+        "Google Books API i Project Gutenberg / Gutendex — źródła danych i plików do katalogu",
+        "next/image z konfiguracją zdalnych hostów dla wielu źródeł okładek"
+      ]
     },
-    {
-      "problem": "Zachęcenie użytkownika do kontaktu.",
-      "solution": "Widoczne CTA, sekcja kontaktowa i logiczne prowadzenie użytkownika przez stronę."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Next.js dla szybkości działania i nowoczesnego stacka",
-    "Tailwind CSS dla spójnego i szybkiego UI",
-    "Jasna, stonowana kolorystyka (zieleń + szarość)",
-    "Układ oparty na sekcjach zaufania i konwersji"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Formularz kontaktowy",
-    "Responsywność mobile-first",
-    "Podstawowa optymalizacja SEO",
-    "Możliwość rozbudowy o CMS w przyszłości"
-  ]
-},
-  "crescent-development": {
-  "title": "Crescent Development",
-  "description": "Nowoczesna strona internetowa dla dewelopera nieruchomości, zaprojektowana w eleganckim, premium stylu z naciskiem na prezentację inwestycji i generowanie zapytań.",
-  "overview": "Projekt strony dla firmy deweloperskiej, której celem było stworzenie nowoczesnej, estetycznej i sprzedażowej witryny prezentującej aktualne inwestycje oraz budującej zaufanie klientów.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt UX/UI w stylu premium",
-    "Kodowanie strony w Next.js + Tailwind CSS",
-    "Stworzenie dynamicznych podstron inwestycji",
-    "Projekt sekcji sprzedażowych (hero, CTA, projekty)",
-    "Optymalizacja pod wydajność i responsywność",
-    "Budowa struktury pod dalszy rozwój projektu"
-  ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "2–4 tygodnie",
-  "highlights": [
-    "Nowoczesny, elegancki design dopasowany do branży nieruchomości",
-    "Czytelna prezentacja inwestycji i oferty",
-    "Lepsze prowadzenie użytkownika do kontaktu (CTA, formularze)",
-    "Solidna baza pod rozwój i skalowanie projektu"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Strona musiała wyglądać premium, ale jednocześnie pozostać czytelna i prosta.",
-      "solution": "Minimalistyczny layout, mocna typografia i ograniczona paleta kolorów."
+    "studio-forma": {
+      "title": "Studio Forma – Architektura Wnętrz",
+      "description": "Strona internetowa dla pracowni projektowania wnętrz. Minimalistyczny, edytorialny design z dynamicznymi podstronami usług i animacjami nawiązującymi do designu wnętrz.",
+      "overview": "Kompleksowa strona dla pracowni architektury wnętrz Studio Forma, zaprojektowana w stonowanej, ponadczasowej stylistyce — kremowe tło, oliwkowy akcent i typografia łącząca Cormorant Garamond z Jost.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt UX/UI w stylu minimalistyczno-edytorialnym",
+        "Kodowanie w Next.js 14 + TypeScript",
+        "Dynamiczny system podstron usług generowany z jednego pliku danych",
+        "Rozwijane menu usług w navbarze i stopce",
+        "Animacje scroll-reveal nawiązujące do designu wnętrz (żaluzje, plan architektoniczny)",
+        "Modal konsultacji z portalem React (createPortal)",
+        "Pełna responsywność mobile-first",
+        "Wdrożenie na Vercel z automatycznym deployem z GitHub"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "2–3 tygodnie",
+      "highlights": [
+        "Spójna identyfikacja wizualna pracowni na wszystkich podstronach",
+        "Skalowalna struktura usług — nowa usługa to jeden wpis w danych, nie nowy plik",
+        "Animacje nawiązujące tematycznie do architektury wnętrz (linia procesu, narożniki planu, żaluzje)",
+        "Szybkie ładowanie dzięki statycznemu generowaniu podstron usług"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Sześć różnych usług wymagało osobnych podstron bez duplikowania kodu.",
+          "solution": "Jeden dynamiczny szablon [slug] czytający dane z centralnego pliku services.ts — dodanie usługi to wpis do tablicy, nie nowa strona."
+        },
+        {
+          "problem": "Modal konsultacji renderował się nieprawidłowo wewnątrz animowanych kontenerów.",
+          "solution": "Przeniesienie modala przez React Portal bezpośrednio do document.body, niezależnie od transformów CSS przodków."
+        },
+        {
+          "problem": "Animacje musiały pasować tematycznie do branży, a nie być generycznym fade-in.",
+          "solution": "Zaprojektowanie autorskich efektów — rozwijana żaluzja na kartach usług, rysująca się linia procesu, narożniki jak na planie architektonicznym."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Next.js 14 App Router z generateStaticParams dla stron usług",
+        "CSS transitions zamiast JS setTimeout dla płynniejszych animacji stopki",
+        "Cormorant Garamond jako font display — elegancki, edytorialny charakter",
+        "Kremowe tło + oliwkowy akcent = ciepła, ponadczasowa identyfikacja",
+        "Dane usług oddzielone od widoku (services.ts) dla łatwej rozbudowy"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Modal konsultacji przez React Portal",
+        "Newsletter w stopce z lokalnym stanem formularza",
+        "Rozwijane menu usług (dropdown + mobile accordion)",
+        "IntersectionObserver do scroll-reveal na każdej sekcji",
+        "Automatyczny CI/CD przez Vercel + GitHub"
+      ]
     },
-    {
-      "problem": "Prezentacja wielu inwestycji w przejrzysty sposób.",
-      "solution": "Stworzenie sekcji projektów oraz dynamicznych podstron dla każdej inwestycji."
+    "marcin-kowal": {
+      "title": "Marcin Kowal – Trener Personalny",
+      "description": "Strona internetowa dla trenera personalnego z Warszawy. Bold typografia, animowane sekcje i interaktywny formularz kontaktowy.",
+      "overview": "Projekt strony dla trenera personalnego Marcina Kowala, zaprojektowanej w atletycznym, odważnym stylu — czarne tło, masywna typografia i pomarańczowy akcent marki.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt UX/UI w stylu bold & athletic",
+        "Kodowanie w Next.js 14 + Tailwind CSS",
+        "Animacje CSS przy scrollu (IntersectionObserver)",
+        "Interaktywny popup z formularzem kontaktowym",
+        "Ticker, count-up numbers, hero z animacją typografii",
+        "Responsywność mobile-first"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "1–2 tygodnie",
+      "highlights": [
+        "Wyraźna identyfikacja wizualna trenera",
+        "Wysoka konwersja dzięki CTA i formularzowi w popupie",
+        "Szybkie ładowanie i pełna responsywność",
+        "Animacje angażujące użytkownika na każdej sekcji"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Strona musiała wyglądać premium i atletycznie jednocześnie.",
+          "solution": "Masywna typografia clamp(), outline text, pomarańczowy akcent jako jedyny kolor."
+        },
+        {
+          "problem": "Duża ilość treści bez przytłoczenia użytkownika.",
+          "solution": "Podział na sekcje z animowanym wjazdem — każda pojawia się dopiero przy scrollu."
+        },
+        {
+          "problem": "Konwersja — zachęcenie do kontaktu.",
+          "solution": "Popup z formularzem otwierający się po kliknięciu planu cenowego — zero kliknięć do zapytania."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Next.js 14 App Router dla wydajności",
+        "Tailwind CSS zamiast Framer Motion — czyste CSS transitions",
+        "Barlow Condensed jako font display — atletyczny charakter",
+        "Czarne tło + jeden kolor akcent = mocna identyfikacja"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Formularz kontaktowy w modalu",
+        "Animowany ticker i count-up numbers",
+        "Responsywny popup z planem cenowym",
+        "Scroll-triggered animations"
+      ]
     },
-    {
-      "problem": "Strona miała wspierać sprzedaż, nie tylko wyglądać dobrze.",
-      "solution": "Zastosowanie wielu punktów kontaktu (CTA, formularz, sekcje sprzedażowe)."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Next.js zamiast WordPressa dla większej wydajności i kontroli",
-    "Tailwind CSS dla szybkiego budowania spójnego UI",
-    "Minimalistyczny design z akcentem premium (złoto + granat)",
-    "Sekcje oparte na konwersji (CTA, projekty, kontakt)"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Formularz kontaktowy",
-    "Responsywność mobile-first",
-    "Struktura pod SEO",
-    "Możliwość dalszej integracji z CMS"
-  ]
-},
-"spiro-pilates-mobility": {
-  "title": "Spiro Pilates & Mobility",
-  "description": "Nowoczesna strona internetowa dla studia pilates i mobility, zaprojektowana tak, aby budować spokojny, profesjonalny wizerunek marki i ułatwiać kontakt z klientkami.",
-  "overview": "Projekt strony dla studia wellness, które potrzebowało estetycznej, lekkiej i łatwej w obsłudze witryny z możliwością dalszego rozwoju.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt UX/UI i struktury strony",
-    "Kodowanie customowego motywu WordPress",
-    "Tworzenie edytowalnych sekcji z użyciem ACF",
-    "Integracja z Fitssey",
-    "Wdrożenie wersji językowej PL/EN",
-    "Optymalizacja SEO i wydajności"
-  ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "2–3 tygodnie",
-  "highlights": [
-    "Lekka i estetyczna strona dopasowana do branży wellness",
-    "Prosty panel edycji dla właścicielki",
-    "Solidna baza pod rozwój treści i SEO"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Strona musiała powstać szybko ze względu na termin projektu.",
-      "solution": "Prace zostały podzielone na etapy, a na start wdrożone zostały najważniejsze sekcje."
+    "biuro-ksiegowe": {
+      "title": "Nowoczesne Biuro Księgowe",
+      "description": "Nowoczesna strona internetowa dla biura księgowego, zaprojektowana w lekkim, przejrzystym stylu z naciskiem na zaufanie, czytelność oferty i generowanie kontaktów.",
+      "overview": "Projekt strony dla biura rachunkowego, którego celem było stworzenie profesjonalnej, spokojnej wizualnie witryny, ułatwiającej klientom zrozumienie oferty i szybki kontakt.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt UX/UI w nowoczesnym, minimalistycznym stylu",
+        "Kodowanie strony w Next.js + Tailwind CSS",
+        "Budowa sekcji usług (księgowość, kadry, doradztwo)",
+        "Projekt sekcji zaufania (opinie, statystyki, liczby)",
+        "Stworzenie czytelnego hero z CTA",
+        "Optymalizacja pod responsywność i wydajność"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "1–3 tygodnie",
+      "highlights": [
+        "Przejrzysty i spokojny design budujący zaufanie",
+        "Jasna prezentacja usług i korzyści dla klienta",
+        "Lepsza konwersja dzięki CTA i formularzowi kontaktowemu",
+        "Nowoczesny wygląd wyróżniający się na tle konkurencji"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Strona musiała być prosta i zrozumiała dla klientów bez wiedzy księgowej.",
+          "solution": "Użycie prostego języka, czytelnych sekcji i ikon wspierających komunikację."
+        },
+        {
+          "problem": "Branża księgowa często wygląda przestarzale i mało atrakcyjnie.",
+          "solution": "Zastosowanie nowoczesnego layoutu, lekkich kolorów i estetycznego UI."
+        },
+        {
+          "problem": "Zachęcenie użytkownika do kontaktu.",
+          "solution": "Widoczne CTA, sekcja kontaktowa i logiczne prowadzenie użytkownika przez stronę."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Next.js dla szybkości działania i nowoczesnego stacka",
+        "Tailwind CSS dla spójnego i szybkiego UI",
+        "Jasna, stonowana kolorystyka (zieleń + szarość)",
+        "Układ oparty na sekcjach zaufania i konwersji"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Formularz kontaktowy",
+        "Responsywność mobile-first",
+        "Podstawowa optymalizacja SEO",
+        "Możliwość rozbudowy o CMS w przyszłości"
+      ]
     },
-    {
-      "problem": "Witryna miała być łatwa w obsłudze bez użycia page builderów.",
-      "solution": "Zastosowałam customowy motyw WordPress i ACF, aby uprościć zarządzanie treścią."
+    "crescent-development": {
+      "title": "Crescent Development",
+      "description": "Nowoczesna strona internetowa dla dewelopera nieruchomości, zaprojektowana w eleganckim, premium stylu z naciskiem na prezentację inwestycji i generowanie zapytań.",
+      "overview": "Projekt strony dla firmy deweloperskiej, której celem było stworzenie nowoczesnej, estetycznej i sprzedażowej witryny prezentującej aktualne inwestycje oraz budującej zaufanie klientów.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt UX/UI w stylu premium",
+        "Kodowanie strony w Next.js + Tailwind CSS",
+        "Stworzenie dynamicznych podstron inwestycji",
+        "Projekt sekcji sprzedażowych (hero, CTA, projekty)",
+        "Optymalizacja pod wydajność i responsywność",
+        "Budowa struktury pod dalszy rozwój projektu"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "2–4 tygodnie",
+      "highlights": [
+        "Nowoczesny, elegancki design dopasowany do branży nieruchomości",
+        "Czytelna prezentacja inwestycji i oferty",
+        "Lepsze prowadzenie użytkownika do kontaktu (CTA, formularze)",
+        "Solidna baza pod rozwój i skalowanie projektu"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Strona musiała wyglądać premium, ale jednocześnie pozostać czytelna i prosta.",
+          "solution": "Minimalistyczny layout, mocna typografia i ograniczona paleta kolorów."
+        },
+        {
+          "problem": "Prezentacja wielu inwestycji w przejrzysty sposób.",
+          "solution": "Stworzenie sekcji projektów oraz dynamicznych podstron dla każdej inwestycji."
+        },
+        {
+          "problem": "Strona miała wspierać sprzedaż, nie tylko wyglądać dobrze.",
+          "solution": "Zastosowanie wielu punktów kontaktu (CTA, formularz, sekcje sprzedażowe)."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Next.js zamiast WordPressa dla większej wydajności i kontroli",
+        "Tailwind CSS dla szybkiego budowania spójnego UI",
+        "Minimalistyczny design z akcentem premium (złoto + granat)",
+        "Sekcje oparte na konwersji (CTA, projekty, kontakt)"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Formularz kontaktowy",
+        "Responsywność mobile-first",
+        "Struktura pod SEO",
+        "Możliwość dalszej integracji z CMS"
+      ]
     },
-    {
-      "problem": "Oferta i grafik zajęć mogły się zmieniać w czasie.",
-      "solution": "Zaprojektowałam elastyczne sekcje i zintegrowałam stronę z systemem Fitssey."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Custom WordPress zamiast gotowego szablonu",
-    "ACF zamiast page buildera dla lepszej wydajności i kontroli",
-    "Polylang do obsługi wielu języków",
-    "Minimalistyczny design dopasowany do branży wellness"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Fitssey",
-    "Polylang",
-    "Rank Math SEO",
-    "Wordfence",
-    "UpdraftPlus"
-  ]
-},
-"lion-force-weld": {
-  "title": "Lion Force Weld",
-  "description": "Strona firmowa zaprojektowana tak, aby uporządkować ofertę, podkreślić profesjonalizm marki i ułatwić szybki kontakt z klientem.",
-  "overview": "Projekt dla firmy spawalniczej, której zależało na czytelnej prezentacji usług i mocniejszym wizerunku online.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt layoutu i struktury strony",
-    "Kodowanie własnego motywu WordPress",
-    "Konfiguracja edytowalnych sekcji z ACF",
-    "Dostosowanie strony do urządzeń mobilnych",
-    "Podstawowa optymalizacja SEO"
-  ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "2 tygodnie",
-  "highlights": [
-    "Czytelna prezentacja usług i danych kontaktowych",
-    "Profesjonalniejszy odbiór marki",
-    "Dobra baza pod dalszy rozwój strony i SEO"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Klient nie miał gotowej i uporządkowanej struktury treści.",
-      "solution": "Przygotowałam uniwersalny układ sekcji, który można łatwo rozwijać i uzupełniać."
+    "spiro-pilates-mobility": {
+      "title": "Spiro Pilates & Mobility",
+      "description": "Nowoczesna strona internetowa dla studia pilates i mobility, zaprojektowana tak, aby budować spokojny, profesjonalny wizerunek marki i ułatwiać kontakt z klientkami.",
+      "overview": "Projekt strony dla studia wellness, które potrzebowało estetycznej, lekkiej i łatwej w obsłudze witryny z możliwością dalszego rozwoju.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt UX/UI i struktury strony",
+        "Kodowanie customowego motywu WordPress",
+        "Tworzenie edytowalnych sekcji z użyciem ACF",
+        "Integracja z Fitssey",
+        "Wdrożenie wersji językowej PL/EN",
+        "Optymalizacja SEO i wydajności"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "2–3 tygodnie",
+      "highlights": [
+        "Lekka i estetyczna strona dopasowana do branży wellness",
+        "Prosty panel edycji dla właścicielki",
+        "Solidna baza pod rozwój treści i SEO"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Strona musiała powstać szybko ze względu na termin projektu.",
+          "solution": "Prace zostały podzielone na etapy, a na start wdrożone zostały najważniejsze sekcje."
+        },
+        {
+          "problem": "Witryna miała być łatwa w obsłudze bez użycia page builderów.",
+          "solution": "Zastosowałam customowy motyw WordPress i ACF, aby uprościć zarządzanie treścią."
+        },
+        {
+          "problem": "Oferta i grafik zajęć mogły się zmieniać w czasie.",
+          "solution": "Zaprojektowałam elastyczne sekcje i zintegrowałam stronę z systemem Fitssey."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Custom WordPress zamiast gotowego szablonu",
+        "ACF zamiast page buildera dla lepszej wydajności i kontroli",
+        "Polylang do obsługi wielu języków",
+        "Minimalistyczny design dopasowany do branży wellness"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Fitssey",
+        "Polylang",
+        "Rank Math SEO",
+        "Wordfence",
+        "UpdraftPlus"
+      ]
     },
-    {
-      "problem": "Panel edycji miał być prosty i bez page builderów.",
-      "solution": "Wdrożyłam ACF jako główne narzędzie do edycji treści, aby uprościć obsługę strony."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Własny motyw WordPress zamiast gotowego szablonu",
-    "ACF zamiast page builderów dla lepszej wydajności",
-    "Prosty, techniczny design dopasowany do branży"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "WordPress",
-    "ACF"
-  ]
-},
-
-"luisowka": {
-  "title": "Luisówka",
-  "description": "Nowoczesna strona dla domku w górach z własnym systemem zapytań o dostępność, zaprojektowana tak, aby łączyć estetykę, prostą rezerwację i wygodne zarządzanie.",
-  "overview": "Projekt strony dla obiektu noclegowego, w którym ważna była zarówno atrakcyjna prezentacja miejsca, jak i praktyczna obsługa rezerwacji.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt UX/UI i design system",
-    "Implementacja w Next.js i Tailwind CSS",
-    "Kalendarz dostępności i logika rezerwacji",
-    "Panel administracyjny do zarządzania rezerwacjami",
-    "Formularz zapytań, podstawowe SEO i strony prawne"
-  ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "4 tygodnie",
-  "highlights": [
-    "Spójna, estetyczna prezentacja oferty noclegowej",
-    "Własny panel do zarządzania rezerwacjami",
-    "Strona przygotowana pod SEO, wydajność i rozwój"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Należało zapobiec nakładającym się rezerwacjom.",
-      "solution": "Dodałam walidację zakresów dat i blokowanie zajętych terminów w kalendarzu."
+    "lion-force-weld": {
+      "title": "Lion Force Weld",
+      "description": "Strona firmowa zaprojektowana tak, aby uporządkować ofertę, podkreślić profesjonalizm marki i ułatwić szybki kontakt z klientem.",
+      "overview": "Projekt dla firmy spawalniczej, której zależało na czytelnej prezentacji usług i mocniejszym wizerunku online.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt layoutu i struktury strony",
+        "Kodowanie własnego motywu WordPress",
+        "Konfiguracja edytowalnych sekcji z ACF",
+        "Dostosowanie strony do urządzeń mobilnych",
+        "Podstawowa optymalizacja SEO"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "2 tygodnie",
+      "highlights": [
+        "Czytelna prezentacja usług i danych kontaktowych",
+        "Profesjonalniejszy odbiór marki",
+        "Dobra baza pod dalszy rozwój strony i SEO"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Klient nie miał gotowej i uporządkowanej struktury treści.",
+          "solution": "Przygotowałam uniwersalny układ sekcji, który można łatwo rozwijać i uzupełniać."
+        },
+        {
+          "problem": "Panel edycji miał być prosty i bez page builderów.",
+          "solution": "Wdrożyłam ACF jako główne narzędzie do edycji treści, aby uprościć obsługę strony."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Własny motyw WordPress zamiast gotowego szablonu",
+        "ACF zamiast page builderów dla lepszej wydajności",
+        "Prosty, techniczny design dopasowany do branży"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "WordPress",
+        "ACF"
+      ]
     },
-    {
-      "problem": "Potrzebny był prosty panel administracyjny bez WordPressa.",
-      "solution": "Stworzyłam własny panel CRUD w Next.js z logiką bezpieczeństwa Firestore."
+    "luisowka": {
+      "title": "Luisówka",
+      "description": "Nowoczesna strona dla domku w górach z własnym systemem zapytań o dostępność, zaprojektowana tak, aby łączyć estetykę, prostą rezerwację i wygodne zarządzanie.",
+      "overview": "Projekt strony dla obiektu noclegowego, w którym ważna była zarówno atrakcyjna prezentacja miejsca, jak i praktyczna obsługa rezerwacji.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt UX/UI i design system",
+        "Implementacja w Next.js i Tailwind CSS",
+        "Kalendarz dostępności i logika rezerwacji",
+        "Panel administracyjny do zarządzania rezerwacjami",
+        "Formularz zapytań, podstawowe SEO i strony prawne"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "4 tygodnie",
+      "highlights": [
+        "Spójna, estetyczna prezentacja oferty noclegowej",
+        "Własny panel do zarządzania rezerwacjami",
+        "Strona przygotowana pod SEO, wydajność i rozwój"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Należało zapobiec nakładającym się rezerwacjom.",
+          "solution": "Dodałam walidację zakresów dat i blokowanie zajętych terminów w kalendarzu."
+        },
+        {
+          "problem": "Potrzebny był prosty panel administracyjny bez WordPressa.",
+          "solution": "Stworzyłam własny panel CRUD w Next.js z logiką bezpieczeństwa Firestore."
+        },
+        {
+          "problem": "Strona musiała jasno komunikować kwestie prywatności i formularzy.",
+          "solution": "Przygotowałam czytelne strony prawne oraz przejrzysty przepływ formularzy."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Next.js dla szybkości działania i prostego wdrożenia na Vercel",
+        "Własna logika kalendarza zamiast ciężkich gotowych rozwiązań",
+        "Spójny system stylów oparty o Tailwind CSS"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Firebase",
+        "Firestore",
+        "React Calendar",
+        "FormSubmit",
+        "Vercel"
+      ]
     },
-    {
-      "problem": "Strona musiała jasno komunikować kwestie prywatności i formularzy.",
-      "solution": "Przygotowałam czytelne strony prawne oraz przejrzysty przepływ formularzy."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Next.js dla szybkości działania i prostego wdrożenia na Vercel",
-    "Własna logika kalendarza zamiast ciężkich gotowych rozwiązań",
-    "Spójny system stylów oparty o Tailwind CSS"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Firebase",
-    "Firestore",
-    "React Calendar",
-    "FormSubmit",
-    "Vercel"
-  ]
-},
-"zdrowie-plus": {
-  "title": "Zdrowie+",
-  "description": "Lekka i przejrzysta strona dla marki wellness, zaprojektowana tak, aby prowadzić użytkownika przez ofertę, treści i kontakt w prosty, uporządkowany sposób.",
-  "overview": "Projekt koncepcyjny strony wellness z naciskiem na estetykę, spójność treści i czytelne CTA.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Makiety low-fi i high-fi",
-    "Projekt stylistyki UI",
-    "Sekcje ofertowe, blogowe i CTA",
-    "Mikrointerakcje z użyciem Framer Motion",
-    "Semantyka i podstawowe SEO"
-  ],
-  "resultsTitle": "Efekt",
-  "timeframeLabel": "Czas realizacji",
-  "timeframe": "3 tygodnie",
-  "highlights": [
-    "Czytelny layout z jasnymi ścieżkami przejścia",
-    "Spójna komunikacja marki",
-    "Struktura gotowa pod rozbudowę o blog i treści"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Trzeba było zachować lekkość wizualną mimo wielu sekcji.",
-      "solution": "Zastosowałam modułowy grid, ograniczoną paletę i spójną typografię."
+    "zdrowie-plus": {
+      "title": "Zdrowie+",
+      "description": "Lekka i przejrzysta strona dla marki wellness, zaprojektowana tak, aby prowadzić użytkownika przez ofertę, treści i kontakt w prosty, uporządkowany sposób.",
+      "overview": "Projekt koncepcyjny strony wellness z naciskiem na estetykę, spójność treści i czytelne CTA.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Makiety low-fi i high-fi",
+        "Projekt stylistyki UI",
+        "Sekcje ofertowe, blogowe i CTA",
+        "Mikrointerakcje z użyciem Framer Motion",
+        "Semantyka i podstawowe SEO"
+      ],
+      "resultsTitle": "Efekt",
+      "timeframeLabel": "Czas realizacji",
+      "timeframe": "3 tygodnie",
+      "highlights": [
+        "Czytelny layout z jasnymi ścieżkami przejścia",
+        "Spójna komunikacja marki",
+        "Struktura gotowa pod rozbudowę o blog i treści"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Trzeba było zachować lekkość wizualną mimo wielu sekcji.",
+          "solution": "Zastosowałam modułowy grid, ograniczoną paletę i spójną typografię."
+        },
+        {
+          "problem": "Animacje miały ożywiać stronę bez obciążania wydajności.",
+          "solution": "Wykorzystałam subtelne mikroanimacje zamiast ciężkich efektów."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Framer Motion użyty oszczędnie i tylko tam, gdzie wspiera UX",
+        "Powtarzalny system kart dla spójności sekcji",
+        "Semantyczna struktura pod lepsze SEO"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "EmailJS",
+        "Google Fonts"
+      ]
     },
-    {
-      "problem": "Animacje miały ożywiać stronę bez obciążania wydajności.",
-      "solution": "Wykorzystałam subtelne mikroanimacje zamiast ciężkich efektów."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Framer Motion użyty oszczędnie i tylko tam, gdzie wspiera UX",
-    "Powtarzalny system kart dla spójności sekcji",
-    "Semantyczna struktura pod lepsze SEO"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "EmailJS",
-    "Google Fonts"
-  ]
-},
-"quest-for-paws": {
-  "title": "Quest for Paws",
-  "description": "Empatyczna i czytelna strona organizacji pomagającej zwierzętom, zaprojektowana tak, aby ułatwiać dotarcie do adopcji, wsparcia i kontaktu.",
-  "overview": "Projekt strony fundacji, w którym kluczowe były dostępność, prostota nawigacji i czytelna ścieżka działania dla użytkownika.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Audyt dostępności",
-    "Architektura informacji i ścieżki akcji",
-    "Projekt formularzy adopcji, wsparcia i kontaktu",
-    "Dopracowanie kontrastu, focus states i elementów aria"
-  ],
-  "resultsTitle": "Efekt",
-  "highlights": [
-    "Lepsza czytelność formularzy i treści",
-    "Krótsza ścieżka do adopcji i wsparcia",
-    "Bardziej dostępny i uporządkowany interfejs"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Strona zawierała dużo emocjonalnych treści i zdjęć, ale nadal musiała pozostać czytelna.",
-      "solution": "Postawiłam na spokojną typografię, dobre proporcje zdjęć i jasną strukturę sekcji."
+    "quest-for-paws": {
+      "title": "Quest for Paws",
+      "description": "Empatyczna i czytelna strona organizacji pomagającej zwierzętom, zaprojektowana tak, aby ułatwiać dotarcie do adopcji, wsparcia i kontaktu.",
+      "overview": "Projekt strony fundacji, w którym kluczowe były dostępność, prostota nawigacji i czytelna ścieżka działania dla użytkownika.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Audyt dostępności",
+        "Architektura informacji i ścieżki akcji",
+        "Projekt formularzy adopcji, wsparcia i kontaktu",
+        "Dopracowanie kontrastu, focus states i elementów aria"
+      ],
+      "resultsTitle": "Efekt",
+      "highlights": [
+        "Lepsza czytelność formularzy i treści",
+        "Krótsza ścieżka do adopcji i wsparcia",
+        "Bardziej dostępny i uporządkowany interfejs"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Strona zawierała dużo emocjonalnych treści i zdjęć, ale nadal musiała pozostać czytelna.",
+          "solution": "Postawiłam na spokojną typografię, dobre proporcje zdjęć i jasną strukturę sekcji."
+        },
+        {
+          "problem": "Należało zadbać o lepszą dostępność dla użytkowników korzystających z czytników ekranu.",
+          "solution": "Dopracowałam strukturę nagłówków, role ARIA, focus rings i teksty alternatywne."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Kontrast zgodny z WCAG AA",
+        "Stałe umiejscowienie najważniejszych przycisków akcji",
+        "Nacisk na prostą i intuicyjną nawigację"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "EmailJS",
+        "Google Fonts"
+      ]
     },
-    {
-      "problem": "Należało zadbać o lepszą dostępność dla użytkowników korzystających z czytników ekranu.",
-      "solution": "Dopracowałam strukturę nagłówków, role ARIA, focus rings i teksty alternatywne."
+    "realestate": {
+      "title": "RealEstate",
+      "description": "Minimalistyczny landing page dla branży nieruchomości, zaprojektowany tak, aby szybko budować zaufanie i prowadzić użytkownika do kontaktu.",
+      "overview": "Projekt strony nastawionej na przejrzystą prezentację oferty, korzyści i formularza kontaktowego.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Makieta sekcji i hierarchii treści",
+        "Projekt kart ofert",
+        "Lekka lista ofert z możliwością rozbudowy",
+        "Formularz leadowy z walidacją"
+      ],
+      "resultsTitle": "Efekt",
+      "highlights": [
+        "Czytelna prezentacja oferty i USP",
+        "Sekcje budujące zaufanie",
+        "Struktura gotowa do dalszej rozbudowy o CMS"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Na małej przestrzeni trzeba było pokazać wiele informacji o nieruchomościach.",
+          "solution": "Zastosowałam powtarzalne karty z jasną hierarchią treści i prostym CTA."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Minimalne animacje z naciskiem na wydajność",
+        "Elastyczny grid pod przyszłe filtry i rozbudowę",
+        "Prosty układ sekcji nastawiony na lead generation"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "EmailJS",
+        "Google Fonts"
+      ]
+    },
+    "marecki-24-7": {
+      "title": "Marecki 24/7",
+      "description": "Strona warsztatu i pomocy drogowej zaprojektowana tak, aby w stresowej sytuacji użytkownik od razu widział najważniejsze usługi i mógł szybko zadzwonić.",
+      "overview": "Projekt strony usługowej, w której kluczowe były szybkość kontaktu, czytelność na mobile i jasna prezentacja oferty.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt interfejsu mobile-first",
+        "Sekcje usług, dojazdu i godzin pracy",
+        "Duże CTA do szybkiego kontaktu",
+        "Integracja telefonu i map"
+      ],
+      "resultsTitle": "Efekt",
+      "highlights": [
+        "Błyskawiczny dostęp do numeru telefonu",
+        "Czytelny układ na urządzeniach mobilnych",
+        "Lepsza prezentacja usług w sytuacjach awaryjnych"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Użytkownicy często trafiają na stronę w sytuacji stresowej i potrzebują szybkiej decyzji.",
+          "solution": "Postawiłam na duże przyciski, skrócone treści i stale widoczne CTA."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Mobile-first jako główne podejście projektowe",
+        "Telefon i mapa jako najważniejsze akcje",
+        "Prosty układ wspierający szybki kontakt"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "EmailJS",
+        "Google Fonts",
+        "Map link"
+      ]
+    },
+    "goports": {
+      "title": "Goports",
+      "description": "Autorski motyw WordPress zaprojektowany z myślą o czytelnej prezentacji wydarzeń, prostszej pracy redakcyjnej i lekkim działaniu bez page builderów.",
+      "overview": "Projekt strony sportowej z naciskiem na porządną strukturę treści, filtrowanie i łatwiejszą obsługę po stronie redakcji.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Kodowanie motywu WordPress od podstaw",
+        "Projekt struktury kategorii i wydarzeń",
+        "Filtrowanie wydarzeń",
+        "Optymalizacja wydajności i SEO"
+      ],
+      "resultsTitle": "Efekt",
+      "highlights": [
+        "Lżejszy i bardziej uporządkowany front-end",
+        "Łatwiejsza praca redakcyjna",
+        "Szybszy dostęp do wydarzeń i treści"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Strona WordPress miała zachować lekkość mimo większej ilości treści.",
+          "solution": "Powstał własny motyw z minimalną liczbą dodatków i zoptymalizowanym front-endem."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Własny motyw zamiast page buildera",
+        "Minimum pluginów dla lepszej wydajności",
+        "Własna struktura treści pod wydarzenia i kategorie"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "WordPress",
+        "Custom post types",
+        "ACF"
+      ]
+    },
+    "studybuddy": {
+      "title": "StudyBuddy",
+      "description": "Nowoczesna platforma do wyszukiwania korepetytorów, łącząca przejrzysty interfejs, lekkie animacje i subtelne elementy 3D.",
+      "overview": "Projekt edukacyjny z naciskiem na przyjazny UX, prosty przepływ wyboru korepetytora i nowoczesny wygląd.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt nawigacji i kart korepetytorów",
+        "Animacje sekcji i CTA",
+        "Optymalizacja elementów 3D",
+        "Budowa nowoczesnego, lekkiego interfejsu"
+      ],
+      "resultsTitle": "Efekt",
+      "highlights": [
+        "Płynny interfejs mimo wykorzystania 3D",
+        "Czytelny przepływ użytkownika od wyboru do kontaktu",
+        "Nowoczesny, przyjazny charakter platformy"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Elementy 3D mogły negatywnie wpływać na wydajność na słabszych urządzeniach.",
+          "solution": "Zoptymalizowałam modele, ograniczyłam zakres animacji i zastosowałam ładowanie warunkowe."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "3D użyte tylko tam, gdzie wspiera pierwsze wrażenie",
+        "Next.js dla szybkości i lepszej wydajności",
+        "Nowoczesny interfejs bez przesadnego przeładowania efektami"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Spline",
+        "Framer Motion"
+      ]
+    },
+    "photographer": {
+      "title": "Photographer Portfolio",
+      "description": "Portfolio fotografa zaprojektowane tak, aby cała uwaga skupiała się na zdjęciach, a interfejs wspierał ich odbiór zamiast z nimi konkurować.",
+      "overview": "Projekt portfolio z naciskiem na storytelling obrazu, estetykę galerii i płynne przeglądanie na różnych urządzeniach.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt galerii i struktury nawigacji",
+        "Optymalizacja ładowania obrazów",
+        "Subtelne animacje przejść",
+        "Dopracowanie układu mobile i desktop"
+      ],
+      "resultsTitle": "Efekt",
+      "highlights": [
+        "Mocniejsze wyeksponowanie zdjęć",
+        "Wygodne przeglądanie galerii na mobile",
+        "Premium odbiór marki osobistej"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Duże zdjęcia mogły wydłużać czas ładowania strony.",
+          "solution": "Zastosowałam optymalizację rozdzielczości, kompresję i kontrolę ładowania obrazów."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Minimalny interfejs, który nie odciąga uwagi od zdjęć",
+        "Spokojna kolorystyka wspierająca portfolio",
+        "Priorytet dla doświadczenia wizualnego i płynności"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Google Fonts"
+      ]
+    },
+    "luxenails": {
+      "title": "LUXENAILS",
+      "description": "Kolorowa i kobieca strona salonu stylizacji paznokci, zaprojektowana tak, aby czytelnie pokazywać ofertę, budować zaufanie i zachęcać do kontaktu.",
+      "overview": "Projekt strony beauty z naciskiem na spójny branding, prostą prezentację usług i przyjazny odbiór marki.",
+      "workTitle": "Zakres prac",
+      "work": [
+        "Projekt interfejsu zgodnego z charakterem marki",
+        "Sekcje usług, cennika i opinii",
+        "Formularz kontaktowy i CTA",
+        "Dopracowanie spójności wizualnej"
+      ],
+      "resultsTitle": "Efekt",
+      "highlights": [
+        "Przyjazna prezentacja oferty dla nowych klientek",
+        "Spójny i estetyczny branding online",
+        "Lekka strona wspierająca kontakt i zapisy"
+      ],
+      "challengesTitle": "Wyzwania",
+      "challenges": [
+        {
+          "problem": "Kolorowa estetyka musiała pozostać czytelna i uporządkowana.",
+          "solution": "Zastosowałam wyważoną paletę, kontrastowe nagłówki i spójną siatkę sekcji."
+        }
+      ],
+      "decisionsTitle": "Decyzje projektowe",
+      "decisions": [
+        "Wyraźne CTA i sekcja FAQ",
+        "Karty usług gotowe do dalszej rozbudowy",
+        "Projekt oparty na lekkim, kobiecym stylu marki"
+      ],
+      "integrationsTitle": "Integracje",
+      "integrations": [
+        "Google Fonts",
+        "Lightweight email form"
+      ]
     }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Kontrast zgodny z WCAG AA",
-    "Stałe umiejscowienie najważniejszych przycisków akcji",
-    "Nacisk na prostą i intuicyjną nawigację"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "EmailJS",
-    "Google Fonts"
-  ]
-},
-"realestate": {
-  "title": "RealEstate",
-  "description": "Minimalistyczny landing page dla branży nieruchomości, zaprojektowany tak, aby szybko budować zaufanie i prowadzić użytkownika do kontaktu.",
-  "overview": "Projekt strony nastawionej na przejrzystą prezentację oferty, korzyści i formularza kontaktowego.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Makieta sekcji i hierarchii treści",
-    "Projekt kart ofert",
-    "Lekka lista ofert z możliwością rozbudowy",
-    "Formularz leadowy z walidacją"
-  ],
-  "resultsTitle": "Efekt",
-  "highlights": [
-    "Czytelna prezentacja oferty i USP",
-    "Sekcje budujące zaufanie",
-    "Struktura gotowa do dalszej rozbudowy o CMS"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Na małej przestrzeni trzeba było pokazać wiele informacji o nieruchomościach.",
-      "solution": "Zastosowałam powtarzalne karty z jasną hierarchią treści i prostym CTA."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Minimalne animacje z naciskiem na wydajność",
-    "Elastyczny grid pod przyszłe filtry i rozbudowę",
-    "Prosty układ sekcji nastawiony na lead generation"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "EmailJS",
-    "Google Fonts"
-  ]
-},
-"marecki-24-7": {
-  "title": "Marecki 24/7",
-  "description": "Strona warsztatu i pomocy drogowej zaprojektowana tak, aby w stresowej sytuacji użytkownik od razu widział najważniejsze usługi i mógł szybko zadzwonić.",
-  "overview": "Projekt strony usługowej, w której kluczowe były szybkość kontaktu, czytelność na mobile i jasna prezentacja oferty.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt interfejsu mobile-first",
-    "Sekcje usług, dojazdu i godzin pracy",
-    "Duże CTA do szybkiego kontaktu",
-    "Integracja telefonu i map"
-  ],
-  "resultsTitle": "Efekt",
-  "highlights": [
-    "Błyskawiczny dostęp do numeru telefonu",
-    "Czytelny układ na urządzeniach mobilnych",
-    "Lepsza prezentacja usług w sytuacjach awaryjnych"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Użytkownicy często trafiają na stronę w sytuacji stresowej i potrzebują szybkiej decyzji.",
-      "solution": "Postawiłam na duże przyciski, skrócone treści i stale widoczne CTA."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Mobile-first jako główne podejście projektowe",
-    "Telefon i mapa jako najważniejsze akcje",
-    "Prosty układ wspierający szybki kontakt"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "EmailJS",
-    "Google Fonts",
-    "Map link"
-  ]
-},
-"goports": {
-  "title": "Goports",
-  "description": "Autorski motyw WordPress zaprojektowany z myślą o czytelnej prezentacji wydarzeń, prostszej pracy redakcyjnej i lekkim działaniu bez page builderów.",
-  "overview": "Projekt strony sportowej z naciskiem na porządną strukturę treści, filtrowanie i łatwiejszą obsługę po stronie redakcji.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Kodowanie motywu WordPress od podstaw",
-    "Projekt struktury kategorii i wydarzeń",
-    "Filtrowanie wydarzeń",
-    "Optymalizacja wydajności i SEO"
-  ],
-  "resultsTitle": "Efekt",
-  "highlights": [
-    "Lżejszy i bardziej uporządkowany front-end",
-    "Łatwiejsza praca redakcyjna",
-    "Szybszy dostęp do wydarzeń i treści"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Strona WordPress miała zachować lekkość mimo większej ilości treści.",
-      "solution": "Powstał własny motyw z minimalną liczbą dodatków i zoptymalizowanym front-endem."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Własny motyw zamiast page buildera",
-    "Minimum pluginów dla lepszej wydajności",
-    "Własna struktura treści pod wydarzenia i kategorie"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "WordPress",
-    "Custom post types",
-    "ACF"
-  ]
-},
-"studybuddy": {
-  "title": "StudyBuddy",
-  "description": "Nowoczesna platforma do wyszukiwania korepetytorów, łącząca przejrzysty interfejs, lekkie animacje i subtelne elementy 3D.",
-  "overview": "Projekt edukacyjny z naciskiem na przyjazny UX, prosty przepływ wyboru korepetytora i nowoczesny wygląd.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt nawigacji i kart korepetytorów",
-    "Animacje sekcji i CTA",
-    "Optymalizacja elementów 3D",
-    "Budowa nowoczesnego, lekkiego interfejsu"
-  ],
-  "resultsTitle": "Efekt",
-  "highlights": [
-    "Płynny interfejs mimo wykorzystania 3D",
-    "Czytelny przepływ użytkownika od wyboru do kontaktu",
-    "Nowoczesny, przyjazny charakter platformy"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Elementy 3D mogły negatywnie wpływać na wydajność na słabszych urządzeniach.",
-      "solution": "Zoptymalizowałam modele, ograniczyłam zakres animacji i zastosowałam ładowanie warunkowe."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "3D użyte tylko tam, gdzie wspiera pierwsze wrażenie",
-    "Next.js dla szybkości i lepszej wydajności",
-    "Nowoczesny interfejs bez przesadnego przeładowania efektami"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Spline",
-    "Framer Motion"
-  ]
-},
-"photographer": {
-  "title": "Photographer Portfolio",
-  "description": "Portfolio fotografa zaprojektowane tak, aby cała uwaga skupiała się na zdjęciach, a interfejs wspierał ich odbiór zamiast z nimi konkurować.",
-  "overview": "Projekt portfolio z naciskiem na storytelling obrazu, estetykę galerii i płynne przeglądanie na różnych urządzeniach.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt galerii i struktury nawigacji",
-    "Optymalizacja ładowania obrazów",
-    "Subtelne animacje przejść",
-    "Dopracowanie układu mobile i desktop"
-  ],
-  "resultsTitle": "Efekt",
-  "highlights": [
-    "Mocniejsze wyeksponowanie zdjęć",
-    "Wygodne przeglądanie galerii na mobile",
-    "Premium odbiór marki osobistej"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Duże zdjęcia mogły wydłużać czas ładowania strony.",
-      "solution": "Zastosowałam optymalizację rozdzielczości, kompresję i kontrolę ładowania obrazów."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Minimalny interfejs, który nie odciąga uwagi od zdjęć",
-    "Spokojna kolorystyka wspierająca portfolio",
-    "Priorytet dla doświadczenia wizualnego i płynności"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Google Fonts"
-  ]
-},
-"luxenails": {
-  "title": "LUXENAILS",
-  "description": "Kolorowa i kobieca strona salonu stylizacji paznokci, zaprojektowana tak, aby czytelnie pokazywać ofertę, budować zaufanie i zachęcać do kontaktu.",
-  "overview": "Projekt strony beauty z naciskiem na spójny branding, prostą prezentację usług i przyjazny odbiór marki.",
-  "workTitle": "Zakres prac",
-  "work": [
-    "Projekt interfejsu zgodnego z charakterem marki",
-    "Sekcje usług, cennika i opinii",
-    "Formularz kontaktowy i CTA",
-    "Dopracowanie spójności wizualnej"
-  ],
-  "resultsTitle": "Efekt",
-  "highlights": [
-    "Przyjazna prezentacja oferty dla nowych klientek",
-    "Spójny i estetyczny branding online",
-    "Lekka strona wspierająca kontakt i zapisy"
-  ],
-  "challengesTitle": "Wyzwania",
-  "challenges": [
-    {
-      "problem": "Kolorowa estetyka musiała pozostać czytelna i uporządkowana.",
-      "solution": "Zastosowałam wyważoną paletę, kontrastowe nagłówki i spójną siatkę sekcji."
-    }
-  ],
-  "decisionsTitle": "Decyzje projektowe",
-  "decisions": [
-    "Wyraźne CTA i sekcja FAQ",
-    "Karty usług gotowe do dalszej rozbudowy",
-    "Projekt oparty na lekkim, kobiecym stylu marki"
-  ],
-  "integrationsTitle": "Integracje",
-  "integrations": [
-    "Google Fonts",
-    "Lightweight email form"
-  ]
-}
-}
+  }
 }
