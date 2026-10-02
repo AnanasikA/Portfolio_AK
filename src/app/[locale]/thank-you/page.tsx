@@ -9,12 +9,29 @@ import { FiArrowRight, FiCheck, FiHome } from 'react-icons/fi';
 export default function ThankYouPage() {
   const t = useTranslations('thankYou');
 
-  useEffect(() => {
-    (window).gtag?.('event', 'prosba_o_wycene', {
-      transport_type: 'beacon',
-    });
-  }, []);
+    useEffect(() => {
+    type GtagWindow = { gtag?: (...args: unknown[]) => void };
+    let tries = 0;
 
+    const send = () => {
+      const w = window as unknown as GtagWindow;
+      if (typeof w.gtag === 'function') {
+        w.gtag('event', 'prosba_o_wycene', { transport_type: 'beacon' });
+        return true;
+      }
+      return false;
+    };
+
+    if (send()) return;
+
+    const id = window.setInterval(() => {
+      tries += 1;
+      if (send() || tries >= 40) window.clearInterval(id);
+    }, 250);
+
+    return () => window.clearInterval(id);
+  }, []);
+  
   return (
     <main style={{
       position: 'relative', minHeight: '100svh',
