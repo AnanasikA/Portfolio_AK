@@ -10,7 +10,7 @@ export default function ThankYouPage() {
   const t = useTranslations('thankYou');
 
   useEffect(() => {
-    (window as any).gtag?.('event', 'prosba_o_wycene', {
+    (window).gtag?.('event', 'prosba_o_wycene', {
       transport_type: 'beacon',
     });
   }, []);
