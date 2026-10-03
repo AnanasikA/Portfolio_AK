@@ -97,6 +97,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
     if (result.ok) {
       trackEvent('form_submit', { form_name: 'quote_modal', site_type: form.websiteType || 'unspecified' });
+      trackEvent('prosba_o_wycene', { form_name: 'quote_modal' });
       setStatus('success');
       setForm({ name: '', email: '', websiteType: '', budget: '', message: '' });
       setTimeout(() => {

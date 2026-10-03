@@ -8,6 +8,7 @@
 
 type AnalyticsEvent =
   | "generate_lead"
+  | "prosba_o_wycene"
   | "form_submit"
   | "phone_click"
   | "email_click";

@@ -162,6 +162,7 @@ export default function WycenaPage() {
       const data = await res.json();
       if (data.ok) {
         trackEvent('form_submit', { form_name: 'calculator_brief', site_type: siteType });
+        trackEvent('prosba_o_wycene', { form_name: 'calculator_brief' });
       }
       setFormStatus(data.ok ? 'ok' : 'error');
     } catch { setFormStatus('error'); }

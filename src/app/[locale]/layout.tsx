@@ -49,11 +49,16 @@ export default async function LocaleLayout({
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
 
+   var consentState = 'denied';
+  try {
+    if (localStorage.getItem('cookie-consent') === '1') consentState = 'granted';
+  } catch (e) {}
+
   gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied',
-    'analytics_storage': 'denied'
+    'ad_storage': consentState,
+    'ad_user_data': consentState,
+    'ad_personalization': consentState,
+    'analytics_storage': consentState
   });
 
   gtag('js', new Date());
