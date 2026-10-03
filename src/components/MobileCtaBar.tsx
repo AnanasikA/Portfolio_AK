@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import { trackEvent } from '@/lib/gtag';
@@ -12,9 +13,13 @@ const WHATSAPP_NUMBER = '48576564682';
 const HIDDEN_ON = /\/(wycena|thank-you|partners|admin|offer-[^/]+)(\/|$)/;
 
 /**
- * Stały pasek kontaktu na dole ekranu — tylko telefony i tablety (< 1024px).
- * Telefon, WhatsApp i przycisk wyceny są zawsze pod kciukiem, niezależnie
- * od tego, jak daleko ktoś przewinął stronę.
+ * Pływające przyciski kontaktu w prawym dolnym rogu — tylko telefony
+ * i tablety (< 1024px). Ułożone jeden nad drugim, bez tła: telefon,
+ * WhatsApp i na samym dole (najbliżej kciuka) przycisk wyceny.
+ *
+ * Przycisk wyceny pojawia się dopiero po przewinięciu pierwszego ekranu —
+ * na samej górze każda strona ma własny przycisk w sekcji powitalnej,
+ * więc drugi tylko by go zasłaniał.
  *
  * Przycisk wyceny otwiera ten sam formularz co „Zapytaj o wycenę” w nagłówku
  * (zdarzenie `open-brief`, którego nasłuchuje Header).
@@ -23,12 +28,21 @@ export default function MobileCtaBar() {
   const locale = useLocale();
   const pathname = usePathname() ?? '';
   const isEn = locale === 'en';
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 480);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   if (HIDDEN_ON.test(pathname)) return null;
 
+  // Gotowa wiadomość, którą odwiedzający zobaczy w polu tekstowym WhatsAppa.
   const whatsappText = isEn
-    ? 'Hello! I am writing from anastasiiakupriianets.pl — I would like to ask for a quote.'
-    : 'Dzień dobry! Piszę ze strony anastasiiakupriianets.pl — chcę zapytać o wycenę.';
+    ? 'Hello, I am interested in a quote for a website.'
+    : 'Dzień dobry, interesuje mnie wycena strony internetowej.';
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`;
 
   return (
@@ -38,37 +52,51 @@ export default function MobileCtaBar() {
         @media (max-width: 1023px) {
           .mcta {
             display: flex;
-            position: fixed;
-            left: 0; right: 0; bottom: 0;
-            z-index: 80;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-end;
             gap: 10px;
-            padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-            background: rgba(255,255,255,.94);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
-            border-top: 1px solid var(--line);
-            box-shadow: 0 -6px 24px rgba(11,18,32,.08);
+            position: fixed;
+            right: 14px;
+            bottom: calc(14px + env(safe-area-inset-bottom));
+            z-index: 80;
+            /* Sam kontener nie przechwytuje dotyku — klikalne są tylko przyciski. */
+            pointer-events: none;
           }
-          /* Miejsce na pasek, żeby nie zasłaniał końca stopki. */
-          body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+          .mcta > * { pointer-events: auto; }
         }
         .mcta-icon {
-          flex: 0 0 48px;
-          width: 48px; height: 48px;
+          width: 52px; height: 52px;
           border-radius: 99px;
           display: flex; align-items: center; justify-content: center;
           text-decoration: none;
         }
-        .mcta-phone { border: 1.5px solid var(--line); color: var(--brand); background: #fff; }
-        .mcta-wa { background: #25D366; color: #fff; }
+        .mcta-phone {
+          background: #fff; color: var(--brand);
+          border: 1px solid var(--line);
+          box-shadow: 0 6px 20px rgba(11,18,32,.14);
+        }
+        .mcta-wa {
+          background: #25D366; color: #fff;
+          box-shadow: 0 6px 20px rgba(37,211,102,.4);
+        }
         .mcta-quote {
-          flex: 1 1 auto;
-          min-height: 48px;
+          height: 52px;
+          padding: 0 22px;
           border: none; border-radius: 99px;
           background: var(--brand); color: #fff;
-          font-family: var(--fd); font-weight: 700; font-size: .95rem;
+          font-family: var(--fd); font-weight: 700; font-size: .92rem;
+          white-space: nowrap;
           cursor: pointer;
+          box-shadow: 0 8px 24px rgba(29,78,216,.35);
+          overflow: hidden;
+          transition: opacity .25s ease, height .25s ease, margin-top .25s ease;
+        }
+        /* Ukryty przycisk nie zajmuje miejsca — ikony zjeżdżają na sam dół. */
+        .mcta-quote[data-hidden="true"] {
+          opacity: 0;
+          height: 0;
+          margin-top: -10px;
+          pointer-events: none;
         }
       `}</style>
 
@@ -100,6 +128,9 @@ export default function MobileCtaBar() {
         <button
           type="button"
           className="mcta-quote"
+          data-hidden={!scrolled}
+          aria-hidden={!scrolled}
+          tabIndex={scrolled ? 0 : -1}
           onClick={() => window.dispatchEvent(new Event('open-brief'))}
         >
           {isEn ? 'Free quote →' : 'Bezpłatna wycena →'}
