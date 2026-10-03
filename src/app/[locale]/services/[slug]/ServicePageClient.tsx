@@ -7,6 +7,7 @@ import QuoteModal from '@/components/QuoteModal';
 import Footer from '@/components/Footer';
 import { getProjectsForService } from '@/data/serviceProjects';
 import type { ServiceData } from '@/data/services';
+import { trackContactClick } from '@/lib/gtag';
 import { AnimatePresence, motion, useAnimation, useInView } from 'framer-motion';
 
 const W = {
@@ -1013,7 +1014,7 @@ function CTA({ open, locale }: { open: () => void; locale: string }) {
                 { label: '+48 576 564 682', href: 'tel:+48576564682' },
                 { label: 'anastasiiakupriianets.pl', href: 'https://anastasiiakupriianets.pl' },
               ].map(({ label, href }) => (
-                <motion.a key={label} href={href} whileHover={{ color: 'rgba(255,255,255,.95)' }} transition={{ duration: 0.15 }} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: 'var(--fd)', fontSize: 'clamp(.78rem,.9vw,.83rem)', color: 'rgba(255,255,255,.6)', textDecoration: 'none' }}>
+                <motion.a key={label} href={href} onClick={() => trackContactClick(href, 'service_page')} whileHover={{ color: 'rgba(255,255,255,.95)' }} transition={{ duration: 0.15 }} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: 'var(--fd)', fontSize: 'clamp(.78rem,.9vw,.83rem)', color: 'rgba(255,255,255,.6)', textDecoration: 'none' }}>
                   {label}
                 </motion.a>
               ))}

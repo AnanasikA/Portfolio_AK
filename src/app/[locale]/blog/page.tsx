@@ -22,7 +22,8 @@ export async function generateMetadata({
     : 'Praktyczne artykuły o tworzeniu, wycenie i utrzymaniu stron internetowych dla firm — od wyboru wykonawcy po porównanie WordPressa i Next.js.';
 
   return {
-    title,
+    // `absolute` wyłącza szablon z layout.tsx — tytuł ma już „| AK Web & Design”.
+    title: { absolute: title },
     description,
     alternates: {
       canonical,

@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { SERVICE_SLUGS } from '@/data/services';
+import { trackContactClick } from '@/lib/gtag';
 type NavLink = { label: string; href: string; external?: boolean };
 type NavCol  = { head: string; links: NavLink[] };
 
@@ -165,6 +166,7 @@ export default function Footer() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' as const }}>
               <a
                 href="mailto:kontakt@anastasiiakupriianets.pl"
+                onClick={() => trackContactClick('mailto:kontakt@anastasiiakupriianets.pl', 'footer_cta')}
                 style={{
                   display:      'inline-flex',
                   alignItems:   'center',
@@ -236,7 +238,7 @@ export default function Footer() {
                         {label}
                       </a>
                     ) : (
-                      <Link href={href} className="ft-link" style={linkStyle}>
+                      <Link href={href} className="ft-link" style={linkStyle} onClick={() => trackContactClick(href, 'footer')}>
                         {label}
                       </Link>
                     )}

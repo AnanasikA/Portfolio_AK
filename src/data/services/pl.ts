@@ -126,7 +126,7 @@ const webDevelopment: ServiceData = {
   faq: [
     {
       q: 'Ile kosztuje stworzenie strony internetowej?',
-      a: 'Koszt zależy od zakresu projektu. Landing page zaczyna się od 1 500 zł, a prosta strona firmowa od ok. 2 800 zł netto. Szczegółową wycenę przygotowuję po krótkiej konsultacji.',
+      a: 'Koszt zależy od zakresu projektu. Landing page zaczyna się od 1 500 zł, a prosta strona firmowa od ok. 3 000 zł netto. Szczegółową wycenę przygotowuję po krótkiej konsultacji.',
     },
     {
       q: 'Jak długo trwa realizacja strony?',
@@ -418,7 +418,7 @@ const businessWebsites: ServiceData = {
   faq: [
     {
       q: 'Ile kosztuje strona internetowa dla firmy?',
-      a: 'Cena strony firmowej zaczyna się od około 2 800 zł netto. Ostateczny koszt zależy od liczby podstron, funkcjonalności oraz zakresu projektu.',
+      a: 'Cena strony firmowej zaczyna się od około 3 000 zł netto. Ostateczny koszt zależy od liczby podstron, funkcjonalności oraz zakresu projektu.',
     },
     {
       q: 'Czy strona będzie przygotowana pod Google Ads?',

@@ -25,3 +25,10 @@ export function trackEvent(
     transport_type: "beacon",
   });
 }
+
+// Kliknięcia w linki kontaktowe (tel: / mailto:) — jedno miejsce dla stopki,
+// sekcji kontaktu i podstron usług. Inne linki (np. https://) są pomijane.
+export function trackContactClick(href: string, location: string) {
+  if (href.startsWith("tel:")) trackEvent("phone_click", { location });
+  else if (href.startsWith("mailto:")) trackEvent("email_click", { location });
+}

@@ -12,7 +12,7 @@ const fade = {
 
 const faqData = {
   pl: [
-    { q: 'Ile kosztuje strona internetowa?', a: 'Cena zależy od zakresu projektu — strony wizytówkowe zaczynają się od 2 500 zł, a bardziej rozbudowane rozwiązania wyceniam indywidualnie. Zawsze dostajesz wycenę przed rozpoczęciem pracy, bez niespodzianek.' },
+    { q: 'Ile kosztuje strona internetowa?', a: 'Cena zależy od zakresu projektu — strony wizytówkowe zaczynają się od 3 000 zł, a bardziej rozbudowane rozwiązania wyceniam indywidualnie. Zawsze dostajesz wycenę przed rozpoczęciem pracy, bez niespodzianek.' },
     { q: 'Ile czasu zajmuje realizacja?', a: 'Standardowy projekt trwa 7–14 dni roboczych od dostarczenia materiałów. Termin ustalamy na starcie i się go trzymam.' },
     { q: 'Czy będę mógł sam edytować stronę?', a: 'Tak — strony WordPress dostajesz z panelem, który pozwala zmieniać treści bez wiedzy technicznej. Przeprowadzam krótkie szkolenie po wdrożeniu.' },
     { q: 'Czy pracujecie z firmami spoza Polski?', a: 'Oczywiście. Współpracuję zdalnie z klientami z całej Europy. Komunikacja odbywa się po polsku lub angielsku.' },
@@ -20,7 +20,7 @@ const faqData = {
     { q: 'Czy przeprojektowujecie istniejące strony?', a: 'Tak, zajmuję się również redesignem. Analizuję obecną stronę, wskazuję co warto poprawić i przygotowuję nową wersję.' },
   ],
   en: [
-    { q: 'How much does a website cost?', a: 'Pricing depends on the scope — business card websites start from €600, and more complex solutions are quoted individually. You always get a quote before work begins, no surprises.' },
+    { q: 'How much does a website cost?', a: 'Pricing depends on the scope — business card websites start from €700, and more complex solutions are quoted individually. You always get a quote before work begins, no surprises.' },
     { q: 'How long does it take?', a: 'A standard project takes 7–14 business days from when you deliver the materials. We agree on the deadline upfront and I stick to it.' },
     { q: 'Can I edit the website myself?', a: 'Yes — WordPress sites come with a panel that lets you update content without any technical knowledge. I provide a short walkthrough after launch.' },
     { q: 'Do you work with companies outside Poland?', a: 'Absolutely. I collaborate remotely with clients across Europe. Communication can be in Polish or English.' },

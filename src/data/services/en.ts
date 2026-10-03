@@ -150,7 +150,7 @@ const webDevelopment: ServiceData = {
   faq: [
     {
       q: 'How much does a website cost?',
-      a: 'Pricing depends on the project scope. Landing pages start at €350, while business websites typically start at €650. I provide a custom quote after a short consultation.',
+      a: 'Pricing depends on the project scope. Landing pages start at €350, while business websites typically start at €700. I provide a custom quote after a short consultation.',
     },
     {
       q: 'How long does it take to build a website?',
@@ -442,7 +442,7 @@ const businessWebsites: ServiceData = {
   faq: [
     {
       q: 'How much does a business website cost?',
-      a: 'Business websites typically start at PLN 2,800. The final price depends on the number of pages, required features, and overall project scope.',
+      a: 'Business websites typically start at PLN 3,000. The final price depends on the number of pages, required features, and overall project scope.',
     },
     {
       q: 'Can the website be prepared for Google Ads?',

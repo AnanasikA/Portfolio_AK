@@ -21,7 +21,8 @@ export async function generateMetadata({
     : 'Wybór stron internetowych, które zaprojektowaliśmy i wykonaliśmy dla lokalnych firm, usługodawców i marek osobistych.';
 
   return {
-    title,
+    // `absolute` wyłącza szablon z layout.tsx — tytuł ma już „| AK Web & Design”.
+    title: { absolute: title },
     description,
     alternates: {
       canonical,

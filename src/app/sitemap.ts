@@ -79,6 +79,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const staticPages: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/pl/wycena`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/en/wycena`,               lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/pl/polityka-prywatnosci`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${BASE_URL}/en/polityka-prywatnosci`, lastModified: now, changeFrequency: 'yearly', priority: 0.2 },
     { url: `${BASE_URL}/pl/regulamin`,            lastModified: now, changeFrequency: 'yearly', priority: 0.2 },

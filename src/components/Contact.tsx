@@ -5,6 +5,7 @@ import { FiMail, FiPhone, FiGlobe } from 'react-icons/fi';
 import { useLocale } from 'next-intl';
 import { useRef } from 'react';
 import { usePaperPlane } from '@/components/PaperPlane';
+import { trackContactClick } from '@/lib/gtag';
 
 const fade = {
   hidden:  { opacity: 0, y: 24 },
@@ -129,11 +130,12 @@ export default function Contact() {
               {[
                 { icon: <FiMail size={13} />, label: 'kontakt@anastasiiakupriianets.pl', href: 'mailto:kontakt@anastasiiakupriianets.pl' },
                 { icon: <FiPhone size={13} />, label: '+48 576 564 682', href: 'tel:+48576564682' },
-                { icon: <FiGlobe size={13} />, label: 'anastasiiakuprianets.pl', href: 'https://anastasiiakuprianets.pl' },
+                { icon: <FiGlobe size={13} />, label: 'anastasiiakupriianets.pl', href: 'https://anastasiiakupriianets.pl' },
               ].map(({ icon, label, href }) => (
                 <motion.a
                   key={label}
                   href={href}
+                  onClick={() => trackContactClick(href, 'contact_section')}
                   whileHover={{ color: 'rgba(255,255,255,.95)' }}
                   transition={{ duration: .15 }}
                   style={{ display:'inline-flex', alignItems:'center', gap:7, fontFamily:'var(--fd)', fontSize:'clamp(.78rem,.9vw,.83rem)', color:'rgba(255,255,255,.6)', textDecoration:'none' }}>

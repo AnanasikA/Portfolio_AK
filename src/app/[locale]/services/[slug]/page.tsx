@@ -38,7 +38,8 @@ export async function generateMetadata({
   const enSlug = getTranslatedServiceSlug(locale, 'en', slug);
 
   return {
-    title: `${service.title} | AK Web & Design`,
+    // Bez „| AK Web & Design” — dopisuje to szablon tytułu z layout.tsx.
+    title: service.title,
     description: service.description,
     keywords: service.keywords,
     alternates: {

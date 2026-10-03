@@ -4,7 +4,7 @@ import { offerData }  from './offer.data';
 import OfferPage      from './components/OfferPage';
 
 export const metadata: Metadata = {
-  title: `Oferta — ${offerData.clientName} | AK Web & Design`,
+  title: `Oferta — ${offerData.clientName}`,
   description: 'Indywidualna oferta współpracy przy tworzeniu strony internetowej.',
   robots: { index: false, follow: false },
 };

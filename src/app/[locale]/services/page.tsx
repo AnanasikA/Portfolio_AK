@@ -21,7 +21,7 @@ export async function generateMetadata({
   const isEn = locale === 'en';
 
   return {
-    title: isEn ? 'Services | AK Web & Design' : 'Usługi | AK Web & Design',
+    title: isEn ? 'Services' : 'Usługi',
     description: isEn
       ? 'Web development, UI/UX design, WordPress, landing pages, e-commerce stores and website maintenance.'
       : 'Tworzenie stron internetowych, projektowanie UI/UX, WordPress, landing page, sklepy internetowe i administracja stron.',
