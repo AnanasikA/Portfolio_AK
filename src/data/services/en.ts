@@ -154,7 +154,7 @@ const webDevelopment: ServiceData = {
     },
     {
       q: 'How long does it take to build a website?',
-      a: 'Landing pages usually take 5–7 business days. Business websites are typically completed within 2–4 weeks, depending on the project scope and the availability of content.',
+      a: 'Simple websites and landing pages take 7–14 business days, while more complex business websites take 4–6 weeks, depending on the project scope and the availability of content.',
     },
     {
       q: 'Will my website work on mobile devices?',
@@ -405,7 +405,7 @@ const businessWebsites: ServiceData = {
   plans: [
     {
       name: 'Starter',
-      from: 2800,
+      from: 3000,
       features: [
         'Up to 5 pages',
         'Custom design',
@@ -450,7 +450,7 @@ const businessWebsites: ServiceData = {
     },
     {
       q: 'How long does the project take?',
-      a: 'Most business websites are completed within 2–4 weeks. The timeline depends on the project scope and how quickly materials and feedback are provided.',
+      a: 'Simpler business websites take 7–14 business days, while more complex ones take 4–6 weeks. The timeline depends on the project scope and how quickly materials and feedback are provided.',
     },
     {
       q: 'Will my website appear in Google search?',
@@ -551,7 +551,7 @@ const wordpressWebsites: ServiceData = {
   plans: [
     {
       name: 'Starter',
-      from: 2400,
+      from: 3100,
       features: [
         'Up to 5 pages',
         'Custom theme',
@@ -644,7 +644,7 @@ const landingPage: ServiceData = {
   heroPoster: '/videos/services/web-design-poster.webp',
   heroLabel: 'Landing Pages',
   heroStats: [
-    { value: '5–7', label: 'business days' },
+    { value: '7–14', label: 'business days' },
     { value: '90+', label: 'PageSpeed performance' },
     { value: 'GA4', label: 'analytics setup' },
   ],
@@ -678,7 +678,7 @@ const landingPage: ServiceData = {
     {
       icon: 'speed',
       title: 'Fast Delivery',
-      desc: 'Most landing pages are completed within 5–7 business days.',
+      desc: 'Most landing pages are completed within 7–14 business days.',
     },
   ],
   whatTitle: "What's included?",
@@ -742,7 +742,7 @@ const landingPage: ServiceData = {
     },
     {
       q: 'How long does it take to build a landing page?',
-      a: 'Most landing pages are completed within 5–7 business days. The timeline depends on the project scope and the availability of content.',
+      a: 'Most landing pages are completed within 7–14 business days. The timeline depends on the project scope and the availability of content.',
     },
     {
       q: 'Do you set up analytics?',

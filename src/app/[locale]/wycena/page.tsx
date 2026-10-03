@@ -90,6 +90,7 @@ export default function WycenaPage() {
   const [formPhone,   setFormPhone]   = useState('');
   const [formCompany, setFormCompany] = useState('');
   const [formMessage, setFormMessage] = useState('');
+  const [formHp,      setFormHp]      = useState(''); // pole-pułapka na boty
   const [formStatus,  setFormStatus]  = useState<'idle'|'sending'|'ok'|'error'>('idle');
 
   const footerRef = useRef<HTMLDivElement>(null);
@@ -167,6 +168,7 @@ export default function WycenaPage() {
         body: JSON.stringify({
           name: formName, email: formEmail,
           phone: formPhone, company: formCompany, message: formMessage,
+          hp: formHp,
           quote: { low: t.base, high: total, care: careTotal, breakdown },
         }),
       });
@@ -254,6 +256,14 @@ export default function WycenaPage() {
                   {showRange ? `${fmt(animLow)} – ${fmt(animHigh)} zł` : `${c('sidebarFrom', { price: fmt(animLow) })}`}
                 </h2>
                 <p style={{ fontFamily: 'var(--fd)', fontSize: '.83rem', color: muted, marginBottom: '1.5rem', lineHeight: 1.55 }}>{c('modalSubtitle')}</p>
+
+                {/* Pole-pułapka: ukryte przed ludźmi i czytnikami ekranu, boty je wypełniają */}
+                <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+                  <label>
+                    Nie wypełniaj tego pola
+                    <input type="text" name="hp" tabIndex={-1} autoComplete="off" value={formHp} onChange={e => setFormHp(e.target.value)} />
+                  </label>
+                </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {([
@@ -450,7 +460,8 @@ export default function WycenaPage() {
                           </span>
                         )}
                       </span>
-                      <span style={{ fontSize: '.72rem', color: muted }}>{c(`speed_${val}_sub`)}</span>
+                      {/* Proste strony (landing page) mają krótszy termin niż rozbudowane. */}
+                      <span style={{ fontSize: '.72rem', color: muted }}>{c(pagesLocked ? `speed_${val}_sub_simple` : `speed_${val}_sub`)}</span>
                     </button>
                   );
                 })}

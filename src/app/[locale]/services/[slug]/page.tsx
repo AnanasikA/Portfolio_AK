@@ -1,7 +1,7 @@
 // src/app/[locale]/services/[slug]/page.tsx
 // Wzorzec podstrony usługowej — Next.js 15, App Router, Server Component
 
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getService, getServices, getTranslatedServiceSlug } from '@/data/services';
@@ -78,7 +78,16 @@ export default async function ServicePage({
   const isEn = locale === 'en';
   const service = getService(locale, slug);
 
-  if (!service) notFound();
+  if (!service) {
+    // Slug z drugiej wersji językowej (np. /en/services/tworzenie-stron-internetowych)
+    // — zamiast 404 przekierowujemy na właściwą nazwę w bieżącym języku.
+    const otherLocale = isEn ? 'pl' : 'en';
+    if (getService(otherLocale, slug)) {
+      const translated = getTranslatedServiceSlug(otherLocale, locale, slug);
+      permanentRedirect(`/${locale}/services/${translated}`);
+    }
+    notFound();
+  }
 
   const canonical = `${BASE_URL}/${locale}/services/${slug}`;
 

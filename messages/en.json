@@ -272,6 +272,8 @@
     "speed_standard_sub": "4–6 weeks",
     "speed_priority_label": "Express",
     "speed_priority_sub": "2–3 weeks",
+    "speed_standard_sub_simple": "7–14 business days",
+    "speed_priority_sub_simple": "5–7 business days",
     "speed_priority_badge": "+25%",
     "breakdown_pages": "+{count} extra pages",
     "breakdown_priority": "Express delivery (+25%)",

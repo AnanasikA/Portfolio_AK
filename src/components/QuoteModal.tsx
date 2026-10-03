@@ -50,9 +50,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
   const [form, setForm] = useState({
     name: '',
     email: '',
+    phone: '',
     websiteType: '',
     budget: '',
     message: '',
+    hp: '', // pole-pułapka na boty, niewidoczne dla ludzi
   });
 
   useEffect(() => {
@@ -89,6 +91,8 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     const result = await sendEmail({
       name: form.name,
       email: form.email,
+      phone: form.phone,
+      hp: form.hp,
       site_type: form.websiteType,
       budget: form.budget,
       message: form.message,
@@ -99,7 +103,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
       trackEvent('form_submit', { form_name: 'quote_modal', site_type: form.websiteType || 'unspecified' });
       trackEvent('prosba_o_wycene', { form_name: 'quote_modal' });
       setStatus('success');
-      setForm({ name: '', email: '', websiteType: '', budget: '', message: '' });
+      setForm({ name: '', email: '', phone: '', websiteType: '', budget: '', message: '', hp: '' });
       setTimeout(() => {
         window.location.href = isEn ? '/en/thank-you' : '/pl/thank-you';
       }, 500);
@@ -228,6 +232,28 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               </Field>
             </div>
 
+            {/* Phone (optional) */}
+            <Field label={isEn ? 'Phone (optional)' : 'Telefon (opcjonalnie)'}>
+              <input
+                type="tel" name="phone" autoComplete="tel"
+                value={form.phone} onChange={handleChange}
+                onFocus={handleFocus} onBlur={handleBlur}
+                placeholder="+48 500 000 000"
+                style={inputStyle}
+              />
+            </Field>
+
+            {/* Pole-pułapka: ukryte przed ludźmi i czytnikami ekranu, boty je wypełniają */}
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+              <label>
+                Nie wypełniaj tego pola
+                <input
+                  type="text" name="hp" tabIndex={-1} autoComplete="off"
+                  value={form.hp} onChange={handleChange}
+                />
+              </label>
+            </div>
+
             {/* Website type */}
             <Field label={isEn ? 'Type of website' : 'Typ strony'}>
               <select
@@ -260,9 +286,9 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             </Field>
 
             {/* Message */}
-            <Field label={isEn ? 'Project description' : 'Opis projektu'}>
+            <Field label={isEn ? 'Project description (optional)' : 'Opis projektu (opcjonalnie)'}>
               <textarea
-                name="message" required rows={3}
+                name="message" rows={3}
                 value={form.message} onChange={handleChange}
                 onFocus={handleFocus} onBlur={handleBlur}
                 placeholder={isEn ? 'Briefly describe what you need.' : 'Napisz krótko, czego potrzebujesz.'}

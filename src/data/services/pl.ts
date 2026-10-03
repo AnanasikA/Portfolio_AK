@@ -130,7 +130,7 @@ const webDevelopment: ServiceData = {
     },
     {
       q: 'Jak długo trwa realizacja strony?',
-      a: 'Landing page mogę przygotować nawet w 5–7 dni roboczych. Strona firmowa standardowo zajmuje 2–4 tygodnie. Termin zależy od zakresu projektu i dostępności materiałów.',
+      a: 'Proste strony i landing page realizuję w 7–14 dni roboczych, a bardziej rozbudowane strony firmowe w 4–6 tygodni. Termin zależy od zakresu projektu i dostępności materiałów.',
     },
     {
       q: 'Czy strona będzie responsywna na telefonach?',
@@ -381,7 +381,7 @@ const businessWebsites: ServiceData = {
   plans: [
     {
       name: 'Starter',
-      from: 2800,
+      from: 3000,
       features: [
         'Do 5 podstron',
         'Indywidualny projekt',
@@ -426,7 +426,7 @@ const businessWebsites: ServiceData = {
     },
     {
       q: 'Jak długo trwa realizacja?',
-      a: 'Większość stron firmowych realizuję w ciągu 2–4 tygodni. Termin zależy od zakresu projektu oraz czasu przekazywania materiałów i akceptacji.',
+      a: 'Prostsze strony firmowe realizuję w 7–14 dni roboczych, a bardziej rozbudowane w 4–6 tygodni. Termin zależy od zakresu projektu oraz czasu przekazywania materiałów i akceptacji.',
     },
     {
       q: 'Czy strona będzie widoczna w Google?',
@@ -527,7 +527,7 @@ const wordpressWebsites: ServiceData = {
   plans: [
     {
       name: 'Starter',
-      from: 2400,
+      from: 3100,
       features: [
         'Do 5 podstron',
         'Autorski motyw',
@@ -620,7 +620,7 @@ const landingPage: ServiceData = {
   heroPoster: '/videos/services/web-design-poster.webp',
   heroLabel: 'Landing Page',
   heroStats: [
-    { value: '5–7', label: 'dni roboczych' },
+    { value: '7–14', label: 'dni roboczych' },
     { value: '90+', label: 'wydajność PageSpeed' },
     { value: 'GA4', label: 'konfiguracja analityki' },
   ],
@@ -654,7 +654,7 @@ const landingPage: ServiceData = {
     {
       icon: 'speed',
       title: 'Krótki czas realizacji',
-      desc: 'Większość landing page realizuję w ciągu 5–7 dni roboczych.',
+      desc: 'Większość landing page realizuję w ciągu 7–14 dni roboczych.',
     },
   ],
   whatTitle: 'Co otrzymujesz w ramach landing page?',
@@ -718,7 +718,7 @@ const landingPage: ServiceData = {
     },
     {
       q: 'Jak długo trwa realizacja?',
-      a: 'Najczęściej od 5 do 7 dni roboczych. Termin zależy od zakresu projektu oraz dostępności materiałów.',
+      a: 'Najczęściej od 7 do 14 dni roboczych. Termin zależy od zakresu projektu oraz dostępności materiałów.',
     },
     {
       q: 'Czy konfigurujesz analitykę?',

@@ -239,6 +239,10 @@ const fade = {
 
 function Hero({ s, open, locale }: { s: ServiceData; open: () => void; locale: string }) {
   const t = getText(locale);
+  const isEn = locale === 'en';
+  const from = s.plans[0]?.from;
+  // Opieka i administracja to pakiety miesięczne — cena „od” jest za miesiąc.
+  const monthly = ['administracja-stron', 'opieka-nad-stronami', 'website-maintenance', 'website-support'].includes(s.slug);
 
   return (
     <section
@@ -383,6 +387,17 @@ function Hero({ s, open, locale }: { s: ServiceData; open: () => void; locale: s
             </p>
           )}
 
+          {/* Cena już w pierwszej sekcji — ta sama kwota co w sekcji cennika niżej. */}
+          {typeof from === 'number' && (
+            <p style={{ fontFamily: 'var(--fd)', fontSize: '.95rem', color: 'rgba(255,255,255,.75)', margin: '0 0 1.1rem' }}>
+              {isEn ? 'From' : 'Od'}{' '}
+              <strong style={{ color: '#fff', fontWeight: 700, fontSize: '1.15rem', letterSpacing: '-.02em' }}>
+                {from.toLocaleString(isEn ? 'en-US' : 'pl-PL')} {t.currency}
+              </strong>{' '}
+              {t.net}{monthly ? (isEn ? ' / month' : ' / mies.') : ''} · {isEn ? 'free quote within 24h' : 'bezpłatna wycena w 24h'}
+            </p>
+          )}
+
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: '3.5rem' }}>
             <button
               onClick={open}
@@ -471,7 +486,7 @@ function Why({ s, locale }: { s: ServiceData; locale: string }) {
     <section style={{ background: 'var(--bg)', padding: `${PY} 0`, overflow: 'hidden' }}>
       <div style={{ ...W }}>
         <div className="svc-two-col">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 28, position: 'sticky', top: 100, alignSelf: 'start' }}>
+          <div className="svc-sticky-col" style={{ display: 'flex', flexDirection: 'column', gap: 28, position: 'sticky', top: 100, alignSelf: 'start' }}>
             <div>
               <motion.span variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ display: 'inline-flex', alignItems: 'center', gap: '.6em', fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.76rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--brand)', marginBottom: 14 }}>
                 <span style={{ width: 26, height: 1.5, background: 'currentColor', display: 'inline-block', opacity: 0.6 }} />
@@ -536,7 +551,7 @@ function What({ s, locale }: { s: ServiceData; locale: string }) {
     <section style={{ background: '#fff', borderBottom: '1px solid var(--line-soft)' }}>
       <div style={{ ...W, paddingTop: PY, paddingBottom: PY }}>
         <div className="svc-what-grid">
-          <div style={{ position: 'sticky', top: 100, alignSelf: 'start' }}>
+          <div className="svc-sticky-col" style={{ position: 'sticky', top: 100, alignSelf: 'start' }}>
             <motion.span variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} style={{ display: 'inline-flex', alignItems: 'center', gap: '.6em', fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.76rem', letterSpacing: '.2em', textTransform: 'uppercase', color: 'var(--brand)', marginBottom: 14 }}>
               <span style={{ width: 26, height: 1.5, background: 'currentColor', display: 'inline-block', opacity: 0.6 }} />
               {t.included}
@@ -1142,6 +1157,12 @@ export default function ServicePageClient({
 
           .faq-svc-sticky {
             position: static;
+          }
+
+          /* W jednej kolumnie „przyklejony” blok zostawał w miejscu, a karty
+             pod nim najeżdżały na statystyki. Na telefonie wyłączamy sticky. */
+          .svc-sticky-col {
+            position: static !important;
           }
         }
 

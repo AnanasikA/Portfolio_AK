@@ -272,6 +272,8 @@
     "speed_standard_sub": "4–6 tygodni",
     "speed_priority_label": "Ekspresowo",
     "speed_priority_sub": "2–3 tygodnie",
+    "speed_standard_sub_simple": "7–14 dni roboczych",
+    "speed_priority_sub_simple": "5–7 dni roboczych",
     "speed_priority_badge": "+25%",
     "breakdown_pages": "+{count} dodatkowych podstron",
     "breakdown_priority": "Realizacja ekspresowa (+25%)",

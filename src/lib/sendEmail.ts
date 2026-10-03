@@ -1,7 +1,16 @@
 'use server';
 
 import nodemailer from 'nodemailer';
+import { headers } from 'next/headers';
 import { createClient } from '@supabase/supabase-js';
+import {
+  cleanText,
+  escapeHtml,
+  getClientIp,
+  isRateLimited,
+  isValidEmail,
+  isValidPhone,
+} from '@/lib/form-guard';
 
 // ── Supabase client (server-side only, service role) ──────────────────────────
 const supabase = createClient(
@@ -19,6 +28,8 @@ export type EmailData = {
   has_logo?: string;
   message: string;
   locale?: string;
+  /** Pole-pułapka na boty — w prawdziwym formularzu zawsze puste. */
+  hp?: string;
 };
 
 type SubmissionLog = {
@@ -86,10 +97,11 @@ function buildEmailHtml(data: EmailData): string {
           ${has_logo ? row(isEn ? 'Logo'            : 'Logo',          has_logo) : ''}
         </table>
 
+        ${message ? `
         <div style="margin-top:24px;background:#f8faff;border-radius:12px;padding:20px;">
           <p style="color:#64748b;font-size:13px;margin:0 0 8px;">${isEn ? 'Message' : 'Wiadomość'}</p>
           <p style="color:#0f172a;font-size:14px;line-height:1.7;margin:0;white-space:pre-wrap;">${message}</p>
-        </div>
+        </div>` : ''}
 
         <div style="margin-top:24px;text-align:center;">
           <a href="mailto:${email}"
@@ -127,11 +139,11 @@ function buildErrorAlertHtml(data: EmailData, error: unknown): string {
         <p style="background:#f8faff;padding:12px 16px;border-radius:8px;font-size:13px;color:#0f172a;white-space:pre-wrap;margin:0;">${data.message}</p>
 
         <h3 style="color:#ef4444;font-size:14px;margin:20px 0 8px;">Błąd</h3>
-        <pre style="background:#fef2f2;border:1px solid #fecaca;padding:12px 16px;border-radius:8px;font-size:12px;color:#b91c1c;overflow-x:auto;white-space:pre-wrap;">${err.message}</pre>
+        <pre style="background:#fef2f2;border:1px solid #fecaca;padding:12px 16px;border-radius:8px;font-size:12px;color:#b91c1c;overflow-x:auto;white-space:pre-wrap;">${escapeHtml(err.message)}</pre>
 
         ${err.stack ? `
         <h3 style="color:#64748b;font-size:13px;margin:16px 0 8px;">Stack trace</h3>
-        <pre style="background:#f8faff;border:1px solid #e2e8f0;padding:12px 16px;border-radius:8px;font-size:11px;color:#475569;overflow-x:auto;white-space:pre-wrap;">${err.stack}</pre>
+        <pre style="background:#f8faff;border:1px solid #e2e8f0;padding:12px 16px;border-radius:8px;font-size:11px;color:#475569;overflow-x:auto;white-space:pre-wrap;">${escapeHtml(err.stack)}</pre>
         ` : ''}
       </div>
 
@@ -142,7 +154,47 @@ function buildErrorAlertHtml(data: EmailData, error: unknown): string {
 }
 
 // ── Main function ─────────────────────────────────────────────────────────────
-export async function sendEmail(data: EmailData): Promise<{ ok: boolean; error?: string }> {
+export async function sendEmail(input: EmailData): Promise<{ ok: boolean; error?: string }> {
+  // Server action to publiczny endpoint — dane mogą przyjść spoza formularza,
+  // więc każde pole jest czyszczone i sprawdzane tak samo jak w /api/send-quote.
+  const raw = (input ?? {}) as Record<string, unknown>;
+
+  // Pole-pułapka wypełnione → bot. Udajemy sukces i nic nie wysyłamy.
+  if (cleanText(raw.hp, 200) !== '') return { ok: true };
+
+  const ip = getClientIp(await headers());
+  if (isRateLimited(`modal:${ip}`, 5, 10 * 60 * 1000)) {
+    return { ok: false, error: 'rate_limited' };
+  }
+
+  const data: EmailData = {
+    name:      cleanText(raw.name, 100),
+    email:     cleanText(raw.email, 254),
+    phone:     cleanText(raw.phone, 30) || undefined,
+    site_type: cleanText(raw.site_type, 60) || undefined,
+    budget:    cleanText(raw.budget, 40) || undefined,
+    has_logo:  cleanText(raw.has_logo, 40) || undefined,
+    message:   cleanText(raw.message, 3000, true),
+    locale:    raw.locale === 'en' ? 'en' : 'pl',
+  };
+
+  if (data.name.length < 2 || !isValidEmail(data.email) || !isValidPhone(data.phone ?? '')) {
+    return { ok: false, error: 'invalid' };
+  }
+
+  // Kopia z escapowanym HTML — tylko do treści maili. Do tematu, replyTo
+  // i bazy idą wartości oryginalne (już oczyszczone powyżej).
+  const safe: EmailData = {
+    ...data,
+    name:      escapeHtml(data.name),
+    email:     escapeHtml(data.email),
+    phone:     data.phone ? escapeHtml(data.phone) : undefined,
+    site_type: data.site_type ? escapeHtml(data.site_type) : undefined,
+    budget:    data.budget ? escapeHtml(data.budget) : undefined,
+    has_logo:  data.has_logo ? escapeHtml(data.has_logo) : undefined,
+    message:   escapeHtml(data.message),
+  };
+
   const { name, email, locale } = data;
   const isEn = locale === 'en';
 
@@ -164,7 +216,7 @@ export async function sendEmail(data: EmailData): Promise<{ ok: boolean; error?:
       to: process.env.SMTP_TO,
       replyTo: email,
       subject: isEn ? `New quote request from ${name}` : `Nowe zapytanie od ${name}`,
-      html: buildEmailHtml(data),
+      html: buildEmailHtml(safe),
     });
 
     console.log('[Email] Wysłano pomyślnie:', {
@@ -204,7 +256,7 @@ export async function sendEmail(data: EmailData): Promise<{ ok: boolean; error?:
         from: `"Portfolio AK Alerty" <${process.env.SMTP_USER}>`,
         to: process.env.SMTP_TO,
         subject: `🚨 BŁĄD formularza — wiadomość od ${name} nie dotarła`,
-        html: buildErrorAlertHtml(data, err),
+        html: buildErrorAlertHtml(safe, err),
       });
     } catch (alertError) {
       // Alert też padł — zostaje tylko Supabase i konsola

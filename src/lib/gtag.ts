@@ -11,6 +11,7 @@ type AnalyticsEvent =
   | "prosba_o_wycene"
   | "form_submit"
   | "phone_click"
+  | "whatsapp_click"
   | "email_click";
 
 export function trackEvent(

@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
 import Header       from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 
-const WhatsAppButton = dynamic(() => import('@/components/WhatsAppButton'), { ssr: false });
+// Pływający przycisk WhatsApp zastąpił pasek MobileCtaBar (w layout.tsx) —
+// WhatsApp jest teraz na telefonach na wszystkich podstronach, nie tylko tutaj.
 
 export default function HomeClient({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +50,6 @@ export default function HomeClient({ children }: { children: React.ReactNode }) 
       <main className="scroll-smooth" aria-hidden={isOpen}>
         {children}
       </main>
-      <WhatsAppButton />
     </>
   );
 }

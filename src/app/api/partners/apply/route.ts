@@ -1,14 +1,56 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase-clients";
 import { generateReferralCode } from "@/lib/referrals";
+import {
+  cleanText,
+  getClientIp,
+  isRateLimited,
+  isSameOrigin,
+  isValidEmail,
+} from "@/lib/form-guard";
 
 export async function POST(req: NextRequest) {
-  const body = await req.json();
-  const { name, email, company, website, audienceNote } = body ?? {};
-
-  if (!name || !email) {
+  // ── Ochrona: pochodzenie żądania i limit zgłoszeń ─────────────────────────
+  if (!isSameOrigin(req.headers)) {
+    return NextResponse.json({ error: "Niedozwolone żądanie." }, { status: 403 });
+  }
+  if (isRateLimited(`partner:${getClientIp(req.headers)}`, 3, 60 * 60 * 1000)) {
     return NextResponse.json(
-      { error: "Imię i e-mail są wymagane." },
+      { error: "Zbyt wiele zgłoszeń. Spróbuj ponownie później." },
+      { status: 429 }
+    );
+  }
+
+  let body: Record<string, unknown> | null = null;
+  try {
+    body = await req.json();
+  } catch {
+    body = null;
+  }
+  if (!body || typeof body !== "object") {
+    return NextResponse.json({ error: "Nieprawidłowe dane." }, { status: 400 });
+  }
+
+  // ── Walidacja: tylko tekst, bez znaków sterujących, z limitem długości ────
+  const name = cleanText(body.name, 100);
+  const email = cleanText(body.email, 254).toLowerCase();
+  const company = cleanText(body.company, 120) || null;
+  const audienceNote = cleanText(body.audienceNote, 1500, true) || null;
+
+  // Strona / profil: dopuszczamy tylko adresy http(s) — nigdy np. javascript:
+  let website: string | null = cleanText(body.website, 200) || null;
+  if (website) {
+    try {
+      const url = new URL(/^https?:\/\//i.test(website) ? website : `https://${website}`);
+      website = url.protocol === "http:" || url.protocol === "https:" ? url.toString() : null;
+    } catch {
+      website = null;
+    }
+  }
+
+  if (name.length < 2 || !isValidEmail(email)) {
+    return NextResponse.json(
+      { error: "Podaj imię i poprawny adres e-mail." },
       { status: 400 }
     );
   }
@@ -53,9 +95,9 @@ export async function POST(req: NextRequest) {
   const { error } = await supabase.from("partners").insert({
     name,
     email,
-    company: company ?? null,
-    website: website ?? null,
-    audience_note: audienceNote ?? null,
+    company,
+    website,
+    audience_note: audienceNote,
     referral_code: referralCode,
     status: autoApprove ? "approved" : "pending",
     approved_at: autoApprove ? new Date().toISOString() : null,

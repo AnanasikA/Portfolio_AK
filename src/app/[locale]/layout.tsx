@@ -6,6 +6,7 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import CookieConsent from '@/components/CookieConsent';
+import MobileCtaBar from '@/components/MobileCtaBar';
 import '../globals.css';
 
 const BASE_URL = 'https://anastasiiakupriianets.pl';
@@ -80,6 +81,7 @@ export default async function LocaleLayout({
           {locale === 'pl' ? 'Pomiń do treści' : 'Skip to content'}
         </a>
         {children}
+        <MobileCtaBar />
         <CookieConsent />
       </NextIntlClientProvider>
     </>

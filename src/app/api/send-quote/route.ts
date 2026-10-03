@@ -1,10 +1,86 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { attributeReferralConversion } from '@/lib/attribute-conversion';
+import {
+  cleanNumber,
+  cleanText,
+  escapeHtml,
+  getClientIp,
+  isRateLimited,
+  isSameOrigin,
+  isValidEmail,
+  isValidPhone,
+} from '@/lib/form-guard';
+
+type QuoteRow = { label: string; price: number };
 
 export async function POST(req: Request) {
-  const body = await req.json();
-  const { name, email, phone, company, message, quote } = body;
+  // ── Ochrona: pochodzenie żądania i limit zgłoszeń ─────────────────────────
+  if (!isSameOrigin(req.headers)) {
+    return NextResponse.json({ ok: false }, { status: 403 });
+  }
+  if (isRateLimited(`quote:${getClientIp(req.headers)}`, 5, 10 * 60 * 1000)) {
+    return NextResponse.json({ ok: false, error: 'rate_limited' }, { status: 429 });
+  }
+
+  let body: Record<string, unknown>;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ ok: false }, { status: 400 });
+  }
+  if (!body || typeof body !== 'object') {
+    return NextResponse.json({ ok: false }, { status: 400 });
+  }
+
+  // Pole-pułapka: człowiek go nie widzi, bot je wypełnia. Odpowiadamy „ok”,
+  // żeby bot nie wiedział, że został odrzucony — ale nic nie wysyłamy.
+  if (cleanText(body.hp, 200) !== '') {
+    return NextResponse.json({ ok: true });
+  }
+
+  // ── Walidacja ─────────────────────────────────────────────────────────────
+  const rawName    = cleanText(body.name, 100);
+  const rawEmail   = cleanText(body.email, 254);
+  const rawPhone   = cleanText(body.phone, 30);
+  const rawCompany = cleanText(body.company, 120);
+  const rawMessage = cleanText(body.message, 3000, true);
+
+  const q = (body.quote ?? {}) as Record<string, unknown>;
+  const low  = cleanNumber(q.low, 0, 1_000_000);
+  const high = cleanNumber(q.high, 0, 1_000_000);
+  const care = cleanNumber(q.care, 0, 100_000) ?? 0;
+  const rows: QuoteRow[] = Array.isArray(q.breakdown)
+    ? q.breakdown.slice(0, 30).flatMap((r: unknown) => {
+        const row = (r ?? {}) as Record<string, unknown>;
+        const label = cleanText(row.label, 120);
+        const price = cleanNumber(row.price, 0, 1_000_000);
+        return label && price !== null ? [{ label, price }] : [];
+      })
+    : [];
+
+  if (
+    rawName.length < 2 ||
+    !isValidEmail(rawEmail) ||
+    !isValidPhone(rawPhone) ||
+    low === null ||
+    high === null
+  ) {
+    return NextResponse.json({ ok: false, error: 'invalid' }, { status: 400 });
+  }
+
+  // Wartości wstawiane do HTML maila — zawsze po escapowaniu.
+  const name    = escapeHtml(rawName);
+  const email   = escapeHtml(rawEmail);
+  const phone   = escapeHtml(rawPhone);
+  const company = escapeHtml(rawCompany);
+  const message = escapeHtml(rawMessage).replace(/\n/g, '<br>');
+  const quote = {
+    low,
+    high,
+    care,
+    breakdown: rows.map(r => ({ label: escapeHtml(r.label), price: r.price })),
+  };
 
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -69,16 +145,16 @@ export async function POST(req: Request) {
     await transporter.sendMail({
       from: `"Kalkulator AK Web" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
-      replyTo: email,
-      subject: `Wycena z kalkulatora: ${quote.low.toLocaleString('pl-PL')}–${quote.high.toLocaleString('pl-PL')} zł — ${name}`,
+      replyTo: rawEmail,
+      subject: `Wycena z kalkulatora: ${quote.low.toLocaleString('pl-PL')}–${quote.high.toLocaleString('pl-PL')} zł — ${rawName}`,
       html,
     });
 
     // Jeśli gość przyszedł z linku partnerskiego (cookie ak_ref) —
     // utwórz powiązane zgłoszenie w programie partnerskim.
     await attributeReferralConversion({
-      clientName: name,
-      clientEmail: email,
+      clientName: rawName,
+      clientEmail: rawEmail,
       sourcePath: '/wycena',
       projectValueEstimate: quote.high,
     });
