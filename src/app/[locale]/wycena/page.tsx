@@ -12,25 +12,37 @@ import { trackEvent } from '@/lib/gtag';
 const SITE_TYPES = [
   { id: 'landing',   base: 1500, pages: 1,  pricePerPage: 0,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> },
-  { id: 'business',  base: 2500, pages: 5,  pricePerPage: 400,
+  { id: 'business',  base: 3000, pages: 5,  pricePerPage: 400,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg> },
-  { id: 'wordpress', base: 2600, pages: 5,  pricePerPage: 350,
+  { id: 'wordpress', base: 3100, pages: 5,  pricePerPage: 350,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4"/></svg> },
-  { id: 'redesign',  base: 1800, pages: 5,  pricePerPage: 300,
+  { id: 'shop',      base: 4500, pages: 5,  pricePerPage: 400,
+    icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> },
+  { id: 'redesign',  base: 2000, pages: 5,  pricePerPage: 300,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> },
-  { id: 'premium',   base: 4500, pages: 10, pricePerPage: 500,
+  { id: 'premium',   base: 5000, pages: 5,  pricePerPage: 500,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> },
 ];
 
 const PAGE_VALUES = [1, 3, 5, 10, 15];
 
-const EXTRA_IDS = ['seo','copy','booking','shop','lang','blog','branding','care'] as const;
+// Sklep nie jest dodatkiem — to osobny typ projektu (SITE_TYPES → 'shop', od 4500 zł),
+// żeby nie dało się go "dokleić" do landing page poniżej realnej ceny.
+const EXTRA_IDS = ['seo','copy','booking','lang','blog','branding','care'] as const;
 type ExtraId = typeof EXTRA_IDS[number];
 const EXTRA_PRICES: Record<ExtraId, number> = {
-  seo: 500, copy: 600, booking: 800, shop: 2200,
+  seo: 500, copy: 600, booking: 800,
   lang: 800, blog: 500, branding: 1000, care: 120,
 };
 const CARE_ID: ExtraId = 'care';
+
+// Copywriting obejmuje teksty na wszystkie podstrony, więc rośnie z ich liczbą:
+// 600 zł do 5 podstron, powyżej 120 zł za podstronę.
+const COPY_PER_PAGE = 120;
+function extraPrice(id: ExtraId, pages: number) {
+  if (id === 'copy') return Math.max(EXTRA_PRICES.copy, pages * COPY_PER_PAGE);
+  return EXTRA_PRICES[id];
+}
 
 function fmt(n: number) { return n.toLocaleString('pl-PL'); }
 
@@ -127,9 +139,11 @@ export default function WycenaPage() {
   function interact() { setHasInteracted(true); }
 
   const t           = SITE_TYPES.find(t => t.id === siteType)!;
+  // Typ bez dopłaty za podstrony (landing page) ma stałą liczbę podstron.
+  const pagesLocked = t.pricePerPage === 0;
   const extraPages  = Math.max(0, pages - t.pages);
   const baseTotal   = t.base + extraPages * t.pricePerPage;
-  const extrasTotal = EXTRA_IDS.filter(id => extras.has(id) && id !== CARE_ID).reduce((s, id) => s + EXTRA_PRICES[id], 0);
+  const extrasTotal = EXTRA_IDS.filter(id => extras.has(id) && id !== CARE_ID).reduce((s, id) => s + extraPrice(id, pages), 0);
   const careTotal   = extras.has(CARE_ID) ? EXTRA_PRICES[CARE_ID] : 0;
   const subtotal    = baseTotal + extrasTotal;
   const total       = speed === 'priority' ? Math.round(subtotal * 1.25) : subtotal;
@@ -142,7 +156,7 @@ export default function WycenaPage() {
   const breakdown: { label: string; price: number }[] = [
     { label: c(`siteTypes.${t.id}.label`), price: t.base },
     ...(extraPages > 0 ? [{ label: c('breakdown_pages', { count: extraPages }), price: extraPages * t.pricePerPage }] : []),
-    ...EXTRA_IDS.filter(id => extras.has(id) && id !== CARE_ID).map(id => ({ label: c(`extras.${id}.label`), price: EXTRA_PRICES[id] })),
+    ...EXTRA_IDS.filter(id => extras.has(id) && id !== CARE_ID).map(id => ({ label: c(`extras.${id}.label`), price: extraPrice(id, pages) })),
     ...(speed === 'priority' ? [{ label: c('breakdown_priority'), price: total - subtotal }] : []),
   ];
 
@@ -357,25 +371,32 @@ export default function WycenaPage() {
                   const on = pages === val;
                   const isExtra = val > t.pages;
                   const extraCost = isExtra ? (val - t.pages) * t.pricePerPage : 0;
+                  const locked = pagesLocked && val !== t.pages;
                   return (
-                    <button key={val} onClick={() => { setPages(val); interact(); }} style={{
+                    <button key={val} disabled={locked} onClick={() => { setPages(val); interact(); }} style={{
                       fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.84rem',
                       padding: '.6em 1.05em', borderRadius: 10,
                       border: `1.5px solid ${on ? brand : line}`,
                       background: on ? 'color-mix(in srgb, var(--brand) 6%, #fff)' : '#fff',
                       color: on ? brand : ink,
-                      cursor: 'pointer',
-                      transition: 'border-color .2s, background .2s, color .2s',
+                      cursor: locked ? 'not-allowed' : 'pointer',
+                      opacity: locked ? .4 : 1,
+                      transition: 'border-color .2s, background .2s, color .2s, opacity .2s',
                       display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2,
                     }}>
                       <span>{c(`pageOptions.${val}.label`)}</span>
                       <span style={{ fontSize: '.67rem', fontWeight: 400, color: isExtra ? brand : muted, opacity: isExtra ? 1 : .75 }}>
-                        {isExtra ? `+${fmt(extraCost)} zł` : c(`pageOptions.${val}.hint`)}
+                        {isExtra && !locked ? `+${fmt(extraCost)} zł` : c(`pageOptions.${val}.hint`)}
                       </span>
                     </button>
                   );
                 })}
               </div>
+              {pagesLocked && (
+                <p style={{ fontFamily: 'var(--fd)', fontSize: '.77rem', color: muted, marginTop: '.6rem' }}>
+                  {c('pagesLockedNote')}
+                </p>
+              )}
               {extraPages > 0 && (
                 <p style={{ fontFamily: 'var(--fd)', fontSize: '.77rem', color: brand, marginTop: '.6rem' }}>
                   {c('extraPages', { count: extraPages, price: fmt(extraPages * t.pricePerPage) })}
@@ -393,7 +414,7 @@ export default function WycenaPage() {
               <div className="qw-grid2">
                 {EXTRA_IDS.map(id => {
                   const on = extras.has(id);
-                  const price = EXTRA_PRICES[id];
+                  const price = extraPrice(id, pages);
                   const isMonthly = id === CARE_ID;
                   return (
                     <button key={id} className="qw-extra-btn" onClick={() => toggleExtra(id)} style={{

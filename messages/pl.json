@@ -255,6 +255,7 @@
     "step3hint": "Opcjonalnie",
     "step4": "Kiedy potrzebujesz gotowej strony?",
     "extraPages": "+{count} dodatkowych podstron ponad pakiet (+{price} zł)",
+    "pagesLockedNote": "Landing page to jedna strona. Potrzebujesz więcej podstron? Wybierz stronę firmową.",
     "sidebarTitle": "TWOJA WYCENA",
     "sidebarFrom": "od {price} zł",
     "sidebarRange": "{low} – {high} zł",
@@ -307,6 +308,11 @@
         "label": "Strona na WordPress",
         "desc": "Edytujesz treści samodzielnie, bez programisty.",
         "subdesc": "Prosty panel, pełna kontrola nad contentem."
+      },
+      "shop": {
+        "label": "Sklep internetowy",
+        "desc": "Katalog produktów, koszyk i płatności online — gotowy do sprzedaży.",
+        "subdesc": "WooCommerce z panelem do zarządzania zamówieniami."
       },
       "redesign": {
         "label": "Odświeżenie strony",

@@ -255,6 +255,7 @@
     "step3hint": "Optional",
     "step4": "When do you need the site ready?",
     "extraPages": "+{count} extra pages above the package (+{price} PLN)",
+    "pagesLockedNote": "A landing page is a single page. Need more subpages? Choose a business website.",
     "sidebarTitle": "YOUR ESTIMATE",
     "sidebarFrom": "from {price} PLN",
     "sidebarRange": "{low} – {high} PLN",
@@ -307,6 +308,11 @@
         "label": "WordPress website",
         "desc": "Edit content yourself, no developer needed.",
         "subdesc": "Simple dashboard, full control over your content."
+      },
+      "shop": {
+        "label": "Online store",
+        "desc": "Product catalog, cart and online payments — ready to sell.",
+        "subdesc": "WooCommerce with a panel for managing orders."
       },
       "redesign": {
         "label": "Website redesign",
