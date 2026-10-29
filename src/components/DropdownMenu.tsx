@@ -12,7 +12,6 @@ const SERVICE_LINKS_PL = [
   { href: '/services/sklepy-internetowe',            label: 'Sklepy internetowe' },
   { href: '/services/administracja-stron',           label: 'Administracja i opieka' },
   { href: '/services/opieka-nad-stronami',           label: 'Wsparcie techniczne i naprawy' },
-  { href: '/services',                               label: 'Wszystkie usługi →' },
 ];
 
 const SERVICE_LINKS_EN = [
