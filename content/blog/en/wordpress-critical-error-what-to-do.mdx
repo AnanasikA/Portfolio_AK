@@ -1,0 +1,81 @@
+---
+title: "Critical Error or White Screen in WordPress. What Should You Do?"
+description: "Your WordPress site shows a white screen or a critical error message? We explain where it comes from, what you can check yourself and when it is better to hand it over to a specialist."
+date: "2026-10-29"
+tags: ["WordPress", "Fixes", "Guide"]
+---
+
+You open your website and instead of your homepage you see a blank white screen or the message **"There has been a critical error on this website."** Your customers see the same thing. It is one of the most common WordPress failures, and in most cases it can be fixed without losing any data.
+
+Below we explain what usually causes it, what you can check on your own and when it is better to ask someone who deals with this every day.
+
+## What causes a critical error
+
+WordPress shows this message when the site's code stops running. The most common causes are:
+
+* a plugin or theme update after which something stopped working together,
+* a change of PHP version on the server, which hosting companies sometimes do automatically,
+* not enough memory allocated to the site,
+* a corrupted file after a failed update or an interrupted upload,
+* less often, malicious code that someone added to the site.
+
+If the error appeared right after an update or after installing something new, that is almost certainly where the cause is.
+
+## Check your inbox
+
+When a critical error happens, WordPress usually sends an email to the site administrator. It names the plugin or theme that caused the problem and includes a link to **recovery mode**.
+
+That link lets you log in to the dashboard despite the error and deactivate the problematic add-on. If the email arrived, it is often the fastest way to a fix. Check your spam folder too.
+
+## Deactivate the plugins
+
+If there is no email and you cannot log in, you can deactivate the plugins through the files on the server:
+
+1. Log in to your hosting file manager or connect via FTP.
+2. Open the `wp-content` folder.
+3. Rename the `plugins` folder, for example to `plugins-off`.
+
+WordPress will not find any plugins and all of them will be deactivated. If the site starts working, rename the folder back and reactivate the plugins in the dashboard one by one until you find the one that breaks the site.
+
+Note: some sites look different or lose certain features without their plugins. That is normal and comes back once they are reactivated.
+
+## Check the PHP version
+
+Your hosting panel usually shows which PHP version the site uses. If it changed recently and the site is old and has not been updated for a long time, this may be the problem. Switching back to the previous PHP version can be a quick, temporary fix. In the long run, though, plugins and the theme need updating, because older PHP versions stop being supported.
+
+## Turn on debug mode
+
+If you are comfortable with configuration files, you can turn on error logging in `wp-config.php`:
+
+```php
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', false );
+```
+
+Errors will then be saved to `wp-content/debug.log` instead of being shown to visitors. The log usually contains the exact path to the file that caused the problem. Turn debugging off again once the issue is fixed.
+
+## When to hand it over to a specialist
+
+It is worth contacting someone who fixes websites if:
+
+* you do not have access to your hosting or FTP,
+* you do not have a recent backup and are afraid of making things worse,
+* the error comes back after every attempt to fix it,
+* there are files you do not recognise, or the site redirects to strange addresses,
+* it is an online store and every hour of downtime means lost orders.
+
+When we fix a site like this, we first back it up, then look for the cause in the logs, and finally check that the rest of the site works as it should. A site built by another developer is not a problem.
+
+## How to avoid it in the future
+
+* Always make a backup before updating.
+* Update plugins one at a time rather than all at once, so you immediately know which one caused trouble.
+* Remove plugins you do not use.
+* Every now and then, check whether your theme and plugins are still maintained by their authors.
+
+If you do not have time to keep an eye on this yourself, you can leave it to us with [ongoing website maintenance](/en/services/website-maintenance).
+
+---
+
+**Is your website down?** Write to us or call. We provide [WordPress fixes and technical support](/en/services/website-support), including for sites built by someone else. We first tell you what happened and how long the fix will take, and only then start working.

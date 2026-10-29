@@ -1,0 +1,67 @@
+---
+title: "Your Website Contact Form Is Not Sending Messages. Why?"
+description: "Customers fill in your contact form, but the messages never arrive or end up in spam? We explain the most common causes on WordPress sites and how to fix them."
+date: "2026-10-29"
+tags: ["WordPress", "Fixes", "Guide"]
+---
+
+A contact form is often the most important part of a business website. When it stops working, usually nobody notices right away. The site looks fine, the customer clicks "Send", sees a thank-you message, and the enquiry never reaches you.
+
+That is why our first tip is simple: **every now and then, send yourself a test message through your own form.** If it did not arrive, below you will find the most common reasons.
+
+## The message goes to spam
+
+Before you start looking for a fault, check your spam folder and any other tabs in your inbox. Form messages often end up there because, from the mail server's point of view, they look suspicious: they come from the website's server rather than from a normal mailbox.
+
+If you find them in spam, the problem is not the form itself but the way the email is sent. More on that below.
+
+## The server sends email in a way mailboxes do not trust
+
+By default, WordPress sends messages using the server's `mail()` function. It is the simplest method and, unfortunately, the least reliable:
+
+* some hosting providers limit or disable it,
+* mailboxes such as Gmail or Outlook increasingly reject these messages,
+* the sender in the message does not match the server that actually sent it.
+
+**The fix:** send through SMTP, that is through a real mailbox, the same way your email program does. In WordPress, plugins such as WP Mail SMTP or FluentSMTP handle this. You enter your mailbox details (ideally on your own domain, for example `contact@yourcompany.com`) and from then on the form sends email just like you do.
+
+## Missing SPF, DKIM or DMARC records
+
+These are domain settings that tell mailboxes: "this server is allowed to send email on behalf of this domain". Without them, messages are more likely to land in spam or be rejected.
+
+You set them in the panel where you manage your domain. Your email provider gives you the exact values. If you do not know where to find this, it is a good moment to ask for help. A wrong change here can block all of your company email.
+
+## The wrong recipient address in the form settings
+
+It sounds trivial, but it happens a lot. The form sends messages to an address someone entered when the site was built, such as the previous developer's mailbox or an address you no longer use.
+
+Check the settings of your form plugin (for example Contact Form 7, WPForms or Fluent Forms) to see where the messages go.
+
+## Spam protection blocks real messages
+
+Forms often have protection such as reCAPTCHA. If the keys have expired, were deleted or do not match the domain, the form may:
+
+* show an error when sending,
+* pretend to send and deliver nothing,
+* reject everyone as a bot.
+
+After changing the domain or moving the site, this is one of the first things to check.
+
+## The problem started after an update
+
+If the form worked and stopped after a WordPress, plugin or theme update, the cause may be a conflict between add-ons. It helps to find out which update changed things and either roll it back or replace the plugin with another one.
+
+## How to check that everything works
+
+1. Send a test message through the form from an address other than your business one.
+2. Check the main inbox and spam.
+3. If you use an SMTP plugin, use its test email feature. It shows the exact error if something is wrong.
+4. Repeat the test once a month and after every bigger change on the site.
+
+## When to hand it over to a specialist
+
+If messages still do not arrive after checking all of the above, the cause is probably in the domain and email settings or a conflict on the server. It is easy to make things worse here, so it is better to have it diagnosed.
+
+---
+
+**Is the form on your website not working?** Write to us or call. We provide [WordPress fixes and technical support](/en/services/website-support): we find out where the messages get lost and set up delivery so they arrive. If you would like someone to keep an eye on things like this regularly, see [ongoing website maintenance](/en/services/website-maintenance).

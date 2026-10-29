@@ -1,0 +1,63 @@
+---
+title: "Your Website Broke After a WordPress Update. How to Save It?"
+description: "After updating WordPress, a plugin or a theme, your site looks broken or stopped working? Here is what to do right away and how to update so it does not happen again."
+date: "2026-10-29"
+tags: ["WordPress", "Fixes", "Guide"]
+---
+
+Updates are necessary. They patch security holes and keep the site working on newer servers. But anyone who has had a WordPress site for more than a year knows the moment: you click "Update", and a minute later the site looks strange, something has disappeared or an error appears.
+
+The good news is that it can almost always be undone. Below we describe what to do right away, and then how to update more safely.
+
+## First: stop updating
+
+The first instinct is often "maybe the next update will fix it". Usually it only makes the cause harder to find. Stop and write down what exactly was updated: WordPress, which theme, which plugins and in what order.
+
+## Check whether you have a backup
+
+If the site has a backup plugin (such as UpdraftPlus) or your hosting makes automatic backups, the simplest way out is to restore the state from before the update.
+
+Pay attention to two things:
+
+* the date of the backup, so you do not lose changes made later, such as new posts or store orders,
+* whether the backup includes both files and the database, because a full restore needs both.
+
+In an online store, restoring the database can wipe out orders from the last few hours. In that case it is better to try fixing the problem first without rolling back the whole site.
+
+## Find the culprit
+
+If several things were updated at once, you need to find out which one broke the site:
+
+1. In the WordPress dashboard, deactivate the plugins that were updated last.
+2. Check the site after each change.
+3. If the dashboard does not work, you can deactivate plugins by renaming the `wp-content/plugins` folder. We describe this in more detail in our article about the [WordPress critical error](/en/blog/wordpress-critical-error-what-to-do).
+
+Once you know which plugin is responsible, you can restore its previous version (plugins such as WP Rollback help with this) and wait for a fix from the author or look for a replacement.
+
+## The site works but looks different
+
+Sometimes the site loads, but something has moved, the fonts have changed or a section is missing. Before you look for an error:
+
+* clear the cache in your caching plugin, if you have one,
+* clear the cache in your hosting panel,
+* open the site in a private browser window.
+
+Very often the site is fine and the browser or server is still showing old files.
+
+If that does not help and the changes affect the design, the cause is often a theme update that overwrote changes made directly in the theme files. That is why theme changes belong in a child theme or a custom theme, not in a ready-made template.
+
+## WordPress updates and the PHP version
+
+New versions of WordPress and plugins require increasingly newer PHP. If the site runs on a very old PHP version, the update may fail or something may stop working. You can check and change the PHP version in your hosting panel. Make a backup before changing it, too.
+
+## How to update without stress
+
+* A backup before every bigger update. Always.
+* One thing at a time. Plugins first, then the theme, WordPress last, and check the site after each step.
+* A test copy. For larger sites and online stores, updates are first done on a copy of the site and only then on the live one.
+* Regularly. Paradoxically, the most problems come from sites nobody updated for two years and then everything at once.
+* Fewer plugins. Every plugin is one more thing that can break during an update.
+
+---
+
+**Did an update break your website?** Write to us. We provide [WordPress fixes and technical support](/en/services/website-support), including for sites built by someone else. If you would rather have someone handle updates regularly, with a backup before every change, see [ongoing website maintenance](/en/services/website-maintenance).

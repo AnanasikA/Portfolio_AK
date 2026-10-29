@@ -42,9 +42,9 @@ const webDevelopment: ServiceData = {
   slug: 'web-development',
   title: 'Website Development',
   subtitle:
-    'We design and build custom websites from scratch, without templates. Every project is tailored to your business, performance goals, and user experience.',
+    'We design and build custom websites from scratch, without templates. We work with businesses in Kąty Wrocławskie, Wrocław and across Poland.',
   description:
-    'We create custom websites for businesses and freelancers. Every project is built from the ground up with a focus on performance, SEO, and a seamless experience across all devices.',
+    'Website development in Kąty Wrocławskie, Wrocław and across Poland. Custom design, WordPress or Next.js, fast loading and SEO-ready. Websites from 1,500 PLN.',
   keywords: [
     'website development',
     'business website',
@@ -52,6 +52,8 @@ const webDevelopment: ServiceData = {
     'web design',
     'Next.js developer',
     'WordPress developer',
+    'website development Wrocław',
+    'web design Kąty Wrocławskie',
   ],
   heroVideo: '/videos/services/web-development.mp4',
   heroPoster: '/videos/services/web-development-poster.webp',
@@ -147,6 +149,10 @@ const webDevelopment: ServiceData = {
     },
   ],
   faq: [
+    {
+      q: 'Can we meet in person?',
+      a: 'Yes. With clients from Kąty Wrocławskie, Wrocław and the surrounding area we are happy to meet, for example in a café. With clients from other cities we work remotely by phone, email and video calls.',
+    },
     {
       q: 'How much does a website cost?',
       a: 'Pricing depends on the project scope. Landing pages start at 1,500 PLN, while business websites typically start at 3,000 PLN. We provide a custom quote after a short consultation.',
@@ -337,7 +343,7 @@ const businessWebsites: ServiceData = {
   subtitle:
     'We create business websites that build credibility, make it easy for customers to get in touch, and support the growth of your business.',
   description:
-    'We design and develop custom business websites with technical SEO, responsive layouts, and a unique design tailored to your company.',
+    'Custom business websites with technical SEO, responsive layouts and a design tailored to your company. For clients in Wrocław and across Poland.',
   keywords: [
     'business website',
     'business website development',
@@ -775,15 +781,17 @@ const ecommerceWebsites: ServiceData = {
   slug: 'ecommerce-websites',
   title: 'E-commerce Websites',
   subtitle:
-    'We build online stores with WooCommerce and Next.js, making it easy to manage products, orders, and online payments.',
+    'We build online stores with WooCommerce and Next.js, including stores selling digital products such as e-books or downloadable materials. Easy management of products, orders and payments.',
   description:
-    'We design and develop custom e-commerce websites with payment gateway integration, an intuitive admin panel, and technical SEO built in from the start.',
+    'Online stores for businesses in Wrocław, Kąty Wrocławskie and across Poland. WooCommerce or Next.js, online payments, physical and digital products. Stores from 2,800 PLN.',
   keywords: [
     'e-commerce website',
     'online store development',
     'WooCommerce development',
     'Next.js ecommerce',
     'custom online store',
+    'online store Wrocław',
+    'digital products store',
   ],
   heroVideo: '/videos/services/business-websites.mp4',
   heroPoster: '/videos/services/business-websites-poster.webp',
@@ -831,6 +839,7 @@ const ecommerceWebsites: ServiceData = {
     'Homepage and product catalog',
     'Product pages with variations',
     'Shopping cart and checkout',
+    'Option to sell digital products (downloadable files)',
     'Online payment integration',
     'Admin panel for products and orders',
     'Email notifications for customers and administrators',
@@ -1025,7 +1034,7 @@ const websiteMaintenance: ServiceData = {
   subtitle:
     'Ongoing technical care within a monthly plan: updates, backups, security and small changes. You run your business, we look after the website.',
   description:
-    'We handle technical maintenance for WordPress and Next.js websites: updates, backups, security and fixing issues as they come up.',
+    'WordPress and Next.js website maintenance: updates, backups, security and fixing issues as they come up. Monthly plans from 120 PLN, Kąty Wrocławskie, Wrocław and across Poland.',
   keywords: [
     'website maintenance',
     'WordPress maintenance',
@@ -1101,79 +1110,95 @@ const websiteMaintenance: ServiceData = {
   },
 };
 
+const supportProcess: ServiceProcess[] = [
+  { step: '01', title: 'Report', desc: 'Tell us what is happening. A description in your own words, a screenshot and the website address are enough.' },
+  { step: '02', title: 'Diagnosis', desc: 'We check the site, plugins, server and error logs to find the cause, not just the symptom.' },
+  { step: '03', title: 'Quote', desc: 'We tell you what is wrong, how long the fix will take and what it will cost. We do not start without your approval.' },
+  { step: '04', title: 'Backup', desc: 'Before making any changes we back up the site, so everything can be restored if needed.' },
+  { step: '05', title: 'Fix', desc: 'We fix the problem and check that the rest of the website works as it should.' },
+  { step: '06', title: 'Next steps', desc: 'We suggest how to avoid similar problems. If you like, we can take over ongoing care of the site.' },
+];
+
+const supportFaq: ServiceFAQ[] = [
+  {
+    q: 'My website stopped working. What should I do?',
+    a: 'Write to us or call and send the website address. A screenshot of the error helps. You do not need to know what exactly broke.',
+  },
+  {
+    q: 'Can you help if someone else built the site?',
+    a: 'Yes. We often work on websites built by other developers. We start by checking how the site is built and what state it is in.',
+  },
+  {
+    q: 'What problems do you fix?',
+    a: 'Most often: a white screen or critical error in WordPress, a contact form that does not send, problems after plugin updates, a broken mobile layout, slow loading, malware and suspicious links, an expired SSL certificate.',
+  },
+  {
+    q: 'How much does a fix cost?',
+    a: 'It depends on the problem. After the diagnosis we give you the price and time needed, and we start only after you approve it.',
+  },
+  {
+    q: 'How quickly can you help?',
+    a: 'We usually reply within one business day. Urgent failures, such as an online store that is down, we try to look at as soon as possible.',
+  },
+  {
+    q: 'Do you only fix WordPress websites?',
+    a: 'We work with WordPress most, but we also help with Next.js sites and simple HTML/CSS websites.',
+  },
+  {
+    q: 'Can I stay under your care after the fix?',
+    a: 'Yes. You can choose an ongoing maintenance plan where we regularly update the site, make backups and react to problems.',
+  },
+];
+
 const websiteSupport: ServiceData = {
   slug: 'website-support',
   title: 'Technical Support & WordPress Fixes',
   subtitle:
     'Something not working on your website? We find the cause and fix it, including sites built by someone else. One-off help or ongoing care.',
   description:
-    'WordPress fixes and technical support: errors after updates, broken contact forms, malware, slow loading. Website care for businesses in Wrocław and across Poland.',
+    'WordPress fixes and technical support: errors after updates, broken contact forms, malware, slow loading. For businesses in Kąty Wrocławskie, Wrocław and across Poland.',
   keywords: [
-    'website support',
-    'ongoing website care',
-    'monthly website support',
-    'website maintenance service',
-    'WordPress support',
+    'WordPress fixes',
+    'WordPress repair Wrocław',
+    'website technical support',
+    'WordPress critical error',
+    'fix broken website',
   ],
   heroVideo: '/videos/services/web-development.mp4',
   heroPoster: '/videos/services/web-development-poster.webp',
-  heroLabel: 'Technical Support',
+  heroLabel: 'Support & fixes',
   heroStats: [
-    { value: 'Monthly', label: 'ongoing support' },
-    { value: 'Report', label: 'work summary' },
-    { value: 'from PLN 120', label: 'monthly plans' },
+    { value: '1 day', label: 'business day to reply' },
+    { value: 'Quote', label: 'before any fix' },
+    { value: 'Backup', label: 'before any change' },
   ],
-  whyTitle: 'Why choose ongoing website support?',
+  whyTitle: 'What can you come to us with?',
   why: [
-    {
-      icon: 'shield',
-      title: 'Security',
-      desc: 'We take care of updates, backups, and essential security measures to keep your website protected.',
-    },
-    {
-      icon: 'save',
-      title: 'Regular Backups',
-      desc: 'Frequent backups make it easy to restore your website if needed.',
-    },
-    {
-      icon: 'bolt',
-      title: 'Reliable Performance',
-      desc: 'We monitor your website and suggest improvements whenever necessary.',
-    },
-    {
-      icon: 'chat',
-      title: 'Direct Contact',
-      desc: 'You communicate directly with us instead of going through a help desk or ticket system.',
-    },
-    {
-      icon: 'chart',
-      title: 'Website Monitoring',
-      desc: 'We monitor your website and respond whenever technical issues arise.',
-    },
-    {
-      icon: 'check',
-      title: 'Small Content Changes',
-      desc: 'Need to update text, pricing, opening hours, or images? We can handle those changes as part of your plan.',
-    },
+    { icon: 'bug', title: 'Errors and failures', desc: 'A white screen, a critical error, a website that suddenly does not load. We find the cause and fix it.' },
+    { icon: 'refresh', title: 'Problems after updates', desc: 'Something stopped working after a WordPress or plugin update? We restore it and tidy up the plugins.' },
+    { icon: 'check', title: 'Contact form not sending', desc: 'Messages do not arrive or end up in spam. We check the setup and fix email delivery.' },
+    { icon: 'shield', title: 'Malware and suspicious links', desc: 'We clean infected sites, remove unwanted links and secure the website for the future.' },
+    { icon: 'mobile', title: 'Mobile layout', desc: 'Broken sections, buttons that are too small, something covering the content. We fix the mobile version.' },
+    { icon: 'bolt', title: 'Slow loading', desc: 'We check what slows the site down and fix it without rebuilding everything.' },
   ],
-  whatTitle: "What's included?",
+  whatTitle: 'What does a fix include?',
   what: [
-    'Website uptime monitoring',
-    'Regular backups according to your plan',
-    'WordPress, theme, and plugin updates',
-    'Basic security checks',
-    'Basic database optimization',
-    'Content updates according to your plan',
-    'Email support',
-    'Monthly maintenance summary',
+    'Diagnosis and a clear explanation of what happened',
+    'A quote before any work starts',
+    'A backup before changes',
+    'Fixing the problem and checking the rest of the site',
+    'Updating or replacing problematic plugins',
+    'Fixes to the theme, forms and mobile version',
+    'A short summary of what was done',
+    'The option to switch to ongoing care',
   ],
-  process: websiteMaintenanceProcess,
+  process: supportProcess,
   plans: websiteMaintenancePlans,
-  faq: websiteMaintenanceFaq,
+  faq: supportFaq,
   schema: {
-    name: 'Website Support',
+    name: 'Technical Support & WordPress Fixes',
     description:
-      'Ongoing, monthly website support including updates, backups, content changes, monitoring, and technical assistance.',
+      'WordPress fixes, error removal, problems after updates, malware cleanup and WordPress website care.',
     serviceType: 'WebSiteMaintenance',
   },
   relatedService: {
@@ -1182,6 +1207,7 @@ const websiteSupport: ServiceData = {
     linkLabel: 'See website maintenance',
   },
 };
+
 const websiteRedesign: ServiceData = {
   slug: 'website-redesign',
   title: 'Website Redesign',

@@ -14,6 +14,9 @@ export const BLOG_SLUG_PAIRS: Array<{ pl: string; en: string }> = [
   { pl: 'landing-page-czy-strona-internetowa',             en: 'landing-page-vs-website' },
   { pl: 'strona-internetowa-czy-facebook',                 en: 'website-vs-facebook-for-business' },
   { pl: 'wordpress-vs-nextjs-co-wybrac',                   en: 'wordpress-vs-nextjs-which-to-choose' },
+  { pl: 'blad-krytyczny-wordpress-co-zrobic',               en: 'wordpress-critical-error-what-to-do' },
+  { pl: 'formularz-kontaktowy-nie-wysyla-wiadomosci',       en: 'contact-form-not-sending-emails' },
+  { pl: 'strona-nie-dziala-po-aktualizacji-wordpress',      en: 'website-broken-after-wordpress-update' },
 ];
 
 export function getTranslatedBlogSlug(
