@@ -1,6 +1,9 @@
-export default function robots() {
+import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
+
+export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: '*', allow: '/' },
-    sitemap: 'https://anastasiiakupriianets.pl/sitemap.xml',
-  }
+    rules: { userAgent: '*', allow: '/', disallow: ['/api/', '/pl/admin', '/en/admin', '/pl/partners/dashboard', '/en/partners/dashboard'] },
+    sitemap: `${SITE_URL}/sitemap.xml`,
+  };
 }

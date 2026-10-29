@@ -1,11 +1,5 @@
 'use client';
 
-// Cała interaktywna zawartość strony głównej (sekcje + tracking GA4).
-// Wydzielone z app/[locale]/page.tsx, żeby ta strona mogła być Server
-// Component i generować własne metadata + JSON-LD po stronie serwera
-// (patrz audyt SEO, punkt H6). Wygląd i zachowanie bez zmian — to ten
-// sam kod, tylko przeniesiony do osobnego komponentu klienckiego.
-
 import dynamic from 'next/dynamic';
 import Hero       from '@/components/Hero';
 import HomeClient from '@/components/HomeClient';
@@ -14,6 +8,7 @@ import { useSectionTracking } from '@/hooks/useSectionTracking';
 import { useExitTracking }    from '@/hooks/useExitTracking';
 
 const ClientMarquee    = dynamic(() => import('@/components/ClientMarquee'));
+const HomeServices     = dynamic(() => import('@/components/HomeServices'));
 const FeaturedProjects = dynamic(() => import('@/components/FeaturedProjects'));
 const PricingBanner    = dynamic(() => import('@/components/PricingBanner'));
 const ProcessSection   = dynamic(() => import('@/components/ProcessSection'));
@@ -22,11 +17,11 @@ const FAQ              = dynamic(() => import('@/components/FAQ'));
 const Contact          = dynamic(() => import('@/components/Contact'));
 
 export default function HomeSections() {
-  // Śledzi z której sekcji użytkownik opuszcza stronę
+
   useExitTracking();
 
-  // Ref dla każdej sekcji — wysyła eventy section_view i section_time_spent do GA4
   const heroRef     = useSectionTracking('home');
+  const servicesRef = useSectionTracking('services');
   const projectsRef = useSectionTracking('projects');
   const pricingRef  = useSectionTracking('pricing');
   const processRef  = useSectionTracking('process');
@@ -40,6 +35,10 @@ export default function HomeSections() {
         <section ref={heroRef} data-section="home">
           <Hero />
           <ClientMarquee />
+        </section>
+
+        <section ref={servicesRef} data-section="services">
+          <HomeServices />
         </section>
 
         <section ref={projectsRef} data-section="projects">

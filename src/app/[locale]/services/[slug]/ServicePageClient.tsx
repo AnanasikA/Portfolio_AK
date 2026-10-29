@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { SITE_URL, SITE_HOST } from '@/lib/site';
 import { Link } from '@/i18n/navigation';
 import Header from '@/components/Header';
 import QuoteModal from '@/components/QuoteModal';
@@ -28,7 +29,7 @@ const TEXT = {
     included: 'W standardzie',
     includedText:
       '2 rundy poprawek i 30 dni wsparcia technicznego w cenie każdego projektu.',
-    processLabel: 'Jak pracuję',
+    processLabel: 'Jak pracujemy',
     processTitle: 'Jasna droga od pomysłu do gotowej strony.',
     processText:
       'Przejrzysty proces bez zbędnych komplikacji. Na każdym etapie wiesz, co robimy i czego możesz się spodziewać.',
@@ -39,16 +40,16 @@ const TEXT = {
       'Wycena przed startem projektu',
     ],
     projectsLabel: 'Wybrane projekty',
-    projectsTitle: 'Strony, które pracują tak ciężko jak firmy, które za nimi stoją.',
+    projectsTitle: 'Przykłady naszej pracy.',
     seeAllProjects: 'Zobacz wszystkie projekty →',
     project: 'Projekt',
     fallbackProject:
-      'Indywidualny projekt strony internetowej — nowoczesny design, szybkie ładowanie i optymalizacja SEO.',
-    seeCaseStudy: 'Zobacz case study →',
+      'Indywidualny projekt strony internetowej: nowoczesny wygląd, szybkie ładowanie i przygotowanie pod SEO.',
+    seeCaseStudy: 'Zobacz realizację →',
     pricing: 'Cennik',
     pricingTitle: 'Ile kosztuje Twoja strona?',
     pricingText:
-      'Koszt projektu zależy od zakresu. Skonfiguruj swój projekt w kalkulatorze i otrzymaj szacunkową wycenę w kilka sekund — bez zobowiązań.',
+      'Koszt zależy od zakresu. W kalkulatorze wybierzesz, czego potrzebujesz, i od razu zobaczysz orientacyjną cenę. Bez zobowiązań.',
     calculate: 'Oblicz wycenę →',
     talk: 'Porozmawiajmy',
     priceFrom: 'orientacyjnie od',
@@ -62,16 +63,16 @@ const TEXT = {
       'Certyfikat SSL i konfiguracja hostingu',
     ],
     pricingNote:
-      'Dokładna wycena zależy od liczby podstron, funkcji i złożoności projektu. Skorzystaj z kalkulatora lub napisz — odpowiem w ciągu 24 godzin.',
+      'Dokładna wycena zależy od liczby podstron, funkcji i zakresu prac. Skorzystaj z kalkulatora albo napisz do nas, odpowiadamy zwykle w ciągu jednego dnia roboczego.',
     faqTitle: 'Dobre pytania,\njasne odpowiedzi.',
     faqText:
-      'Nie znalazłeś odpowiedzi? Napisz krótką wiadomość — otrzymasz konkretną odpowiedź, bez presji sprzedaży.',
+      'Nie ma tu Twojego pytania? Napisz do nas krótko, a dostaniesz konkretną odpowiedź, bez presji sprzedaży.',
     askQuestion: 'Zadaj pytanie →',
-    ctaLabel: '— Piszesz dziś, odpowiadam dziś —',
-    ctaTitle: 'Masz pomysł na stronę? Napiszmy o nim.',
+    ctaLabel: 'Kontakt',
+    ctaTitle: 'Potrzebujesz strony albo pomocy z obecną?',
     ctaText:
-      'Krótka wiadomość wystarczy — kilka zdań o firmie i o tym, czego potrzebujesz. Odpiszę z konkretną propozycją, zwykle jeszcze tego samego dnia.',
-    ctaButton: 'Napisz dziś →',
+      'Wystarczy kilka zdań o firmie i o tym, czego potrzebujesz. Nie musisz znać technicznych nazw. Odpiszemy z konkretną propozycją, zwykle w ciągu jednego dnia roboczego.',
+    ctaButton: 'Napisz do nas →',
     email: 'Napisz e-mail',
     quoteUrl: '/wycena',
     projectsUrl: '/projects',
@@ -85,7 +86,7 @@ const TEXT = {
     included: 'Included',
     includedText:
       'Two rounds of revisions and 30 days of technical support are included in every project.',
-    processLabel: 'How I work',
+    processLabel: 'How we work',
     processTitle: 'A clear path from idea to launch.',
     processText:
       'A simple process without unnecessary complications. At every stage, you know what is happening and what to expect.',
@@ -96,7 +97,7 @@ const TEXT = {
       'Quote before the project starts',
     ],
     projectsLabel: 'Selected projects',
-    projectsTitle: 'Websites that work as hard as the businesses behind them.',
+    projectsTitle: 'Examples of our work.',
     seeAllProjects: 'View all projects →',
     project: 'Project',
     fallbackProject:
@@ -105,7 +106,7 @@ const TEXT = {
     pricing: 'Pricing',
     pricingTitle: 'How much will your website cost?',
     pricingText:
-      'The cost depends on the project scope. Use the calculator to get an estimated price in seconds — with no obligation.',
+      'The cost depends on scope. Use the calculator to see an estimate straight away, with no obligation.',
     calculate: 'Calculate price →',
     talk: 'Let’s talk',
     priceFrom: 'starting from',
@@ -119,16 +120,16 @@ const TEXT = {
       'SSL certificate and hosting configuration',
     ],
     pricingNote:
-      'The final quote depends on the number of pages, features, and project complexity. Use the calculator or send a message — I usually reply within 24 hours.',
+      'The final quote depends on the number of pages, features and scope. Use the calculator or write to us, we usually reply within one business day.',
     faqTitle: 'Good questions,\nclear answers.',
     faqText:
       'Didn’t find your answer? Send a short message and you’ll receive a clear reply without sales pressure.',
     askQuestion: 'Ask a question →',
-    ctaLabel: '— Write today, hear back today —',
+    ctaLabel: 'Contact',
     ctaTitle: 'Have an idea for a website? Let’s talk about it.',
     ctaText:
-      'A short message is enough — a few lines about your business and what you need. I’ll reply with a clear proposal, usually the same day.',
-    ctaButton: 'Message me today →',
+      'A few lines about your business and what you need are enough. We will reply with a clear proposal, usually within one business day.',
+    ctaButton: 'Write to us →',
     email: 'Send an email',
     quoteUrl: '/wycena',
     projectsUrl: '/projects',
@@ -241,7 +242,7 @@ function Hero({ s, open, locale }: { s: ServiceData; open: () => void; locale: s
   const t = getText(locale);
   const isEn = locale === 'en';
   const from = s.plans[0]?.from;
-  // Opieka i administracja to pakiety miesięczne — cena „od” jest za miesiąc.
+
   const monthly = ['administracja-stron', 'opieka-nad-stronami', 'website-maintenance', 'website-support'].includes(s.slug);
 
   return (
@@ -387,7 +388,6 @@ function Hero({ s, open, locale }: { s: ServiceData; open: () => void; locale: s
             </p>
           )}
 
-          {/* Cena już w pierwszej sekcji — ta sama kwota co w sekcji cennika niżej. */}
           {typeof from === 'number' && (
             <p style={{ fontFamily: 'var(--fd)', fontSize: '.95rem', color: 'rgba(255,255,255,.75)', margin: '0 0 1.1rem' }}>
               {isEn ? 'From' : 'Od'}{' '}
@@ -637,12 +637,6 @@ function Process({ s, locale }: { s: ServiceData; locale: string }) {
   );
 }
 
-/**
- * ScrollingScreenshot
- * Pokazuje pełny (wysoki) zrzut strony w kadrze o stałej wysokości.
- * Gdy kadr wjeżdża w viewport, obrazek płynnie przewija się od góry do dołu,
- * ujawniając całą stronę. Gdy kadr znika z widoku, wraca do pozycji startowej.
- */
 function ScrollingScreenshot({
   src,
   alt,
@@ -799,7 +793,7 @@ function Projects({ locale, serviceSlug }: { locale: string; serviceSlug: string
           <AnimatePresence mode="wait">
             <motion.div key={current} variants={textV} initial="enter" animate="center" exit="exit" style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
               <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.76rem', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--brand)', margin: 0 }}>
-                {String(current + 1).padStart(2, '0')} — {t.project}
+                {String(current + 1).padStart(2, '0')} · {p.concept ? (isEn ? 'Concept project' : 'Projekt koncepcyjny') : (isEn ? 'Client project' : 'Realizacja dla klienta')}
               </p>
 
               <h3 style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(1.4rem,2.5vw,2rem)', letterSpacing: '-.03em', color: 'var(--ink)', lineHeight: 1.1, margin: 0, textTransform: 'capitalize' }}>
@@ -886,7 +880,7 @@ function Pricing({ s, open, locale }: { s: ServiceData; open: () => void; locale
           <div style={{ background: '#fff', border: '1px solid var(--line-soft)', borderRadius: 'var(--r-l)', padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             <div>
               <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.72rem', letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--muted-2)', marginBottom: '.5rem' }}>
-                {s.title} — {t.priceFrom}
+                {s.title}: {t.priceFrom}
               </p>
 
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
@@ -1027,7 +1021,7 @@ function CTA({ open, locale }: { open: () => void; locale: string }) {
               {[
                 { label: 'kontakt@anastasiiakupriianets.pl', href: 'mailto:kontakt@anastasiiakupriianets.pl' },
                 { label: '+48 576 564 682', href: 'tel:+48576564682' },
-                { label: 'anastasiiakupriianets.pl', href: 'https://anastasiiakupriianets.pl' },
+                { label: SITE_HOST, href: SITE_URL },
               ].map(({ label, href }) => (
                 <motion.a key={label} href={href} onClick={() => trackContactClick(href, 'service_page')} whileHover={{ color: 'rgba(255,255,255,.95)' }} transition={{ duration: 0.15 }} style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: 'var(--fd)', fontSize: 'clamp(.78rem,.9vw,.83rem)', color: 'rgba(255,255,255,.6)', textDecoration: 'none' }}>
                   {label}
@@ -1159,8 +1153,6 @@ export default function ServicePageClient({
             position: static;
           }
 
-          /* W jednej kolumnie „przyklejony” blok zostawał w miejscu, a karty
-             pod nim najeżdżały na statystyki. Na telefonie wyłączamy sticky. */
           .svc-sticky-col {
             position: static !important;
           }

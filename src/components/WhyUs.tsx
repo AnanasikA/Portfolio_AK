@@ -2,8 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
-import { useRef, useEffect, useState } from 'react';
-import { Link } from '@/i18n/navigation';
 
 const fade = {
   hidden:  { opacity: 0, y: 24 },
@@ -37,80 +35,33 @@ const IconGlobe = () => (
   </svg>
 );
 
-function useInViewNative(ref: React.RefObject<Element | null>) {
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { rootMargin: '0px' }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  });
-  return inView;
-}
-
-function CountUp({ to, suffix = '', delay = 0 }: { to: number; suffix?: string; delay?: number }) {
-  const ref    = useRef<HTMLSpanElement>(null);
-  const inView = useInViewNative(ref as React.RefObject<Element | null>);
-  // Wartość początkowa = docelowa liczba, nie 0 — żeby wygenerowany na
-  // serwerze HTML (i pierwszy render przed hydracją) zawsze pokazywał
-  // prawdziwą wartość ("40+", nie "0+"). Animacja licznika w dół-do-góry
-  // uruchamia się dopiero w przeglądarce, po wejściu w viewport — jest
-  // czysto kosmetyczna i nie zmienia tego, co widzi crawler. Patrz audyt
-  // SEO, M1.
-  const [val, setVal] = useState(to);
-
-  useEffect(() => {
-    if (!inView) return;
-    const duration = 1400;
-    const delayMs  = delay * 1000;
-    let raf: number;
-    const startTime = performance.now();
-    const tick = (now: number) => {
-      const elapsed = now - startTime - delayMs;
-      if (elapsed < 0) { raf = requestAnimationFrame(tick); return; }
-      const progress = Math.min(elapsed / duration, 1);
-      const eased    = 1 - Math.pow(1 - progress, 3);
-      setVal(Math.round(eased * to));
-      if (progress < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, to, delay]);
-
-  return <span ref={ref}>{val}{suffix}</span>;
-}
-
 const cardsData = {
   pl: [
-    { icon: <IconShield />, title: 'Tworzone pod konwersję',   text: 'Każdy układ projektujemy wokół celów Twojego biznesu — nie tylko estetyka, ale realne wyniki.' },
-    { icon: <IconBolt />,   title: 'Szybkie i niezawodne',     text: 'Strony ładujące się poniżej sekundy i stabilne na każdym urządzeniu i w każdej przeglądarce.' },
-    { icon: <IconClock />,  title: 'Na czas, bez chaosu',      text: 'Spokojny, uporządkowany proces z jasnymi etapami — zawsze wiesz, na czym stoisz.' },
-    { icon: <IconChat />,   title: 'Bezpośrednio i osobiście', text: 'Rozmawiasz z projektantem, nie z pośrednikiem. Szczere doradztwo i dbałość o detale.' },
-    { icon: <IconGlobe />,  title: 'Dwujęzycznie i zdalnie',   text: 'Pracujemy po polsku i angielsku, w pełni zdalnie — gdziekolwiek działa Twoja firma, współpraca jest prosta.' },
+    { icon: <IconChat />,   title: 'Jedna osoba do kontaktu', text: 'Przez cały projekt masz jedną osobę kontaktową, która zna Twoją stronę od środka. Bez pośredników i przekazywania sprawy dalej.' },
+    { icon: <IconShield />, title: 'Mówimy prostym językiem', text: 'Nie musisz znać się na stronach. Tłumaczymy, co robimy i dlaczego, bez technicznego żargonu.' },
+    { icon: <IconClock />,  title: 'Jasne etapy i terminy',   text: 'Na starcie ustalamy zakres, cenę i termin. Na każdym etapie wiesz, co jest zrobione i co nas czeka.' },
+    { icon: <IconBolt />,   title: 'Pomoc także po starcie',  text: 'Po uruchomieniu nie znikamy. Pomagamy w zmianach, aktualizacjach i wtedy, gdy coś przestaje działać.' },
+    { icon: <IconGlobe />,  title: 'Lokalnie i zdalnie',      text: 'Działamy w Kątach Wrocławskich i Wrocławiu, gdzie chętnie spotkamy się na kawę. Z klientami z innych miast pracujemy zdalnie.' },
   ],
   en: [
-    { icon: <IconShield />, title: 'Built for conversion',  text: 'Every layout is designed around your business goals — not just aesthetics, but real results.' },
-    { icon: <IconBolt />,   title: 'Fast and reliable',     text: 'Sites that load in under a second and work flawlessly on every device and browser.' },
-    { icon: <IconClock />,  title: 'On time, no chaos',     text: 'A calm, structured process with clear milestones — you always know where things stand.' },
-    { icon: <IconChat />,   title: 'Direct and personal',   text: 'You talk to the designer, not a middleman. Honest advice and attention to every detail.' },
-    { icon: <IconGlobe />,  title: 'Bilingual and remote',  text: 'We work in Polish and English, fully remote — wherever your business operates, collaboration is simple.' },
+    { icon: <IconChat />,   title: 'One point of contact',   text: 'You have one point of contact who knows your site inside out. No middlemen.' },
+    { icon: <IconShield />, title: 'Plain language',         text: "You don't need to know anything about websites. We explain what we do and why, without jargon." },
+    { icon: <IconClock />,  title: 'Clear stages and dates', text: 'We agree on scope, price and deadline at the start, and you always know what is done and what comes next.' },
+    { icon: <IconBolt />,   title: 'Help after launch',      text: "We don't disappear after launch. We help with changes, updates and when something stops working." },
+    { icon: <IconGlobe />,  title: 'Local and remote',       text: 'Based around Kąty Wrocławskie and Wrocław, where we are happy to meet for a coffee. Clients elsewhere we work with remotely.' },
   ],
 };
 
 const statsData = {
   pl: [
-    { num: 40,  suffix: '+', label: 'wdrożonych projektów' },
-    { num: 5,   suffix: '★', label: 'średnia ocena' },
-    { num: 100, suffix: '%', label: 'tworzone na miarę' },
+    { value: 'WordPress', label: 'i Next.js' },
+    { value: 'PL / EN',   label: 'rozmawiamy po polsku i angielsku' },
+    { value: '7–14 dni',  label: 'na prostą stronę' },
   ],
   en: [
-    { num: 40,  suffix: '+', label: 'projects delivered' },
-    { num: 5,   suffix: '★', label: 'average rating' },
-    { num: 100, suffix: '%', label: 'custom built' },
+    { value: 'WordPress', label: 'and Next.js' },
+    { value: 'PL / EN',   label: 'we speak Polish and English' },
+    { value: '7–14 days', label: 'for a simple site' },
   ],
 };
 
@@ -158,7 +109,6 @@ export default function WhyUs() {
 
         <div className="why-inner">
 
-          {/* LEFT */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
             <div>
               <motion.span variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -170,25 +120,24 @@ export default function WhyUs() {
               <motion.h2 variants={fade} custom={.06} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 style={{ fontFamily:'var(--fd)', fontWeight:600, letterSpacing:'-.035em', lineHeight:.97, color:'var(--ink)', fontSize:'clamp(1.7rem,3.5vw,2.8rem)', marginBottom:18 }}>
                 {isEn
-                  ? 'A studio that treats your website like its own.'
-                  : 'Studio, które traktuje Twoją stronę jak własną.'}
+                  ? 'We look after your website as if it were our own.'
+                  : 'Dbamy o Twoją stronę tak, jakby była nasza.'}
               </motion.h2>
 
               <motion.p variants={fade} custom={.12} initial="hidden" whileInView="visible" viewport={{ once: true }}
                 style={{ fontFamily:'var(--fb)', fontSize:'clamp(.95rem,1.3vw,1.1rem)', color:'var(--muted)', lineHeight:1.65 }}>
                 {isEn
-                  ? <>No corporate overhead or passing work to interns. You work directly with the people who design and build your site — see how we approach <Link href="/services/web-development" style={{ color: 'var(--brand)', textDecoration: 'underline', textUnderlineOffset: '.2em' }}>website development</Link>.</>
-                  : <>Bez korporacyjnego narzutu i przekazywania pracy stażystom. Współpracujesz bezpośrednio z osobami, które projektują i budują Twoją stronę — zobacz, jak wygląda u nas <Link href="/services/tworzenie-stron-internetowych" style={{ color: 'var(--brand)', textDecoration: 'underline', textUnderlineOffset: '.2em' }}>tworzenie stron internetowych</Link>.</>}
+                  ? 'We are not a big agency, and that is a good thing. Projects are handled directly, without layers of managers, and you always know who to ask.'
+                  : 'Nie jesteśmy dużą agencją i to dobrze. Projekty prowadzimy bezpośrednio, bez kolejnych szczebli, a Ty zawsze wiesz, do kogo napisać.'}
               </motion.p>
             </div>
 
-            {/* Stats */}
             <motion.div
               variants={fade} custom={.18} initial="hidden" whileInView="visible" viewport={{ once: true }}
               className="why-stats"
               style={{ paddingTop: 22, borderTop: '1px solid var(--line)' }}
             >
-              {stats.map((s, i) => (
+              {stats.map((s) => (
                 <div key={s.label}>
                   <span style={{
                     fontFamily: 'var(--fd)', fontWeight: 700,
@@ -196,7 +145,7 @@ export default function WhyUs() {
                     color: 'var(--brand)', letterSpacing: '-.03em',
                     display: 'block', lineHeight: 1,
                   }}>
-                    <CountUp to={s.num} suffix={s.suffix} delay={i * 0.15} />
+                    {s.value}
                   </span>
                   <small style={{ fontFamily:'var(--fb)', fontSize:'.82rem', color:'var(--muted)', marginTop:4, display:'block' }}>
                     {s.label}
@@ -206,7 +155,6 @@ export default function WhyUs() {
             </motion.div>
           </div>
 
-          {/* RIGHT — cards */}
           <div className="why-cards">
             {cards.map((card, i) => (
               <motion.div

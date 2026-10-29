@@ -1,4 +1,3 @@
-// src/app/[locale]/offer/page.tsx
 import type { Metadata } from 'next';
 import { offerData }  from './offer.data';
 import OfferPage      from './components/OfferPage';

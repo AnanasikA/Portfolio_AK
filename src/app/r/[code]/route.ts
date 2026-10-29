@@ -2,14 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase-clients";
 import { hashIp, REFERRAL_COOKIE_NAME, REFERRAL_COOKIE_MAX_AGE_DAYS } from "@/lib/referrals";
 
-// GET /r/[code] — publiczny link, który rozdajesz partnerom
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ code: string }> }
 ) {
   const { code } = await params;
   const referralCode = code.toUpperCase();
-  const destination = new URL("/pl", req.url); // dokąd trafia gość po kliknięciu
+  const destination = new URL("/pl", req.url);
 
   const supabase = createAdminClient();
 
@@ -19,7 +18,6 @@ export async function GET(
     .eq("referral_code", referralCode)
     .maybeSingle();
 
-  // Nieznany kod — nie zdradzamy tego, po prostu wysyłamy na stronę główną
   if (!partner || partner.status !== "approved") {
     return NextResponse.redirect(destination);
   }

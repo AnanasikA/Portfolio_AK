@@ -1,12 +1,8 @@
-// src/app/[locale]/services/page.tsx
-// Strona indeksu usług — lista wszystkich usług
-
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { getServices } from '@/data/services';
-
-const BASE_URL = 'https://anastasiiakupriianets.pl';
+import { alternates } from '@/lib/site';
 
 export async function generateStaticParams() {
   return [{ locale: 'pl' }, { locale: 'en' }];
@@ -21,18 +17,11 @@ export async function generateMetadata({
   const isEn = locale === 'en';
 
   return {
-    title: isEn ? 'Services' : 'Usługi',
+    title: { absolute: isEn ? 'Services: websites, online stores, maintenance | AK Web & Design' : 'Usługi: strony, sklepy, opieka i naprawy | AK Web & Design' },
     description: isEn
-      ? 'Web development, UI/UX design, WordPress, landing pages, e-commerce stores and website maintenance.'
-      : 'Tworzenie stron internetowych, projektowanie UI/UX, WordPress, landing page, sklepy internetowe i administracja stron.',
-    alternates: {
-      canonical: `${BASE_URL}/${locale}/services`,
-      languages: {
-        pl: `${BASE_URL}/pl/services`,
-        en: `${BASE_URL}/en/services`,
-        'x-default': `${BASE_URL}/pl/services`,
-      },
-    },
+      ? 'Websites, online stores, WordPress maintenance and fixes. Kąty Wrocławskie, Wrocław and all of Poland.'
+      : 'Tworzenie stron i sklepów internetowych, administracja, opieka i naprawa stron WordPress. Kąty Wrocławskie, Wrocław i cała Polska.',
+    alternates: alternates(locale, '/services'),
   };
 }
 
@@ -48,7 +37,7 @@ export default async function ServicesPage({
   const services = getServices(locale);
 
   const ICONS: Record<string, string> = {
-    // PL
+
     'tworzenie-stron-internetowych': '💻',
     'projektowanie-stron': '🎨',
     'strony-dla-firm': '🏢',
@@ -59,7 +48,6 @@ export default async function ServicesPage({
     'opieka-nad-stronami': '🛡️',
     'modernizacja-stron': '✨',
 
-    // EN
     'web-development': '💻',
     'web-design': '🎨',
     'business-websites': '🏢',
@@ -126,7 +114,7 @@ export default async function ServicesPage({
             marginBottom: '1rem',
           }}
         >
-          {isEn ? 'Services' : 'Usługi'}
+          {isEn ? 'Websites, online stores and website care' : 'Strony, sklepy internetowe i opieka nad stronami'}
         </h1>
 
         <p
@@ -140,8 +128,8 @@ export default async function ServicesPage({
           }}
         >
           {isEn
-            ? 'I build websites, online stores and web applications for businesses and freelancers. Every project is custom-made without pre-built templates.'
-            : 'Tworzę strony internetowe, sklepy i aplikacje webowe dla firm i freelancerów. Każdy projekt jest indywidualny — bez gotowych szablonów.'}
+            ? 'We build websites and online stores, and help with updates, maintenance and fixes for existing sites. Kąty Wrocławskie, Wrocław and all of Poland.'
+            : 'Tworzymy strony i sklepy internetowe, a przy istniejących stronach pomagamy w aktualizacjach, administracji i naprawach. Kąty Wrocławskie, Wrocław i cała Polska.'}
         </p>
 
         <div

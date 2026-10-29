@@ -1,12 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { trackEvent } from '@/lib/gtag';
-
-// ─── Dane statyczne (ceny / ID) ───────────────────────────────────────────────
 
 const SITE_TYPES = [
   { id: 'landing',   base: 1500, pages: 1,  pricePerPage: 0,
@@ -15,7 +13,7 @@ const SITE_TYPES = [
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg> },
   { id: 'wordpress', base: 3100, pages: 5,  pricePerPage: 350,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4"/></svg> },
-  { id: 'shop',      base: 4500, pages: 5,  pricePerPage: 400,
+  { id: 'shop',      base: 2800, pages: 5,  pricePerPage: 400,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> },
   { id: 'redesign',  base: 2000, pages: 5,  pricePerPage: 300,
     icon: <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg> },
@@ -25,8 +23,6 @@ const SITE_TYPES = [
 
 const PAGE_VALUES = [1, 3, 5, 10, 15];
 
-// Sklep nie jest dodatkiem — to osobny typ projektu (SITE_TYPES → 'shop', od 4500 zł),
-// żeby nie dało się go "dokleić" do landing page poniżej realnej ceny.
 const EXTRA_IDS = ['seo','copy','booking','lang','blog','branding','care'] as const;
 type ExtraId = typeof EXTRA_IDS[number];
 const EXTRA_PRICES: Record<ExtraId, number> = {
@@ -35,8 +31,6 @@ const EXTRA_PRICES: Record<ExtraId, number> = {
 };
 const CARE_ID: ExtraId = 'care';
 
-// Copywriting obejmuje teksty na wszystkie podstrony, więc rośnie z ich liczbą:
-// 600 zł do 5 podstron, powyżej 120 zł za podstronę.
 const COPY_PER_PAGE = 120;
 function extraPrice(id: ExtraId, pages: number) {
   if (id === 'copy') return Math.max(EXTRA_PRICES.copy, pages * COPY_PER_PAGE);
@@ -45,7 +39,6 @@ function extraPrice(id: ExtraId, pages: number) {
 
 function fmt(n: number) { return n.toLocaleString('pl-PL'); }
 
-// Wolniejsza, delikatniejsza animacja
 function useAnimatedNumber(target: number) {
   const [v, setV] = useState(target);
   const prev = useRef(target);
@@ -55,10 +48,10 @@ function useAnimatedNumber(target: number) {
     if (from === target) return;
     cancelAnimationFrame(raf.current);
     const t0 = performance.now();
-    const duration = 600; // ms — dłużej = delikatniej
+    const duration = 600;
     const tick = (now: number) => {
       const p = Math.min((now - t0) / duration, 1);
-      // ease-out cubic — łagodne wyhamowanie
+
       const e = 1 - Math.pow(1 - p, 2.5);
       setV(Math.round(from + (target - from) * e));
       if (p < 1) raf.current = requestAnimationFrame(tick);
@@ -70,10 +63,10 @@ function useAnimatedNumber(target: number) {
   return v;
 }
 
-// ─── Komponent ────────────────────────────────────────────────────────────────
-
 export default function WycenaPage() {
   const c = useTranslations('calculator');
+  const isEnCalc = useLocale() === 'en';
+  const cur = isEnCalc ? 'PLN' : 'zł';
 
   const [menuOpen,  setMenuOpen]  = useState(false);
   const [briefOpen, setBriefOpen] = useState(false);
@@ -84,13 +77,12 @@ export default function WycenaPage() {
   const [sidebarBottom, setSidebarBottom] = useState('0px');
   const [hasInteracted, setHasInteracted] = useState(false);
 
-  // form
   const [formName,    setFormName]    = useState('');
   const [formEmail,   setFormEmail]   = useState('');
   const [formPhone,   setFormPhone]   = useState('');
   const [formCompany, setFormCompany] = useState('');
   const [formMessage, setFormMessage] = useState('');
-  const [formHp,      setFormHp]      = useState(''); // pole-pułapka na boty
+  const [formHp,      setFormHp]      = useState('');
   const [formStatus,  setFormStatus]  = useState<'idle'|'sending'|'ok'|'error'>('idle');
 
   const footerRef = useRef<HTMLDivElement>(null);
@@ -108,7 +100,7 @@ export default function WycenaPage() {
   }, []);
 
   useEffect(() => {
-    const fn = () => setBriefOpen(true);
+    const fn = (e: Event) => { if ((e as CustomEvent<{ type?: string }>).detail?.type) return; setBriefOpen(true); };
     window.addEventListener('open-brief', fn);
     return () => window.removeEventListener('open-brief', fn);
   }, []);
@@ -137,7 +129,7 @@ export default function WycenaPage() {
   function interact() { setHasInteracted(true); }
 
   const t           = SITE_TYPES.find(t => t.id === siteType)!;
-  // Typ bez dopłaty za podstrony (landing page) ma stałą liczbę podstron.
+
   const pagesLocked = t.pricePerPage === 0;
   const extraPages  = Math.max(0, pages - t.pages);
   const baseTotal   = t.base + extraPages * t.pricePerPage;
@@ -146,7 +138,6 @@ export default function WycenaPage() {
   const subtotal    = baseTotal + extrasTotal;
   const total       = speed === 'priority' ? Math.round(subtotal * 1.25) : subtotal;
 
-  // Na starcie: "od X zł". Po interakcji: "X – Y zł"
   const showRange   = hasInteracted && total > t.base;
   const animLow     = useAnimatedNumber(t.base);
   const animHigh    = useAnimatedNumber(total);
@@ -233,7 +224,6 @@ export default function WycenaPage() {
 
       <Header isOpen={menuOpen} toggleMenu={() => setMenuOpen(v => !v)} />
 
-      {/* Modal */}
       {briefOpen && (
         <div onClick={e => { if (e.target === e.currentTarget) { setBriefOpen(false); setFormStatus('idle'); } }}
           style={{ position: 'fixed', inset: 0, background: 'rgba(10,15,26,.55)', zIndex: 100, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
@@ -253,11 +243,10 @@ export default function WycenaPage() {
               <>
                 <p style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.7rem', letterSpacing: '.12em', textTransform: 'uppercase', color: brand, marginBottom: '.5rem' }}>{c('modalTitle')}</p>
                 <h2 style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '1.45rem', letterSpacing: '-.03em', color: ink, marginBottom: '.3rem' }}>
-                  {showRange ? `${fmt(animLow)} – ${fmt(animHigh)} zł` : `${c('sidebarFrom', { price: fmt(animLow) })}`}
+                  {showRange ? `${fmt(animLow)} – ${fmt(animHigh)} ${cur}` : `${c('sidebarFrom', { price: fmt(animLow) })}`}
                 </h2>
                 <p style={{ fontFamily: 'var(--fd)', fontSize: '.83rem', color: muted, marginBottom: '1.5rem', lineHeight: 1.55 }}>{c('modalSubtitle')}</p>
 
-                {/* Pole-pułapka: ukryte przed ludźmi i czytnikami ekranu, boty je wypełniają */}
                 <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
                   <label>
                     Nie wypełniaj tego pola
@@ -306,7 +295,6 @@ export default function WycenaPage() {
 
       <main style={{ paddingTop: 80, overflow: 'visible' }}>
 
-        {/* Hero */}
         <div style={{ maxWidth: 1240, margin: '0 auto', padding: '3rem clamp(1.25rem,5vw,4.5rem) 2.5rem' }}>
           <p style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.72rem', letterSpacing: '.14em', textTransform: 'uppercase', color: brand, marginBottom: '.75rem' }}>
             {c('badge')}
@@ -319,13 +307,10 @@ export default function WycenaPage() {
           </p>
         </div>
 
-        {/* Two-col */}
         <div className="qw-two-col" style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(1.25rem,5vw,4.5rem)', display: 'flex', alignItems: 'flex-start', gap: 0 }}>
 
-          {/* LEFT */}
           <div style={{ flex: '1 1 0', minWidth: 0, paddingRight: '2.5rem', paddingBottom: '6rem' }}>
 
-            {/* Krok 1 */}
             <div style={{ marginBottom: '3rem' }}>
               <div style={stepHeader}>
                 <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '2.5rem', color: ink, opacity: .1, lineHeight: 1, marginRight: '1rem' }}>1</span>
@@ -346,7 +331,7 @@ export default function WycenaPage() {
                         {checkCircle(on)}
                       </div>
                       <p style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.88rem', color: ink, marginBottom: '.2rem' }}>{c(`siteTypes.${st.id}.label`)}</p>
-                      <p style={{ fontFamily: 'var(--fd)', fontSize: '.73rem', color: brand, fontWeight: 600, marginBottom: '.3rem' }}>od {fmt(st.base)} zł</p>
+                      <p style={{ fontFamily: 'var(--fd)', fontSize: '.73rem', color: brand, fontWeight: 600, marginBottom: '.3rem' }}>{isEnCalc ? 'from' : 'od'} {fmt(st.base)} {cur}</p>
                       <p style={{ fontFamily: 'var(--fd)', fontSize: '.72rem', color: muted, lineHeight: 1.45, marginBottom: '.15rem' }}>{c(`siteTypes.${st.id}.desc`)}</p>
                       <p style={{ fontFamily: 'var(--fd)', fontSize: '.69rem', color: muted, lineHeight: 1.4, opacity: .65 }}>{c(`siteTypes.${st.id}.subdesc`)}</p>
                     </button>
@@ -355,7 +340,6 @@ export default function WycenaPage() {
               </div>
             </div>
 
-            {/* Krok 2 */}
             <div style={{ marginBottom: '3rem' }}>
               <div style={stepHeader}>
                 <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '2.5rem', color: ink, opacity: .1, lineHeight: 1, marginRight: '1rem' }}>2</span>
@@ -381,7 +365,7 @@ export default function WycenaPage() {
                     }}>
                       <span>{c(`pageOptions.${val}.label`)}</span>
                       <span style={{ fontSize: '.67rem', fontWeight: 400, color: isExtra ? brand : muted, opacity: isExtra ? 1 : .75 }}>
-                        {isExtra && !locked ? `+${fmt(extraCost)} zł` : c(`pageOptions.${val}.hint`)}
+                        {isExtra && !locked ? `+${fmt(extraCost)} ${cur}` : c(`pageOptions.${val}.hint`)}
                       </span>
                     </button>
                   );
@@ -399,7 +383,6 @@ export default function WycenaPage() {
               )}
             </div>
 
-            {/* Krok 3 */}
             <div style={{ marginBottom: '3rem' }}>
               <div style={stepHeader}>
                 <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '2.5rem', color: ink, opacity: .1, lineHeight: 1, marginRight: '1rem' }}>3</span>
@@ -422,7 +405,7 @@ export default function WycenaPage() {
                         <div style={{ flex: 1 }}>
                           <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.87rem', color: ink, marginBottom: '.18rem' }}>{c(`extras.${id}.label`)}</p>
                           <p style={{ fontFamily: 'var(--fd)', fontSize: '.72rem', color: on ? brand : muted, fontWeight: on ? 600 : 400 }}>
-                            +{fmt(price)} zł{isMonthly ? ` ${c('careSuffix')}` : ''}
+                            +{fmt(price)} {cur}{isMonthly ? ` ${c('careSuffix')}` : ''}
                           </p>
                           <p className="qw-extra-desc">{c(`extras.${id}.desc`)}</p>
                         </div>
@@ -434,7 +417,6 @@ export default function WycenaPage() {
               </div>
             </div>
 
-            {/* Krok 4 */}
             <div style={{ marginBottom: '3rem' }}>
               <div style={stepHeader}>
                 <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '2.5rem', color: ink, opacity: .1, lineHeight: 1, marginRight: '1rem' }}>4</span>
@@ -460,7 +442,6 @@ export default function WycenaPage() {
                           </span>
                         )}
                       </span>
-                      {/* Proste strony (landing page) mają krótszy termin niż rozbudowane. */}
                       <span style={{ fontSize: '.72rem', color: muted }}>{c(pagesLocked ? `speed_${val}_sub_simple` : `speed_${val}_sub`)}</span>
                     </button>
                   );
@@ -470,10 +451,8 @@ export default function WycenaPage() {
 
           </div>
 
-          {/* Placeholder */}
           <div style={{ width: 320, flexShrink: 0 }} />
 
-          {/* Sidebar fixed */}
           <div className="qw-sidebar" style={{
             position: 'fixed',
             top: 80,
@@ -489,14 +468,13 @@ export default function WycenaPage() {
                 {c('sidebarTitle')}
               </p>
 
-              {/* Cena: "od X" lub "X – Y" */}
               <div style={{ marginBottom: '.3rem', transition: 'opacity .3s' }}>
                 {showRange ? (
                   <>
                     <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '2.3rem', letterSpacing: '-.05em', color: '#fff', lineHeight: 1 }}>
                       {fmt(animLow)} – {fmt(animHigh)}
                     </span>
-                    <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', color: 'rgba(255,255,255,.42)', marginLeft: 5 }}>zł</span>
+                    <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', color: 'rgba(255,255,255,.42)', marginLeft: 5 }}>{cur}</span>
                   </>
                 ) : (
                   <>
@@ -504,7 +482,7 @@ export default function WycenaPage() {
                     <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '2.3rem', letterSpacing: '-.05em', color: '#fff', lineHeight: 1 }}>
                       {fmt(animLow)}
                     </span>
-                    <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', color: 'rgba(255,255,255,.42)', marginLeft: 5 }}>zł</span>
+                    <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', color: 'rgba(255,255,255,.42)', marginLeft: 5 }}>{cur}</span>
                   </>
                 )}
               </div>
@@ -512,23 +490,21 @@ export default function WycenaPage() {
                 {c('sidebarNote')}
               </p>
 
-              {/* Breakdown */}
               <div style={{ marginBottom: '1.4rem' }}>
                 {breakdown.map((r, i) => (
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '5px 0', borderBottom: '1px solid rgba(255,255,255,.07)' }}>
                     <span style={{ fontFamily: 'var(--fd)', fontSize: '.79rem', color: 'rgba(255,255,255,.52)', flex: 1 }}>{r.label}</span>
-                    <span style={{ fontFamily: 'var(--fd)', fontSize: '.79rem', color: '#fff', fontWeight: 600, whiteSpace: 'nowrap' }}>{fmt(r.price)} zł</span>
+                    <span style={{ fontFamily: 'var(--fd)', fontSize: '.79rem', color: '#fff', fontWeight: 600, whiteSpace: 'nowrap' }}>{fmt(r.price)} {cur}</span>
                   </div>
                 ))}
                 {careTotal > 0 && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', borderBottom: '1px solid rgba(255,255,255,.07)' }}>
                     <span style={{ fontFamily: 'var(--fd)', fontSize: '.79rem', color: 'rgba(255,255,255,.52)' }}>{c('careLabel')}</span>
-                    <span style={{ fontFamily: 'var(--fd)', fontSize: '.79rem', color: '#fff', fontWeight: 600 }}>+{fmt(careTotal)} zł {c('careSuffix')}</span>
+                    <span style={{ fontFamily: 'var(--fd)', fontSize: '.79rem', color: '#fff', fontWeight: 600 }}>+{fmt(careTotal)} {cur} {c('careSuffix')}</span>
                   </div>
                 )}
               </div>
 
-              {/* Główny CTA */}
               <button onClick={() => setBriefOpen(true)} style={{
                 width: '100%', fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.86rem',
                 padding: '.82em 1.4em', borderRadius: 99, border: 'none',
@@ -540,7 +516,6 @@ export default function WycenaPage() {
                 {c('cta')}
               </button>
 
-              {/* Drugorzędny */}
               <p style={{ fontFamily: 'var(--fd)', fontSize: '.78rem', color: 'rgba(255,255,255,.4)', textAlign: 'center', marginBottom: '1.3rem' }}>
                 {c('ctaEmailPre')}{' '}
                 <a
@@ -552,7 +527,17 @@ export default function WycenaPage() {
                 </a>
               </p>
 
-              {/* Gwarancje */}
+              <p style={{ fontFamily: 'var(--fd)', fontSize: '.78rem', color: 'rgba(255,255,255,.55)', textAlign: 'center', marginBottom: '1.3rem' }}>
+                {c('repairNote')}{' '}
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent('open-brief', { detail: { type: 'Pomoc z istniejącą stroną' } }))}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'rgba(255,255,255,.8)', textDecoration: 'underline', textUnderlineOffset: 3 }}
+                >
+                  {c('repairLink')}
+                </button>
+              </p>
+
               <div style={{ paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,.08)' }}>
                 {(['guarantee1','guarantee2','guarantee3'] as const).map(key => (
                   <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 6 }}>

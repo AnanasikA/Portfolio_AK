@@ -1,15 +1,22 @@
-// src/app/[locale]/services/[slug]/page.tsx
-// Wzorzec podstrony usługowej — Next.js 15, App Router, Server Component
-
 import { notFound, permanentRedirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getService, getServices, getTranslatedServiceSlug } from '@/data/services';
+import { SITE_URL, url } from '@/lib/site';
+import { GOOGLE_PROFILE_URL } from '@/lib/business';
 import ServicePageClient from './ServicePageClient';
 
-const BASE_URL = 'https://anastasiiakupriianets.pl';
+function serviceAlternates(locale: string, slug: string) {
+  const plSlug = locale === 'pl' ? slug : getTranslatedServiceSlug(locale, 'pl', slug);
+  const enSlug = locale === 'en' ? slug : getTranslatedServiceSlug(locale, 'en', slug);
+  const plUrl = url('pl', `/services/${plSlug}`);
+  const enUrl = url('en', `/services/${enSlug}`);
+  return {
+    canonical: locale === 'en' ? enUrl : plUrl,
+    languages: { pl: plUrl, en: enUrl, 'x-default': plUrl },
+  };
+}
 
-// ─── Static params ────────────────────────────────────────────────────────────
 export function generateStaticParams() {
   const locales = ['pl', 'en'] as const;
 
@@ -21,7 +28,6 @@ export function generateStaticParams() {
   );
 }
 
-// ─── Metadata ─────────────────────────────────────────────────────────────────
 export async function generateMetadata({
   params,
 }: {
@@ -33,23 +39,14 @@ export async function generateMetadata({
   const service = getService(locale, slug);
   if (!service) return {};
 
-  const canonical = `${BASE_URL}/${locale}/services/${slug}`;
-  const plSlug = getTranslatedServiceSlug(locale, 'pl', slug);
-  const enSlug = getTranslatedServiceSlug(locale, 'en', slug);
+  const alt = serviceAlternates(locale, slug);
+  const canonical = alt.canonical;
 
   return {
-    // Bez „| AK Web & Design” — dopisuje to szablon tytułu z layout.tsx.
-    title: service.title,
+    title: { absolute: `${service.title} | AK Web & Design` },
     description: service.description,
     keywords: service.keywords,
-    alternates: {
-      canonical,
-      languages: {
-        pl: `${BASE_URL}/pl/services/${plSlug}`,
-        en: `${BASE_URL}/en/services/${enSlug}`,
-        'x-default': `${BASE_URL}/pl/services/${plSlug}`,
-      },
-    },
+    alternates: alt,
     openGraph: {
       title: `${service.title} | AK Web & Design`,
       description: service.description,
@@ -66,7 +63,6 @@ export async function generateMetadata({
   };
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
 export default async function ServicePage({
   params,
 }: {
@@ -79,8 +75,7 @@ export default async function ServicePage({
   const service = getService(locale, slug);
 
   if (!service) {
-    // Slug z drugiej wersji językowej (np. /en/services/tworzenie-stron-internetowych)
-    // — zamiast 404 przekierowujemy na właściwą nazwę w bieżącym języku.
+
     const otherLocale = isEn ? 'pl' : 'en';
     if (getService(otherLocale, slug)) {
       const translated = getTranslatedServiceSlug(otherLocale, locale, slug);
@@ -89,11 +84,9 @@ export default async function ServicePage({
     notFound();
   }
 
-  const canonical = `${BASE_URL}/${locale}/services/${slug}`;
+  const canonical = serviceAlternates(locale, slug).canonical;
+  const servicesUrl = url(locale, '/services');
 
-  const servicesUrl = `${BASE_URL}/${locale}/services`;
-
-  // ── JSON-LD schemas ──────────────────────────────────────────────────────
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -103,14 +96,21 @@ export default async function ServicePage({
     provider: {
       '@type': 'LocalBusiness',
       name: 'AK Web & Design',
-      url: BASE_URL,
+      url: SITE_URL,
+      email: 'kontakt@anastasiiakupriianets.pl',
+      telephone: '+48576564682',
+      sameAs: [GOOGLE_PROFILE_URL],
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Wrocław',
         addressCountry: 'PL',
       },
     },
-    areaServed: isEn ? ['PL', 'Europe', 'Worldwide'] : 'PL',
+    areaServed: [
+      { '@type': 'City', name: 'Kąty Wrocławskie' },
+      { '@type': 'City', name: 'Wrocław' },
+      { '@type': 'Country', name: 'Polska' },
+    ],
     url: canonical,
   };
 
@@ -122,7 +122,7 @@ export default async function ServicePage({
         '@type': 'ListItem',
         position: 1,
         name: 'AK Web & Design',
-        item: BASE_URL,
+        item: url(locale),
       },
       {
         '@type': 'ListItem',

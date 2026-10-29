@@ -8,7 +8,6 @@ import { projects } from '@/data/projects';
 import type { ProjectItem } from '@/data/projects';
 import { trackEvent } from '@/lib/gtag';
 
-
 function CountUp({ to, suffix = '', delay = 0 }: { to: number; suffix?: string; delay?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [val, setVal] = useState(0);
@@ -33,7 +32,6 @@ function CountUp({ to, suffix = '', delay = 0 }: { to: number; suffix?: string; 
 
     obs.observe(el);
 
-    // fallback dla mobile/Safari
     const fallback = setTimeout(() => setStarted(true), 600);
 
     return () => {
@@ -96,6 +94,7 @@ export default function Projects({ currentPage = 1 }: { currentPage?: number }) 
 
   const filters = isEn ? [
     { key: 'all',        label: 'All projects' },
+    { key: 'clients',    label: 'Client work' },
     { key: 'business',   label: 'Business' },
     { key: 'realestate', label: 'Real estate' },
     { key: 'tourism',    label: 'Tourism & stays' },
@@ -103,6 +102,7 @@ export default function Projects({ currentPage = 1 }: { currentPage?: number }) 
     { key: 'personal',   label: 'Personal brands' },
   ] : [
     { key: 'all',        label: 'Wszystkie projekty' },
+    { key: 'clients',    label: 'Realizacje dla klientów' },
     { key: 'business',   label: 'Strony firmowe' },
     { key: 'realestate', label: 'Nieruchomości' },
     { key: 'tourism',    label: 'Turystyka i noclegi' },
@@ -116,6 +116,7 @@ export default function Projects({ currentPage = 1 }: { currentPage?: number }) 
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'all') return projects;
+    if (activeFilter === 'clients') return projects.filter(p => !p.concept);
     const slugs = categoryMap[activeFilter] ?? [];
     return projects.filter(p => slugs.includes(p.slug));
   }, [activeFilter]);
@@ -155,18 +156,17 @@ export default function Projects({ currentPage = 1 }: { currentPage?: number }) 
     return () => obs.disconnect();
   }, [visible, activeFilter]);
 
-
+const clientCount = projects.filter(p => !p.concept).length;
+const conceptCount = projects.length - clientCount;
 const stats = isEn ? [
-  { to: 40, suffix: '+', label: 'Projects delivered',  sub: 'Live across Europe' },
-  { to: 6,  suffix: '',  label: 'Industries served',   sub: 'Stays, property, wellness & more' },
-  { to: 5,  suffix: '',  label: 'Site types',          sub: 'Business, landing, WP, redesign' },
+  { to: clientCount,  suffix: '', label: 'Client projects',  sub: 'Described in detail below' },
+  { to: conceptCount, suffix: '', label: 'Concept projects', sub: 'Show how we design and build' },
+  { to: 4,            suffix: '', label: 'Service areas',    sub: 'Websites, stores, care, fixes' },
 ] : [
-  { to: 40, suffix: '+', label: 'Zrealizowanych projektów', sub: 'Wdrożone i działające w całej Europie' },
-  { to: 6,  suffix: '',  label: 'Obsłużonych branż',         sub: 'Noclegi, nieruchomości, wellness i więcej' },
-  { to: 5,  suffix: '',  label: 'Typów stron',               sub: 'Firmowe, landing, WordPress, redesign i opieka' },
+  { to: clientCount,  suffix: '', label: 'Realizacji dla klientów', sub: 'Opisanych szczegółowo poniżej' },
+  { to: conceptCount, suffix: '', label: 'Projektów koncepcyjnych', sub: 'Pokazują, jak projektujemy i budujemy' },
+  { to: 4,            suffix: '', label: 'Obszary usług',           sub: 'Strony, sklepy, opieka, naprawy' },
 ];
-
-
 
   return (
     <>
@@ -211,7 +211,6 @@ const stats = isEn ? [
         .filter-btn:hover { border-color: var(--ink); color: var(--ink); }
         .filter-btn--active { background: var(--ink); border-color: var(--ink); color: #fff; }
 
-        /* Grid — row z wyrównaną wysokością */
         .proj-row {
           display: grid;
           gap: clamp(14px,2vw,20px);
@@ -243,7 +242,6 @@ const stats = isEn ? [
         }
       `}</style>
 
-      {/* ── HERO ── */}
       <section style={{
         background: 'var(--bg)',
         paddingTop: 'clamp(100px,14vh,140px)',
@@ -253,12 +251,12 @@ const stats = isEn ? [
         <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
           <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'var(--brand)', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ width: 24, height: 2, background: 'currentColor', display: 'inline-block' }} />
-            {isEn ? 'Selected projects · 2023–2026' : 'Wybrane realizacje · 2023–2026'}
+            {isEn ? 'Our work' : 'Realizacje'}
           </p>
           <h1 style={{ fontFamily: 'var(--fd)', fontWeight: 800, fontSize: 'clamp(2.2rem,5.5vw,4.2rem)', letterSpacing: '-.04em', color: 'var(--ink)', lineHeight: .97, marginBottom: 'clamp(40px,6vw,64px)', maxWidth: '16ch' }}>
             {isEn
-              ? 'Sites we designed and built to grow real businesses.'
-              : 'Strony, które zaprojektowaliśmy i zbudowaliśmy, by rozwijać prawdziwe firmy.'}
+              ? 'Websites we designed and built.'
+              : 'Strony, które zaprojektowaliśmy i zbudowaliśmy.'}
           </h1>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'clamp(24px,4vw,48px)', paddingTop: 'clamp(32px,4vw,48px)', borderTop: '1px solid var(--line)' }}>
@@ -275,13 +273,11 @@ const stats = isEn ? [
         </div>
       </section>
 
-      {/* ── GRID SECTION ── */}
       <section style={{ background: 'var(--bg)', padding: 'clamp(48px,7vw,80px) 0 clamp(64px,10vw,120px)' }}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
         <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
-          {/* Filters */}
           <div style={{ marginBottom: 'clamp(28px,4vw,40px)' }}>
             <h2 style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: 'clamp(1.3rem,2.5vw,1.8rem)', letterSpacing: '-.035em', color: 'var(--ink)', marginBottom: 18 }}>
               {isEn ? 'Browse projects by industry.' : 'Przeglądaj projekty według branży.'}
@@ -299,11 +295,9 @@ const stats = isEn ? [
             </div>
           </div>
 
-          {/* Grid z wyrównaną wysokością wierszy */}
           <div ref={gridRef} style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(14px,2vw,20px)' }}>
             {activeFilter === 'all' ? (
               <>
-                {/* Wiersz 1 — 3fr 2fr */}
                 {visible.length >= 1 && (
                   <div className="proj-row proj-row-2-1">
                     {visible.slice(0, 2).map((project, i) => (
@@ -311,7 +305,6 @@ const stats = isEn ? [
                     ))}
                   </div>
                 )}
-                {/* Wiersz 2 — 2fr 3fr */}
                 {visible.length >= 3 && (
                   <div className="proj-row proj-row-1-2">
                     {visible.slice(2, 4).map((project, i) => (
@@ -319,7 +312,6 @@ const stats = isEn ? [
                     ))}
                   </div>
                 )}
-                {/* Wiersz 3 — równe */}
                 {visible.length >= 5 && (
                   <div className="proj-row proj-row-eq">
                     {visible.slice(4, 6).map((project, i) => (
@@ -337,7 +329,6 @@ const stats = isEn ? [
             )}
           </div>
 
-          {/* Pagination */}
           {activeFilter === 'all' && totalPages > 1 && (
             <nav style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4, marginTop: 56, paddingTop: 32, borderTop: '1px solid var(--line)' }}>
               {safePage > 1 && (
@@ -367,19 +358,18 @@ const stats = isEn ? [
         </div>
       </section>
 
-      {/* ── CTA BANNER ── */}
       <section style={{ background: 'var(--brand)', padding: 'clamp(56px,8vw,96px) clamp(20px,5vw,72px)', textAlign: 'center' }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
           <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.72rem', letterSpacing: '.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,.6)', marginBottom: 20 }}>
             {isEn ? 'Your project could be next' : 'Twój projekt może być następny'}
           </p>
           <h2 style={{ fontFamily: 'var(--fd)', fontWeight: 800, fontSize: 'clamp(1.8rem,4.5vw,3.2rem)', letterSpacing: '-.04em', color: '#fff', lineHeight: 1.02, marginBottom: 24 }}>
-            {isEn ? "Let's make your business the next success story." : 'Sprawmy, by Twoja firma była kolejną historią sukcesu.'}
+            {isEn ? 'Need a website or help with your current one?' : 'Potrzebujesz strony albo pomocy z obecną?'}
           </h2>
           <p style={{ fontFamily: 'var(--fb)', fontSize: 'clamp(.9rem,1.3vw,1.05rem)', color: 'rgba(255,255,255,.75)', lineHeight: 1.65, maxWidth: '48ch', margin: '0 auto 32px' }}>
             {isEn
-              ? 'Write briefly about your business. You\'ll get a reply with direction and a quote — usually within 1–2 business days.'
-              : 'Napisz krótko o swojej firmie. Otrzymasz odpowiedź z kierunkiem i wyceną — zwykle w 1–2 dni robocze.'}
+              ? 'Write briefly about your business or the problem with your site. We usually reply within one business day.'
+              : 'Napisz krótko o swojej firmie albo o problemie ze stroną. Odpowiadamy zwykle w ciągu jednego dnia roboczego.'}
           </p>
           <button
             onClick={() => {
@@ -389,12 +379,12 @@ const stats = isEn ? [
             style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', background: '#fff', color: 'var(--brand)', borderRadius: 99, padding: '.9em 2.2em', border: 'none', cursor: 'pointer', transition: 'transform .2s, box-shadow .2s', marginBottom: 28 }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-2px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(0,0,0,.2)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-            {isEn ? 'Start a project →' : 'Rozpocznij projekt →'}
+            {isEn ? 'Write to us →' : 'Napisz do nas →'}
           </button>
           <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '8px 32px' }}>
             {(isEn
-              ? ['Reply within 1–2 business days', 'Free, no-obligation quote', 'In Polish and English']
-              : ['Odpowiedź w 1–2 dni robocze', 'Bezpłatna, niezobowiązująca wycena', 'Po polsku i angielsku']
+              ? ['Reply within 1 business day', 'Free, no-obligation quote', 'In Polish and English']
+              : ['Odpowiedź w 1 dzień roboczy', 'Bezpłatna wycena bez zobowiązań', 'Po polsku i angielsku']
             ).map(txt => (
               <span key={txt} style={{ fontFamily: 'var(--fb)', fontSize: '.82rem', color: 'rgba(255,255,255,.65)', display: 'flex', alignItems: 'center', gap: 6 }}>
                 <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(255,255,255,.4)', display: 'inline-block' }} />
@@ -450,7 +440,6 @@ const categoryLabels: Record<string, { pl: string; en: string }> = {
       data-delay={String(index * 80)}
       style={{ textDecoration: 'none', borderRadius: 10, overflow: 'hidden', border: '1px solid var(--line)', background: 'var(--bg)' }}
     >
-      {/* Image — stała wysokość żeby wiersz był wyrównany */}
       <div className="proj-img-wrap" style={{ height: 260 }}>
         <Image
           src={cardImg}
@@ -466,11 +455,15 @@ const categoryLabels: Record<string, { pl: string; en: string }> = {
         </div>
       </div>
 
-      {/* Body */}
       <div className="proj-body">
-        {catLabel && (
-          <p style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.65rem', letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--brand)', marginBottom: 8 }}>
-            {catLabel}
+        {(catLabel || project.concept) && (
+          <p style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.65rem', letterSpacing: '.14em', textTransform: 'uppercase', color: 'var(--brand)', marginBottom: 8 }}>
+            {catLabel && <span>{catLabel}</span>}
+            {project.concept && (
+              <span style={{ letterSpacing: '.08em', color: 'var(--muted)', background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 99, padding: '.2em .7em' }}>
+                {locale === 'en' ? 'Concept project' : 'Projekt koncepcyjny'}
+              </span>
+            )}
           </p>
         )}
         <h3 style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(.9rem,1.3vw,1.05rem)', letterSpacing: '-.02em', color: 'var(--ink)', lineHeight: 1.2, marginBottom: 8 }}>

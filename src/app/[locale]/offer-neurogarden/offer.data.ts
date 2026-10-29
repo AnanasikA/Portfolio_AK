@@ -1,5 +1,3 @@
-// src/data/offer.data.ts
-
 export const offerData = {
   clientName:   'NeuroGarden',
   projectTitle: 'Projekt i wykonanie nowoczesnej strony internetowej',

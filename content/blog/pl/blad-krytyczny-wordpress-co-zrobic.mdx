@@ -1,0 +1,81 @@
+---
+title: "Błąd krytyczny w WordPressie albo biała strona. Co zrobić?"
+description: "Strona na WordPressie pokazuje biały ekran albo komunikat o błędzie krytycznym? Wyjaśniamy, skąd się to bierze, co możesz sprawdzić sam i kiedy lepiej oddać sprawę specjaliście."
+date: "2026-10-29"
+tags: ["WordPress", "Naprawy", "Poradnik"]
+---
+
+Wchodzisz na swoją stronę, a zamiast niej widzisz pusty, biały ekran albo komunikat **„Na tej stronie wystąpił błąd krytyczny”**. Klienci widzą to samo. To jedna z najczęstszych awarii WordPressa i w większości przypadków da się ją naprawić bez utraty danych.
+
+Poniżej opisujemy, co zwykle stoi za takim błędem, co możesz sprawdzić na własną rękę i kiedy lepiej napisać do kogoś, kto zajmuje się tym na co dzień.
+
+## Skąd bierze się błąd krytyczny
+
+WordPress pokazuje ten komunikat, kiedy kod strony przestaje się wykonywać. Najczęstsze przyczyny to:
+
+* aktualizacja wtyczki lub motywu, po której coś przestało ze sobą współpracować,
+* zmiana wersji PHP na serwerze, którą hosting czasem przeprowadza automatycznie,
+* za mało pamięci przydzielonej stronie,
+* uszkodzony plik po nieudanej aktualizacji albo przerwanym przesyłaniu plików,
+* rzadziej złośliwy kod, który ktoś dopisał do strony.
+
+Jeśli błąd pojawił się zaraz po aktualizacji albo instalacji czegoś nowego, to niemal na pewno tam jest przyczyna.
+
+## Sprawdź skrzynkę mailową
+
+Przy błędzie krytycznym WordPress zwykle wysyła maila na adres administratora strony. W temacie jest informacja o problemie technicznym, a w treści nazwa wtyczki lub motywu, który go spowodował, oraz link do **trybu odzyskiwania**.
+
+Ten link pozwala zalogować się do panelu mimo awarii i wyłączyć problematyczny dodatek. Jeśli mail przyszedł, to często najszybsza droga do naprawy. Sprawdź też folder spam.
+
+## Wyłącz wtyczki
+
+Jeśli maila nie ma, a nie możesz wejść do panelu, wtyczki da się wyłączyć z poziomu plików na serwerze:
+
+1. Zaloguj się do menedżera plików na hostingu albo przez FTP.
+2. Wejdź do folderu `wp-content`.
+3. Zmień nazwę folderu `plugins` na np. `plugins-off`.
+
+WordPress nie znajdzie wtedy żadnej wtyczki i wszystkie zostaną wyłączone. Jeśli strona zacznie działać, przywróć oryginalną nazwę folderu i włączaj wtyczki w panelu po jednej, aż znajdziesz tę, która psuje stronę.
+
+Uwaga: część stron bez wtyczek wygląda inaczej albo traci niektóre funkcje. To normalne i wróci po ich ponownym włączeniu.
+
+## Sprawdź wersję PHP
+
+W panelu hostingu zwykle widać, jakiej wersji PHP używa strona. Jeśli niedawno się zmieniła, a strona jest stara i dawno nieaktualizowana, problem może leżeć właśnie tu. Powrót do poprzedniej wersji PHP bywa szybkim, tymczasowym ratunkiem. Na dłuższą metę trzeba jednak zaktualizować wtyczki i motyw, bo starsze wersje PHP przestają być wspierane.
+
+## Włącz tryb debugowania
+
+Jeśli znasz się trochę na plikach konfiguracyjnych, w pliku `wp-config.php` możesz włączyć zapisywanie błędów:
+
+```php
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', false );
+```
+
+Błędy trafią wtedy do pliku `wp-content/debug.log`, a nie na ekran, który widzą klienci. W logu zwykle jest dokładna ścieżka do pliku, który spowodował problem. Po naprawie wyłącz debugowanie z powrotem.
+
+## Kiedy lepiej oddać to specjaliście
+
+Warto napisać do kogoś, kto zajmuje się naprawami stron, jeśli:
+
+* nie masz dostępu do hostingu albo FTP,
+* nie masz aktualnej kopii zapasowej i boisz się coś zepsuć,
+* błąd wraca po każdej próbie naprawy,
+* w plikach są rzeczy, których nie rozpoznajesz, albo strona przekierowuje na obce adresy,
+* to sklep internetowy i każda godzina przestoju to utracone zamówienia.
+
+Przy takiej naprawie najpierw robimy kopię strony, potem szukamy przyczyny w logach, a na końcu sprawdzamy, czy reszta strony działa jak należy. Strona po innym wykonawcy nie jest problemem.
+
+## Jak uniknąć tego w przyszłości
+
+* Przed aktualizacją zawsze rób kopię zapasową.
+* Aktualizuj wtyczki po jednej, a nie wszystkie naraz, wtedy od razu wiesz, która narobiła kłopotu.
+* Usuwaj wtyczki, których nie używasz.
+* Raz na jakiś czas sprawdź, czy motyw i wtyczki są jeszcze rozwijane przez autorów.
+
+Jeśli nie masz czasu pilnować tego samodzielnie, możesz to zlecić w ramach [stałej administracji strony](/pl/services/administracja-stron).
+
+---
+
+**Strona już nie działa?** Napisz do nas albo zadzwoń. Zajmujemy się [naprawą stron WordPress](/pl/services/opieka-nad-stronami), także zrobionych przez kogoś innego. Najpierw mówimy, co się stało i ile potrwa naprawa, a dopiero potem zaczynamy prace.

@@ -2,10 +2,6 @@
 
 import { useEffect } from "react";
 
-/**
- * Śledzi z której sekcji użytkownik opuszcza stronę.
- * Dodaj do strony głównej: useExitTracking()
- */
 export function useExitTracking() {
   useEffect(() => {
     const startTime = Date.now();

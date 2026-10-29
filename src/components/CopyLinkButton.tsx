@@ -11,7 +11,7 @@ export default function CopyLinkButton({ link }: { link: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard API niedostępne (bardzo stara przeglądarka) — cichy fallback
+
     }
   }
 

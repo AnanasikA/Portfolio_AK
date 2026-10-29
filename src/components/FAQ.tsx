@@ -12,20 +12,22 @@ const fade = {
 
 const faqData = {
   pl: [
-    { q: 'Ile kosztuje strona internetowa?', a: 'Cena zależy od zakresu projektu — strony wizytówkowe zaczynają się od 3 000 zł, a bardziej rozbudowane rozwiązania wyceniam indywidualnie. Zawsze dostajesz wycenę przed rozpoczęciem pracy, bez niespodzianek.' },
-    { q: 'Ile czasu zajmuje realizacja?', a: 'Proste strony (landing page, wizytówka) realizuję w 7–14 dni roboczych od dostarczenia materiałów, a bardziej rozbudowane w 4–6 tygodni. Termin ustalamy na starcie i się go trzymam.' },
-    { q: 'Czy będę mógł sam edytować stronę?', a: 'Tak — strony WordPress dostajesz z panelem, który pozwala zmieniać treści bez wiedzy technicznej. Przeprowadzam krótkie szkolenie po wdrożeniu.' },
-    { q: 'Czy pracujecie z firmami spoza Polski?', a: 'Oczywiście. Współpracuję zdalnie z klientami z całej Europy. Komunikacja odbywa się po polsku lub angielsku.' },
-    { q: 'Czego potrzebujecie ode mnie na start?', a: 'Na początku wystarczy krótki brief — czym się zajmujesz, do kogo kierujesz ofertę i jakie masz cele. Resztą się zajmuję.' },
-    { q: 'Czy przeprojektowujecie istniejące strony?', a: 'Tak, zajmuję się również redesignem. Analizuję obecną stronę, wskazuję co warto poprawić i przygotowuję nową wersję.' },
+    { q: 'Ile kosztuje strona internetowa?', a: 'Prosta strona zaczyna się od 1 500 zł, a sklep internetowy od 2 800 zł. Ostateczna cena zależy od zakresu. Wycenę dostajesz przed rozpoczęciem pracy i później się ona nie zmienia.' },
+    { q: 'Ile czasu zajmuje realizacja?', a: 'Prostą stronę robimy zwykle w 7–14 dni od otrzymania materiałów. Bardziej rozbudowane projekty trwają 4–6 tygodni. Termin ustalamy na starcie.' },
+    { q: 'Moja strona przestała działać. Pomożecie?', a: 'Tak. Zajmujemy się diagnozą i naprawą stron, także na WordPressie i także wtedy, gdy stronę robił ktoś inny. Napisz, co się dzieje, a powiemy, co da się zrobić i ile to potrwa.' },
+    { q: 'Czy zajmujecie się stałą opieką nad stroną?', a: 'Tak. Aktualizujemy WordPressa i wtyczki, robimy kopie zapasowe i wprowadzamy drobne zmiany. Pakiety opieki zaczynają się od 120 zł miesięcznie.' },
+    { q: 'Czy będę mógł sam edytować stronę?', a: 'Tak. Strony na WordPressie dostajesz z prostym panelem do zmiany treści, a po wdrożeniu pokazujemy, jak z niego korzystać.' },
+    { q: 'Czy pracujecie tylko lokalnie?', a: 'Nie. Działamy w Kątach Wrocławskich i we Wrocławiu, gdzie możemy się spotkać na rozmowę, ale z klientami z całej Polski pracujemy zdalnie. Rozmawiamy po polsku i angielsku.' },
+    { q: 'Czego potrzebujecie ode mnie na start?', a: 'Wystarczy kilka zdań: czym się zajmujesz, do kogo kierujesz ofertę i czego oczekujesz od strony. Resztę ustalimy razem.' },
   ],
   en: [
-    { q: 'How much does a website cost?', a: 'Pricing depends on the scope — business card websites start from €700, and more complex solutions are quoted individually. You always get a quote before work begins, no surprises.' },
-    { q: 'How long does it take?', a: 'Simple websites (landing page, business card site) take 7–14 business days from when you deliver the materials; more complex ones take 4–6 weeks. We agree on the deadline upfront and I stick to it.' },
-    { q: 'Can I edit the website myself?', a: 'Yes — WordPress sites come with a panel that lets you update content without any technical knowledge. I provide a short walkthrough after launch.' },
-    { q: 'Do you work with companies outside Poland?', a: 'Absolutely. I collaborate remotely with clients across Europe. Communication can be in Polish or English.' },
-    { q: 'What do you need from me to get started?', a: 'Just a short brief — what you do, who your audience is, and what goals you have. I take care of the rest.' },
-    { q: 'Do you redesign existing websites?', a: 'Yes, I also handle redesigns. I analyse your current site, identify what should be improved, and build a new version.' },
+    { q: 'How much does a website cost?', a: 'A simple website starts at 1,500 PLN and an online store at 2,800 PLN. The final price depends on scope. You get a quote before we start and it does not change later.' },
+    { q: 'How long does it take?', a: 'A simple site usually takes 7–14 days from receiving the materials. Larger projects take 4–6 weeks. We agree on the date at the start.' },
+    { q: 'My website stopped working. Can you help?', a: 'Yes. We diagnose and fix websites, including WordPress sites built by someone else. Tell us what is happening and we will say what can be done and how long it will take.' },
+    { q: 'Do you offer ongoing website care?', a: 'Yes. We update WordPress and plugins, make backups and handle small changes. Care plans start at 120 PLN per month.' },
+    { q: 'Can I edit the website myself?', a: 'Yes. WordPress sites come with a simple panel for editing content, and after launch we show you how to use it.' },
+    { q: 'Do you only work locally?', a: 'No. We are based around Kąty Wrocławskie and Wrocław, where we can meet in person, and we work remotely with clients across Poland. We speak Polish and English.' },
+    { q: 'What do you need from me to get started?', a: 'Just a few sentences: what you do, who your customers are and what you expect from the website. We will work out the rest together.' },
   ],
 };
 
@@ -82,7 +84,6 @@ export default function FAQ() {
 
         <div className="faq-inner">
 
-          {/* Left */}
           <div className="faq-sticky">
             <motion.span variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }}
               style={{ display:'inline-flex', alignItems:'center', gap:'.6em', fontFamily:'var(--fd)', fontWeight:600, fontSize:'.76rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--brand)', marginBottom:14 }}>
@@ -98,14 +99,14 @@ export default function FAQ() {
             <motion.p variants={fade} custom={.12} initial="hidden" whileInView="visible" viewport={{ once: true }}
               style={{ fontFamily:'var(--fb)', fontSize:'clamp(.9rem,1.2vw,1.05rem)', color:'var(--muted)', lineHeight:1.65, marginBottom:28 }}>
               {isEn
-                ? "Don't see your question? Send a quick message — you'll get a concrete answer, no sales pressure."
-                : 'Nie znalazłeś odpowiedzi? Napisz krótką wiadomość — otrzymasz konkretną odpowiedź, bez presji sprzedaży.'}
+                ? "Don't see your question? Send us a short message and you will get a straight answer, no sales pressure."
+                : 'Nie ma tu Twojego pytania? Napisz do nas krótko, a dostaniesz konkretną odpowiedź, bez presji sprzedaży.'}
             </motion.p>
 
             <motion.a
               ref={btnRef}
               variants={fade} custom={.18} initial="hidden" whileInView="visible" viewport={{ once: true }}
-              href="mailto:hello@akwebdesign.pl"
+              href="mailto:kontakt@anastasiiakupriianets.pl"
               style={{ display:'inline-flex', alignItems:'center', gap:8, fontFamily:'var(--fd)', fontWeight:600, fontSize:'.95rem', background:'var(--brand)', color:'#fff', borderRadius:99, padding:'.82em 1.7em', textDecoration:'none', transition:'transform .25s, box-shadow .25s' }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 16px 32px rgba(29,78,216,.4)'; }}
               onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform=''; (e.currentTarget as HTMLElement).style.boxShadow=''; }}>
@@ -113,7 +114,6 @@ export default function FAQ() {
             </motion.a>
           </div>
 
-          {/* Right — accordion */}
           <div style={{ display:'flex', flexDirection:'column' }}>
             {items.map((item, i) => {
               const isOpen = open === i;
@@ -138,7 +138,6 @@ export default function FAQ() {
                       {item.q}
                     </span>
 
-                    {/* +/× icon */}
                     <motion.span
                       animate={{ rotate: isOpen ? 45 : 0, backgroundColor: isOpen ? 'var(--brand)' : 'transparent' }}
                       transition={{ duration: .28, ease: [.22,1,.36,1] }}

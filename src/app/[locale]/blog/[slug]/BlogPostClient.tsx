@@ -88,7 +88,6 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
 
       <main style={{ background: 'var(--bg)', color: 'var(--ink)' }}>
 
-        {/* ── Hero ── */}
         <div style={{
           background: 'var(--bg)',
           paddingTop: 'clamp(100px,14vh,140px)',
@@ -97,7 +96,6 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
         }}>
           <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
-            {/* back link */}
             <Link href="/blog"
               style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:'var(--fd)', fontWeight:600, fontSize:'.85rem', color:'var(--muted)', textDecoration:'none', marginBottom:28, transition:'color .2s' }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.color='var(--brand)'}
@@ -106,7 +104,6 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
               {isEn ? 'Back to blog' : 'Wróć do bloga'}
             </Link>
 
-            {/* tags */}
             {post.tags.length > 0 && (
               <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:20 }}>
                 {post.tags.map(tag => (
@@ -117,7 +114,6 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
               </div>
             )}
 
-            {/* title */}
             <h1 style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(2rem,5vw,3.6rem)', letterSpacing:'-.035em', lineHeight:.97, color:'var(--ink)', marginBottom:16, maxWidth:'18ch' }}>
               {post.title}
             </h1>
@@ -139,7 +135,6 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
           </div>
         </div>
 
-        {/* ── Body ── */}
         <div style={{ background: 'var(--surface)', paddingTop: 'clamp(32px,5vw,56px)', paddingBottom: 'clamp(64px,10vw,120px)', overflowX: 'clip' }}>
           <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
@@ -152,7 +147,6 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
 
             <div className="blog-layout">
 
-              {/* Article */}
               <div>
                 <div style={{ background:'var(--bg)', borderRadius:'var(--r-l)', border:'1px solid var(--line)', boxShadow:'0 4px 24px rgba(0,0,0,0.05)', overflow:'hidden' }}>
                   <article className="blog-article" style={{ padding:'clamp(28px,5vw,56px)' }}>
@@ -160,7 +154,6 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
                   </article>
                 </div>
 
-                {/* CTA banner */}
                 <div style={{
                   marginTop: 24,
                   background: 'linear-gradient(135deg,var(--brand) 0%,var(--brand-deep,#1e40af) 100%)',
@@ -173,7 +166,7 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
                     {isEn ? 'Need a website for your business?' : 'Potrzebujesz strony dla swojej firmy?'}
                   </p>
                   <p style={{ fontFamily:'var(--fb)', fontSize:'.95rem', color:'rgba(255,255,255,.8)', marginBottom:24 }}>
-                    {isEn ? 'Write to me — I will help you choose the right solution.' : 'Napisz do mnie — pomogę dobrać odpowiednie rozwiązanie.'}
+                    {isEn ? 'Write to us and we will help you choose the right solution.' : 'Napisz do nas, pomożemy dobrać odpowiednie rozwiązanie.'}
                   </p>
                   <button
                     onClick={() => window.dispatchEvent(new CustomEvent('open-brief'))}
@@ -185,11 +178,9 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
                 </div>
               </div>
 
-              {/* Sidebar */}
               <aside className="sticky blog-sidebar">
                 <div className="blog-sidebar-inner">
 
-                  {/* Info */}
                   <div style={{ background:'var(--bg)', borderRadius:'var(--r-l)', border:'1px solid var(--line)', padding:'clamp(18px,2.5vw,24px)' }}>
                     <p style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'.7rem', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--muted)', marginBottom:16 }}>
                       {isEn ? 'About the article' : 'O artykule'}
@@ -216,13 +207,12 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
                     </div>
                   </div>
 
-                  {/* CTA sidebar */}
                   <div style={{ background:'var(--bg)', borderRadius:'var(--r-l)', border:'1px solid var(--line)', padding:'clamp(18px,2.5vw,24px)' }}>
                     <p style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'1rem', color:'var(--ink)', marginBottom:8, lineHeight:1.3 }}>
                       {isEn ? 'Ready to start your project?' : 'Gotowy na nową stronę?'}
                     </p>
                     <p style={{ fontFamily:'var(--fb)', fontSize:'.85rem', color:'var(--muted)', lineHeight:1.6, marginBottom:16 }}>
-                      {isEn ? 'Get a free quote — no strings attached.' : 'Bezpłatna wycena bez zobowiązań.'}
+                      {isEn ? 'Get a free quote, no strings attached.' : 'Bezpłatna wycena bez zobowiązań.'}
                     </p>
                     <button
                       onClick={() => window.dispatchEvent(new CustomEvent('open-brief'))}
@@ -233,7 +223,6 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
                     </button>
                   </div>
 
-                  {/* Back */}
                   <Link href="/blog"
                     style={{ display:'flex', alignItems:'center', gap:8, fontFamily:'var(--fd)', fontWeight:600, fontSize:'.85rem', color:'var(--muted)', textDecoration:'none', background:'var(--bg)', borderRadius:'var(--r-l)', border:'1px solid var(--line)', padding:'14px 18px', transition:'color .2s, border-color .2s' }}
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color='var(--brand)'; (e.currentTarget as HTMLElement).style.borderColor='var(--brand)'; }}

@@ -4,9 +4,6 @@ import { useEffect, useState } from 'react';
 import Header       from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 
-// Pływający przycisk WhatsApp zastąpił pasek MobileCtaBar (w layout.tsx) —
-// WhatsApp jest teraz na telefonach na wszystkich podstronach, nie tylko tutaj.
-
 export default function HomeClient({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(prev => !prev);

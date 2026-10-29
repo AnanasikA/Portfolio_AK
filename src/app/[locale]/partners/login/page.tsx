@@ -68,7 +68,6 @@ export default function PartnerLoginPage() {
 
   return (
     <PartnersShell>
-      {/* Logowanie partnera — panel prywatny, nie strona do indeksowania */}
       <meta name="robots" content="noindex, nofollow" />
       <style>{`
         .pl-input {
@@ -155,7 +154,7 @@ export default function PartnerLoginPage() {
                   Podaj kod z maila
                 </h1>
                 <p style={{ color: "var(--muted)", lineHeight: 1.6, marginBottom: 32, maxWidth: 360, marginLeft: "auto", marginRight: "auto" }}>
-                  Wysłałam 8-cyfrowy kod na <strong>{email}</strong>. Przepisz
+                  Wysłaliśmy 8-cyfrowy kod na <strong>{email}</strong>. Przepisz
                   go poniżej — to szybsze i pewniejsze niż klikanie w link.
                 </p>
 

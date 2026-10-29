@@ -5,28 +5,30 @@ import type {
   ServiceFAQ,
 } from './types';
 
-
 const PROCESS_DEFAULT: ServiceProcess[] = [
-  { step: '01', title: 'Brief',     desc: 'Poznaję Twój biznes, cele i grupę docelową. Ustalamy zakres, terminy i budżet.' },
-  { step: '02', title: 'Projekt',   desc: 'Tworzę projekt graficzny w Figma. Dostajesz podgląd i możliwość korekty.' },
-  { step: '03', title: 'Kodowanie', desc: 'Buduję stronę zgodnie z projektem — czysty kod, optymalizacja i responsywność.' },
-  { step: '04', title: 'Poprawki',  desc: '2 rundy poprawek w cenie. Dostosowuję każdy detal do Twoich oczekiwań.' },
-  { step: '05', title: 'Wdrożenie', desc: 'Uruchamiam stronę na docelowym hostingu, konfiguruję domenę i SSL.' },
-  { step: '06', title: 'Wsparcie',  desc: '30 dni wsparcia technicznego w cenie. Jestem dostępna po każdym pytaniu.' },
+  { step: '01', title: 'Brief',     desc: 'Poznajemy Twój biznes, cele i grupę docelową. Ustalamy zakres, terminy i budżet.' },
+  { step: '02', title: 'Projekt',   desc: 'Tworzymy projekt graficzny w Figma. Dostajesz podgląd i możliwość korekty.' },
+  { step: '03', title: 'Kodowanie', desc: 'Budujemy stronę zgodnie z projektem: czysty kod, optymalizacja i responsywność.' },
+  { step: '04', title: 'Poprawki',  desc: '2 rundy poprawek w cenie. Dostosowujemy każdy detal do Twoich oczekiwań.' },
+  { step: '05', title: 'Wdrożenie', desc: 'Uruchamiamy stronę na docelowym hostingu, konfigurujemy domenę i SSL.' },
+  { step: '06', title: 'Wsparcie',  desc: '30 dni wsparcia technicznego w cenie. Odpowiadamy na pytania także po starcie strony.' },
 ];
 
 const webDevelopment: ServiceData = {
   slug: 'tworzenie-stron-internetowych',
   title: 'Tworzenie stron internetowych',
   subtitle:
-    'Projektuję strony internetowe od podstaw — bez gotowych szablonów. Każda powstaje z myślą o Twojej firmie, szybkości działania i łatwym kontakcie z klientami.',
+    'Projektujemy i tworzymy strony internetowe od podstaw, bez gotowych szablonów. Pracujemy z firmami z Kątów Wrocławskich, Wrocławia i całej Polski.',
   description:
-    'Tworzę strony internetowe dla firm i freelancerów. Każdy projekt przygotowuję indywidualnie, dbając o szybkość działania, SEO oraz wygodę korzystania na telefonach i komputerach.',
+    'Tworzenie stron internetowych w Kątach Wrocławskich, Wrocławiu i całej Polsce. Indywidualny projekt, WordPress lub Next.js, szybkie działanie i przygotowanie pod SEO. Strony od 1 500 zł.',
   keywords: [
     'tworzenie stron internetowych',
     'strona internetowa dla firmy',
     'wykonanie strony internetowej',
     'projekt strony internetowej',
+    'strony internetowe Kąty Wrocławskie',
+    'tworzenie stron internetowych Kąty Wrocławskie',
+    'strony internetowe Wrocław',
     'webdesign Wrocław',
     'programowanie stron',
   ],
@@ -34,21 +36,21 @@ const webDevelopment: ServiceData = {
   heroPoster: '/videos/services/web-development-poster.webp',
   heroLabel: 'Web Development',
   heroStats: [
-    { value: '14+', label: 'zrealizowanych projektów' },
-    { value: '100%', label: 'custom kod' },
+    { value: 'od 1 500 zł', label: 'prosta strona' },
+    { value: '7–14 dni', label: 'czas realizacji prostej strony' },
     { value: '30 dni', label: 'wsparcia w cenie' },
   ],
-  whyTitle: 'Dlaczego warto zlecić mi stworzenie strony?',
+  whyTitle: 'Dlaczego warto zlecić nam stworzenie strony?',
   why: [
     {
       icon: 'star',
       title: 'Indywidualny projekt',
-      desc: 'Każda strona jest projektowana od podstaw pod Twoją ofertę i sposób działania firmy — bez gotowych szablonów.',
+      desc: 'Każda strona jest projektowana od podstaw pod Twoją ofertę i sposób działania firmy, bez gotowych szablonów.',
     },
     {
       icon: 'bolt',
       title: 'Szybkie ładowanie',
-      desc: 'Dbam o szybkie ładowanie strony, dzięki czemu użytkownicy nie czekają, a Google lepiej ocenia jej wydajność.',
+      desc: 'Dbamy o szybkie ładowanie strony, dzięki czemu użytkownicy nie czekają, a Google lepiej ocenia jej wydajność.',
     },
     {
       icon: 'mobile',
@@ -58,17 +60,17 @@ const webDevelopment: ServiceData = {
     {
       icon: 'search',
       title: 'Przygotowana pod SEO',
-      desc: 'Dbam o semantyczny HTML, meta tagi, sitemap i robots.txt, żeby strona miała dobrą podstawę pod pozycjonowanie.',
+      desc: 'Dbamy o semantyczny HTML, meta tagi, sitemap i robots.txt, żeby strona miała dobrą podstawę pod pozycjonowanie.',
     },
     {
       icon: 'shield',
       title: 'Bezpieczeństwo',
-      desc: 'Wdrażam SSL, bezpieczne nagłówki HTTP i podstawowe zabezpieczenia strony.',
+      desc: 'Wdrażamy SSL, bezpieczne nagłówki HTTP i podstawowe zabezpieczenia strony.',
     },
     {
       icon: 'chat',
       title: 'Dopracowany UX/UI',
-      desc: 'Projektuję układ strony tak, aby użytkownik łatwo znalazł ofertę, kontakt i mógł szybko wysłać zapytanie.',
+      desc: 'Projektujemy układ strony tak, aby użytkownik łatwo znalazł ofertę, kontakt i mógł szybko wysłać zapytanie.',
     },
   ],
   whatTitle: 'Co otrzymujesz w standardzie?',
@@ -90,7 +92,7 @@ const webDevelopment: ServiceData = {
       name: 'Starter',
       from: 1500,
       features: [
-        'Landing page — 1 strona',
+        'Landing page (1 strona)',
         'Projekt graficzny',
         'Formularz kontaktowy',
         'Podstawowe przygotowanie pod SEO',
@@ -126,19 +128,23 @@ const webDevelopment: ServiceData = {
   faq: [
     {
       q: 'Ile kosztuje stworzenie strony internetowej?',
-      a: 'Koszt zależy od zakresu projektu. Landing page zaczyna się od 1 500 zł, a prosta strona firmowa od ok. 3 000 zł netto. Szczegółową wycenę przygotowuję po krótkiej konsultacji.',
+      a: 'Koszt zależy od zakresu projektu. Landing page zaczyna się od 1 500 zł, a prosta strona firmowa od ok. 3 000 zł netto. Szczegółową wycenę przygotowujemy po krótkiej konsultacji.',
     },
     {
       q: 'Jak długo trwa realizacja strony?',
-      a: 'Proste strony i landing page realizuję w 7–14 dni roboczych, a bardziej rozbudowane strony firmowe w 4–6 tygodni. Termin zależy od zakresu projektu i dostępności materiałów.',
+      a: 'Proste strony i landing page realizujemy w 7–14 dni roboczych, a bardziej rozbudowane strony firmowe w 4–6 tygodni. Termin zależy od zakresu projektu i dostępności materiałów.',
     },
     {
       q: 'Czy strona będzie responsywna na telefonach?',
       a: 'Tak. Każda strona jest tworzona mobile-first i testowana na telefonach, tabletach oraz różnych rozdzielczościach ekranu.',
     },
     {
-      q: 'Jakich technologii używasz?',
-      a: 'Najczęściej pracuję w Next.js, React i Tailwind CSS. Tworzę też strony na WordPressie z autorskim motywem. Technologię dobieram do potrzeb projektu.',
+      q: 'Czy można się spotkać osobiście?',
+      a: 'Tak. Z klientami z Kątów Wrocławskich, Wrocławia i okolic chętnie spotykamy się na rozmowę, np. w kawiarni. Z osobami z innych miast pracujemy zdalnie, przez telefon, maila i wideorozmowy.',
+    },
+    {
+      q: 'Jakich technologii używacie?',
+      a: 'Najczęściej pracujemy w Next.js, React i Tailwind CSS. Tworzymy też strony na WordPressie z autorskim motywem. Technologię dobieramy do potrzeb projektu.',
     },
     {
       q: 'Czy mogę samodzielnie edytować stronę po wdrożeniu?',
@@ -146,15 +152,15 @@ const webDevelopment: ServiceData = {
     },
     {
       q: 'Co z hostingiem i domeną?',
-      a: 'Pomagam dobrać i skonfigurować hosting oraz domenę. Strony Next.js najczęściej wdrażam na Vercel, a WordPress na Cyberfolks lub hostingu klienta.',
+      a: 'Pomagamy dobrać i skonfigurować hosting oraz domenę. Strony Next.js najczęściej wdrażamy na Vercel, a WordPress na Cyberfolks lub hostingu klienta.',
     },
     {
-      q: 'Czy zajmujesz się SEO?',
-      a: 'Każda strona ma podstawowe SEO techniczne: meta tagi, OG, sitemap, robots.txt i semantyczny HTML. Nie prowadzę stałych kampanii pozycjonowania.',
+      q: 'Czy zajmujecie się SEO?',
+      a: 'Każda strona ma podstawowe SEO techniczne: meta tagi, OG, sitemap, robots.txt i semantyczny HTML. Nie prowadzimy stałych kampanii pozycjonowania.',
     },
     {
       q: 'Co jeśli nie spodoba mi się projekt?',
-      a: 'W cenie są 2 rundy poprawek. Projekt przygotowuję w Figma, więc widzisz wygląd strony przed kodowaniem i możesz zgłosić zmiany.',
+      a: 'W cenie są 2 rundy poprawek. Projekt przygotowujemy w Figma, więc widzisz wygląd strony przed kodowaniem i możesz zgłosić zmiany.',
     },
   ],
   schema: {
@@ -169,9 +175,9 @@ const webDesign: ServiceData = {
   slug: 'projektowanie-stron',
   title: 'Projektowanie stron internetowych',
   subtitle:
-    'Projektuję strony internetowe w Figma — estetyczne, przejrzyste i dopasowane do Twojej marki oraz potrzeb użytkowników.',
+    'Projektujemy strony internetowe w Figmie. Estetyczne, przejrzyste i dopasowane do Twojej marki oraz potrzeb użytkowników.',
   description:
-    'Projektuję strony internetowe w Figma dla firm i freelancerów. Każdy projekt tworzę indywidualnie, dbając o czytelny układ, wygodę użytkownika i spójność z identyfikacją wizualną.',
+    'Projektujemy strony internetowe w Figma dla firm i freelancerów. Każdy projekt tworzymy indywidualnie, dbając o czytelny układ, wygodę użytkownika i spójność z identyfikacją wizualną.',
   keywords: [
     'projektowanie stron internetowych',
     'projekt strony internetowej',
@@ -192,12 +198,12 @@ const webDesign: ServiceData = {
     {
       icon: 'star',
       title: 'Projekt dopasowany do marki',
-      desc: 'Tworzę projekt zgodny z identyfikacją wizualną Twojej firmy — kolorystyką, typografią i charakterem marki.',
+      desc: 'Tworzymy projekt zgodny z identyfikacją wizualną Twojej firmy: kolorystyką, typografią i charakterem marki.',
     },
     {
       icon: 'search',
       title: 'Projektowanie z myślą o użytkowniku',
-      desc: 'Układ strony planuję tak, aby użytkownik szybko znalazł najważniejsze informacje i łatwo nawiązał kontakt.',
+      desc: 'Układ strony planujemy tak, aby użytkownik szybko znalazł najważniejsze informacje i łatwo nawiązał kontakt.',
     },
     {
       icon: 'code',
@@ -207,17 +213,17 @@ const webDesign: ServiceData = {
     {
       icon: 'mobile',
       title: 'Projekt responsywny',
-      desc: 'Projekt przygotowuję z myślą o telefonach, tabletach i komputerach, aby dobrze wyglądał na każdym urządzeniu.',
+      desc: 'Projekt przygotowujemy z myślą o telefonach, tabletach i komputerach, aby dobrze wyglądał na każdym urządzeniu.',
     },
     {
       icon: 'target',
       title: 'Nastawienie na kontakt',
-      desc: 'Przyciski, formularze i układ treści projektuję tak, aby ułatwić użytkownikowi wykonanie kolejnego kroku.',
+      desc: 'Przyciski, formularze i układ treści projektujemy tak, aby ułatwić użytkownikowi wykonanie kolejnego kroku.',
     },
     {
       icon: 'refresh',
       title: 'Współpraca na każdym etapie',
-      desc: 'Regularnie pokazuję postępy prac i uwzględniam Twoje uwagi przed zakończeniem projektu.',
+      desc: 'Regularnie pokazujemy postępy prac i uwzględniamy Twoje uwagi przed zakończeniem projektu.',
     },
   ],
   whatTitle: 'Co otrzymujesz w ramach projektu graficznego?',
@@ -269,28 +275,28 @@ const webDesign: ServiceData = {
   ],
   faq: [
     {
-      q: 'Czy projektujesz również logo i identyfikację wizualną?',
-      a: 'Nie tworzę identyfikacji wizualnej od podstaw. Projekt strony przygotowuję na podstawie materiałów i stylu Twojej marki.',
+      q: 'Czy projektujecie również logo i identyfikację wizualną?',
+      a: 'Nie tworzymy identyfikacji wizualnej od podstaw. Projekt strony przygotowujemy na podstawie materiałów i stylu Twojej marki.',
     },
     {
-      q: 'W jakim programie projektujesz?',
-      a: 'Pracuję w Figma. Możesz na bieżąco przeglądać projekt, dodawać komentarze i po zakończeniu otrzymujesz dostęp do pliku.',
+      q: 'W jakim programie projektujecie?',
+      a: 'Pracujemy w Figma. Możesz na bieżąco przeglądać projekt, dodawać komentarze i po zakończeniu otrzymujesz dostęp do pliku.',
     },
     {
       q: 'Jak wygląda proces projektowania?',
-      a: 'Zaczynam od poznania Twojej firmy i potrzeb. Następnie przygotowuję układ strony, projekt graficzny oraz interaktywny prototyp. Na każdym etapie możesz zgłaszać uwagi.',
+      a: 'Zaczynamy od poznania Twojej firmy i potrzeb. Następnie przygotowujemy układ strony, projekt graficzny oraz interaktywny prototyp. Na każdym etapie możesz zgłaszać uwagi.',
     },
     {
       q: 'Ile trwa przygotowanie projektu?',
-      a: 'Landing page zwykle przygotowuję w 3–5 dni roboczych, a projekt strony firmowej w około 1–2 tygodnie. Termin zależy od zakresu projektu i tempa akceptacji.',
+      a: 'Landing page zwykle przygotowujemy w 3–5 dni roboczych, a projekt strony firmowej w około 1–2 tygodnie. Termin zależy od zakresu projektu i tempa akceptacji.',
     },
     {
       q: 'Czy otrzymam plik do edycji?',
       a: 'Tak. Po zakończeniu projektu i rozliczeniu otrzymujesz pełny dostęp do pliku Figma.',
     },
     {
-      q: 'Czy projektujesz materiały do druku?',
-      a: 'Nie. Skupiam się na projektowaniu stron internetowych i interfejsów aplikacji webowych.',
+      q: 'Czy projektujecie materiały do druku?',
+      a: 'Nie. Skupiamy się na projektowaniu stron internetowych i interfejsów aplikacji webowych.',
     },
     {
       q: 'Czy mogę zamówić sam projekt bez wdrożenia?',
@@ -298,7 +304,7 @@ const webDesign: ServiceData = {
     },
     {
       q: 'Czy projekt będzie gotowy do wdrożenia?',
-      a: 'Tak. Projekt przygotowuję w sposób ułatwiający jego późniejsze zakodowanie, dzięki czemu wdrożenie przebiega sprawniej.',
+      a: 'Tak. Projekt przygotowujemy w sposób ułatwiający jego późniejsze zakodowanie, dzięki czemu wdrożenie przebiega sprawniej.',
     },
   ],
   schema: {
@@ -312,9 +318,9 @@ const businessWebsites: ServiceData = {
   slug: 'strony-dla-firm',
   title: 'Strony internetowe dla firm',
   subtitle:
-    'Projektuję strony internetowe dla firm, które pomagają budować wiarygodność, ułatwiają kontakt z klientami i wspierają rozwój biznesu.',
+    'Projektujemy strony internetowe dla firm, które pomagają budować wiarygodność, ułatwiają kontakt z klientami i wspierają rozwój biznesu.',
   description:
-    'Tworzę strony internetowe dla firm z indywidualnym projektem, technicznym SEO i pełną responsywnością. Realizuję projekty dla klientów z Wrocławia i całej Polski.',
+    'Tworzymy strony internetowe dla firm z indywidualnym projektem, technicznym SEO i pełną responsywnością. Realizujemy projekty dla klientów z Wrocławia i całej Polski.',
   keywords: [
     'strony internetowe dla firm',
     'strona firmowa',
@@ -323,10 +329,10 @@ const businessWebsites: ServiceData = {
     'webdesign dla biznesu',
   ],
    heroVideo: '/videos/services/business-websites.mp4',
-   heroPoster: '/videos/services/business-websites.webp',
+   heroPoster: '/videos/services/business-websites-poster.webp',
   heroLabel: 'Strony firmowe',
   heroStats: [
-    { value: '14+', label: 'zrealizowanych projektów' },
+    { value: 'od 1 500 zł', label: 'strona dla firmy' },
     { value: '2–4', label: 'tygodnie realizacji' },
     { value: 'SEO', label: 'techniczne w standardzie' },
   ],
@@ -340,7 +346,7 @@ const businessWebsites: ServiceData = {
     {
       icon: 'search',
       title: 'Przygotowana pod SEO',
-      desc: 'Dbam o semantyczny kod, meta tagi, sitemap i pozostałe elementy technicznego SEO już na etapie tworzenia strony.',
+      desc: 'Dbamy o semantyczny kod, meta tagi, sitemap i pozostałe elementy technicznego SEO już na etapie tworzenia strony.',
     },
     {
       icon: 'mobile',
@@ -350,7 +356,7 @@ const businessWebsites: ServiceData = {
     {
       icon: 'bolt',
       title: 'Szybkie działanie',
-      desc: 'Optymalizuję stronę, aby ładowała się sprawnie i zapewniała wygodne korzystanie użytkownikom.',
+      desc: 'Optymalizujemy stronę, aby ładowała się sprawnie i zapewniała wygodne korzystanie użytkownikom.',
     },
     {
       icon: 'target',
@@ -360,7 +366,7 @@ const businessWebsites: ServiceData = {
     {
       icon: 'lock',
       title: 'Bezpieczeństwo',
-      desc: 'Wdrażam certyfikat SSL oraz podstawowe zabezpieczenia zwiększające bezpieczeństwo strony.',
+      desc: 'Wdrażamy certyfikat SSL oraz podstawowe zabezpieczenia zwiększające bezpieczeństwo strony.',
     },
   ],
   whatTitle: 'Co otrzymujesz w standardzie?',
@@ -422,30 +428,30 @@ const businessWebsites: ServiceData = {
     },
     {
       q: 'Czy strona będzie przygotowana pod Google Ads?',
-      a: 'Tak. Mogę przygotować stronę z myślą o kampaniach Google Ads, dbając o szybkie działanie, czytelny układ i możliwość mierzenia konwersji.',
+      a: 'Tak. Możemy przygotować stronę z myślą o kampaniach Google Ads, dbając o szybkie działanie, czytelny układ i możliwość mierzenia konwersji.',
     },
     {
       q: 'Jak długo trwa realizacja?',
-      a: 'Prostsze strony firmowe realizuję w 7–14 dni roboczych, a bardziej rozbudowane w 4–6 tygodni. Termin zależy od zakresu projektu oraz czasu przekazywania materiałów i akceptacji.',
+      a: 'Prostsze strony firmowe realizujemy w 7–14 dni roboczych, a bardziej rozbudowane w 4–6 tygodni. Termin zależy od zakresu projektu oraz czasu przekazywania materiałów i akceptacji.',
     },
     {
       q: 'Czy strona będzie widoczna w Google?',
-      a: 'Każda strona otrzymuje podstawowe SEO techniczne, które stanowi dobrą bazę do późniejszego pozycjonowania. Nie gwarantuję konkretnych pozycji w wynikach wyszukiwania.',
+      a: 'Każda strona otrzymuje podstawowe SEO techniczne, które stanowi dobrą bazę do późniejszego pozycjonowania. Nie gwarantujemy konkretnych pozycji w wynikach wyszukiwania.',
     },
     {
       q: 'Czy mogę zlecić przebudowę istniejącej strony?',
-      a: 'Tak. Mogę odświeżyć wygląd strony, poprawić jej wydajność i dostosować ją do aktualnych standardów.',
+      a: 'Tak. Możemy odświeżyć wygląd strony, poprawić jej wydajność i dostosować ją do aktualnych standardów.',
     },
     {
-      q: 'Czy przygotowujesz treści na stronę?',
-      a: 'Treści dostarcza klient. Chętnie pomogę w zaplanowaniu struktury strony i podpowiem, jakie informacje warto umieścić.',
+      q: 'Czy przygotowujecie treści na stronę?',
+      a: 'Treści dostarcza klient. Chętnie pomożemy w zaplanowaniu struktury strony i podpowiemy, jakie informacje warto umieścić.',
     },
     {
       q: 'Czy stronę można później rozbudować?',
-      a: 'Tak. Projektuję strony w sposób umożliwiający ich dalszą rozbudowę o kolejne podstrony lub funkcjonalności.',
+      a: 'Tak. Projektujemy strony w sposób umożliwiający ich dalszą rozbudowę o kolejne podstrony lub funkcjonalności.',
     },
     {
-      q: 'Czy oferujesz wsparcie po wdrożeniu?',
+      q: 'Czy oferujecie wsparcie po wdrożeniu?',
       a: 'Tak. W cenie otrzymujesz 30 dni wsparcia technicznego po uruchomieniu strony.',
     },
   ],
@@ -460,9 +466,9 @@ const wordpressWebsites: ServiceData = {
   slug: 'wordpress',
   title: 'Strony WordPress',
   subtitle:
-    'Tworzę strony WordPress z autorskim motywem — bez gotowych szablonów i ciężkich builderów. Szybkie, bezpieczne i wygodne w późniejszej edycji.',
+    'Tworzymy strony WordPress z autorskim motywem, bez gotowych szablonów i ciężkich builderów. Szybkie, bezpieczne i wygodne w późniejszej edycji.',
   description:
-    'Projektuję i tworzę strony WordPress dla firm z autorskim motywem, intuicyjnym panelem administracyjnym oraz indywidualnym projektem graficznym.',
+    'Projektujemy i tworzymy strony WordPress dla firm z autorskim motywem, intuicyjnym panelem administracyjnym oraz indywidualnym projektem graficznym.',
   keywords: [
     'strony wordpress',
     'wordpress dla firmy',
@@ -474,7 +480,7 @@ const wordpressWebsites: ServiceData = {
    heroPoster: '/videos/services/web-development-poster.webp',
   heroLabel: 'WordPress',
   heroStats: [
-    { value: '5+', label: 'zrealizowanych stron WordPress' },
+    { value: 'Własny', label: 'motyw, bez page buildera' },
     { value: 'ACF', label: 'łatwa edycja treści' },
     { value: '100%', label: 'autorski motyw' },
   ],
@@ -488,12 +494,12 @@ const wordpressWebsites: ServiceData = {
     {
       icon: 'shield',
       title: 'Bezpieczeństwo',
-      desc: 'Dbam o odpowiednią konfigurację WordPressa oraz podstawowe zabezpieczenia zwiększające bezpieczeństwo strony.',
+      desc: 'Dbamy o odpowiednią konfigurację WordPressa oraz podstawowe zabezpieczenia zwiększające bezpieczeństwo strony.',
     },
     {
       icon: 'bolt',
       title: 'Szybkie działanie',
-      desc: 'Tworzę lekkie motywy bez zbędnych dodatków, dzięki czemu strona działa sprawnie.',
+      desc: 'Tworzymy lekkie motywy bez zbędnych dodatków, dzięki czemu strona działa sprawnie.',
     },
     {
       icon: 'code',
@@ -508,7 +514,7 @@ const wordpressWebsites: ServiceData = {
     {
       icon: 'chart',
       title: 'Przygotowana pod SEO',
-      desc: 'Integruję stronę z narzędziami analitycznymi i dbam o techniczne SEO już na etapie wdrożenia.',
+      desc: 'Integrujemy stronę z narzędziami analitycznymi i dbamy o techniczne SEO już na etapie wdrożenia.',
     },
   ],
   whatTitle: 'Co otrzymujesz w ramach strony WordPress?',
@@ -563,35 +569,35 @@ const wordpressWebsites: ServiceData = {
   ],
   faq: [
     {
-      q: 'Czym Twoja strona WordPress różni się od gotowych szablonów?',
-      a: 'Tworzę autorski motyw dopasowany do projektu zamiast korzystać z gotowych szablonów. Dzięki temu strona jest lżejsza, szybsza i łatwiejsza do rozbudowy.',
+      q: 'Czym Wasze strony WordPress różnią się od gotowych szablonów?',
+      a: 'Tworzymy autorski motyw dopasowany do projektu zamiast korzystać z gotowych szablonów. Dzięki temu strona jest lżejsza, szybsza i łatwiejsza do rozbudowy.',
     },
     {
       q: 'Czy po wdrożeniu mogę samodzielnie edytować stronę?',
-      a: 'Tak. Konfiguruję panel administracyjny tak, aby edycja treści była prosta. Dodatkowo pokazuję, jak z niego korzystać.',
+      a: 'Tak. Konfigurujemy panel administracyjny tak, aby edycja treści była prosta. Dodatkowo pokazujemy, jak z niego korzystać.',
     },
     {
-      q: 'Czy korzystasz z Elementora lub innych builderów?',
-      a: 'Nie. Tworzę autorskie motywy oparte na natywnym edytorze WordPress, dzięki czemu strona pozostaje lekka i szybka.',
+      q: 'Czy korzystacie z Elementora lub innych builderów?',
+      a: 'Nie. Tworzymy autorskie motywy oparte na natywnym edytorze WordPress, dzięki czemu strona pozostaje lekka i szybka.',
     },
     {
       q: 'Czy WordPress jest bezpieczny?',
-      a: 'Tak, jeśli jest odpowiednio skonfigurowany i regularnie aktualizowany. Dbam o podstawowe zabezpieczenia już podczas wdrożenia.',
+      a: 'Tak, jeśli jest odpowiednio skonfigurowany i regularnie aktualizowany. Dbamy o podstawowe zabezpieczenia już podczas wdrożenia.',
     },
     {
-      q: 'Czy możesz przenieść moją obecną stronę WordPress?',
-      a: 'Tak. Mogę przenieść treści oraz przygotować nową wersję strony z zachowaniem najważniejszych danych.',
+      q: 'Czy możecie przenieść moją obecną stronę WordPress?',
+      a: 'Tak. Możemy przenieść treści oraz przygotować nową wersję strony z zachowaniem najważniejszych danych.',
     },
     {
       q: 'Czy mogę później dodać sklep internetowy?',
       a: 'Tak. W przyszłości stronę można rozbudować o WooCommerce lub inne funkcjonalności.',
     },
     {
-      q: 'Czy pomagasz z hostingiem?',
-      a: 'Tak. Pomagam dobrać hosting i konfiguruję domenę oraz certyfikat SSL.',
+      q: 'Czy pomagacie z hostingiem?',
+      a: 'Tak. Pomagamy dobrać hosting i konfigurujemy domenę oraz certyfikat SSL.',
     },
     {
-      q: 'Czy oferujesz wsparcie po wdrożeniu?',
+      q: 'Czy oferujecie wsparcie po wdrożeniu?',
       a: 'Tak. W cenie otrzymujesz 30 dni wsparcia technicznego. Możliwa jest również stała opieka nad stroną.',
     },
   ],
@@ -606,9 +612,9 @@ const landingPage: ServiceData = {
   slug: 'landing-page',
   title: 'Landing page',
   subtitle:
-    'Projektuję landing page z jednym, jasno określonym celem — aby ułatwić użytkownikowi kontakt, zapis lub zakup.',
+    'Projektujemy landing page z jednym, jasno określonym celem, żeby ułatwić użytkownikowi kontakt, zapis lub zakup.',
   description:
-    'Tworzę landing page dla firm i kampanii reklamowych. Indywidualny projekt, szybkie działanie, techniczne SEO oraz konfiguracja analityki.',
+    'Tworzymy landing page dla firm i kampanii reklamowych. Indywidualny projekt, szybkie działanie, techniczne SEO oraz konfiguracja analityki.',
   keywords: [
     'landing page',
     'strona sprzedażowa',
@@ -621,7 +627,7 @@ const landingPage: ServiceData = {
   heroLabel: 'Landing Page',
   heroStats: [
     { value: '7–14', label: 'dni roboczych' },
-    { value: '90+', label: 'wydajność PageSpeed' },
+    { value: 'PageSpeed', label: 'testujemy przed startem' },
     { value: 'GA4', label: 'konfiguracja analityki' },
   ],
   whyTitle: 'Dlaczego warto wybrać landing page?',
@@ -634,12 +640,12 @@ const landingPage: ServiceData = {
     {
       icon: 'bolt',
       title: 'Szybkie działanie',
-      desc: 'Optymalizuję stronę, aby ładowała się sprawnie zarówno na telefonach, jak i komputerach.',
+      desc: 'Optymalizujemy stronę, aby ładowała się sprawnie zarówno na telefonach, jak i komputerach.',
     },
     {
       icon: 'chart',
       title: 'Pomiar efektów',
-      desc: 'Konfiguruję narzędzia analityczne, dzięki którym możesz sprawdzić skuteczność kampanii i liczbę konwersji.',
+      desc: 'Konfigurujemy narzędzia analityczne, dzięki którym możesz sprawdzić skuteczność kampanii i liczbę konwersji.',
     },
     {
       icon: 'mobile',
@@ -649,12 +655,12 @@ const landingPage: ServiceData = {
     {
       icon: 'search',
       title: 'Przygotowany pod SEO lub reklamy',
-      desc: 'Projekt dopasowuję do celu — może wspierać pozycjonowanie lub kampanie Google Ads i Meta Ads.',
+      desc: 'Projekt dopasowujemy do celu. Może wspierać pozycjonowanie lub kampanie Google Ads i Meta Ads.',
     },
     {
       icon: 'speed',
       title: 'Krótki czas realizacji',
-      desc: 'Większość landing page realizuję w ciągu 7–14 dni roboczych.',
+      desc: 'Większość landing page realizujemy w ciągu 7–14 dni roboczych.',
     },
   ],
   whatTitle: 'Co otrzymujesz w ramach landing page?',
@@ -714,15 +720,15 @@ const landingPage: ServiceData = {
     },
     {
       q: 'Czy landing page sprawdzi się do Google Ads?',
-      a: 'Tak. Projektuję landing page z myślą o kampaniach reklamowych, dbając o szybkie działanie, czytelny układ i możliwość mierzenia konwersji.',
+      a: 'Tak. Projektujemy landing page z myślą o kampaniach reklamowych, dbając o szybkie działanie, czytelny układ i możliwość mierzenia konwersji.',
     },
     {
       q: 'Jak długo trwa realizacja?',
       a: 'Najczęściej od 7 do 14 dni roboczych. Termin zależy od zakresu projektu oraz dostępności materiałów.',
     },
     {
-      q: 'Czy konfigurujesz analitykę?',
-      a: 'Tak. Mogę skonfigurować Google Analytics 4, Google Tag Manager oraz śledzenie konwersji. W razie potrzeby dodaję również Meta Pixel.',
+      q: 'Czy konfigurujecie analitykę?',
+      a: 'Tak. Możemy skonfigurować Google Analytics 4, Google Tag Manager oraz śledzenie konwersji. W razie potrzeby dodajemy również Meta Pixel.',
     },
     {
       q: 'Czy landing page będzie działał na telefonach?',
@@ -730,15 +736,15 @@ const landingPage: ServiceData = {
     },
     {
       q: 'Czy mogę zamówić kilka wersji landing page?',
-      a: 'Tak. W wyższych pakietach mogę przygotować kilka wariantów strony do późniejszych testów.',
+      a: 'Tak. W wyższych pakietach możemy przygotować kilka wariantów strony do późniejszych testów.',
     },
     {
-      q: 'Czy pomagasz z hostingiem i domeną?',
-      a: 'Tak. Pomagam wybrać hosting, skonfigurować domenę oraz certyfikat SSL.',
+      q: 'Czy pomagacie z hostingiem i domeną?',
+      a: 'Tak. Pomagamy wybrać hosting, skonfigurować domenę oraz certyfikat SSL.',
     },
     {
-      q: 'Czy możesz przebudować istniejący landing page?',
-      a: 'Tak. Mogę odświeżyć wygląd, poprawić wydajność oraz dostosować stronę do nowych kampanii reklamowych.',
+      q: 'Czy możecie przebudować istniejący landing page?',
+      a: 'Tak. Możemy odświeżyć wygląd, poprawić wydajność oraz dostosować stronę do nowych kampanii reklamowych.',
     },
   ],
   schema: {
@@ -752,15 +758,17 @@ const ecommerceWebsites: ServiceData = {
   slug: 'sklepy-internetowe',
   title: 'Sklepy internetowe',
   subtitle:
-    'Tworzę sklepy internetowe na WooCommerce i Next.js, które umożliwiają wygodne zarządzanie produktami, zamówieniami i płatnościami.',
+    'Tworzymy sklepy internetowe na WooCommerce i Next.js, także do sprzedaży produktów cyfrowych, takich jak e-booki czy materiały do pobrania. Wygodne zarządzanie produktami, zamówieniami i płatnościami.',
   description:
-    'Projektuję i tworzę sklepy internetowe dla firm. Integruję płatności online, konfiguruję panel administracyjny oraz przygotowuję sklep pod techniczne SEO.',
+    'Sklepy internetowe dla firm z Wrocławia, Kątów Wrocławskich i całej Polski. WooCommerce lub Next.js, płatności online, produkty fizyczne i cyfrowe. Sklepy od 2 800 zł.',
   keywords: [
     'sklep internetowy',
     'sklep e-commerce',
     'woocommerce',
     'next.js ecommerce',
     'tworzenie sklepów internetowych',
+    'sklepy internetowe Wrocław',
+    'sklep z produktami cyfrowymi',
   ],
   heroVideo: '/videos/services/business-websites.mp4',
   heroPoster: '/videos/services/business-websites-poster.webp',
@@ -768,7 +776,7 @@ const ecommerceWebsites: ServiceData = {
   heroStats: [
     { value: 'Stripe', label: 'integracja płatności' },
     { value: 'P24', label: 'Przelewy24 / PayU' },
-    { value: '90+', label: 'wydajność PageSpeed' },
+    { value: 'PageSpeed', label: 'testujemy przed startem' },
   ],
   whyTitle: 'Dlaczego warto zainwestować w sklep internetowy?',
   why: [
@@ -780,12 +788,12 @@ const ecommerceWebsites: ServiceData = {
     {
       icon: 'shield',
       title: 'Bezpieczne płatności',
-      desc: 'Integruję popularne systemy płatności online, aby klienci mogli wygodnie finalizować zakupy.',
+      desc: 'Integrujemy popularne systemy płatności online, aby klienci mogli wygodnie finalizować zakupy.',
     },
     {
       icon: 'bolt',
       title: 'Szybkie działanie',
-      desc: 'Dbam o wydajność sklepu, aby zakupy były wygodne zarówno na komputerach, jak i telefonach.',
+      desc: 'Dbamy o wydajność sklepu, aby zakupy były wygodne zarówno na komputerach, jak i telefonach.',
     },
     {
       icon: 'save',
@@ -795,12 +803,12 @@ const ecommerceWebsites: ServiceData = {
     {
       icon: 'chart',
       title: 'Analiza sprzedaży',
-      desc: 'Konfiguruję narzędzia analityczne, dzięki którym możesz śledzić sprzedaż i zachowania użytkowników.',
+      desc: 'Konfigurujemy narzędzia analityczne, dzięki którym możesz śledzić sprzedaż i zachowania użytkowników.',
     },
     {
       icon: 'search',
       title: 'Przygotowany pod SEO',
-      desc: 'Dbam o techniczne SEO sklepu, aby ułatwić jego późniejsze pozycjonowanie.',
+      desc: 'Dbamy o techniczne SEO sklepu, aby ułatwić jego późniejsze pozycjonowanie.',
     },
   ],
   whatTitle: 'Co otrzymujesz w ramach sklepu internetowego?',
@@ -808,6 +816,7 @@ const ecommerceWebsites: ServiceData = {
     'Stronę główną i katalog produktów',
     'Karty produktów z wariantami',
     'Koszyk i proces składania zamówienia',
+    'Możliwość sprzedaży produktów cyfrowych (pliki do pobrania)',
     'Integrację płatności online',
     'Panel do zarządzania produktami i zamówieniami',
     'Powiadomienia e-mail dla klienta i administratora',
@@ -820,7 +829,7 @@ const ecommerceWebsites: ServiceData = {
   plans: [
     {
       name: 'Starter',
-      from: 4500,
+      from: 2800,
       features: [
         'Do 50 produktów',
         'WooCommerce',
@@ -860,11 +869,11 @@ const ecommerceWebsites: ServiceData = {
     },
     {
       q: 'Czy sklep może obsługiwać polskie płatności?',
-      a: 'Tak. Integruję między innymi Przelewy24, PayU, Paynow oraz Stripe.',
+      a: 'Tak. Integrujemy między innymi Przelewy24, PayU, Paynow oraz Stripe.',
     },
     {
       q: 'Ile kosztuje sklep internetowy?',
-      a: 'Prosty sklep WooCommerce zaczyna się od około 4 500 zł netto. Bardziej rozbudowane projekty wyceniam indywidualnie po poznaniu zakresu prac.',
+      a: 'Prosty sklep WooCommerce zaczyna się od 2 800 zł. Bardziej rozbudowane projekty wyceniamy indywidualnie po poznaniu zakresu prac.',
     },
     {
       q: 'Czy otrzymam panel administracyjny?',
@@ -876,7 +885,7 @@ const ecommerceWebsites: ServiceData = {
     },
     {
       q: 'Czy mogę samodzielnie dodawać produkty?',
-      a: 'Tak. Pokazuję, jak obsługiwać panel administracyjny i przekazuję podstawowe wskazówki dotyczące jego użytkowania.',
+      a: 'Tak. Pokazujemy, jak obsługiwać panel administracyjny i przekazujemy podstawowe wskazówki dotyczące jego użytkowania.',
     },
     {
       q: 'Czy sklep będzie działał na telefonach?',
@@ -884,7 +893,7 @@ const ecommerceWebsites: ServiceData = {
     },
     {
       q: 'Czy sklep będzie przygotowany pod SEO?',
-      a: 'Tak. Wdrażam podstawowe elementy technicznego SEO, które stanowią dobrą bazę do dalszego pozycjonowania.',
+      a: 'Tak. Wdrażamy podstawowe elementy technicznego SEO, które stanowią dobrą bazę do dalszego pozycjonowania.',
     },
   ],
   schema: {
@@ -898,7 +907,7 @@ const procesAdministracja: ServiceProcess[] = [
   {
     step: '01',
     title: 'Audyt',
-    desc: 'Sprawdzam stan strony, wersje oprogramowania, aktualne problemy i miejsca, które wymagają poprawy.',
+    desc: 'Sprawdzamy stan strony, wersje oprogramowania, aktualne problemy i miejsca, które wymagają poprawy.',
   },
   {
     step: '02',
@@ -908,22 +917,22 @@ const procesAdministracja: ServiceProcess[] = [
   {
     step: '03',
     title: 'Konfiguracja',
-    desc: 'Konfiguruję potrzebne dostępy, kopie zapasowe i podstawowe narzędzia do kontroli działania strony.',
+    desc: 'Konfigurujemy potrzebne dostępy, kopie zapasowe i podstawowe narzędzia do kontroli działania strony.',
   },
   {
     step: '04',
     title: 'Stała opieka',
-    desc: 'Co miesiąc wykonuję ustalone prace, aktualizacje i drobne zmiany na stronie.',
+    desc: 'Co miesiąc wykonujemy ustalone prace, aktualizacje i drobne zmiany na stronie.',
   },
   {
     step: '05',
     title: 'Raport',
-    desc: 'Wysyłam krótkie podsumowanie wykonanych prac, aktualizacji i ewentualnych problemów.',
+    desc: 'Wysyłamy krótkie podsumowanie wykonanych prac, aktualizacji i ewentualnych problemów.',
   },
   {
     step: '06',
     title: 'Usprawnienia',
-    desc: 'W razie potrzeby proponuję poprawki związane z szybkością działania, bezpieczeństwem lub wygodą obsługi strony.',
+    desc: 'W razie potrzeby proponujemy poprawki związane z szybkością działania, bezpieczeństwem lub wygodą obsługi strony.',
   },
 ];
 
@@ -964,49 +973,49 @@ const planyAdministracja: ServicePlan[] = [
 
 const faqAdministracja: ServiceFAQ[] = [
   {
-    q: 'Jakimi stronami się opiekujesz?',
-    a: 'Najczęściej opiekuję się stronami WordPress i Next.js. Mogę też pomóc przy prostych stronach HTML/CSS.',
+    q: 'Jakimi stronami się opiekujecie?',
+    a: 'Najczęściej opiekujemy się stronami WordPress i Next.js. Możemy też pomóc przy prostych stronach HTML/CSS.',
   },
   {
-    q: 'Czy strona musi być wykonana przez Ciebie?',
-    a: 'Nie. Mogę objąć opieką także stronę wykonaną przez inną osobę. W takim przypadku zaczynam od krótkiego audytu technicznego.',
+    q: 'Czy strona musi być wykonana przez Was?',
+    a: 'Nie. Możemy objąć opieką także stronę wykonaną przez inną osobę. W takim przypadku zaczynamy od krótkiego audytu technicznego.',
   },
   {
-    q: 'Jak szybko reagujesz na zgłoszenia?',
-    a: 'Na zgłoszenia odpowiadam w godzinach roboczych. Czas reakcji zależy od wybranego pakietu i rodzaju problemu.',
+    q: 'Jak szybko reagujecie na zgłoszenia?',
+    a: 'Na zgłoszenia odpowiadamy w godzinach roboczych. Czas reakcji zależy od wybranego pakietu i rodzaju problemu.',
   },
   {
     q: 'Co jeśli potrzebuję więcej zmian niż obejmuje pakiet?',
-    a: 'Dodatkowe prace mogę rozliczyć godzinowo po wcześniejszym ustaleniu zakresu.',
+    a: 'Dodatkowe prace możemy rozliczyć godzinowo po wcześniejszym ustaleniu zakresu.',
   },
   {
     q: 'Czy otrzymam raport z wykonanych prac?',
-    a: 'Tak. Co miesiąc wysyłam krótkie podsumowanie wykonanych aktualizacji, zmian i ewentualnych problemów.',
+    a: 'Tak. Co miesiąc wysyłamy krótkie podsumowanie wykonanych aktualizacji, zmian i ewentualnych problemów.',
   },
   {
     q: 'Czy aktualizacje mogą zepsuć stronę?',
-    a: 'Przed ważniejszymi aktualizacjami wykonuję kopię zapasową. Jeśli pojawi się problem, można przywrócić wcześniejszą wersję strony.',
+    a: 'Przed ważniejszymi aktualizacjami wykonujemy kopię zapasową. Jeśli pojawi się problem, można przywrócić wcześniejszą wersję strony.',
   },
   {
     q: 'Czy mogę zrezygnować z opieki?',
     a: 'Tak. Opieka jest rozliczana miesięcznie, więc możesz z niej zrezygnować bez długiej umowy.',
   },
   {
-    q: 'Czy możesz opiekować się sklepem WooCommerce?',
-    a: 'Tak. Mogę pomagać przy aktualizacjach WooCommerce, drobnych zmianach w sklepie i podstawowej administracji produktami.',
+    q: 'Czy możecie opiekować się sklepem WooCommerce?',
+    a: 'Tak. Możemy pomagać przy aktualizacjach WooCommerce, drobnych zmianach w sklepie i podstawowej administracji produktami.',
   },
 ];
 const websiteMaintenance: ServiceData = {
   slug: 'administracja-stron',
   title: 'Administracja stron internetowych',
   subtitle:
-    'Techniczna administracja strony — zgłaszasz potrzebę (aktualizację, poprawkę, problem techniczny), a ja się nią zajmuję w ramach wybranego pakietu.',
+    'Stała opieka techniczna nad stroną w ramach miesięcznego pakietu: aktualizacje, kopie zapasowe, bezpieczeństwo i drobne zmiany. Ty zajmujesz się firmą, my pilnujemy strony.',
   description:
-    'Zajmuję się techniczną administracją stron WordPress i Next.js: aktualizacjami, kopiami zapasowymi, bezpieczeństwem i usuwaniem usterek. Zgłaszasz, co jest potrzebne, a ja to wykonuję.',
+    'Administracja stron internetowych WordPress i Next.js: aktualizacje, kopie zapasowe, bezpieczeństwo i usuwanie usterek. Pakiety od 120 zł miesięcznie, Kąty Wrocławskie, Wrocław i cała Polska.',
   keywords: [
     'administracja stron internetowych',
     'administracja strony WordPress',
-    'zarządzanie techniczne stroną',
+    'opieka nad stronami wordpress',
     'aktualizacje i bezpieczeństwo strony',
     'serwis techniczny strony',
   ],
@@ -1014,7 +1023,7 @@ const websiteMaintenance: ServiceData = {
   heroPoster: '/videos/services/web-development-poster.webp',
   heroLabel: 'Administracja',
   heroStats: [
-    { value: '24h', label: 'maks. czas reakcji*' },
+    { value: '1 dzień', label: 'roboczy na odpowiedź' },
     { value: 'Co miesiąc', label: 'raport z wykonanych prac' },
     { value: 'od 120 zł', label: 'pakiety miesięczne' },
   ],
@@ -1023,32 +1032,32 @@ const websiteMaintenance: ServiceData = {
     {
       icon: 'refresh',
       title: 'Regularne aktualizacje',
-      desc: 'Aktualizuję WordPress, motywy i wtyczki, dbając o poprawne działanie strony.',
+      desc: 'Aktualizujemy WordPress, motywy i wtyczki, dbając o poprawne działanie strony.',
     },
     {
       icon: 'save',
       title: 'Kopie zapasowe',
-      desc: 'Regularnie tworzę kopie zapasowe, dzięki którym w razie problemów można szybko przywrócić stronę.',
+      desc: 'Regularnie tworzymy kopie zapasowe, dzięki którym w razie problemów można szybko przywrócić stronę.',
     },
     {
       icon: 'bug',
       title: 'Szybka pomoc',
-      desc: 'Jeśli pojawi się problem lub awaria, zajmuję się jego diagnozą i usunięciem.',
+      desc: 'Jeśli pojawi się problem lub awaria, zajmujemy się jego diagnozą i usunięciem.',
     },
     {
       icon: 'check',
       title: 'Bieżące zmiany',
-      desc: 'Dodaję nowe treści, zdjęcia i wprowadzam drobne zmiany bez konieczności angażowania programisty.',
+      desc: 'Dodajemy nowe treści, zdjęcia i wprowadzamy drobne zmiany bez konieczności angażowania programisty.',
     },
     {
       icon: 'chart',
       title: 'Kontrola działania',
-      desc: 'Regularnie sprawdzam dostępność strony oraz jej podstawową wydajność.',
+      desc: 'Regularnie sprawdzamy dostępność strony oraz jej podstawową wydajność.',
     },
     {
       icon: 'shield',
       title: 'Bezpieczeństwo',
-      desc: 'Dbam o podstawowe zabezpieczenia oraz aktualność oprogramowania.',
+      desc: 'Dbamy o podstawowe zabezpieczenia oraz aktualność oprogramowania.',
     },
   ],
   whatTitle: 'Co obejmuje administracja strony?',
@@ -1073,88 +1082,129 @@ const websiteMaintenance: ServiceData = {
   },
   relatedService: {
     slug: 'opieka-nad-stronami',
-    note: 'Szukasz stałej, comiesięcznej współpracy zamiast pojedynczych zgłoszeń?',
-    linkLabel: 'Zobacz opiekę nad stronami',
+    note: 'Coś przestało działać i potrzebujesz jednorazowej naprawy?',
+    linkLabel: 'Zobacz wsparcie techniczne i naprawy',
   },
 };
+const procesNaprawy: ServiceProcess[] = [
+  { step: '01', title: 'Zgłoszenie', desc: 'Piszesz, co się dzieje. Wystarczy opis po swojemu, zrzut ekranu i adres strony.' },
+  { step: '02', title: 'Diagnoza', desc: 'Sprawdzamy stronę, wtyczki, serwer i logi błędów, żeby znaleźć przyczynę, a nie tylko objaw.' },
+  { step: '03', title: 'Wycena', desc: 'Mówimy, co jest nie tak, ile zajmie naprawa i ile będzie kosztować. Bez tego nie zaczynamy.' },
+  { step: '04', title: 'Kopia zapasowa', desc: 'Przed zmianami robimy kopię strony, żeby w razie czego dało się wszystko przywrócić.' },
+  { step: '05', title: 'Naprawa', desc: 'Usuwamy błąd, poprawiamy to, co trzeba, i sprawdzamy, czy reszta strony działa jak należy.' },
+  { step: '06', title: 'Co dalej', desc: 'Podpowiadamy, jak uniknąć podobnych problemów. Jeśli chcesz, możemy przejąć stałą opiekę nad stroną.' },
+];
+
+const faqNaprawy: ServiceFAQ[] = [
+  {
+    q: 'Strona przestała działać. Co mam zrobić?',
+    a: 'Napisz do nas albo zadzwoń i podaj adres strony. Jeśli możesz, dołącz zrzut ekranu błędu. Nie musisz wiedzieć, co dokładnie się zepsuło.',
+  },
+  {
+    q: 'Czy pomożecie, jeśli stronę robił ktoś inny?',
+    a: 'Tak. Często pracujemy na stronach po innych wykonawcach. Zaczynamy od sprawdzenia, jak strona jest zbudowana i jaki jest jej stan.',
+  },
+  {
+    q: 'Jakie problemy naprawiacie?',
+    a: 'Najczęściej: biały ekran lub błąd krytyczny w WordPressie, niedziałający formularz kontaktowy, problemy po aktualizacji wtyczek, rozjechany wygląd na telefonie, wolne ładowanie, wirusy i podejrzane linki, wygasły certyfikat SSL.',
+  },
+  {
+    q: 'Ile kosztuje naprawa strony?',
+    a: 'To zależy od problemu. Po diagnozie podajemy cenę i czas naprawy, a prace zaczynamy dopiero po Twojej akceptacji.',
+  },
+  {
+    q: 'Jak szybko możecie pomóc?',
+    a: 'Na zgłoszenia odpowiadamy zwykle w ciągu jednego dnia roboczego. Pilne awarie, np. niedziałającą stronę sklepu, staramy się przejrzeć jak najszybciej.',
+  },
+  {
+    q: 'Czy naprawiacie tylko strony na WordPressie?',
+    a: 'Najwięcej pracujemy z WordPressem, ale pomagamy też przy stronach w Next.js i prostych stronach HTML/CSS.',
+  },
+  {
+    q: 'Czy po naprawie mogę zostać pod Waszą opieką?',
+    a: 'Tak. Możesz wybrać pakiet stałej opieki, w którym regularnie aktualizujemy stronę, robimy kopie zapasowe i reagujemy na problemy.',
+  },
+];
+
 const websiteSupport: ServiceData = {
   slug: 'opieka-nad-stronami',
-  title: 'Opieka nad stronami internetowymi',
+  title: 'Wsparcie techniczne i naprawa stron WordPress',
   subtitle:
-    'Stała, comiesięczna opieka nad stroną internetową — regularne aktualizacje, kopie zapasowe i wsparcie zawsze wtedy, gdy go potrzebujesz.',
+    'Coś nie działa na Twojej stronie? Znajdujemy przyczynę i naprawiamy błędy, także na stronach zrobionych przez kogoś innego. Pomagamy jednorazowo albo w ramach stałej opieki.',
   description:
-    'Zapewniam stałą, miesięczną opiekę nad stronami WordPress i Next.js. To długofalowa współpraca: regularnie aktualizuję stronę, dbam o bezpieczeństwo, backupy i drobne zmiany treści, żebyś mogła/mógł skupić się na prowadzeniu firmy.',
+    'Naprawa stron WordPress i wsparcie techniczne: błędy po aktualizacji, niedziałające formularze, wirusy, wolne ładowanie. Opieka nad stronami WordPress dla firm z Kątów Wrocławskich, Wrocławia i całej Polski.',
   keywords: [
-    'opieka nad stroną internetową',
-    'stała opieka nad stroną',
-    'miesięczna opieka techniczna',
-    'utrzymanie strony internetowej',
-    'serwis strony www',
+    'naprawa stron wordpress',
+    'opieka nad stronami wordpress',
+    'wsparcie techniczne strony',
+    'naprawa strony internetowej',
+    'błąd krytyczny wordpress',
+    'opieka nad stroną internetową Wrocław',
   ],
   heroVideo: '/videos/services/web-development.mp4',
   heroPoster: '/videos/services/web-development-poster.webp',
-  heroLabel: 'Opieka techniczna',
+  heroLabel: 'Wsparcie i naprawy',
   heroStats: [
-    { value: 'Co miesiąc', label: 'stała opieka' },
-    { value: 'Raport', label: 'podsumowanie prac' },
-    { value: 'od 120 zł', label: 'pakiety miesięczne' },
+    { value: '1 dzień', label: 'roboczy na odpowiedź' },
+    { value: 'Wycena', label: 'przed naprawą' },
+    { value: 'Kopia', label: 'zapasowa przed zmianami' },
   ],
-  whyTitle: 'Dlaczego warto mieć opiekę nad stroną?',
+  whyTitle: 'Z czym możesz do nas przyjść?',
   why: [
     {
-      icon: 'shield',
-      title: 'Bezpieczeństwo',
-      desc: 'Dbam o aktualizacje, kopie zapasowe i podstawowe zabezpieczenia strony.',
+      icon: 'bug',
+      title: 'Błędy i awarie',
+      desc: 'Biały ekran, błąd krytyczny, strona, która nagle się nie otwiera. Szukamy przyczyny i naprawiamy.',
     },
     {
-      icon: 'save',
-      title: 'Kopie zapasowe',
-      desc: 'Regularne backupy pomagają szybko przywrócić stronę w razie problemów.',
-    },
-    {
-      icon: 'bolt',
-      title: 'Sprawne działanie',
-      desc: 'Kontroluję podstawową wydajność strony i w razie potrzeby proponuję usprawnienia.',
-    },
-    {
-      icon: 'chat',
-      title: 'Bezpośredni kontakt',
-      desc: 'Piszesz bezpośrednio do mnie, bez przechodzenia przez help desk lub anonimowy support.',
-    },
-    {
-      icon: 'chart',
-      title: 'Kontrola dostępności',
-      desc: 'Sprawdzam, czy strona działa poprawnie i reaguję na zgłoszone problemy.',
+      icon: 'refresh',
+      title: 'Problemy po aktualizacji',
+      desc: 'Po aktualizacji WordPressa lub wtyczki coś przestało działać? Przywracamy działanie i porządkujemy wtyczki.',
     },
     {
       icon: 'check',
-      title: 'Drobne zmiany',
-      desc: 'W ramach pakietu mogę zmienić tekst, zdjęcie, godzinę otwarcia, cenę lub inną prostą treść.',
+      title: 'Niedziałający formularz',
+      desc: 'Wiadomości z formularza nie dochodzą albo trafiają do spamu. Sprawdzamy konfigurację i poprawiamy wysyłkę.',
+    },
+    {
+      icon: 'shield',
+      title: 'Wirusy i podejrzane linki',
+      desc: 'Czyścimy zainfekowane strony, usuwamy niechciane linki i zabezpieczamy stronę na przyszłość.',
+    },
+    {
+      icon: 'mobile',
+      title: 'Wygląd na telefonie',
+      desc: 'Rozjechane sekcje, za małe przyciski, coś zasłania treść. Poprawiamy wersję mobilną.',
+    },
+    {
+      icon: 'bolt',
+      title: 'Wolne ładowanie',
+      desc: 'Sprawdzamy, co spowalnia stronę, i poprawiamy to bez przebudowy całości.',
     },
   ],
-  whatTitle: 'Co obejmuje miesięczna opieka?',
+  whatTitle: 'Co obejmuje naprawa strony?',
   what: [
-    'Kontrola dostępności strony',
-    'Regularne kopie zapasowe zgodnie z pakietem',
-    'Aktualizacje WordPress, motywów i wtyczek',
-    'Podstawowa kontrola bezpieczeństwa',
-    'Podstawowa optymalizacja bazy danych',
-    'Drobne poprawki treści zgodnie z pakietem',
-    'Wsparcie e-mail',
-    'Miesięczne podsumowanie wykonanych prac',
+    'Diagnoza problemu i jasna informacja, co się stało',
+    'Wycena przed rozpoczęciem prac',
+    'Kopia zapasowa przed zmianami',
+    'Naprawa błędu i sprawdzenie reszty strony',
+    'Aktualizacja lub wymiana problematycznych wtyczek',
+    'Poprawki w motywie, formularzach i wersji mobilnej',
+    'Krótkie podsumowanie, co zostało zrobione',
+    'Możliwość przejścia na stałą opiekę',
   ],
-  process: procesAdministracja,
+  process: procesNaprawy,
   plans: planyAdministracja,
-  faq: faqAdministracja,
+  faq: faqNaprawy,
   schema: {
-    name: 'Opieka nad stronami internetowymi',
+    name: 'Wsparcie techniczne i naprawa stron WordPress',
     description:
-      'Stała, miesięczna opieka nad stronami internetowymi. Aktualizacje, kopie zapasowe, drobne zmiany i wsparcie techniczne.',
+      'Naprawa stron WordPress, usuwanie błędów, problemy po aktualizacjach, wirusy i opieka nad stronami WordPress.',
     serviceType: 'WebSiteMaintenance',
   },
   relatedService: {
     slug: 'administracja-stron',
-    note: 'Potrzebujesz jednorazowej, technicznej poprawki bez stałej współpracy?',
+    note: 'Wolisz stałą, comiesięczną opiekę zamiast pojedynczych napraw?',
     linkLabel: 'Zobacz administrację stron',
   },
 };
@@ -1163,9 +1213,9 @@ const websiteRedesign: ServiceData = {
   slug: 'modernizacja-stron',
   title: 'Modernizacja stron internetowych',
   subtitle:
-    'Odświeżam strony internetowe, poprawiając ich wygląd, wydajność i wygodę korzystania, bez konieczności tworzenia wszystkiego od nowa.',
+    'Odświeżamy strony internetowe, poprawiając ich wygląd, wydajność i wygodę korzystania, bez konieczności tworzenia wszystkiego od nowa.',
   description:
-    'Modernizuję strony internetowe dla firm. Przygotowuję nowy projekt, poprawiam wydajność, przenoszę treści i dostosowuję stronę do aktualnych standardów.',
+    'Modernizujemy strony internetowe dla firm. Przygotowujemy nowy projekt, poprawiamy wydajność, przenosimy treści i dostosowujemy stronę do aktualnych standardów.',
   keywords: [
     'modernizacja strony internetowej',
     'redesign strony',
@@ -1186,32 +1236,32 @@ const websiteRedesign: ServiceData = {
     {
       icon: 'clock',
       title: 'Strona działa zbyt wolno',
-      desc: 'Poprawiam wydajność strony, aby korzystanie z niej było wygodniejsze dla użytkowników.',
+      desc: 'Poprawiamy wydajność strony, aby korzystanie z niej było wygodniejsze dla użytkowników.',
     },
     {
       icon: 'mobile',
       title: 'Problemy na telefonach',
-      desc: 'Dostosowuję stronę do urządzeń mobilnych i aktualnych standardów responsywności.',
+      desc: 'Dostosowujemy stronę do urządzeń mobilnych i aktualnych standardów responsywności.',
     },
     {
       icon: 'star',
       title: 'Przestarzały wygląd',
-      desc: 'Odświeżam projekt graficzny, zachowując charakter Twojej marki.',
+      desc: 'Odświeżamy projekt graficzny, zachowując charakter Twojej marki.',
     },
     {
       icon: 'lock',
       title: 'Nieaktualne oprogramowanie',
-      desc: 'Pomagam zaktualizować stronę i poprawić jej bezpieczeństwo.',
+      desc: 'Pomagamy zaktualizować stronę i poprawić jej bezpieczeństwo.',
     },
     {
       icon: 'chart',
       title: 'Problemy z widocznością',
-      desc: 'Usuwam techniczne błędy, które mogą utrudniać pozycjonowanie strony.',
+      desc: 'Usuwamy techniczne błędy, które mogą utrudniać pozycjonowanie strony.',
     },
     {
       icon: 'check',
       title: 'Trudna edycja',
-      desc: 'Jeśli obecna strona jest niewygodna w obsłudze, mogę wdrożyć prostszy system zarządzania treścią.',
+      desc: 'Jeśli obecna strona jest niewygodna w obsłudze, możemy wdrożyć prostszy system zarządzania treścią.',
     },
   ],
   whatTitle: 'Co obejmuje modernizacja strony?',
@@ -1231,7 +1281,7 @@ const websiteRedesign: ServiceData = {
     {
       step: '01',
       title: 'Audyt',
-      desc: 'Sprawdzam obecną stronę, jej wygląd, wydajność oraz najważniejsze problemy techniczne.',
+      desc: 'Sprawdzamy obecną stronę, jej wygląd, wydajność oraz najważniejsze problemy techniczne.',
     },
     {
       step: '02',
@@ -1241,22 +1291,22 @@ const websiteRedesign: ServiceData = {
     {
       step: '03',
       title: 'Projekt',
-      desc: 'Przygotowuję nowy wygląd strony dopasowany do Twojej firmy.',
+      desc: 'Przygotowujemy nowy wygląd strony dopasowany do Twojej firmy.',
     },
     {
       step: '04',
       title: 'Realizacja',
-      desc: 'Tworzę nową wersję strony i przenoszę potrzebne treści.',
+      desc: 'Tworzymy nową wersję strony i przenosimy potrzebne treści.',
     },
     {
       step: '05',
       title: 'Testy',
-      desc: 'Sprawdzam poprawność działania strony przed publikacją.',
+      desc: 'Sprawdzamy poprawność działania strony przed publikacją.',
     },
     {
       step: '06',
       title: 'Wsparcie',
-      desc: 'Po uruchomieniu strony zapewniam 30 dni wsparcia technicznego.',
+      desc: 'Po uruchomieniu strony zapewniamy 30 dni wsparcia technicznego.',
     },
   ],
   plans: [
@@ -1286,7 +1336,7 @@ const websiteRedesign: ServiceData = {
       name: 'Premium',
       from: 7000,
       features: [
-        'Kompleksowa przebudowa',
+        'Pełna przebudowa',
         'Zmiana technologii',
         'Wielojęzyczność',
         'Rozbudowa o sklep internetowy',
@@ -1297,15 +1347,15 @@ const websiteRedesign: ServiceData = {
   faq: [
     {
       q: 'Czy modernizacja może wpłynąć na SEO?',
-      a: 'Odpowiednio przeprowadzona modernizacja pozwala zachować najważniejsze elementy technicznego SEO. W razie potrzeby przygotowuję przekierowania i dbam o zachowanie istotnych adresów URL.',
+      a: 'Odpowiednio przeprowadzona modernizacja pozwala zachować najważniejsze elementy technicznego SEO. W razie potrzeby przygotowujemy przekierowania i dbamy o zachowanie istotnych adresów URL.',
     },
     {
       q: 'Czy treści zostaną przeniesione?',
-      a: 'Tak. Przenoszę teksty, zdjęcia i pozostałe materiały, które mają znaleźć się na nowej stronie.',
+      a: 'Tak. Przenosimy teksty, zdjęcia i pozostałe materiały, które mają znaleźć się na nowej stronie.',
     },
     {
       q: 'Czy obecna strona będzie działała podczas prac?',
-      a: 'Tak. Nową wersję przygotowuję na środowisku testowym, a publikacja następuje dopiero po zakończeniu prac.',
+      a: 'Tak. Nową wersję przygotowujemy na środowisku testowym, a publikacja następuje dopiero po zakończeniu prac.',
     },
     {
       q: 'Ile kosztuje modernizacja strony?',
@@ -1313,15 +1363,15 @@ const websiteRedesign: ServiceData = {
     },
     {
       q: 'Czy można zmienić technologię strony?',
-      a: 'Tak. W razie potrzeby mogę przenieść stronę na WordPress lub Next.js, jeśli będzie to korzystniejsze dla projektu.',
+      a: 'Tak. W razie potrzeby możemy przenieść stronę na WordPress lub Next.js, jeśli będzie to korzystniejsze dla projektu.',
     },
     {
       q: 'Jak długo trwa modernizacja?',
       a: 'Najczęściej od 1 do 6 tygodni, w zależności od wielkości strony i zakresu prac.',
     },
     {
-      q: 'Czy możesz poprawić tylko szybkość strony?',
-      a: 'Tak. Mogę wykonać samą optymalizację wydajności bez pełnej przebudowy strony.',
+      q: 'Czy możecie poprawić tylko szybkość strony?',
+      a: 'Tak. Możemy wykonać samą optymalizację wydajności bez pełnej przebudowy strony.',
     },
     {
       q: 'Czy mogę pozostać przy obecnym hostingu?',

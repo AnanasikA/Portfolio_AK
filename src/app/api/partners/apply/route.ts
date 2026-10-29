@@ -10,7 +10,7 @@ import {
 } from "@/lib/form-guard";
 
 export async function POST(req: NextRequest) {
-  // ── Ochrona: pochodzenie żądania i limit zgłoszeń ─────────────────────────
+
   if (!isSameOrigin(req.headers)) {
     return NextResponse.json({ error: "Niedozwolone żądanie." }, { status: 403 });
   }
@@ -31,13 +31,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Nieprawidłowe dane." }, { status: 400 });
   }
 
-  // ── Walidacja: tylko tekst, bez znaków sterujących, z limitem długości ────
   const name = cleanText(body.name, 100);
   const email = cleanText(body.email, 254).toLowerCase();
   const company = cleanText(body.company, 120) || null;
   const audienceNote = cleanText(body.audienceNote, 1500, true) || null;
 
-  // Strona / profil: dopuszczamy tylko adresy http(s) — nigdy np. javascript:
   let website: string | null = cleanText(body.website, 200) || null;
   if (website) {
     try {
@@ -70,7 +68,6 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Generuj unikalny kod (rzadkie kolizje obsłużone retry)
   let referralCode = generateReferralCode(name);
   for (let attempt = 0; attempt < 5; attempt++) {
     const { data: collision } = await supabase
@@ -82,8 +79,6 @@ export async function POST(req: NextRequest) {
     referralCode = generateReferralCode(name);
   }
 
-  // Sprawdź ustawienia programu — jeśli włączona jest automatyczna
-  // akceptacja, partner trafia od razu jako zatwierdzony zamiast pending.
   const { data: settings } = await supabase
     .from("program_settings")
     .select("auto_approve_partners, default_commission_rate")
@@ -110,9 +105,6 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     );
   }
-
-  // Opcjonalnie: wyślij tu powiadomienie mailem do siebie (Nodemailer),
-  // tak jak w istniejącym formularzu kontaktowym.
 
   return NextResponse.json({ success: true });
 }

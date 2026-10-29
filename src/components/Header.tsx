@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { getTranslatedBlogSlug } from '@/data/blogSlugMap';
 import { useLocale } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { usePathname } from 'next/navigation';
@@ -14,31 +15,32 @@ const DropdownMenu = dynamic(() => import('@/components/DropdownMenu'), { ssr: f
 
 interface HeaderProps { isOpen: boolean; toggleMenu: () => void; }
 
-// ─── Usługi dropdown data ─────────────────────────────────────────────────────
 const SERVICE_LINKS_PL = [
-  { href: '/services/tworzenie-stron-internetowych', label: 'Tworzenie stron internetowych' },
-  { href: '/services/projektowanie-stron',           label: 'Projektowanie stron' },
-  { href: '/services/strony-dla-firm',               label: 'Strony dla firm' },
-  { href: '/services/wordpress',                     label: 'WordPress' },
-  { href: '/services/landing-page',                  label: 'Landing page' },
+
+  { href: '/services/tworzenie-stron-internetowych', label: 'Strony internetowe' },
   { href: '/services/sklepy-internetowe',            label: 'Sklepy internetowe' },
-  { href: '/services/administracja-stron',           label: 'Administracja stron' },
-  { href: '/services/opieka-nad-stronami',           label: 'Opieka nad stronami' },
+  { href: '/services/administracja-stron',           label: 'Administracja i opieka' },
+  { href: '/services/opieka-nad-stronami',           label: 'Wsparcie techniczne i naprawy' },
+
+  { href: '/services/strony-dla-firm',               label: 'Strony dla firm' },
+  { href: '/services/projektowanie-stron',           label: 'Projektowanie stron' },
+  { href: '/services/wordpress',                     label: 'Strony WordPress' },
+  { href: '/services/landing-page',                  label: 'Landing page' },
   { href: '/services/modernizacja-stron',            label: 'Modernizacja stron' },
 ];
 
 const SERVICE_LINKS_EN = [
-  { href: '/services/web-development',               label: 'Website Development' },
-  { href: '/services/web-design',                    label: 'Web Design' },
+  { href: '/services/web-development',               label: 'Websites' },
+  { href: '/services/ecommerce-websites',            label: 'Online Stores' },
+  { href: '/services/website-maintenance',           label: 'Maintenance & Care' },
+  { href: '/services/website-support',               label: 'Technical Support & Fixes' },
   { href: '/services/business-websites',             label: 'Business Websites' },
+  { href: '/services/web-design',                    label: 'Web Design' },
   { href: '/services/wordpress-websites',            label: 'WordPress Websites' },
   { href: '/services/landing-page',                  label: 'Landing Pages' },
-  { href: '/services/ecommerce-websites',            label: 'E-commerce Websites' },
-  { href: '/services/website-maintenance',           label: 'Website Maintenance' },
-  { href: '/services/website-support',               label: 'Website Support' },
   { href: '/services/website-redesign',              label: 'Website Redesign' },
 ];
-// ─── Lang switcher ────────────────────────────────────────────────────────────
+
 function LangSwitcher() {
   const locale = useLocale();
   const pathname = usePathname();
@@ -47,7 +49,11 @@ function LangSwitcher() {
     const clean = pathname.replace(/^\/(pl|en)(?=\/|$)/, '') || '/';
     const segments = clean.split('/');
 
-    // /services/[slug]
+    if (segments[1] === 'blog' && segments[2] && targetLocale !== locale) {
+      const translated = getTranslatedBlogSlug(locale, targetLocale, segments[2]);
+      return translated ? `/blog/${translated}` : '/blog';
+    }
+
     if (segments[1] === 'services' && segments[2]) {
       segments[2] = getTranslatedServiceSlug(
         locale,
@@ -97,13 +103,11 @@ function LangSwitcher() {
   );
 }
 
-// ─── Services dropdown ────────────────────────────────────────────────────────
 function ServicesDropdown({ isEn, locale }: { isEn: boolean; locale: string }) {
   const [open, setOpen] = useState(false);
   const ref             = useRef<HTMLDivElement>(null);
   const links           = isEn ? SERVICE_LINKS_EN : SERVICE_LINKS_PL;
 
-  // close on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
@@ -190,10 +194,10 @@ function ServicesDropdown({ isEn, locale }: { isEn: boolean; locale: string }) {
   );
 }
 
-// ─── Header ───────────────────────────────────────────────────────────────────
 export default function Header({ isOpen, toggleMenu }: HeaderProps) {
   const [scrolled,   setScrolled]   = useState(false);
   const [briefOpen,  setBriefOpen]  = useState(false);
+  const [briefType,  setBriefType]  = useState<string | undefined>(undefined);
   const locale  = useLocale();
   const isEn    = locale === 'en';
   const pathname = usePathname();
@@ -212,18 +216,22 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
   }, [briefOpen]);
 
   useEffect(() => {
-    const open = () => setBriefOpen(true);
+
+    const open = (e: Event) => {
+      const detail = (e as CustomEvent<{ type?: string } | undefined>).detail;
+      setBriefType(detail?.type);
+      setBriefOpen(true);
+    };
     window.addEventListener('open-brief', open);
     return () => window.removeEventListener('open-brief', open);
   }, []);
 
   const links = [
     { href: '/projects',  label: isEn ? 'Work'    : 'Projekty'    },
-    ...(isEn ? [] : [{ href: '/partners/offer', label: 'Współpraca' }]),
 
     { href: '/#process',  label: isEn ? 'Process' : 'Proces'      },
     { href: '/#why-us',   label: isEn ? 'Why us'  : 'Dlaczego my' },
-    // Usługi dropdown wchodzi tutaj — renderowane osobno poniżej
+
     { href: '/blog',      label: 'Blog'                            },
     { href: '/#contact',  label: isEn ? 'Contact' : 'Kontakt'     },
   ];
@@ -293,6 +301,10 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
         }
         @media (max-width: 599px) {
           .nav-cta-btn { display: none !important; }
+          .nav-main-cta { display: inline-flex !important; font-size: .8rem !important; padding: .55em 1em !important; }
+        }
+        @media (max-width: 439px) {
+          .nav-brand-text { display: none; }
         }
       `}</style>
 
@@ -307,17 +319,14 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
           transition: 'box-shadow .35s',
         }}>
 
-          {/* Brand */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
             <span style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--brand)', display: 'grid', placeItems: 'center', color: '#fff', fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.88rem', flexShrink: 0 }}>AK</span>
-            <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', letterSpacing: '-.02em', color: 'var(--ink)', lineHeight: 1.15 }}>
+            <span className="nav-brand-text" style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', letterSpacing: '-.02em', color: 'var(--ink)', lineHeight: 1.15 }}>
               AK Web & Design
             </span>
           </Link>
 
-          {/* Desktop nav */}
           <div className="nav-links">
-            {/* Projekty, Proces, Dlaczego my */}
             {links.slice(0, 3).map(({ href, label }) => (
               <Link key={href} href={href} locale={locale}
                 style={{ fontFamily: 'var(--fd)', fontWeight: 500, fontSize: '.88rem', color: 'var(--ink-soft)', padding: '.45em .8em', borderRadius: 99, textDecoration: 'none', transition: 'background .18s, color .18s', whiteSpace: 'nowrap' }}
@@ -326,9 +335,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
                 {label}
               </Link>
             ))}
-            {/* Usługi dropdown — między Dlaczego my a Blog */}
             <ServicesDropdown isEn={isEn} locale={locale} />
-            {/* Blog, Kontakt */}
             {links.slice(3).map(({ href, label }) => (
               <Link key={href} href={href} locale={locale}
                 style={{ fontFamily: 'var(--fd)', fontWeight: 500, fontSize: '.88rem', color: 'var(--ink-soft)', padding: '.45em .8em', borderRadius: 99, textDecoration: 'none', transition: 'background .18s, color .18s', whiteSpace: 'nowrap' }}
@@ -339,7 +346,6 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
             ))}
           </div>
 
-          {/* Right side */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
             {!isPartnerPage && <LangSwitcher />}
 
@@ -348,7 +354,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
                 href="/wycena"
                 locale={locale}
                 className="nav-quote-btn"
-                aria-label={isEn ? 'Get a quote — calculate the price yourself' : 'Wycena — oblicz cenę samodzielnie'}
+                aria-label={isEn ? 'Price calculator' : 'Kalkulator wyceny'}
               >
                 <Calculator size={17} strokeWidth={2} />
               </Link>
@@ -359,15 +365,14 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
 
             <PaperPlaneButton
               onClick={() => setBriefOpen(true)}
-              className="nav-cta-btn"
+              className="nav-cta-btn nav-main-cta"
               style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.88rem', background: 'var(--brand)', color: '#fff', border: 'none', borderRadius: 99, padding: '.6em 1.3em', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'opacity .2s' }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = '.85'}
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = '1'}
             >
-              {isEn ? 'Request a Quote' : 'Zapytaj o wycenę'}
+              {isEn ? 'Write to us' : 'Napisz do nas'}
             </PaperPlaneButton>
 
-            {/* Burger */}
             <button className="nav-burger" onClick={toggleMenu} aria-label={isOpen ? 'Zamknij menu' : 'Otwórz menu'}
               style={{ width: 40, height: 40, borderRadius: 10, background: 'var(--surface)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexDirection: 'column', gap: 5, padding: '10px 9px' }}>
               <span style={{ display: 'block', width: '100%', height: 2, background: 'var(--ink)', borderRadius: 2, transition: 'transform .25s', transform: isOpen ? 'translateY(7px) rotate(45deg)' : 'none' }} />
@@ -379,7 +384,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
       </nav>
 
       <DropdownMenu isOpen={isOpen} toggleMenu={toggleMenu} />
-      <QuoteModal isOpen={briefOpen} onClose={() => setBriefOpen(false)} />
+      <QuoteModal isOpen={briefOpen} initialType={briefType} onClose={() => { setBriefOpen(false); setBriefType(undefined); }} />
     </>
   );
 }

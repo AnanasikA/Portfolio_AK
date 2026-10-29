@@ -9,6 +9,8 @@ import { trackEvent } from '@/lib/gtag';
 type QuoteModalProps = {
   isOpen: boolean;
   onClose: () => void;
+
+  initialType?: string;
 };
 
 const inputStyle: React.CSSProperties = {
@@ -43,7 +45,7 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
+export default function QuoteModal({ isOpen, onClose, initialType }: QuoteModalProps) {
   const locale = useLocale();
   const isEn = locale === 'en';
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
@@ -54,8 +56,14 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
     websiteType: '',
     budget: '',
     message: '',
-    hp: '', // pole-pułapka na boty, niewidoczne dla ludzi
+    hp: '',
   });
+
+  useEffect(() => {
+    if (isOpen && initialType) setForm(f => ({ ...f, websiteType: initialType }));
+  }, [isOpen, initialType]);
+
+  const isSupport = form.websiteType === 'Pomoc z istniejącą stroną' || form.websiteType === 'Administracja i opieka';
 
   useEffect(() => {
     if (!isOpen) return;
@@ -114,11 +122,11 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
   const budgetOptions = isEn ? [
     { value: '', label: 'Choose...' },
-    { value: 'under-500', label: 'Under €500' },
-    { value: '500-1000', label: '€500 – €1,000' },
-    { value: '1000-2000', label: '€1,000 – €2,000' },
-    { value: '2000-5000', label: '€2,000 – €5,000' },
-    { value: 'over-5000', label: 'Over €5,000' },
+    { value: 'under-2000', label: 'Up to 2,000 PLN' },
+    { value: '2000-4000', label: '2,000 – 4,000 PLN' },
+    { value: '4000-8000', label: '4,000 – 8,000 PLN' },
+    { value: '8000-15000', label: '8,000 – 15,000 PLN' },
+    { value: 'over-15000', label: 'Over 15,000 PLN' },
     { value: 'unknown', label: "I'm not sure yet" },
   ] : [
     { value: '', label: 'Wybierz...' },
@@ -149,7 +157,6 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
         background: '#fff',
         boxShadow: 'var(--sh-l)',
       }}>
-        {/* Header */}
         <div style={{
           position: 'sticky', top: 0, zIndex: 10,
           background: '#fff',
@@ -182,7 +189,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             border: '1px solid var(--brand-tint-2)',
             borderRadius: 99, padding: '.3em .9em', marginBottom: 10,
           }}>
-            {isEn ? 'Free quote' : 'Bezpłatna wycena'}
+            {isSupport ? (isEn ? 'Website help' : 'Pomoc ze stroną') : (isEn ? 'Free quote' : 'Bezpłatna wycena')}
           </span>
 
           <h2 style={{
@@ -191,11 +198,12 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             letterSpacing: '-.02em', color: 'var(--ink)',
             paddingRight: 36, margin: 0,
           }}>
-            {isEn ? 'Tell me about your project' : 'Opowiedz mi o swoim projekcie'}
+            {isSupport
+              ? (isEn ? 'Tell us what is happening with your website' : 'Opisz, co się dzieje z Twoją stroną')
+              : (isEn ? 'Tell us about your project' : 'Opowiedz nam o swoim projekcie')}
           </h2>
         </div>
 
-        {/* Form */}
         <div style={{ padding: 'clamp(16px,3vw,24px)' }}>
           {status === 'error' && (
             <div style={{
@@ -210,7 +218,6 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
 
-            {/* Name + Email */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
               <Field label={isEn ? 'Name' : 'Imię i nazwisko'}>
                 <input
@@ -232,7 +239,6 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               </Field>
             </div>
 
-            {/* Phone (optional) */}
             <Field label={isEn ? 'Phone (optional)' : 'Telefon (opcjonalnie)'}>
               <input
                 type="tel" name="phone" autoComplete="tel"
@@ -242,8 +248,6 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 style={inputStyle}
               />
             </Field>
-
-            {/* Pole-pułapka: ukryte przed ludźmi i czytnikami ekranu, boty je wypełniają */}
             <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
               <label>
                 Nie wypełniaj tego pola
@@ -253,9 +257,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 />
               </label>
             </div>
-
-            {/* Website type */}
-            <Field label={isEn ? 'Type of website' : 'Typ strony'}>
+            <Field label={isEn ? 'What do you need?' : 'Czego potrzebujesz?'}>
               <select
                 name="websiteType"
                 value={form.websiteType} onChange={handleChange}
@@ -267,11 +269,12 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                 <option value="Strona firmowa">{isEn ? 'Company website' : 'Strona firmowa'}</option>
                 <option value="Portfolio">Portfolio</option>
                 <option value="Sklep internetowy">{isEn ? 'Online store' : 'Sklep internetowy'}</option>
+                <option value="Pomoc z istniejącą stroną">{isEn ? 'Help or a fix for an existing site' : 'Pomoc lub naprawa istniejącej strony'}</option>
+                <option value="Administracja i opieka">{isEn ? 'Ongoing maintenance' : 'Stała opieka nad stroną'}</option>
                 <option value="Nie wiem jeszcze">{isEn ? 'Not sure yet' : 'Nie wiem jeszcze'}</option>
               </select>
             </Field>
 
-            {/* Budget */}
             <Field label={isEn ? 'Approximate budget' : 'Orientacyjny budżet'}>
               <select
                 name="budget"
@@ -285,7 +288,6 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
               </select>
             </Field>
 
-            {/* Message */}
             <Field label={isEn ? 'Project description (optional)' : 'Opis projektu (opcjonalnie)'}>
               <textarea
                 name="message" rows={3}

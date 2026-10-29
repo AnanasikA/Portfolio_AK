@@ -1,13 +1,11 @@
-// app/projects/[slug]/page.tsx
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 import { projects, type ProjectItem } from '@/data/projects';
+import { SITE_URL, alternates } from '@/lib/site';
 import ProjectView from './ProjectView';
 
-type Params = { slug: string; locale: string };
-
-const SITE_URL = 'https://anastasiiakupriianets.pl';
+type Params = { locale: string; slug: string };
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -18,61 +16,45 @@ export function generateStaticParams() {
 export async function generateMetadata(
   { params }: { params: Promise<Params> }
 ): Promise<Metadata> {
-  const { slug, locale } = await params;
+  const { locale, slug } = await params;
+  const isEn = locale === 'en';
   const p: ProjectItem | undefined = projects.find((x) => x.slug === slug);
 
   if (!p) {
     return {
-      title: 'Projekt nie znaleziony',
-      robots: {
-        index: false,
-        follow: false,
-      },
+      title: isEn ? 'Project not found' : 'Projekt nie znaleziony',
+      robots: { index: false, follow: false },
     };
   }
 
   const t = await getTranslations({ locale, namespace: 'projects' });
 
-  const title = t(`${slug}.title`);
+  const name = t(`${slug}.title`);
   const description = t(`${slug}.description`);
-  // Slugi realizacji są wspólne dla PL/EN — jedyna różnica to prefiks locale.
-  const pathname = `/${locale}/projects/${slug}`;
+  const suffix = p.concept
+    ? (isEn ? 'Concept project' : 'Projekt koncepcyjny')
+    : (isEn ? 'Website project' : 'Realizacja strony internetowej');
+  const title = `${name} | ${suffix}`;
+  const alt = alternates(locale, `/projects/${slug}`);
   const ogImg = p.cardImage ?? p.image;
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: `${title} | Realizacja strony internetowej`,
+    title: { absolute: `${title} | AK Web & Design` },
     description,
-    alternates: {
-      canonical: pathname,
-      languages: {
-        pl: `/pl/projects/${slug}`,
-        en: `/en/projects/${slug}`,
-        'x-default': `/pl/projects/${slug}`,
-      },
-    },
-    robots: {
-      index: true,
-      follow: true,
-    },
+    alternates: alt,
     openGraph: {
       type: 'website',
-      url: pathname,
-      title: `${title} | Realizacja strony internetowej`,
+      url: alt.canonical,
+      title,
       description,
       siteName: 'AK Web & Design',
-      images: ogImg
-        ? [
-            {
-              url: ogImg,
-              alt: title,
-            },
-          ]
-        : undefined,
+      locale: isEn ? 'en_US' : 'pl_PL',
+      images: ogImg ? [{ url: ogImg, alt: name }] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | Realizacja strony internetowej`,
+      title,
       description,
       images: ogImg ? [ogImg] : undefined,
     },
@@ -94,8 +76,6 @@ export default async function Page(
   const projectsUrl = `${SITE_URL}/${locale}/projects`;
   const imageUrl = `${SITE_URL}${p.cardImage ?? p.image}`;
 
-  // Dane strukturalne generowane po stronie serwera (były wcześniej
-  // wstrzykiwane po stronie klienta przez next/script — patrz audyt SEO, H6/M4).
   const creativeWorkSchema = {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',

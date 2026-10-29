@@ -15,8 +15,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: isEn ? 'Terms and Conditions | Anastasiia Kupriianets' : 'Regulamin | Anastasiia Kupriianets',
     description: isEn
-      ? 'Terms of use for anastasiiakupriianets.pl — rules of use, copyright and information about data.'
-      : 'Regulamin korzystania ze strony anastasiiakupriianets.pl — zasady użytkowania, prawa autorskie i informacje o danych.',
+      ? 'Terms of use for anastasiiakupriianets.pl: rules of use, copyright and information about data.'
+      : 'Regulamin korzystania ze strony anastasiiakupriianets.pl: zasady użytkowania, prawa autorskie i informacje o danych.',
     alternates: {
       canonical: `/${locale}/regulamin`,
       languages: { pl: '/pl/regulamin', en: '/en/regulamin', 'x-default': '/pl/regulamin' },

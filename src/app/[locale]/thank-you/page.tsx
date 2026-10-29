@@ -31,7 +31,7 @@ export default function ThankYouPage() {
 
     return () => window.clearInterval(id);
   }, []);
-  
+
   return (
     <main style={{
       position: 'relative', minHeight: '100svh',
@@ -39,9 +39,7 @@ export default function ThankYouPage() {
       padding: 'clamp(48px,8vw,96px) clamp(20px,5vw,48px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
-      {/* Strona z podziękowaniem po wysłaniu formularza — thin content, nie do indeksowania */}
       <meta name="robots" content="noindex, nofollow" />
-      {/* bg blobs */}
       <div aria-hidden style={{ position:'absolute', inset:0, zIndex:0, background:'radial-gradient(circle at 60% 10%, var(--brand-tint-2), transparent 40%)' }} />
       <div aria-hidden style={{ position:'absolute', top:60, left:-80, width:340, height:340, borderRadius:'50%', background:'var(--brand-tint)', filter:'blur(80px)', opacity:.7, zIndex:0 }} />
       <div aria-hidden style={{ position:'absolute', bottom:40, right:-80, width:380, height:380, borderRadius:'50%', background:'var(--brand-tint-2)', filter:'blur(90px)', opacity:.6, zIndex:0 }} />
@@ -63,13 +61,11 @@ export default function ThankYouPage() {
           overflow: 'hidden',
         }}
       >
-        {/* top shimmer line */}
         <div aria-hidden style={{
           position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
           background: `linear-gradient(90deg, transparent, rgba(29,78,216,.35), transparent)`,
         }} />
 
-        {/* badge top-right */}
         <div style={{
           position: 'absolute', top: 24, right: 24,
           display: 'inline-flex', alignItems: 'center',
@@ -84,7 +80,6 @@ export default function ThankYouPage() {
 
         <div style={{ maxWidth: 560, margin: '0 auto', textAlign: 'center' }}>
 
-          {/* check icon */}
           <motion.div
             initial={{ scale: 0.7, opacity: 0, rotate: -8 }}
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
@@ -100,7 +95,6 @@ export default function ThankYouPage() {
             <FiCheck size={36} color="#fff" />
           </motion.div>
 
-          {/* eyebrow badge */}
           <span style={{
             display: 'inline-flex', alignItems: 'center',
             fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.72rem',
@@ -112,7 +106,6 @@ export default function ThankYouPage() {
             {t('badge')}
           </span>
 
-          {/* title */}
           <h1 style={{
             fontFamily: 'var(--fd)', fontWeight: 700,
             fontSize: 'clamp(2rem,5vw,3.4rem)',
@@ -122,7 +115,6 @@ export default function ThankYouPage() {
             {t('title')}
           </h1>
 
-          {/* desc */}
           <p style={{
             fontFamily: 'var(--fb)', fontSize: 'clamp(.95rem,1.4vw,1.1rem)',
             color: 'var(--muted)', lineHeight: 1.65,
@@ -131,7 +123,6 @@ export default function ThankYouPage() {
             {t('desc')}
           </p>
 
-          {/* CTAs */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10, marginBottom: 36 }}>
             <Link href="/" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -161,7 +152,6 @@ export default function ThankYouPage() {
             </Link>
           </div>
 
-          {/* steps */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',

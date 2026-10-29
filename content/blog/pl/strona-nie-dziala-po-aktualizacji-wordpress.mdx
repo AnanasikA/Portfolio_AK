@@ -1,0 +1,63 @@
+---
+title: "Strona przestała działać po aktualizacji WordPressa. Jak ją uratować?"
+description: "Po aktualizacji WordPressa, wtyczki lub motywu strona się rozjechała albo przestała działać? Podpowiadamy, co zrobić od razu i jak aktualizować, żeby to się nie powtórzyło."
+date: "2026-10-29"
+tags: ["WordPress", "Naprawy", "Poradnik"]
+---
+
+Aktualizacje są potrzebne. Łatają luki bezpieczeństwa i pozwalają stronie działać na nowszych serwerach. Ale każdy, kto ma stronę na WordPressie dłużej niż rok, zna ten moment: klikasz „Aktualizuj”, a po chwili strona wygląda dziwnie, coś zniknęło albo pojawia się błąd.
+
+Dobra wiadomość jest taka, że prawie zawsze da się to odkręcić. Poniżej opisujemy, co zrobić od razu, a potem, jak aktualizować bezpieczniej.
+
+## Najpierw: nie aktualizuj dalej
+
+Pierwszy odruch to często „może następna aktualizacja to naprawi”. Zwykle tylko utrudnia znalezienie przyczyny. Zatrzymaj się i zapisz, co dokładnie było aktualizowane: WordPress, który motyw, które wtyczki i w jakiej kolejności.
+
+## Sprawdź, czy masz kopię zapasową
+
+Jeśli strona ma wtyczkę do kopii zapasowych (np. UpdraftPlus) albo hosting robi automatyczne kopie, to najprostsza droga: przywrócenie stanu sprzed aktualizacji.
+
+Zwróć uwagę na dwie rzeczy:
+
+* datę kopii, żeby nie stracić zmian, które były na stronie później, np. nowych wpisów albo zamówień w sklepie,
+* czy kopia obejmuje pliki i bazę danych, bo do pełnego przywrócenia potrzebne są obie części.
+
+W sklepie internetowym przywracanie bazy danych może cofnąć zamówienia z ostatnich godzin. W takim przypadku lepiej najpierw spróbować naprawy bez cofania całej strony.
+
+## Znajdź winowajcę
+
+Jeśli aktualizowało się kilka rzeczy naraz, trzeba ustalić, która zepsuła stronę:
+
+1. W panelu WordPressa wyłącz wtyczki zaktualizowane jako ostatnie.
+2. Sprawdź stronę po każdej zmianie.
+3. Jeśli panel nie działa, wtyczki wyłączysz przez zmianę nazwy folderu `wp-content/plugins`. Szerzej opisujemy to w artykule o [błędzie krytycznym w WordPressie](/pl/blog/blad-krytyczny-wordpress-co-zrobic).
+
+Gdy już wiesz, która wtyczka to robi, możesz przywrócić jej poprzednią wersję (pomagają w tym wtyczki typu WP Rollback) i poczekać na poprawkę od autora albo poszukać zamiennika.
+
+## Strona działa, ale wygląda inaczej
+
+Czasem strona się otwiera, ale coś się przesunęło, zmieniły się czcionki albo zniknęła sekcja. Zanim zaczniesz szukać błędu:
+
+* wyczyść cache we wtyczce cache, jeśli ją masz,
+* wyczyść cache w panelu hostingu,
+* otwórz stronę w oknie incognito.
+
+Bardzo często strona jest w porządku, a przeglądarka lub serwer pokazują jeszcze stare pliki.
+
+Jeśli to nie pomogło, a zmiany dotyczą wyglądu, przyczyną bywa aktualizacja motywu, która nadpisała zmiany wprowadzone bezpośrednio w jego plikach. Dlatego poprawki w motywie robi się w motywie potomnym albo we własnym motywie, a nie w gotowym szablonie.
+
+## Aktualizacja WordPressa a wersja PHP
+
+Nowe wersje WordPressa i wtyczek wymagają coraz nowszego PHP. Jeśli strona stoi na bardzo starym PHP, aktualizacja może się nie udać albo coś przestanie działać. Wersję PHP sprawdzisz i zmienisz w panelu hostingu. Przed zmianą też zrób kopię zapasową.
+
+## Jak aktualizować, żeby było spokojnie
+
+* Kopia zapasowa przed każdą większą aktualizacją. Zawsze.
+* Po jednej rzeczy. Najpierw wtyczki, potem motyw, na końcu WordPress, i sprawdzanie strony po każdym kroku.
+* Wersja testowa. Przy większych stronach i sklepach aktualizacje najpierw robi się na kopii strony, a dopiero potem na prawdziwej.
+* Regularnie. Paradoksalnie najwięcej problemów sprawiają strony, których nikt nie aktualizował przez dwa lata, a potem wszystko naraz.
+* Mniej wtyczek. Każda wtyczka to kolejna rzecz, która może się zepsuć przy aktualizacji.
+
+---
+
+**Aktualizacja popsuła Ci stronę?** Napisz do nas. Zajmujemy się [naprawą stron WordPress](/pl/services/opieka-nad-stronami), także zrobionych przez kogoś innego. Jeśli wolisz, żeby aktualizacjami zajmował się ktoś regularnie, z kopią zapasową przed każdą zmianą, sprawdź [stałą administrację strony](/pl/services/administracja-stron).

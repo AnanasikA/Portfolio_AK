@@ -38,9 +38,6 @@ export default function CookieConsent() {
     const stored = localStorage.getItem('cookie-consent');
     setVisible(!stored);
 
-    // Powrót użytkownika, który już wcześniej podjął decyzję — od razu
-    // aktualizujemy consent mode zgodnie z tym co zapisał, zamiast
-    // czekać aż ponownie kliknie (bo nie zobaczy już bannera).
     if (stored === '1' || stored === '0') {
       updateConsent(stored === '1');
     }

@@ -5,12 +5,6 @@ import { Link } from '@/i18n/navigation';
 import { motion, AnimatePresence, useAnimation, useInView } from 'framer-motion';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-/**
- * ScrollingScreenshot
- * Pokazuje pełny (wysoki) zrzut strony w kadrze o stałej wysokości.
- * Gdy kadr wjeżdża w viewport, obrazek płynnie przewija się od góry do dołu,
- * ujawniając całą stronę. Gdy kadr znika z widoku, wraca do pozycji startowej.
- */
 function ScrollingScreenshot({
   src,
   alt,
@@ -28,7 +22,6 @@ function ScrollingScreenshot({
   const controls = useAnimation();
   const isInView = useInView(frameRef, { amount: 0.5 });
 
-  // Zmierz, o ile pikseli trzeba przewinąć (wysokość obrazka po przeskalowaniu do szerokości kadru minus wysokość kadru)
   useEffect(() => {
     const measure = () => {
       if (!frameRef.current || !imgElRef.current) return;
@@ -50,7 +43,7 @@ function ScrollingScreenshot({
 
   useEffect(() => {
     if (isInView && active && scrollDistance > 0) {
-      // czas trwania proporcjonalny do dystansu — dłuższa strona = dłuższe przewijanie, z sensownymi granicami
+
       const duration = Math.min(16, Math.max(5, scrollDistance / 110));
       controls.start({
         y: -scrollDistance,
@@ -107,44 +100,42 @@ export default function FeaturedProjects() {
   const ryRef     = useRef(0);
 
   const projects = [
-   {
-  index: '01', cat: t('projects.marcinkowal.category'), title: t('projects.marcinkowal.title'),
-  chips: ['Bold typografia', 'Animacje CSS', 'Next.js'],
-  desc: t('projects.marcinkowal.description'),
-  stats: [
-    { num: '5',    label: t('projects.marcinkowal.stat1') ?? 'sekcji z animacjami' },
-    { num: '100%', label: t('projects.marcinkowal.stat2') ?? 'responsywna' },
-  ],
-  image: '/projects/marcin-kowal1.webp',
-  imageFull: '/projects/marcin-kowal1.webp', // pełny zrzut całej strony
-  href: '/projects/marcin-kowal',
-},
     {
-  index: '02', cat: t('projects.studioforma.category'), title: t('projects.studioforma.title'),
-  chips: ['Architektura wnętrz', 'Framer Motion', 'Next.js'],
-  desc: t('projects.studioforma.description'),
-  stats: [
-    { num: '6',   label: t('projects.studioforma.stat1') ?? 'stron usług' },
-    { num: '100%', label: t('projects.studioforma.stat2') ?? 'responsywna' },
-  ],
-  image: '/projects/studio-forma-card.webp',
-  imageFull: '/projects/studio-forma-card.webp', // pełny zrzut całej strony
-  href: '/projects/studio-forma',
-},
+      index: '01', cat: t('projects.spiro.category'), title: t('projects.spiro.title'),
+      chips: ['WordPress', 'ACF', 'Fitssey', 'PL / EN'],
+      desc: t('projects.spiro.description'),
+      stats: [
+        { num: 'PL / EN', label: t('projects.spiro.stat1') },
+        { num: '2–3',     label: t('projects.spiro.stat2') },
+      ],
+      image: '/projects/SpiroPilates1.webp',
+      imageFull: '/projects/SpiroPilates1.webp',
+      href: '/projects/spiro-pilates-mobility',
+    },
     {
-  index: '03', 
-  cat: t('projects.camerahub.category'),
-  title: t('projects.camerahub.title'),
-  chips: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-  desc: t('projects.camerahub.description'),
-  stats: [
-    { num: '16+', label: t('projects.camerahub.stat1') ?? 'produktów w katalogu' },
-    { num: '8',   label: t('projects.camerahub.stat2') ?? 'kategorii sprzętu' },
-  ],
-  image: '/projects/camerahub.webp',
-  imageFull: '/projects/camerahub.webp', // pełny zrzut całej strony
-  href: '/projects/camerahub',
-},
+      index: '02', cat: t('projects.luisowka.category'), title: t('projects.luisowka.title'),
+      chips: ['Next.js', 'Firebase', 'Tailwind CSS'],
+      desc: t('projects.luisowka.description'),
+      stats: [
+        { num: t('projects.luisowka.stat1num'), label: t('projects.luisowka.stat1') },
+        { num: '4',       label: t('projects.luisowka.stat2') },
+      ],
+      image: '/projects/Luisowka.webp',
+      imageFull: '/projects/Luisowka.webp',
+      href: '/projects/luisowka',
+    },
+    {
+      index: '03', cat: t('projects.lionforce.category'), title: t('projects.lionforce.title'),
+      chips: ['WordPress', 'ACF', 'Tailwind CSS'],
+      desc: t('projects.lionforce.description'),
+      stats: [
+        { num: 'ACF', label: t('projects.lionforce.stat1') },
+        { num: '2',   label: t('projects.lionforce.stat2') },
+      ],
+      image: '/projects/LionForceWeld(1).webp',
+      imageFull: '/projects/LionForceWeld(1).webp',
+      href: '/projects/lion-force-weld',
+    },
   ];
 
   const p = projects[current];
@@ -199,7 +190,6 @@ export default function FeaturedProjects() {
     >
       <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
-        {/* Header */}
         <div style={{ display:'flex', alignItems:'flex-end', justifyContent:'space-between', flexWrap:'wrap', gap:20, marginBottom:'clamp(32px,5vw,56px)' }}>
           <div>
             <motion.span variants={fade} initial="hidden" whileInView="visible" viewport={{ once:true }}
@@ -275,7 +265,6 @@ export default function FeaturedProjects() {
 
         <div className="fp-inner">
 
-          {/* IMAGE */}
           <div
             ref={imgRef}
             onMouseMove={handleImgMove}
@@ -290,7 +279,6 @@ export default function FeaturedProjects() {
               background: '#f8fafc',
             }}
           >
-            {/* browser bar */}
             <div style={{ height:40, display:'flex', alignItems:'center', gap:6, padding:'0 14px', borderBottom:'1px solid var(--line)', background:'rgba(255,255,255,.9)', backdropFilter:'blur(12px)', flexShrink:0 }}>
               {['#ef4444','#f59e0b','#22c55e'].map(c => (
                 <span key={c} style={{ width:10, height:10, borderRadius:'50%', background:c, display:'block' }} />
@@ -298,7 +286,6 @@ export default function FeaturedProjects() {
               <div style={{ marginLeft:12, height:20, flex:1, borderRadius:99, background:'#eef2f7' }} />
             </div>
 
-            {/* image — pełny zrzut strony, auto-scroll gdy kadr jest widoczny na ekranie */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -317,7 +304,6 @@ export default function FeaturedProjects() {
             </AnimatePresence>
           </div>
 
-          {/* TEXT */}
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -326,7 +312,7 @@ export default function FeaturedProjects() {
               style={{ display:'flex', flexDirection:'column', gap:18 }}
             >
               <p style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'.76rem', letterSpacing:'.12em', textTransform:'uppercase', color:'var(--brand)', margin:0 }}>
-                {p.index} — {p.cat}
+                {p.index} · {p.cat}
               </p>
               <h3 style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(1.6rem,3vw,2.4rem)', letterSpacing:'-.03em', color:'var(--ink)', lineHeight:1.08, margin:0 }}>
                 {p.title}
@@ -368,7 +354,6 @@ export default function FeaturedProjects() {
           </AnimatePresence>
         </div>
 
-        {/* Tabs */}
         <div className="project-tabs" style={{ marginTop:'clamp(24px,4vw,48px)', borderTop:'1px solid var(--line)' }}>
   {projects.map((proj, i) => (
     <button

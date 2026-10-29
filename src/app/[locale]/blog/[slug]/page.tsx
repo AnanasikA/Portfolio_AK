@@ -5,8 +5,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import BlogPostClient from './BlogPostClient';
-
-const BASE_URL = 'https://anastasiiakupriianets.pl';
+import { SITE_URL as BASE_URL } from '@/lib/site';
 
 export async function generateMetadata({
   params,
@@ -20,8 +19,6 @@ export async function generateMetadata({
   const canonical = `${BASE_URL}/${locale}/blog/${slug}`;
   const translatedSlug = getTranslatedBlogSlug(locale, locale === 'en' ? 'pl' : 'en', slug);
 
-  // hreflang tylko dla par artykułów, które faktycznie mają tłumaczenie
-  // (patrz src/data/blogSlugMap.ts) — nie wskazujemy na nieistniejące strony.
   const languages: Record<string, string> = {
     [locale]: canonical,
   };
@@ -33,7 +30,7 @@ export async function generateMetadata({
   if (plUrl) languages['x-default'] = plUrl;
 
   return {
-    title: post.title,
+    title: post.title.replace(/\s+\?/g, '?'),
     description: post.description,
     alternates: {
       canonical,

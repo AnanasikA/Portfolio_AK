@@ -8,7 +8,7 @@ export default function WhatsAppButton() {
 
   const message = isEn
     ? 'Hi! I found your website and I am interested in a quote.'
-    : 'Cześć! Znalazłam Twoją stronę i chciałabym zapytać o wycenę.';
+    : 'Dzień dobry! Piszę ze strony AK Web & Design. Chcę zapytać o stronę.';
 
   const url = `https://wa.me/48576564682?text=${encodeURIComponent(message)}`;
 

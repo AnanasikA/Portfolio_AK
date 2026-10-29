@@ -1,5 +1,3 @@
-// src/components/PrintButton.tsx
-
 import { Printer } from 'lucide-react';
 
 export function PrintButton() {

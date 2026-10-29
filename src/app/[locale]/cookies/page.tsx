@@ -84,7 +84,6 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
 
       <main style={{ maxWidth: 780, margin: '0 auto', padding: 'clamp(100px,12vw,140px) clamp(20px,5vw,48px) clamp(64px,8vw,100px)' }}>
 
-        {/* back link */}
         <nav style={{ marginBottom: 32 }}>
           <Link href="/" locale={locale} style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
@@ -98,7 +97,6 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
           </Link>
         </nav>
 
-        {/* title */}
         <h1 style={{
           fontFamily: 'var(--fd)', fontWeight: 700,
           fontSize: 'clamp(1.8rem,4vw,2.8rem)',
@@ -116,10 +114,8 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
           {content.intro}
         </p>
 
-        {/* divider */}
         <div style={{ height: 1, background: 'var(--line)', marginBottom: 36 }} />
 
-        {/* sections */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
           {content.sections.map(section => (
             <section key={section.title}>
@@ -151,10 +147,8 @@ export default async function CookiesPage({ params }: { params: Promise<{ locale
           ))}
         </div>
 
-        {/* divider */}
         <div style={{ height: 1, background: 'var(--line)', margin: '40px 0 32px' }} />
 
-        {/* bottom CTAs */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
           <Link href="/" locale={locale} style={{
             fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.9rem',

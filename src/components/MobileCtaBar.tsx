@@ -8,22 +8,8 @@ import { trackEvent } from '@/lib/gtag';
 const PHONE_HREF = 'tel:+48576564682';
 const WHATSAPP_NUMBER = '48576564682';
 
-// Strony, na których pasek nie ma sensu: kalkulator (ma własny przycisk
-// wysyłki), podziękowanie, program partnerski, panel admina, oferty.
 const HIDDEN_ON = /\/(wycena|thank-you|partners|admin|offer-[^/]+)(\/|$)/;
 
-/**
- * Pływające przyciski kontaktu w prawym dolnym rogu — tylko telefony
- * i tablety (< 1024px). Ułożone jeden nad drugim, bez tła: telefon,
- * WhatsApp i na samym dole (najbliżej kciuka) przycisk wyceny.
- *
- * Przycisk wyceny pojawia się dopiero po przewinięciu pierwszego ekranu —
- * na samej górze każda strona ma własny przycisk w sekcji powitalnej,
- * więc drugi tylko by go zasłaniał.
- *
- * Przycisk wyceny otwiera ten sam formularz co „Zapytaj o wycenę” w nagłówku
- * (zdarzenie `open-brief`, którego nasłuchuje Header).
- */
 export default function MobileCtaBar() {
   const locale = useLocale();
   const pathname = usePathname() ?? '';
@@ -39,7 +25,6 @@ export default function MobileCtaBar() {
 
   if (HIDDEN_ON.test(pathname)) return null;
 
-  // Gotowa wiadomość, którą odwiedzający zobaczy w polu tekstowym WhatsAppa.
   const whatsappText = isEn
     ? 'Hello, I am interested in a quote for a website.'
     : 'Dzień dobry, interesuje mnie wycena strony internetowej.';
@@ -59,7 +44,6 @@ export default function MobileCtaBar() {
             right: 14px;
             bottom: calc(14px + env(safe-area-inset-bottom));
             z-index: 80;
-            /* Sam kontener nie przechwytuje dotyku — klikalne są tylko przyciski. */
             pointer-events: none;
           }
           .mcta > * { pointer-events: auto; }
@@ -91,7 +75,6 @@ export default function MobileCtaBar() {
           overflow: hidden;
           transition: opacity .25s ease, height .25s ease, margin-top .25s ease;
         }
-        /* Ukryty przycisk nie zajmuje miejsca — ikony zjeżdżają na sam dół. */
         .mcta-quote[data-hidden="true"] {
           opacity: 0;
           height: 0;
@@ -133,7 +116,7 @@ export default function MobileCtaBar() {
           tabIndex={scrolled ? 0 : -1}
           onClick={() => window.dispatchEvent(new Event('open-brief'))}
         >
-          {isEn ? 'Free quote →' : 'Bezpłatna wycena →'}
+          {isEn ? 'Write to us →' : 'Napisz do nas →'}
         </button>
       </div>
     </>

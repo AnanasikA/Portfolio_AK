@@ -90,7 +90,6 @@ function groupSumByDay(items: { at: string; value: number }[], days: number) {
   return out;
 }
 
-// Ochrona: prosty sekret w URL, np. /pl/admin/partners?key=TWOJ_SEKRET
 export default async function AdminPartnersPage({
   params,
   searchParams,
@@ -134,7 +133,6 @@ export default async function AdminPartnersPage({
   const activeConversions = conversions.filter((c) => c.status === "pending" || c.status === "confirmed");
   const pendingConversionsCount = conversions.filter((c) => c.status === "pending").length;
 
-  // --- Kliknięcia: dokładna liczba + ostatnia aktywność na partnera ---
   const clickStats = await Promise.all(
     partners.map(async (p) => {
       const { data } = await supabase.from("referral_clicks").select("created_at").eq("partner_id", p.id);
@@ -170,7 +168,6 @@ export default async function AdminPartnersPage({
     .select("created_at")
     .gte("created_at", thirtyDaysAgo.toISOString());
 
-  // --- Grupowanie po partnerze ---
   const conversionsByPartner: Record<string, ConversionRecord[]> = {};
   conversions.forEach((c) => {
     (conversionsByPartner[c.partner_id] ??= []).push(c);
@@ -206,13 +203,11 @@ export default async function AdminPartnersPage({
     lastActivityByPartner[p.id] = dates.reduce((max, d) => (d > max ? d : max), p.created_at);
   });
 
-  // --- Historia per zgłoszenie ---
   const historyByConversion: Record<string, HistoryRecord[]> = {};
   history.forEach((h) => {
     (historyByConversion[h.conversion_id] ??= []).push(h);
   });
 
-  // --- KPI ---
   const totalCommissionToPay = conversions
     .filter((c) => c.status === "confirmed")
     .reduce((s, c) => s + estimateCommission(c), 0);
@@ -222,7 +217,6 @@ export default async function AdminPartnersPage({
   const overallConversionRate =
     totalClicksCount && totalClicksCount > 0 ? ((conversions.length / totalClicksCount) * 100).toFixed(1) : "—";
 
-  // --- Wykresy: 14 dni (przegląd) i 30 dni (aktywność, przełączalne) ---
   const clicksByDay30 = groupCountByDay((recentClicksAll30 ?? []).map((c) => ({ at: c.created_at })), 30);
   const clicksByDay14 = clicksByDay30.slice(-14);
 
@@ -243,14 +237,12 @@ export default async function AdminPartnersPage({
     30
   );
 
-  // --- Ranking (kliknięcia) ---
   const leaderboard = partners
     .map((p) => ({ name: p.name, code: p.referral_code, count: clickCountByPartner[p.id] ?? 0 }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 8);
   const maxLeaderboardCount = Math.max(...leaderboard.map((l) => l.count), 1);
 
-  // --- Statystyki / rekordziści ---
   const now = new Date();
   const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
   const paidThisMonthByPartner: Record<string, number> = {};
@@ -280,7 +272,6 @@ export default async function AdminPartnersPage({
     ? partners.find((p) => p.id === highestSinglePayout.partner_id)?.name
     : null;
 
-  // --- Powiadomienia ---
   type Notification = { at: string; text: string };
   const notifications: Notification[] = [
     ...pending.slice(0, 5).map((p) => ({ at: p.created_at, text: `Nowy partner oczekuje na akceptację: ${p.name}` })),
@@ -309,7 +300,6 @@ export default async function AdminPartnersPage({
     .sort((a, b) => (a.at < b.at ? 1 : -1))
     .slice(0, 10);
 
-  // --- Przygotowanie listy zgłoszeń dla filtra (meta + gotowy JSX) ---
   const conversionItems = conversions.map((c) => ({
     meta: {
       id: c.id,

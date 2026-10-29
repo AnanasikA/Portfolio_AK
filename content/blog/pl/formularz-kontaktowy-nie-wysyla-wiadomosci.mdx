@@ -1,0 +1,67 @@
+---
+title: "Formularz kontaktowy na stronie nie wysyła wiadomości. Dlaczego?"
+description: "Klienci piszą przez formularz, a wiadomości nie dochodzą albo lądują w spamie? Wyjaśniamy najczęstsze przyczyny na stronach WordPress i jak je naprawić."
+date: "2026-10-29"
+tags: ["WordPress", "Naprawy", "Poradnik"]
+---
+
+Formularz kontaktowy to często najważniejszy element strony firmowej. Jeśli przestaje działać, zwykle nikt tego nie zauważa od razu. Strona wygląda normalnie, klient klika „Wyślij”, widzi podziękowanie, a wiadomość nigdy do Ciebie nie trafia.
+
+Dlatego pierwsza rada jest prosta: **co jakiś czas wyślij sobie testową wiadomość przez własny formularz.** Jeśli nie doszła, poniżej znajdziesz najczęstsze przyczyny.
+
+## Wiadomość trafia do spamu
+
+Zanim zaczniesz szukać awarii, sprawdź folder spam, oferty i inne zakładki w skrzynce. Wiadomości z formularzy często tam lądują, bo z punktu widzenia poczty wyglądają podejrzanie: przychodzą z serwera strony, a nie ze zwykłej skrzynki.
+
+Jeśli znajdziesz je w spamie, problem nie leży w samym formularzu, tylko w sposobie wysyłki. O tym niżej.
+
+## Serwer wysyła maile w sposób, którego poczta nie lubi
+
+Domyślnie WordPress wysyła wiadomości przez funkcję `mail()` serwera. To najprostsza metoda i niestety najmniej pewna:
+
+* część hostingów ją ogranicza albo wyłącza,
+* skrzynki pocztowe takie jak Gmail czy Outlook coraz częściej odrzucają takie wiadomości,
+* nadawca w wiadomości nie zgadza się z serwerem, który ją faktycznie wysłał.
+
+**Rozwiązanie:** wysyłka przez SMTP, czyli przez prawdziwą skrzynkę pocztową, tak jak robi to Twój program pocztowy. W WordPressie służą do tego wtyczki, np. WP Mail SMTP albo FluentSMTP. Podajesz w nich dane skrzynki (najlepiej w Twojej domenie, np. `kontakt@twojafirma.pl`) i od tej pory formularz wysyła maile tak samo jak Ty.
+
+## Brakuje rekordów SPF, DKIM lub DMARC
+
+To ustawienia domeny, które mówią skrzynkom pocztowym: „ten serwer może wysyłać maile w imieniu tej domeny”. Bez nich wiadomości częściej trafiają do spamu albo są odrzucane.
+
+Ustawia się je w panelu, w którym zarządzasz domeną. Konkretne wartości podaje dostawca poczty. Jeśli nie wiesz, gdzie to jest, to dobry moment, żeby poprosić o pomoc. Zła zmiana w tych ustawieniach może zablokować całą pocztę firmową.
+
+## Zły adres odbiorcy w ustawieniach formularza
+
+Brzmi banalnie, ale zdarza się często. Formularz wysyła wiadomości na adres, który ktoś wpisał przy tworzeniu strony, np. na skrzynkę poprzedniego wykonawcy albo na adres, którego już nie używasz.
+
+Sprawdź w ustawieniach wtyczki formularza (np. Contact Form 7, WPForms, Fluent Forms), na jaki adres trafiają wiadomości.
+
+## Zabezpieczenie przed spamem blokuje prawdziwe wiadomości
+
+Formularze często mają zabezpieczenie typu reCAPTCHA. Jeśli klucze wygasły, zostały usunięte albo nie pasują do domeny, formularz może:
+
+* pokazywać błąd przy wysyłce,
+* wysyłać się „na niby” i nic nie dostarczać,
+* odrzucać wszystkich jako boty.
+
+Po zmianie domeny albo przeniesieniu strony warto to sprawdzić w pierwszej kolejności.
+
+## Problem pojawił się po aktualizacji
+
+Jeśli formularz działał, a po aktualizacji WordPressa, wtyczki lub motywu przestał, przyczyną może być konflikt między dodatkami. Pomaga sprawdzenie, która aktualizacja to zmieniła, i powrót do poprzedniej wersji albo zamiana wtyczki na inną.
+
+## Jak sprawdzić, czy wszystko działa
+
+1. Wyślij testową wiadomość przez formularz z innego adresu niż firmowy.
+2. Sprawdź skrzynkę główną i spam.
+3. Jeśli masz wtyczkę SMTP, użyj jej funkcji wysyłki testowej. Pokaże dokładny błąd, jeśli coś jest nie tak.
+4. Rób taki test raz w miesiącu i po każdej większej zmianie na stronie.
+
+## Kiedy oddać to specjaliście
+
+Jeśli wiadomości nie dochodzą mimo sprawdzenia powyższych rzeczy, w grę wchodzą ustawienia domeny i poczty albo konflikt na serwerze. Tu łatwo coś pogorszyć, dlatego lepiej zlecić diagnozę.
+
+---
+
+**Formularz na Twojej stronie nie działa?** Napisz do nas albo zadzwoń. Zajmujemy się [naprawą stron WordPress](/pl/services/opieka-nad-stronami): sprawdzamy, gdzie giną wiadomości, i ustawiamy wysyłkę tak, żeby dochodziły. Jeśli chcesz, żeby ktoś regularnie pilnował takich rzeczy, zobacz [stałą administrację strony](/pl/services/administracja-stron).

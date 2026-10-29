@@ -7,60 +7,60 @@
     "blog": "Blog"
   },
   "hero": {
-    "badge": "Strony dla firm • WordPress i Next.js • współpraca zdalna",
-    "title": "Tworzymy strony internetowe dla firm, które się wyróżniają.",
-    "description": "Projektujemy i tworzymy strony internetowe dla małych firm, usług lokalnych i marek osobistych. Łączymy estetyczny design, szybkość działania i rozwiązania, które wspierają rozwój biznesu.",
-    "primary_cta": "Zapytaj o wycenę",
-    "secondary_cta": "Zobacz realizacje",
-    "highlights": "od 1500 zł • 7–14 dni • indywidualny projekt",
+    "badge": "Strony WWW · Sklepy · Opieka i naprawy",
+    "title": "Strony internetowe, które działają. A gdy coś się psuje, pomagamy.",
+    "description": "Projektujemy strony i sklepy internetowe. Zajmujemy się też aktualizacjami, administracją i naprawą istniejących stron, również na WordPressie.",
+    "primary_cta": "Porozmawiajmy o Twojej stronie",
+    "secondary_cta": "Coś nie działa? Pomożemy",
+    "highlights": "strony od 1 500 zł · sklepy od 2 800 zł · indywidualny projekt",
     "image_alt": "Nowoczesne projekty stron internetowych dla firm",
-    "meta_days": "dni do startu",
-    "meta_custom": "indywidualny design",
-    "meta_rating": "ocena klientów",
-    "stat_bookings": "więcej rezerwacji",
-    "stat_loadtime": "czas ładowania"
+    "meta_days": "dni na prostą stronę",
+    "location": "Kąty Wrocławskie, Wrocław i cała Polska",
+    "meta_from": "strona od 1 500 zł",
+    "meta_reply": "odpowiedź w 1 dzień roboczy"
   },
   "featuredProjects": {
-    "badge": "Wybrane projekty",
-    "title": "Strony, które pracują tak ciężko jak firmy, które za nimi stoją.",
-    "cta": "Zobacz case study",
-    "ctaText": "Masz podobny projekt? Zobacz realizacje albo wyślij krótkie zapytanie.",
+    "badge": "Wybrane realizacje",
+    "title": "Strony, które zrobiliśmy dla naszych klientów.",
+    "cta": "Zobacz realizację",
+    "ctaText": "Masz podobny projekt? Zobacz realizacje albo napisz krótko, czego potrzebujesz.",
     "allProjects": "Zobacz wszystkie projekty",
-    "askQuote": "Zapytaj o wycenę",
+    "askQuote": "Napisz do nas",
     "projects": {
-      "marcinkowal": {
-        "category": "Marka osobista",
-        "title": "Marcin Kowal – Trener Personalny",
-        "description": "Strona dla trenera personalnego w Warszawie. Bold typografia, animacje przy scrollu i popup z formularzem przy wyborze planu.",
-        "stat1": "sekcji z animacjami",
-        "stat2": "responsywna"
+      "spiro": {
+        "category": "Zdrowie i wellness",
+        "title": "Spiro Pilates & Mobility",
+        "description": "Strona studia pilates na WordPressie z własnym motywem, wersją PL i EN oraz grafikiem zajęć podpiętym pod system Fitssey. Właścicielka sama edytuje treści.",
+        "stat1": "dwie wersje językowe",
+        "stat2": "tygodnie realizacji"
       },
-      "studioforma": {
-        "category": "Architektura wnętrz",
-        "title": "Studio Forma",
-        "description": "Kompleksowa strona dla pracowni projektowania wnętrz — z dynamicznymi podstronami usług, animacjami nawiązującymi do designu wnętrz i systemem konsultacji online.",
-        "stat1": "stron usług",
-        "stat2": "responsywna"
+      "luisowka": {
+        "category": "Turystyka i noclegi",
+        "title": "Luisówka",
+        "description": "Strona domku w górach z kalendarzem dostępności, formularzem zapytań i własnym panelem do zarządzania rezerwacjami.",
+        "stat1num": "Panel",
+        "stat1": "do obsługi rezerwacji",
+        "stat2": "tygodnie realizacji"
       },
-      "camerahub": {
-        "category": "Sklep e-commerce",
-        "title": "CameraHub",
-        "description": "Sklep z profesjonalnym sprzętem fotograficznym — pełny katalog produktów z filtrowaniem, koszykiem, checkoutem i wyszukiwarką, zbudowany w Next.js i Tailwind CSS.",
-        "stat1": "produktów w katalogu",
-        "stat2": "kategorii sprzętu"
+      "lionforce": {
+        "category": "Strona firmowa",
+        "title": "Lion Force Weld",
+        "description": "Strona firmy spawalniczej na własnym motywie WordPress. Uporządkowana oferta, czytelny kontakt i prosta edycja treści bez page buildera.",
+        "stat1": "łatwa edycja treści",
+        "stat2": "tygodnie realizacji"
       }
     }
   },
   "pricing": {
     "title": "Ile kosztuje strona internetowa dla Twojej firmy?",
     "badge": "Cennik",
-    "subtitle": "Wybierz pakiet lub napisz do mnie — pomogę dobrać rozwiązanie dopasowane do Twojej branży i budżetu.",
-    "highlights": "✔ od 1500 zł • ✔ realizacja 7–14 dni • ✔ indywidualna wycena",
+    "subtitle": "Wybierz pakiet albo napisz do nas. Pomożemy dobrać rozwiązanie do Twojej branży i budżetu.",
+    "highlights": "✔ strony od 1 500 zł • ✔ sklepy od 2 800 zł • ✔ indywidualna wycena",
     "cta_button": "Zapytaj o wycenę",
-    "cta_subtext": "Nie wiesz, który pakiet wybrać? Napisz — doradzę najlepsze rozwiązanie.",
+    "cta_subtext": "Nie wiesz, który pakiet wybrać? Napisz, doradzimy.",
     "package_aria": "Co zawiera pakiet",
     "price_aria": "Cena",
-    "image_alt": "Przykładowe elementy projektu strony — layout, typografia, sekcje",
+    "image_alt": "Przykładowe elementy projektu strony: layout, typografia, sekcje",
     "packages": {
       "landing": {
         "label": "Strona wizytówka / Landing Page",
@@ -78,7 +78,7 @@
         "label": "Strona firmowa",
         "priceLabel": "od 3 000 zł",
         "badge": "Najczęściej wybierana",
-        "description": "Rozbudowana strona dla firm, które chcą wyglądać profesjonalnie i zdobywać więcej klientów.",
+        "description": "Rozbudowana strona dla firm, które chcą dobrze wyglądać w sieci i łatwiej pozyskiwać klientów.",
         "features": [
           "2–6 podstron (np. O nas, Oferta, Kontakt)",
           "Indywidualny projekt dopasowany do marki",
@@ -94,14 +94,14 @@
         "features": [
           "Więcej podstron i sekcji",
           "Zaawansowany UX i lepszy flow użytkownika",
-          "Premium design i dopracowane detale",
+          "Dopracowany design i detale",
           "Gotowość pod dalszą rozbudowę"
         ]
       }
     },
     "modal": {
       "title": "Szybkie zapytanie o wycenę",
-      "subtitle": "Opisz krótko swój projekt — wrócę z propozycją i orientacyjną ceną.",
+      "subtitle": "Opisz krótko swój projekt. Wrócimy z propozycją i orientacyjną ceną.",
       "close": "Zamknij"
     },
     "form": {
@@ -122,7 +122,7 @@
   "process": {
     "badge": "Jak pracujemy",
     "title": "Jasna droga od pomysłu do startu.",
-    "description": "Przejrzysty proces współpracy bez zbędnych komplikacji. Na każdym etapie wiesz, co robimy i czego możesz się spodziewać.",
+    "description": "Prosty proces bez zbędnych komplikacji. Na każdym etapie wiesz, co robimy i czego możesz się spodziewać.",
     "tags": [
       "Przejrzysty proces",
       "Stały kontakt",
@@ -133,36 +133,36 @@
     "steps": [
       {
         "step": "01",
-        "title": "Odkrywanie",
-        "text": "Poznaję Twoją firmę, cele i odbiorców, aby określić kierunek projektu."
+        "title": "Rozmowa",
+        "text": "Poznajemy Twoją firmę, cele i klientów, żeby ustalić kierunek projektu."
       },
       {
         "step": "02",
         "title": "Projekt",
-        "text": "Tworzę indywidualny projekt dopasowany do marki i potrzeb Twoich klientów."
+        "text": "Przygotowujemy projekt dopasowany do marki i potrzeb Twoich klientów."
       },
       {
         "step": "03",
         "title": "Wdrożenie",
-        "text": "Buduję szybką i responsywną stronę, która działa na każdym urządzeniu."
+        "text": "Budujemy szybką stronę, która dobrze działa na telefonie i komputerze."
       },
       {
         "step": "04",
-        "title": "Start",
-        "text": "Publikuję stronę, przeprowadzam testy i zapewniam wsparcie po uruchomieniu."
+        "title": "Start i opieka",
+        "text": "Publikujemy stronę, testujemy ją i pomagamy także po uruchomieniu."
       }
     ]
   },
   "contact": {
-    "title": "Masz pomysł na stronę?",
-    "success_title": "Dziękuję za wiadomość",
-    "success_text": "Formularz został wysłany poprawnie. Odpowiem najczęściej w ciągu 24 godzin w dni robocze.",
+    "title": "Potrzebujesz strony albo pomocy z obecną?",
+    "success_title": "Dziękujemy za wiadomość",
+    "success_text": "Formularz został wysłany. Odpowiadamy zwykle w ciągu jednego dnia roboczego.",
     "send_another": "Wyślij kolejną wiadomość",
     "write_email": "Napisz maila",
     "error": "Nie udało się wysłać formularza. Spróbuj ponownie lub napisz na",
     "sending": "Wysyłanie…",
     "primary_cta": "Otrzymaj wycenę",
-    "response_time": "Odpowiadam zwykle w ciągu 24 godzin",
+    "response_time": "Odpowiadamy zwykle w ciągu jednego dnia roboczego",
     "form": {
       "name": "Imię i nazwisko",
       "email": "Email",
@@ -171,34 +171,36 @@
     }
   },
   "footer": {
-    "description": "Projektuję i koduję nowoczesne strony internetowe — funkcjonalne, estetyczne i gotowe do działania. Skupiam się na UX/UI, dostępności i dobrym kodzie.",
+    "description": "Projektujemy i tworzymy strony oraz sklepy internetowe. Pomagamy też w aktualizacjach, administracji i naprawach istniejących stron.",
     "privacy": "Polityka prywatności",
     "terms": "Regulamin",
     "cookies": "Cookies",
     "legal_aria": "Linki prawne"
   },
   "cookie": {
-    "message": "Używamy plików cookie, aby zapewnić najlepsze doświadczenia na naszej stronie.",
+    "message": "Używamy plików cookie, żeby strona działała dobrze i żebyśmy wiedzieli, co warto poprawić.",
     "accept": "Akceptuję",
     "decline": "Odrzuć",
     "learn_more": "Dowiedz się więcej"
   },
   "meta": {
-    "title": "Tworzenie stron internetowych Wrocław | AK Web & Design",
-    "description": "Tworzymy strony internetowe dla firm i usług lokalnych — z Wrocławia, dla klientów z całej Polski i zdalnie. Szybkie, nowoczesne strony zaprojektowane pod konwersję."
+    "title": "Strony internetowe Kąty Wrocławskie i Wrocław | AK Web & Design",
+    "description": "Tworzymy strony i sklepy internetowe oraz zajmujemy się opieką i naprawą stron WordPress. Kąty Wrocławskie, Wrocław i cała Polska."
   },
   "projectsPage": {
     "ariaLabel": "Projekty",
-    "title": "Moje projekty w sieci",
-    "subtitle": "Poznaj strony, które stworzyłam od pierwszego szkicu po finalny kod – dopasowane do potrzeb klientów, nowoczesne w formie i przyjazne w użytkowaniu.",
+    "title": "Nasze realizacje",
+    "subtitle": "Strony, które zrobiliśmy dla klientów, oraz projekty koncepcyjne pokazujące, jak pracujemy. Każdy projekt koncepcyjny jest wyraźnie oznaczony.",
     "home": "Strona główna",
     "homeAria": "Wróć na stronę główną",
-    "contactTop": "Napisz do mnie",
+    "contactTop": "Napisz do nas",
     "contactBottom": "Kontakt",
     "contactAria": "Przejdź do sekcji kontakt",
     "projectButton": "Zobacz projekt",
     "projectDetailsAria": "Zobacz szczegóły: {title}",
-    "backToProjects": "Powrót do projektów"
+    "backToProjects": "Powrót do projektów",
+    "metaTitle": "Realizacje: strony i sklepy internetowe",
+    "metaDescription": "Zobacz strony internetowe, które stworzyliśmy dla firm i organizacji, oraz nasze projekty koncepcyjne. WordPress, Next.js, sklepy online."
   },
   "dropdownMenu": {
     "home": "Start",
@@ -207,11 +209,11 @@
     "projects": "Portfolio",
     "pricing": "Cennik",
     "blog": "Blog",
-    "cta": "Zapytaj o wycenę",
+    "cta": "Napisz do nas",
     "ctaAria": "Otwórz formularz wyceny",
     "menuAria": "Menu nawigacyjne",
     "closeAria": "Zamknij menu",
-    "smallText": "Nowoczesne strony internetowe dla firm w całej Polsce."
+    "smallText": "Strony, sklepy i opieka nad stronami. Kąty Wrocławskie, Wrocław i cała Polska."
   },
   "cookieConsent": {
     "text": "Używamy plików cookie do analityki i poprawy działania serwisu.",
@@ -221,116 +223,113 @@
   "projectDetail": {
     "overviewTitle": "O projekcie",
     "timeframeLabel": "Czas realizacji",
-    "workTitle": "Co zrobiłam w projekcie",
+    "workTitle": "Co zrobiliśmy w projekcie",
     "resultsTitle": "Efekt",
     "challengesTitle": "Wyzwania i rozwiązania",
     "challengeLabel": "Wyzwanie",
     "solutionLabel": "Rozwiązanie",
     "decisionsTitle": "Kluczowe decyzje projektowe",
     "integrationsTitle": "Integracje i połączenia",
-    "sidebarText": "Masz pytania lub chcesz podobny efekt? Po prostu napisz — odezwę się z propozycją.",
+    "sidebarText": "Masz pytania albo chcesz podobną stronę? Napisz, odezwiemy się z propozycją.",
     "viewOnline": "Zobacz online",
     "contact": "Skontaktuj się",
-    "imagePreviewAria": "Podgląd pełnej strony projektu {title} — przewijaj w ramce, aby zobaczyć całość",
-    "imageAlt": "{title} — długi zrzut strony"
+    "imagePreviewAria": "Podgląd pełnej strony projektu {title}: przewijaj w ramce, aby zobaczyć całość",
+    "imageAlt": "{title}: długi zrzut strony"
   },
   "thankYou": {
     "badge": "Wiadomość wysłana",
-    "title": "Dziękuję za kontakt!",
-    "desc": "Otrzymałam Twoje zapytanie. Odpowiem możliwie szybko.",
+    "title": "Dziękujemy za kontakt!",
+    "desc": "Otrzymaliśmy Twoją wiadomość. Odpowiemy możliwie szybko, zwykle w ciągu jednego dnia roboczego.",
     "home": "Wróć na stronę główną",
     "projects": "Zobacz realizacje",
-    "label": "Zapytanie z portfolio",
+    "label": "Zapytanie ze strony",
     "step1": "Brief otrzymany",
     "step2": "Analiza zakresu",
     "step3": "Odpowiedź wkrótce"
   },
   "calculator": {
     "badge": "AK Web & Design",
-    "title": "Sprawdź ile kosztuje Twoja strona — bez sprzedawcy, bez presji.",
-    "subtitle": "Skonfiguruj projekt krok po kroku. Wycena aktualizuje się na żywo. Ostateczną, stałą cenę potwierdzam po krótkiej rozmowie — gwarantuję, że się nie zmieni.",
+    "title": "Sprawdź, ile może kosztować Twoja strona.",
+    "subtitle": "Skonfiguruj projekt krok po kroku, a wycena zaktualizuje się na bieżąco. Ostateczną cenę potwierdzamy po krótkiej rozmowie i później się ona nie zmienia.",
     "step1": "Co chcesz osiągnąć?",
     "step2": "Ile podstron?",
     "step3": "Czego potrzebujesz?",
     "step3hint": "Opcjonalnie",
     "step4": "Kiedy potrzebujesz gotowej strony?",
     "extraPages": "+{count} dodatkowych podstron ponad pakiet (+{price} zł)",
-    "pagesLockedNote": "Landing page to jedna strona. Potrzebujesz więcej podstron? Wybierz stronę firmową.",
     "sidebarTitle": "TWOJA WYCENA",
     "sidebarFrom": "od {price} zł",
     "sidebarRange": "{low} – {high} zł",
     "sidebarNote": "szacowany zakres · netto",
     "careLabel": "Opieka miesięczna",
     "careSuffix": "/ mies.",
-    "cta": "Wyślij wycenę — odezwę się jutro →",
+    "cta": "Wyślij wycenę →",
     "ctaEmailPre": "lub",
     "ctaEmailLink": "napisz bezpośrednio na e-mail",
     "guarantee1": "Cena nie zmieni się po konsultacji",
-    "guarantee2": "Odpowiedź w ciągu 24h",
+    "guarantee2": "Odpowiedź w 1 dzień roboczy",
     "guarantee3": "Bez zobowiązań · Bez spamu",
     "speed_standard_label": "W normalnym tempie",
     "speed_standard_sub": "4–6 tygodni",
     "speed_priority_label": "Ekspresowo",
     "speed_priority_sub": "2–3 tygodnie",
-    "speed_standard_sub_simple": "7–14 dni roboczych",
-    "speed_priority_sub_simple": "5–7 dni roboczych",
     "speed_priority_badge": "+25%",
     "breakdown_pages": "+{count} dodatkowych podstron",
     "breakdown_priority": "Realizacja ekspresowa (+25%)",
     "modalTitle": "Wyślij wycenę",
-    "modalSubtitle": "Uzupełnij dane — odezwę się z ostateczną ofertą. Bez zobowiązań.",
+    "modalSubtitle": "Uzupełnij dane, a odezwiemy się z ostateczną ofertą. Bez zobowiązań.",
     "fieldName": "Imię i nazwisko *",
     "fieldEmail": "E-mail *",
     "fieldPhone": "Telefon",
     "fieldCompany": "Firma",
     "fieldMessage": "Dodatkowe uwagi",
-    "fieldMessagePlaceholder": "Termin, dodatkowe wymagania…",
+    "fieldMessagePlaceholder": "Termin, dodatkowe wymagania...",
     "fieldNamePlaceholder": "Jan Kowalski",
     "fieldEmailPlaceholder": "jan@firma.pl",
     "fieldPhonePlaceholder": "+48 500 000 000",
     "fieldCompanyPlaceholder": "Nazwa firmy (opcjonalnie)",
-    "submit": "Wyślij wycenę — odezwę się jutro →",
+    "submit": "Wyślij wycenę →",
     "submitting": "Wysyłanie…",
-    "submitNote": "Bez zobowiązań · Bez spamu · Odpowiedź w 24h",
+    "submitNote": "Bez zobowiązań · Bez spamu · Odpowiedź w 1 dzień roboczy",
     "successTitle": "Wycena wysłana!",
-    "successDesc": "Odezwę się w ciągu 1–2 dni roboczych z ostateczną ofertą.",
+    "successDesc": "Odezwiemy się w ciągu 1–2 dni roboczych z ostateczną ofertą.",
     "errorMsg": "Coś poszło nie tak. Napisz bezpośrednio: kontakt@anastasiiakupriianets.pl",
     "siteTypes": {
       "landing": {
         "label": "Landing page",
-        "desc": "Jedna strona, jeden cel — maksymalna konwersja.",
-        "subdesc": "Idealny dla kampanii, produktu lub usługi."
+        "desc": "Jedna strona, jeden cel. Dobre na start albo pod kampanię.",
+        "subdesc": "Np. dla jednej usługi, produktu lub wydarzenia."
       },
       "business": {
         "label": "Strona firmowa",
-        "desc": "Wielopodstronowa strona która sprzedaje Twoją firmę 24/7.",
-        "subdesc": "O nas, usługi, kontakt, blog — wszystko w jednym miejscu."
+        "desc": "Kilka podstron, które jasno pokazują firmę i ofertę.",
+        "subdesc": "O nas, usługi, kontakt, blog."
       },
       "wordpress": {
         "label": "Strona na WordPress",
         "desc": "Edytujesz treści samodzielnie, bez programisty.",
         "subdesc": "Prosty panel, pełna kontrola nad contentem."
       },
-      "shop": {
-        "label": "Sklep internetowy",
-        "desc": "Katalog produktów, koszyk i płatności online — gotowy do sprzedaży.",
-        "subdesc": "WooCommerce z panelem do zarządzania zamówieniami."
-      },
       "redesign": {
         "label": "Odświeżenie strony",
-        "desc": "Nowy wygląd, ta sama treść — bez przepisywania od zera.",
+        "desc": "Nowy wygląd, te same treści. Bez budowania od zera.",
         "subdesc": "Szybciej i taniej niż nowa strona."
       },
       "premium": {
         "label": "Premium i Custom",
         "desc": "Autorski projekt, animacje, zaawansowane funkcje.",
-        "subdesc": "Dla firm które chcą wyróżniać się na tle konkurencji."
+        "subdesc": "Dla firm, które potrzebują czegoś więcej niż standard."
+      },
+      "shop": {
+        "label": "Sklep internetowy",
+        "desc": "Katalog produktów, koszyk i płatności online. Gotowy do sprzedaży.",
+        "subdesc": "WooCommerce z panelem do zarządzania zamówieniami."
       }
     },
     "extras": {
       "seo": {
-        "label": "SEO — znajdź się w Google",
-        "desc": "Meta tagi, sitemap, robots, OG — gotowe pod wyszukiwarki."
+        "label": "SEO, czyli widoczność w Google",
+        "desc": "Meta tagi, mapa strony, robots, OG. Strona gotowa pod wyszukiwarki."
       },
       "copy": {
         "label": "Copywriting",
@@ -338,15 +337,15 @@
       },
       "booking": {
         "label": "System rezerwacji online",
-        "desc": "Klienci umawiają się sami — bez telefonu, bez e-maili."
+        "desc": "Klienci umawiają się sami, bez dzwonienia i maili."
       },
       "shop": {
         "label": "Sklep online",
-        "desc": "Produkty, koszyk, płatności — kompletny e-commerce."
+        "desc": "Produkty, koszyk, płatności. Kompletny sklep."
       },
       "lang": {
         "label": "Dodatkowa wersja językowa",
-        "desc": "Strona w dwóch językach — np. PL + EN."
+        "desc": "Strona w dwóch językach, np. PL i EN."
       },
       "blog": {
         "label": "Blog / aktualności",
@@ -354,11 +353,11 @@
       },
       "branding": {
         "label": "Logo i identyfikacja wizualna",
-        "desc": "Logotyp, paleta kolorów, typografia — spójny brand."
+        "desc": "Logo, kolory, typografia. Spójny wygląd marki."
       },
       "care": {
         "label": "Opieka miesięczna",
-        "desc": "Drobne zmiany, aktualizacje, spokój głowy — do 1h/mies."
+        "desc": "Drobne zmiany i aktualizacje, do 1h w miesiącu."
       }
     },
     "pageOptions": {
@@ -382,21 +381,26 @@
         "label": "13+",
         "hint": "Duży projekt"
       }
-    }
+    },
+    "repairNote": "Masz problem z istniejącą stroną?",
+    "repairLink": "Napisz do nas",
+    "pagesLockedNote": "Landing page to jedna strona. Potrzebujesz więcej podstron? Wybierz stronę firmową.",
+    "speed_standard_sub_simple": "7–14 dni roboczych",
+    "speed_priority_sub_simple": "5–7 dni roboczych"
   },
   "projects": {
     "camerahub": {
       "title": "CameraHub – Sklep z aparatami",
-      "description": "Sklep e-commerce z profesjonalnym sprzętem fotograficznym: katalog z zaawansowanymi filtrami, koszyk, checkout, wyszukiwarka i pełna responsywność — zbudowany w Next.js i Tailwind CSS.",
-      "overview": "Portfolio-owy sklep e-commerce zbudowany od zera na Next.js (App Router) i Tailwind CSS — od katalogu produktów z wielopoziomowym filtrowaniem, przez koszyk i checkout, po wyszukiwarkę działającą na wielu polach naraz. Świadomie zaprojektowany jako projekt frontendowy bez prawdziwego backendu — logowanie, rejestracja i checkout są w pełni zaprojektowanymi, działającymi wizualnie przepływami z jasną informacją, że to demo, zamiast na siłę podpinanego, niepotrzebnego serwera.",
+      "description": "Sklep e-commerce z profesjonalnym sprzętem fotograficznym: katalog z zaawansowanymi filtrami, koszyk, checkout, wyszukiwarka i pełna responsywność. Zbudowany w Next.js i Tailwind CSS.",
+      "overview": "Portfolio-owy sklep e-commerce zbudowany od zera na Next.js (App Router) i Tailwind CSS: od katalogu produktów z wielopoziomowym filtrowaniem, przez koszyk i checkout, po wyszukiwarkę działającą na wielu polach naraz. Świadomie zaprojektowany jako projekt frontendowy bez prawdziwego backendu: logowanie, rejestracja i checkout są w pełni zaprojektowanymi, działającymi wizualnie przepływami z jasną informacją, że to demo, zamiast na siłę podpinanego, niepotrzebnego serwera.",
       "workTitle": "Zakres prac",
       "work": [
         "Katalog 16 produktów w 8 kategoriach (aparaty bezlusterkowe, lustrzanki, kamery kinowe, obiektywy, drony, oświetlenie, audio, akcesoria)",
-        "Panel filtrów: cena (suwak), marka, typ aparatu, matryca, rozdzielczość wideo, dostępność i wyprzedaż — każdy filtr pokazuje liczbę pasujących produktów, nawet gdy wynosi zero",
-        "Wyszukiwarka dopasowująca każde wpisane słowo osobno do nazwy, marki, kategorii, opisu i parametrów technicznych — zamiast szukania całej frazy dosłownie",
+        "Panel filtrów: cena (suwak), marka, typ aparatu, matryca, rozdzielczość wideo, dostępność i wyprzedaż: każdy filtr pokazuje liczbę pasujących produktów, nawet gdy wynosi zero",
+        "Wyszukiwarka dopasowująca każde wpisane słowo osobno do nazwy, marki, kategorii, opisu i parametrów technicznych: zamiast szukania całej frazy dosłownie",
         "Koszyk (React Context + localStorage) dostępny z każdej podstrony jako wysuwany panel",
         "3-etapowy checkout (dostawa → płatność → podsumowanie) z animowanymi przejściami między krokami",
-        "Strony logowania i rejestracji — pełny UI formularzy z walidacją, świadomie oznaczone jako wersja demo",
+        "Strony logowania i rejestracji: pełny UI formularzy z walidacją, świadomie oznaczone jako wersja demo",
         "Galeria zdjęć w układzie bento z lightboxem (nawigacja strzałkami, klawiaturą, licznik zdjęć)",
         "System placeholderów: każde zdjęcie produktu ma automatyczny fallback na stylizowany blok z podpisem, jeśli plik jeszcze nie istnieje",
         "Pełna responsywność: mobilne menu z akordeonem kategorii, panel filtrów jako wysuwany od dołu bottom sheet na telefonie, karty produktów przełączające się z układu poziomego na pionowy przy wąskich ekranach",
@@ -407,9 +411,9 @@
       "timeframe": "iteracyjnie, sesja po sesji",
       "highlights": [
         "Pełny przepływ zakupowy: katalog → filtrowanie → koszyk → checkout → potwierdzenie, wszystko połączone i działające",
-        "Panel filtrów, który nigdy nie pokazuje pustego lub niedziałającego stanu — nieaktywne opcje są wyszarzone z licznikiem (0) zamiast znikać",
+        "Panel filtrów, który nigdy nie pokazuje pustego lub niedziałającego stanu: nieaktywne opcje są wyszarzone z licznikiem (0) zamiast znikać",
         "Zero connected crashy: każde zdjęcie, którego jeszcze nie ma na dysku, elegancko przechodzi na stylizowany placeholder zamiast pokazywać złamaną ikonkę",
-        "Responsywny na każdej szerokości ekranu — od wąskiego telefonu po duży desktop, z osobno przemyślanym układem dla każdego kluczowego komponentu"
+        "Responsywny na każdej szerokości ekranu: od wąskiego telefonu po duży desktop, z osobno przemyślanym układem dla każdego kluczowego komponentu"
       ],
       "challengesTitle": "Wyzwania",
       "challenges": [
@@ -423,40 +427,40 @@
         },
         {
           "problem": "Automatyczna siatka masonry (kolumny CSS) dla galerii zdjęć zostawiała przypadkowe puste miejsca przy tylko 5 kuratorskich zdjęciach.",
-          "solution": "Zamiana z automatycznie balansujących kolumn CSS na ręcznie zaprojektowaną siatkę CSS Grid z ustalonymi z góry pozycjami — przy stałej, niewielkiej liczbie elementów przewidywalny układ jest ważniejszy niż w pełni naturalne proporcje zdjęć."
+          "solution": "Zamiana z automatycznie balansujących kolumn CSS na ręcznie zaprojektowaną siatkę CSS Grid z ustalonymi z góry pozycjami: przy stałej, niewielkiej liczbie elementów przewidywalny układ jest ważniejszy niż w pełni naturalne proporcje zdjęć."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
       "decisions": [
         "Next.js App Router z komponentami klienckimi tam, gdzie potrzebna jest interaktywność (koszyk, filtry, wyszukiwarka), a resztą renderowaną statycznie",
-        "Świadoma rezygnacja z prawdziwego backendu (rozważano Supabase) — dla czysto frontendowego projektu portfolio lepszym wyborem był w pełni działający wizualnie UI z jasną informacją „to demo” niż niepotrzebna zależność zewnętrzna",
-        "System placeholderów jako pierwszoklasowa część designu, nie prowizorka — pozwala pokazywać projekt na każdym etapie uzupełniania zdjęć bez połamanego wyglądu",
-        "Wspólny komponent `FiltersContent` używany zarówno w panelu desktopowym, jak i mobilnym bottom sheet — zero duplikacji logiki filtrowania",
-        "Filtry pokazujące zawsze pełną listę możliwych opcji (z licznikiem 0, wyszarzone) zamiast ukrywania nieistniejących kombinacji — przewidywalność interfejsu ważniejsza niż minimalizm"
+        "Świadoma rezygnacja z prawdziwego backendu (rozważano Supabase): dla czysto frontendowego projektu portfolio lepszym wyborem był w pełni działający wizualnie UI z jasną informacją „to demo” niż niepotrzebna zależność zewnętrzna",
+        "System placeholderów jako pierwszoklasowa część designu, nie prowizorka: pozwala pokazywać projekt na każdym etapie uzupełniania zdjęć bez połamanego wyglądu",
+        "Wspólny komponent `FiltersContent` używany zarówno w panelu desktopowym, jak i mobilnym bottom sheet: zero duplikacji logiki filtrowania",
+        "Filtry pokazujące zawsze pełną listę możliwych opcji (z licznikiem 0, wyszarzone) zamiast ukrywania nieistniejących kombinacji: przewidywalność interfejsu ważniejsza niż minimalizm"
       ],
       "integrationsTitle": "Integracje",
       "integrations": [
-        "Framer Motion — animowane przejścia (koszyk, wyszukiwarka, checkout, lightbox galerii, mobilne menu)",
+        "Framer Motion: animowane przejścia (koszyk, wyszukiwarka, checkout, lightbox galerii, mobilne menu)",
         "next/image z automatycznym fallbackiem na placeholder przy braku pliku (`onError`)",
-        "lucide-react — spójny zestaw ikon w całym interfejsie",
-        "Brak zewnętrznego backendu — świadoma decyzja projektowa, patrz sekcja „Decyzje projektowe”"
+        "lucide-react: spójny zestaw ikon w całym interfejsie",
+        "Brak zewnętrznego backendu: świadoma decyzja projektowa, patrz sekcja „Decyzje projektowe”"
       ]
     },
     "booknest": {
       "title": "BookNest – Sklep z ebookami",
       "description": "Pełny sklep e-commerce sprzedający ebooki: katalog z filtrowaniem, koszyk, płatności Stripe, konta użytkowników i natychmiastowe pobieranie po zakupie.",
-      "overview": "Kompletny sklep cyfrowy zbudowany od zera na Next.js i Supabase — od katalogu produktów, przez koszyk i płatności Stripe, po panel konta z historią zamówień i bezpiecznym pobieraniem plików. Model czysto cyfrowy (bez wysyłki fizycznej) z naciskiem na natychmiastowy dostęp po opłaceniu.",
+      "overview": "Kompletny sklep cyfrowy zbudowany od zera na Next.js i Supabase: od katalogu produktów, przez koszyk i płatności Stripe, po panel konta z historią zamówień i bezpiecznym pobieraniem plików. Model czysto cyfrowy (bez wysyłki fizycznej) z naciskiem na natychmiastowy dostęp po opłaceniu.",
       "workTitle": "Zakres prac",
       "work": [
         "Katalog produktów z paginacją, filtrowaniem po kategorii i autorze oraz wyszukiwarką pełnotekstową",
-        "Koszyk i checkout w jednym przepływie — bez zbędnych kroków pośrednich",
+        "Koszyk i checkout w jednym przepływie: bez zbędnych kroków pośrednich",
         "Integracja Stripe Checkout z webhookiem potwierdzającym płatność",
         "Uwierzytelnianie Supabase Auth (rejestracja, logowanie, middleware odświeżający sesję)",
         "Panel konta z zakładkami: dane osobowe, historia zamówień, lista życzeń, adresy dostawy, zmiana hasła",
-        "Bezpieczne pobieranie ebooków — podpisane linki generowane dopiero po weryfikacji opłaconego zamówienia",
+        "Bezpieczne pobieranie ebooków: podpisane linki generowane dopiero po weryfikacji opłaconego zamówienia",
         "Kontekst koszyka i listy życzeń (React Context) z memoizacją dla wydajności przy wielu kartach naraz",
         "Generowane okładki produktów (kolorowa nakładka + typografia) jako legalna alternatywa dla praw autorskich do prawdziwych okładek",
-        "Pełna responsywność — od Hero po panel konta, siatki produktów skalujące się 2→3→5 kolumn",
+        "Pełna responsywność: od Hero po panel konta, siatki produktów skalujące się 2→3→5 kolumn",
         "Skrypty seedujące katalog z realnych, darmowych źródeł (Project Gutenberg / Google Books API)"
       ],
       "resultsTitle": "Efekt",
@@ -464,8 +468,8 @@
       "timeframe": "iteracyjnie, sesja po sesji",
       "highlights": [
         "Pełny, działający przepływ zakupowy: katalog → koszyk → Stripe → potwierdzenie → pobranie pliku",
-        "Zero pustych placeholderów — każda książka bez zdjęcia dostaje spójną, wygenerowaną okładkę zamiast szarej ikony",
-        "Bezpieczny model dostępu do plików — prywatny bucket w Supabase Storage, linki ważne tylko chwilę i tylko dla opłaconych zamówień",
+        "Zero pustych placeholderów: każda książka bez zdjęcia dostaje spójną, wygenerowaną okładkę zamiast szarej ikony",
+        "Bezpieczny model dostępu do plików: prywatny bucket w Supabase Storage, linki ważne tylko chwilę i tylko dla opłaconych zamówień",
         "Responsywny na każdej szerokości ekranu, od telefonu po duży desktop"
       ],
       "challengesTitle": "Wyzwania",
@@ -476,7 +480,7 @@
         },
         {
           "problem": "Realne okładki książek (skany z Open Library, Google Books) wyglądały niespójnie i część z nich naruszałaby prawa autorskie przy komercyjnym użyciu.",
-          "solution": "Zaprojektowanie komponentu generującego okładkę: zdjęcie tła + kolorowa nakładka zależna od kategorii + typografia tytułu/autora — spójne wizualnie i bezpieczne prawnie."
+          "solution": "Zaprojektowanie komponentu generującego okładkę: zdjęcie tła + kolorowa nakładka zależna od kategorii + typografia tytułu/autora: spójne wizualnie i bezpieczne prawnie."
         },
         {
           "problem": "Katalog wymagał realnych, legalnych do sprzedaży treści cyfrowych, nie tylko metadanych.",
@@ -485,8 +489,8 @@
       ],
       "decisionsTitle": "Decyzje projektowe",
       "decisions": [
-        "Next.js App Router z mieszanką Server i Client Components — dane pobierane server-side, interaktywność (koszyk, formularze) client-side",
-        "Model czysto cyfrowy zamiast hybrydowego — prostszy checkout bez adresu dostawy i wyboru kuriera",
+        "Next.js App Router z mieszanką Server i Client Components: dane pobierane server-side, interaktywność (koszyk, formularze) client-side",
+        "Model czysto cyfrowy zamiast hybrydowego: prostszy checkout bez adresu dostawy i wyboru kuriera",
         "Supabase jako jedyne źródło prawdy: Postgres + Auth + Storage w jednym, z RLS pilnującym dostępu do danych",
         "Kontekst React (Cart/Wishlist) zmemoizowany przez useMemo, żeby dodanie jednej pozycji nie przerenderowywało całej siatki produktów",
         "Generowane okładki jako świadomy wybór estetyczny i prawny, zamiast polegania na niepewnych źródłach zdjęć"
@@ -496,14 +500,14 @@
         "Stripe Checkout + webhook (potwierdzenie płatności, aktualizacja statusu zamówienia)",
         "Supabase Auth (e-mail/hasło, middleware odświeżający sesję)",
         "Supabase Storage (prywatny bucket na pliki ebooków, podpisane linki do pobrania)",
-        "Google Books API i Project Gutenberg / Gutendex — źródła danych i plików do katalogu",
+        "Google Books API i Project Gutenberg / Gutendex: źródła danych i plików do katalogu",
         "next/image z konfiguracją zdalnych hostów dla wielu źródeł okładek"
       ]
     },
     "studio-forma": {
       "title": "Studio Forma – Architektura Wnętrz",
       "description": "Strona internetowa dla pracowni projektowania wnętrz. Minimalistyczny, edytorialny design z dynamicznymi podstronami usług i animacjami nawiązującymi do designu wnętrz.",
-      "overview": "Kompleksowa strona dla pracowni architektury wnętrz Studio Forma, zaprojektowana w stonowanej, ponadczasowej stylistyce — kremowe tło, oliwkowy akcent i typografia łącząca Cormorant Garamond z Jost.",
+      "overview": "Pełna strona dla pracowni architektury wnętrz Studio Forma, zaprojektowana w stonowanej, ponadczasowej stylistyce: kremowe tło, oliwkowy akcent i typografia łącząca Cormorant Garamond z Jost.",
       "workTitle": "Zakres prac",
       "work": [
         "Projekt UX/UI w stylu minimalistyczno-edytorialnym",
@@ -520,7 +524,7 @@
       "timeframe": "2–3 tygodnie",
       "highlights": [
         "Spójna identyfikacja wizualna pracowni na wszystkich podstronach",
-        "Skalowalna struktura usług — nowa usługa to jeden wpis w danych, nie nowy plik",
+        "Skalowalna struktura usług: nowa usługa to jeden wpis w danych, nie nowy plik",
         "Animacje nawiązujące tematycznie do architektury wnętrz (linia procesu, narożniki planu, żaluzje)",
         "Szybkie ładowanie dzięki statycznemu generowaniu podstron usług"
       ],
@@ -528,7 +532,7 @@
       "challenges": [
         {
           "problem": "Sześć różnych usług wymagało osobnych podstron bez duplikowania kodu.",
-          "solution": "Jeden dynamiczny szablon [slug] czytający dane z centralnego pliku services.ts — dodanie usługi to wpis do tablicy, nie nowa strona."
+          "solution": "Jeden dynamiczny szablon [slug] czytający dane z centralnego pliku services.ts: dodanie usługi to wpis do tablicy, nie nowa strona."
         },
         {
           "problem": "Modal konsultacji renderował się nieprawidłowo wewnątrz animowanych kontenerów.",
@@ -536,14 +540,14 @@
         },
         {
           "problem": "Animacje musiały pasować tematycznie do branży, a nie być generycznym fade-in.",
-          "solution": "Zaprojektowanie autorskich efektów — rozwijana żaluzja na kartach usług, rysująca się linia procesu, narożniki jak na planie architektonicznym."
+          "solution": "Zaprojektowanie autorskich efektów: rozwijana żaluzja na kartach usług, rysująca się linia procesu, narożniki jak na planie architektonicznym."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
       "decisions": [
         "Next.js 14 App Router z generateStaticParams dla stron usług",
         "CSS transitions zamiast JS setTimeout dla płynniejszych animacji stopki",
-        "Cormorant Garamond jako font display — elegancki, edytorialny charakter",
+        "Cormorant Garamond jako font display: elegancki, edytorialny charakter",
         "Kremowe tło + oliwkowy akcent = ciepła, ponadczasowa identyfikacja",
         "Dane usług oddzielone od widoku (services.ts) dla łatwej rozbudowy"
       ],
@@ -559,7 +563,7 @@
     "marcin-kowal": {
       "title": "Marcin Kowal – Trener Personalny",
       "description": "Strona internetowa dla trenera personalnego z Warszawy. Bold typografia, animowane sekcje i interaktywny formularz kontaktowy.",
-      "overview": "Projekt strony dla trenera personalnego Marcina Kowala, zaprojektowanej w atletycznym, odważnym stylu — czarne tło, masywna typografia i pomarańczowy akcent marki.",
+      "overview": "Projekt strony dla trenera personalnego Marcina Kowala, zaprojektowanej w atletycznym, odważnym stylu: czarne tło, masywna typografia i pomarańczowy akcent marki.",
       "workTitle": "Zakres prac",
       "work": [
         "Projekt UX/UI w stylu bold & athletic",
@@ -574,7 +578,7 @@
       "timeframe": "1–2 tygodnie",
       "highlights": [
         "Wyraźna identyfikacja wizualna trenera",
-        "Wysoka konwersja dzięki CTA i formularzowi w popupie",
+        "Krótka droga do kontaktu dzięki CTA i formularzowi w popupie",
         "Szybkie ładowanie i pełna responsywność",
         "Animacje angażujące użytkownika na każdej sekcji"
       ],
@@ -586,18 +590,18 @@
         },
         {
           "problem": "Duża ilość treści bez przytłoczenia użytkownika.",
-          "solution": "Podział na sekcje z animowanym wjazdem — każda pojawia się dopiero przy scrollu."
+          "solution": "Podział na sekcje z animowanym wjazdem: każda pojawia się dopiero przy scrollu."
         },
         {
-          "problem": "Konwersja — zachęcenie do kontaktu.",
-          "solution": "Popup z formularzem otwierający się po kliknięciu planu cenowego — zero kliknięć do zapytania."
+          "problem": "Konwersja: zachęcenie do kontaktu.",
+          "solution": "Popup z formularzem otwierający się po kliknięciu planu cenowego: zero kliknięć do zapytania."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
       "decisions": [
         "Next.js 14 App Router dla wydajności",
-        "Tailwind CSS zamiast Framer Motion — czyste CSS transitions",
-        "Barlow Condensed jako font display — atletyczny charakter",
+        "Tailwind CSS zamiast Framer Motion: czyste CSS transitions",
+        "Barlow Condensed jako font display: atletyczny charakter",
         "Czarne tło + jeden kolor akcent = mocna identyfikacja"
       ],
       "integrationsTitle": "Integracje",
@@ -627,7 +631,7 @@
       "highlights": [
         "Przejrzysty i spokojny design budujący zaufanie",
         "Jasna prezentacja usług i korzyści dla klienta",
-        "Lepsza konwersja dzięki CTA i formularzowi kontaktowemu",
+        "Widoczne CTA i formularz kontaktowy na każdym etapie",
         "Nowoczesny wygląd wyróżniający się na tle konkurencji"
       ],
       "challengesTitle": "Wyzwania",
@@ -741,11 +745,11 @@
         },
         {
           "problem": "Witryna miała być łatwa w obsłudze bez użycia page builderów.",
-          "solution": "Zastosowałam customowy motyw WordPress i ACF, aby uprościć zarządzanie treścią."
+          "solution": "Zastosowaliśmy customowy motyw WordPress i ACF, aby uprościć zarządzanie treścią."
         },
         {
           "problem": "Oferta i grafik zajęć mogły się zmieniać w czasie.",
-          "solution": "Zaprojektowałam elastyczne sekcje i zintegrowałam stronę z systemem Fitssey."
+          "solution": "Zaprojektowaliśmy elastyczne sekcje i zintegrowaliśmy stronę z systemem Fitssey."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -788,11 +792,11 @@
       "challenges": [
         {
           "problem": "Klient nie miał gotowej i uporządkowanej struktury treści.",
-          "solution": "Przygotowałam uniwersalny układ sekcji, który można łatwo rozwijać i uzupełniać."
+          "solution": "Przygotowaliśmy uniwersalny układ sekcji, który można łatwo rozwijać i uzupełniać."
         },
         {
           "problem": "Panel edycji miał być prosty i bez page builderów.",
-          "solution": "Wdrożyłam ACF jako główne narzędzie do edycji treści, aby uprościć obsługę strony."
+          "solution": "Wdrożyliśmy ACF jako główne narzędzie do edycji treści, aby uprościć obsługę strony."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -831,15 +835,15 @@
       "challenges": [
         {
           "problem": "Należało zapobiec nakładającym się rezerwacjom.",
-          "solution": "Dodałam walidację zakresów dat i blokowanie zajętych terminów w kalendarzu."
+          "solution": "Dodaliśmy walidację zakresów dat i blokowanie zajętych terminów w kalendarzu."
         },
         {
           "problem": "Potrzebny był prosty panel administracyjny bez WordPressa.",
-          "solution": "Stworzyłam własny panel CRUD w Next.js z logiką bezpieczeństwa Firestore."
+          "solution": "Stworzyliśmy własny panel CRUD w Next.js z logiką bezpieczeństwa Firestore."
         },
         {
           "problem": "Strona musiała jasno komunikować kwestie prywatności i formularzy.",
-          "solution": "Przygotowałam czytelne strony prawne oraz przejrzysty przepływ formularzy."
+          "solution": "Przygotowaliśmy czytelne strony prawne oraz przejrzysty przepływ formularzy."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -881,11 +885,11 @@
       "challenges": [
         {
           "problem": "Trzeba było zachować lekkość wizualną mimo wielu sekcji.",
-          "solution": "Zastosowałam modułowy grid, ograniczoną paletę i spójną typografię."
+          "solution": "Zastosowaliśmy modułowy grid, ograniczoną paletę i spójną typografię."
         },
         {
           "problem": "Animacje miały ożywiać stronę bez obciążania wydajności.",
-          "solution": "Wykorzystałam subtelne mikroanimacje zamiast ciężkich efektów."
+          "solution": "Wykorzystaliśmy subtelne mikroanimacje zamiast ciężkich efektów."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -921,11 +925,11 @@
       "challenges": [
         {
           "problem": "Strona zawierała dużo emocjonalnych treści i zdjęć, ale nadal musiała pozostać czytelna.",
-          "solution": "Postawiłam na spokojną typografię, dobre proporcje zdjęć i jasną strukturę sekcji."
+          "solution": "Postawiliśmy na spokojną typografię, dobre proporcje zdjęć i jasną strukturę sekcji."
         },
         {
           "problem": "Należało zadbać o lepszą dostępność dla użytkowników korzystających z czytników ekranu.",
-          "solution": "Dopracowałam strukturę nagłówków, role ARIA, focus rings i teksty alternatywne."
+          "solution": "Dopracowaliśmy strukturę nagłówków, role ARIA, focus rings i teksty alternatywne."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -961,7 +965,7 @@
       "challenges": [
         {
           "problem": "Na małej przestrzeni trzeba było pokazać wiele informacji o nieruchomościach.",
-          "solution": "Zastosowałam powtarzalne karty z jasną hierarchią treści i prostym CTA."
+          "solution": "Zastosowaliśmy powtarzalne karty z jasną hierarchią treści i prostym CTA."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -997,7 +1001,7 @@
       "challenges": [
         {
           "problem": "Użytkownicy często trafiają na stronę w sytuacji stresowej i potrzebują szybkiej decyzji.",
-          "solution": "Postawiłam na duże przyciski, skrócone treści i stale widoczne CTA."
+          "solution": "Postawiliśmy na duże przyciski, skrócone treści i stale widoczne CTA."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -1071,7 +1075,7 @@
       "challenges": [
         {
           "problem": "Elementy 3D mogły negatywnie wpływać na wydajność na słabszych urządzeniach.",
-          "solution": "Zoptymalizowałam modele, ograniczyłam zakres animacji i zastosowałam ładowanie warunkowe."
+          "solution": "Zoptymalizowaliśmy modele, ograniczyliśmy zakres animacji i zastosowaliśmy ładowanie warunkowe."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -1107,7 +1111,7 @@
       "challenges": [
         {
           "problem": "Duże zdjęcia mogły wydłużać czas ładowania strony.",
-          "solution": "Zastosowałam optymalizację rozdzielczości, kompresję i kontrolę ładowania obrazów."
+          "solution": "Zastosowaliśmy optymalizację rozdzielczości, kompresję i kontrolę ładowania obrazów."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -1142,7 +1146,7 @@
       "challenges": [
         {
           "problem": "Kolorowa estetyka musiała pozostać czytelna i uporządkowana.",
-          "solution": "Zastosowałam wyważoną paletę, kontrastowe nagłówki i spójną siatkę sekcji."
+          "solution": "Zastosowaliśmy wyważoną paletę, kontrastowe nagłówki i spójną siatkę sekcji."
         }
       ],
       "decisionsTitle": "Decyzje projektowe",
@@ -1157,5 +1161,33 @@
         "Lightweight email form"
       ]
     }
+  },
+  "homeServices": {
+    "badge": "Czym się zajmujemy",
+    "title": "Nowa strona albo pomoc przy obecnej. Jedno miejsce.",
+    "description": "Możesz przyjść do nas z pomysłem na nową stronę albo z problemem, którego nie umiesz nazwać. Wystarczy opisać, co się dzieje.",
+    "more": "Więcej",
+    "items": [
+      {
+        "title": "Strony internetowe",
+        "text": "Projektujemy i tworzymy strony dla firm, organizacji i osób prywatnych. Na WordPressie albo w Next.js, zawsze z myślą o tym, żeby klient łatwo znalazł ofertę i kontakt.",
+        "href": "/services/tworzenie-stron-internetowych"
+      },
+      {
+        "title": "Sklepy internetowe",
+        "text": "Tworzymy sklepy online, również z produktami cyfrowymi, np. e-bookami czy materiałami do pobrania. Płatności, koszyk i panel do obsługi zamówień.",
+        "href": "/services/sklepy-internetowe"
+      },
+      {
+        "title": "Administracja i opieka",
+        "text": "Aktualizujemy WordPressa i wtyczki, robimy kopie zapasowe i wprowadzamy bieżące zmiany. Ty zajmujesz się firmą, my pilnujemy strony.",
+        "href": "/services/administracja-stron"
+      },
+      {
+        "title": "Wsparcie techniczne i naprawy",
+        "text": "Strona się nie otwiera, formularz nie wysyła wiadomości, coś zniknęło po aktualizacji? Diagnozujemy problem i go naprawiamy, także na stronach po innym wykonawcy.",
+        "href": "/services/opieka-nad-stronami"
+      }
+    ]
   }
 }

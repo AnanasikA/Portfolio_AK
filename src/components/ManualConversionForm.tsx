@@ -27,7 +27,6 @@ export default function ManualConversionForm() {
   const [state, formAction] = useActionState(submitManualConversionAction, initialActionState);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Wyczyść formularz po udanym zgłoszeniu
   useEffect(() => {
     if (state.status === "success") {
       formRef.current?.reset();

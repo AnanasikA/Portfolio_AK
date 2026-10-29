@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiGlobe } from 'react-icons/fi';
+import { GOOGLE_PROFILE_URL } from '@/lib/business';
+import { FiMail, FiPhone, FiMapPin, FiStar } from 'react-icons/fi';
 import { useLocale } from 'next-intl';
 import { useRef } from 'react';
 import { usePaperPlane } from '@/components/PaperPlane';
@@ -35,61 +36,41 @@ export default function Contact() {
             overflow: 'hidden',
           }}
         >
-          {/* grid texture */}
           <div aria-hidden style={{
             position: 'absolute', inset: 0, zIndex: 0,
             backgroundImage: 'linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px)',
             backgroundSize: '48px 48px',
           }} />
 
-          {/* vignette */}
           <div aria-hidden style={{
             position: 'absolute', inset: 0, zIndex: 1,
             background: 'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 40%, rgba(30,64,175,.6) 100%)',
           }} />
 
-          {/* blobs */}
-          <motion.div
-            aria-hidden
-            animate={{ scale: [1, 1.08, 1], opacity: [.05, .09, .05] }}
-            transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ position:'absolute', top:-120, right:-100, width:400, height:400, borderRadius:'50%', background:'rgba(255,255,255,.05)', pointerEvents:'none', zIndex:1 }}
-          />
-          <motion.div
-            aria-hidden
-            animate={{ scale: [1, 1.1, 1], opacity: [.04, .08, .04] }}
-            transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-            style={{ position:'absolute', bottom:-100, left:-80, width:320, height:320, borderRadius:'50%', background:'rgba(255,255,255,.04)', pointerEvents:'none', zIndex:1 }}
-          />
-
           <div style={{ position:'relative', zIndex:2, maxWidth:860, margin:'0 auto' }}>
 
-            {/* eyebrow */}
             <motion.span
               variants={fade} custom={.04} initial="hidden" whileInView="visible" viewport={{ once:true }}
               style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'.76rem', letterSpacing:'.22em', textTransform:'uppercase', color:'rgba(255,255,255,.6)', display:'block', marginBottom:'clamp(16px,3vw,28px)' }}>
-              — {isEn ? "Let's build something" : 'Zbudujmy coś razem'} —
+              {isEn ? 'Contact' : 'Kontakt'}
             </motion.span>
 
-            {/* big title */}
             <motion.h2
               variants={fade} custom={.08} initial="hidden" whileInView="visible" viewport={{ once:true }}
               style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(1.8rem,5vw,4.2rem)', letterSpacing:'-.035em', lineHeight:1, marginBottom:'clamp(16px,3vw,26px)' }}>
               {isEn
-                ? "Let's build a site that helps your business grow."
-                : 'Zbudujmy stronę, która pomoże rozwinąć Twój biznes.'}
+                ? 'Need a website or help with your current one?'
+                : 'Potrzebujesz strony albo pomocy z obecną?'}
             </motion.h2>
 
-            {/* subtitle */}
             <motion.p
               variants={fade} custom={.12} initial="hidden" whileInView="visible" viewport={{ once:true }}
               style={{ fontFamily:'var(--fb)', fontSize:'clamp(.9rem,1.3vw,1.1rem)', color:'rgba(255,255,255,.75)', lineHeight:1.65, maxWidth:'52ch', margin:'0 auto clamp(28px,5vw,44px)' }}>
               {isEn
-                ? "Write briefly about your business and needs. You'll get a friendly reply with direction and a quote — usually within 1–2 business days."
-                : 'Napisz krótko o swojej firmie i potrzebach. Otrzymasz przyjazną odpowiedź z kierunkiem i wyceną — zwykle w 1–2 dni robocze.'}
+                ? "Write a few words about what you need. You don't have to know the technical terms, just describe it in your own words. We usually reply within one business day."
+                : 'Napisz kilka słów o tym, czego potrzebujesz. Nie musisz znać technicznych nazw, wystarczy opisać to po swojemu. Odpowiadamy zwykle w ciągu jednego dnia roboczego.'}
             </motion.p>
 
-            {/* CTAs */}
             <motion.div
               variants={fade} custom={.16} initial="hidden" whileInView="visible" viewport={{ once:true }}
               style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:'10px 12px', marginBottom:'clamp(28px,5vw,44px)' }}>
@@ -101,7 +82,16 @@ export default function Contact() {
                 whileTap={{ scale: .97 }}
                 transition={{ duration: .2 }}
                 style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(.9rem,1.2vw,1rem)', background:'#fff', color:'#1d4ed8', borderRadius:99, padding:'.88em 2em', border:'none', cursor:'pointer' }}>
-                {isEn ? 'Get a Quote' : 'Otrzymaj wycenę'}
+                {isEn ? 'I need a website' : 'Potrzebuję strony'}
+              </motion.button>
+
+              <motion.button
+                onClick={() => window.dispatchEvent(new CustomEvent('open-brief', { detail: { type: 'Pomoc z istniejącą stroną' } }))}
+                whileHover={{ background: 'rgba(255,255,255,.12)', borderColor: 'rgba(255,255,255,.7)' }}
+                whileTap={{ scale: .97 }}
+                transition={{ duration: .2 }}
+                style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(.9rem,1.2vw,1rem)', color:'#fff', background:'transparent', borderRadius:99, padding:'.88em 2em', border:'1.5px solid rgba(255,255,255,.35)', cursor:'pointer' }}>
+                {isEn ? 'Something broken? We can help' : 'Coś nie działa? Pomożemy'}
               </motion.button>
 
               <motion.a
@@ -114,7 +104,6 @@ export default function Contact() {
               </motion.a>
             </motion.div>
 
-            {/* divider */}
             <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
               whileInView={{ scaleX: 1, opacity: 1 }}
@@ -123,18 +112,18 @@ export default function Contact() {
               style={{ width:40, height:1, background:'rgba(255,255,255,.2)', margin:'0 auto clamp(20px,3vw,32px)', transformOrigin:'center' }}
             />
 
-            {/* contact links */}
             <motion.div
               variants={fade} custom={.2} initial="hidden" whileInView="visible" viewport={{ once:true }}
               style={{ display:'flex', justifyContent:'center', flexWrap:'wrap', gap:'8px clamp(16px,3vw,32px)' }}>
               {[
                 { icon: <FiMail size={13} />, label: 'kontakt@anastasiiakupriianets.pl', href: 'mailto:kontakt@anastasiiakupriianets.pl' },
                 { icon: <FiPhone size={13} />, label: '+48 576 564 682', href: 'tel:+48576564682' },
-                { icon: <FiGlobe size={13} />, label: 'anastasiiakupriianets.pl', href: 'https://anastasiiakupriianets.pl' },
+                { icon: <FiStar size={13} />, label: isEn ? 'Google Business Profile' : 'Wizytówka Google', href: GOOGLE_PROFILE_URL },
+                { icon: <FiMapPin size={13} />, label: isEn ? 'Kąty Wrocławskie · Wrocław · all of Poland' : 'Kąty Wrocławskie · Wrocław · cała Polska', href: '' },
               ].map(({ icon, label, href }) => (
                 <motion.a
                   key={label}
-                  href={href}
+                  href={href || undefined}
                   onClick={() => trackContactClick(href, 'contact_section')}
                   whileHover={{ color: 'rgba(255,255,255,.95)' }}
                   transition={{ duration: .15 }}

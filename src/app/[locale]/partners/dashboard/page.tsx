@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createServerSupabase, createAdminClient } from "@/lib/supabase-clients";
 
-// Panel partnera (logowanie wymagane) nie powinien trafiać do indeksu Google.
 export const metadata: Metadata = {
   robots: { index: false, follow: false, nocache: true },
 };
@@ -15,10 +14,6 @@ import ManualConversionForm from "@/components/ManualConversionForm";
 import CopyTextButton from "@/components/CopyTextButton";
 import SalesKitFAQ from "@/components/SalesKitFAQ";
 import Tabs from "@/components/Tabs";
-
-/* ============================================================
-   Ikony — minimalistyczne, jednoliniowe
-   ============================================================ */
 
 type IconProps = { size?: number; color?: string };
 const iconBase = { fill: "none", strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
@@ -160,10 +155,6 @@ function IconStar({ size = 22, color = "currentColor" }: IconProps) {
   );
 }
 
-/* ============================================================
-   Opisy statusów — jedno źródło prawdy dla całego dashboardu
-   ============================================================ */
-
 const STATUS_INFO: Record<string, { label: string; color: string; description: string }> = {
   pending: {
     label: "Oczekuje",
@@ -275,15 +266,12 @@ export default async function PartnerDashboardPage({
       .gte("created_at", fourteenDaysAgo.toISOString()),
   ]);
 
-  // Zabezpieczenie: jeśli zapytanie o zgłoszenia zawiedzie, pokaż pusty
-  // stan zamiast wywalać całą stronę — reszta dashboardu wciąż działa.
   const conversions = conversionsRaw ?? [];
 
   const totalEarned = conversions
     .filter((c) => c.status === "paid")
     .reduce((sum, c) => sum + Number(c.commission_amount ?? 0), 0);
 
-  // "Aktywne zgłoszenia" = jeszcze nierozstrzygnięte (nie wypłacone i nie nieudane)
   const activeConversions = conversions.filter((c) => c.status === "pending" || c.status === "confirmed");
   const activeCount = activeConversions.length;
 
@@ -294,9 +282,6 @@ export default async function PartnerDashboardPage({
     return sum;
   }, 0);
 
-  // Konwersja liczona jako zgłoszenia / kliknięcia. Uwaga: zgłoszenia dodane
-  // ręcznie (bez kliknięcia w link) mogą sprawić, że wynik przekroczy 100% —
-  // to oczekiwane, nie błąd, dlatego pokazujemy dodatkową wskazówkę.
   const hasManualConversions = conversions.some((c) => c.source_path === "manual");
   const conversionRate =
     clickCount && clickCount > 0 ? ((conversions.length / clickCount) * 100).toFixed(1) : "—";
@@ -411,9 +396,7 @@ export default async function PartnerDashboardPage({
             ]}
           >
             {{
-              /* ============================================================
-                 PRZEGLĄD
-                 ============================================================ */
+
               overview: (
                 <>
                   <div
@@ -490,9 +473,6 @@ export default async function PartnerDashboardPage({
                 </>
               ),
 
-              /* ============================================================
-                 ZGŁOSZENIA
-                 ============================================================ */
               conversions: (
                 <>
                   <ManualConversionForm />
@@ -585,9 +565,6 @@ export default async function PartnerDashboardPage({
                 </>
               ),
 
-              /* ============================================================
-                 WYPŁATY
-                 ============================================================ */
               payouts: (
                 <>
                   <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 20, marginBottom: 6 }}>
@@ -658,9 +635,6 @@ export default async function PartnerDashboardPage({
                 </>
               ),
 
-              /* ============================================================
-                 MATERIAŁY
-                 ============================================================ */
               materials: (
                 <>
                   <h2 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 20, marginBottom: 6 }}>
@@ -692,7 +666,6 @@ export default async function PartnerDashboardPage({
                     />
                   </div>
 
-                  {/* SALES KIT */}
                   <div id="sales-kit" style={{ scrollMarginTop: 100 }}>
                     <h3 style={{ fontFamily: "var(--fd)", fontWeight: 600, fontSize: 22, marginBottom: 6 }}>
                       Sales Kit partnera
@@ -704,7 +677,6 @@ export default async function PartnerDashboardPage({
                       przygotowuję wycenę i realizuję projekt.
                     </p>
 
-                    {/* 1. GOTOWE WIADOMOŚCI */}
                     <SalesKitBlock icon={<IconMessageCircle size={19} />} title="Gotowe wiadomości">
                       <p style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 18 }}>
                         Skorzystaj z gotowych wiadomości, które możesz wysłać klientowi przez SMS,
@@ -731,7 +703,6 @@ export default async function PartnerDashboardPage({
                       </div>
                     </SalesKitBlock>
 
-                    {/* 2. FAQ */}
                     <SalesKitBlock icon={<IconMessageCircle size={19} />} title="Najczęstsze pytania klientów">
                       <p style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 18 }}>
                         Odpowiedzi na pytania, które najczęściej pojawiają się podczas pierwszej
@@ -764,7 +735,6 @@ export default async function PartnerDashboardPage({
                       />
                     </SalesKitBlock>
 
-                    {/* 3. JAK ROZPOZNAĆ POTENCJALNEGO KLIENTA */}
                     <SalesKitBlock icon={<IconSearch size={19} />} title="Jak rozpoznać potencjalnego klienta">
                       <p style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 18 }}>
                         Nie każdy przedsiębiorca sam zgłasza potrzebę stworzenia strony
@@ -784,7 +754,6 @@ export default async function PartnerDashboardPage({
                       />
                     </SalesKitBlock>
 
-                    {/* 4. JAK PRZEKAZAĆ KLIENTA */}
                     <SalesKitBlock icon={<IconHandoff size={19} />} title="Jak przekazać klienta">
                       <p style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.6, marginBottom: 18 }}>
                         Twoja rola to przedstawienie oferty i wstępna rozmowa z zainteresowanym
@@ -821,7 +790,6 @@ export default async function PartnerDashboardPage({
                       </div>
                     </SalesKitBlock>
 
-                    {/* 5. CZEGO NIE OBIECYWAĆ */}
                     <SalesKitBlock icon={<IconAlertCircle size={19} />} title="Czego nie obiecywać klientowi" tone="warning">
                       <p style={{ fontSize: 13, color: "var(--muted-2)", marginBottom: 18 }}>
                         Aby uniknąć nieporozumień, nie składaj deklaracji dotyczących ceny,
@@ -840,7 +808,6 @@ export default async function PartnerDashboardPage({
                       />
                     </SalesKitBlock>
 
-                    {/* 6. DLACZEGO WARTO POLECAĆ */}
                     <SalesKitBlock icon={<IconStar size={19} />} title="Dlaczego warto polecać AK Web & Design" isLast>
                       <BulletList
                         tone="positive"
@@ -897,9 +864,6 @@ export default async function PartnerDashboardPage({
                 </>
               ),
 
-              /* ============================================================
-                 USTAWIENIA
-                 ============================================================ */
               settings: (
                 <>
                   <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>

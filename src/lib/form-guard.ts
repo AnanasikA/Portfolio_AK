@@ -1,12 +1,3 @@
-// Wspólne zabezpieczenia formularzy (kalkulator, popup wyceny, zgłoszenie
-// partnera): czyszczenie i walidacja danych, escapowanie HTML do maili,
-// prosty limit zgłoszeń i sprawdzenie pochodzenia żądania.
-//
-// Plik jest używany wyłącznie po stronie serwera (route handlers / server actions).
-
-// ── Tekst ─────────────────────────────────────────────────────────────────────
-
-/** Zamienia znaki specjalne HTML — dane od użytkownika trafiają do treści maila. */
 export function escapeHtml(value: string): string {
   return value
     .replace(/&/g, '&amp;')
@@ -16,10 +7,6 @@ export function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;');
 }
 
-/**
- * Normalizuje pole tekstowe: tylko string, bez znaków sterujących,
- * przycięte do `max` znaków. `multiline` zostawia znaki nowej linii.
- */
 export function cleanText(value: unknown, max: number, multiline = false): string {
   if (typeof value !== 'string') return '';
   const withoutControl = multiline
@@ -34,23 +21,15 @@ export function isValidEmail(value: string): boolean {
   return value.length <= 254 && EMAIL_RE.test(value);
 }
 
-/** Telefon jest opcjonalny; jeśli podany — tylko cyfry, spacje i + ( ) - */
 export function isValidPhone(value: string): boolean {
   return value === '' || /^[0-9+()\-\s.]{5,30}$/.test(value);
 }
 
-/** Liczba skończona w zadanym zakresie, w przeciwnym razie `null`. */
 export function cleanNumber(value: unknown, min: number, max: number): number | null {
   if (typeof value !== 'number' || !Number.isFinite(value)) return null;
   if (value < min || value > max) return null;
   return Math.round(value);
 }
-
-// ── Limit zgłoszeń ────────────────────────────────────────────────────────────
-//
-// Licznik w pamięci procesu. Na Vercel każda instancja funkcji ma własną
-// pamięć, więc to nie jest twardy limit — zatrzymuje proste skrypty wysyłające
-// formularz w pętli. Twardy limit ustawia się w Vercel → Firewall.
 
 const buckets = new Map<string, number[]>();
 
@@ -66,7 +45,6 @@ export function isRateLimited(key: string, limit: number, windowMs: number): boo
   recent.push(now);
   buckets.set(key, recent);
 
-  // Sprzątanie, żeby mapa nie rosła bez końca.
   if (buckets.size > 5000) {
     for (const [k, times] of buckets) {
       if (times.every(t => now - t >= windowMs)) buckets.delete(k);
@@ -74,8 +52,6 @@ export function isRateLimited(key: string, limit: number, windowMs: number): boo
   }
   return false;
 }
-
-// ── Żądanie ───────────────────────────────────────────────────────────────────
 
 export function getClientIp(headers: Headers): string {
   return (
@@ -85,13 +61,9 @@ export function getClientIp(headers: Headers): string {
   );
 }
 
-/**
- * Przeglądarka przy wysyłce formularza dodaje nagłówek Origin. Jeśli jest
- * obecny i wskazuje inną domenę niż nasza — żądanie nie pochodzi ze strony.
- */
 export function isSameOrigin(headers: Headers): boolean {
   const origin = headers.get('origin');
-  if (!origin) return true; // brak nagłówka (np. stare przeglądarki) — nie blokujemy
+  if (!origin) return true;
   const host = headers.get('x-forwarded-host') ?? headers.get('host');
   try {
     return new URL(origin).host === host;

@@ -5,11 +5,10 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { SITE_URL } from '@/lib/site';
 import CookieConsent from '@/components/CookieConsent';
 import MobileCtaBar from '@/components/MobileCtaBar';
 import '../globals.css';
-
-const BASE_URL = 'https://anastasiiakupriianets.pl';
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -18,15 +17,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
-  const isEn = locale === 'en';
+
   return {
-    metadataBase: new URL(BASE_URL),
+    metadataBase: new URL(SITE_URL),
     title: { default: t('title'), template: `%s | AK Web & Design` },
     description: t('description'),
-    alternates: {
-      canonical: isEn ? `${BASE_URL}/en` : `${BASE_URL}/pl`,
-      languages: { pl: `${BASE_URL}/pl`, en: `${BASE_URL}/en`, 'x-default': `${BASE_URL}/pl` },
-    },
   };
 }
 
@@ -44,7 +39,6 @@ export default async function LocaleLayout({
 
   return (
     <>
-      {/* ===== GOOGLE ANALYTICS 4 + CONSENT MODE V2 ===== */}
 <Script src="https://www.googletagmanager.com/gtag/js?id=G-CLP2ME6EWT" strategy="afterInteractive" />
 <Script id="google-analytics" strategy="afterInteractive">{`
   window.dataLayer = window.dataLayer || [];
@@ -66,7 +60,6 @@ export default async function LocaleLayout({
   gtag('config', 'G-CLP2ME6EWT');
 `}</Script>
 
-      {/* ===== MICROSOFT CLARITY ===== */}
       <Script id="microsoft-clarity" strategy="afterInteractive">{`
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

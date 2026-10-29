@@ -4,22 +4,16 @@ import { useLocale } from 'next-intl';
 
 const clients = [
   'Spiro Pilates & Mobility',
-  'Crescent Development',
-  'Luisówka',
-  'FoxiTour',
-  'RealEstate',
+  'Klub Biegacza Kąty Wrocławskie',
   'Lion Force Weld',
-  'Zdrowie+',
-  'Quest for Paws',
-  'Marecki 24/7',
-  'Goports',
-  'StudyBuddy',
-  'LUXENAILS',
+  'Polski Związek Unihokeja',
+  'Luisówka',
+  'Kulturalna Klatka',
+  'Matematyka w Podstawówce',
 ];
 
-const items = [...clients, ...clients];
+const items = [...clients, ...clients, ...clients, ...clients];
 
-// 4-pointed sparkle star SVG
 const Sparkle = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
     style={{ flexShrink: 0, color: 'var(--brand)', opacity: .7 }}>
@@ -36,7 +30,7 @@ export default function ClientMarquee() {
       <style>{`
         @keyframes marqueeScroll {
           from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+          to   { transform: translateX(-25%); }
         }
         .marquee-track {
           display: flex; align-items: center;
@@ -50,9 +44,12 @@ export default function ClientMarquee() {
         }
       `}</style>
 
-      {/* Fade edges */}
       <div aria-hidden style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 100, background: 'linear-gradient(to right, var(--surface), transparent)', zIndex: 1, pointerEvents: 'none' }} />
       <div aria-hidden style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 100, background: 'linear-gradient(to left, var(--surface), transparent)', zIndex: 1, pointerEvents: 'none' }} />
+
+      <ul className="sr-only">
+        {clients.map(name => <li key={name}>{name}</li>)}
+      </ul>
 
       <div aria-hidden className="marquee-track">
         {items.map((name, i) => (
@@ -73,7 +70,6 @@ export default function ClientMarquee() {
         ))}
       </div>
 
-      {/* Label */}
       <p style={{
         textAlign: 'center', marginTop: 14,
         fontFamily: 'var(--fd)', fontWeight: 600,
@@ -81,8 +77,8 @@ export default function ClientMarquee() {
         textTransform: 'uppercase', color: 'var(--muted-2)',
       }}>
         {isEn
-          ? 'Trusted by businesses in accommodation, real estate, wellness & tourism'
-          : 'Zaufały nam firmy z branży noclegowej, nieruchomości, wellness i turystyki'}
+          ? 'We have worked with businesses, organisations, education and sports projects'
+          : 'Pracowaliśmy z firmami, organizacjami, projektami edukacyjnymi i sportowymi'}
       </p>
     </div>
   );

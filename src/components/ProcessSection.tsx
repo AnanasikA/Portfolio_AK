@@ -21,7 +21,6 @@ export default function ProcessSection() {
     <section id="process" style={{ background: 'var(--surface)', padding: 'clamp(48px,7vw,100px) 0' }}>
       <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
-        {/* ── Head ── */}
         <div style={{ marginBottom: 'clamp(32px,5vw,64px)' }}>
           <motion.span variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }}
             style={{ display:'inline-flex', alignItems:'center', gap:'.6em', fontFamily:'var(--fd)', fontWeight:600, fontSize:'.76rem', letterSpacing:'.2em', textTransform:'uppercase', color:'var(--brand)', marginBottom:14 }}>
@@ -38,7 +37,6 @@ export default function ProcessSection() {
           </motion.p>
         </div>
 
-        {/* ── Timeline + steps ── */}
         <style>{`
           .proc-cols {
             display: grid;
@@ -70,7 +68,6 @@ export default function ProcessSection() {
           }
         `}</style>
 
-        {/* LINE ROW */}
         <div ref={lineRef} className="proc-line-row" style={{ position:'relative', height:20, marginBottom:24 }}>
           <div style={{
             position:'absolute', top:'50%', transform:'translateY(-50%)',
@@ -109,7 +106,6 @@ export default function ProcessSection() {
           ))}
         </div>
 
-        {/* STEP COLUMNS */}
         <div className="proc-cols">
           {steps.map((item, i) => (
             <motion.article
@@ -137,7 +133,6 @@ export default function ProcessSection() {
           ))}
         </div>
 
-        {/* ── CTA ── */}
         <motion.div variants={fade} custom={.2} initial="hidden" whileInView="visible" viewport={{ once: true }}
           style={{ marginTop:'clamp(32px,5vw,56px)', display:'flex', flexWrap:'wrap', gap:12 }}>
           <button

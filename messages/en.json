@@ -7,64 +7,64 @@
     "blog": "Blog"
   },
   "hero": {
-    "badge": "Business Websites • WordPress & Next.js • Remote Collaboration",
-    "title": "We build business websites that stand out.",
-    "description": "We design and build websites for small businesses, local services, and personal brands. Combining clean design, fast performance, and practical solutions that support business growth.",
-    "primary_cta": "Request a Quote",
-    "secondary_cta": "View Projects",
-    "highlights": "from €350 • 7–14 days • custom design",
+    "badge": "Websites · Online stores · Care & fixes",
+    "title": "Websites that work. And when something breaks, we help.",
+    "description": "We design websites and online stores. We also take care of updates, maintenance and fixing existing sites, including WordPress.",
+    "primary_cta": "Let's talk about your website",
+    "secondary_cta": "Something broken? We can help",
+    "highlights": "websites from 1,500 PLN · stores from 2,800 PLN · custom design",
     "image_alt": "Modern website projects for businesses",
-    "meta_days": "days to start",
-    "meta_custom": "custom design",
-    "meta_rating": "client rating",
-    "stat_bookings": "more bookings",
-    "stat_loadtime": "loading time"
+    "meta_days": "days for a simple site",
+    "location": "Kąty Wrocławskie, Wrocław and all of Poland",
+    "meta_from": "websites from 1,500 PLN",
+    "meta_reply": "reply within 1 business day"
   },
   "featuredProjects": {
-    "badge": "Selected projects",
-    "title": "Websites that work as hard as the businesses behind them.",
-    "cta": "View Case Study",
-    "ctaText": "Have a similar project in mind? Explore my work or send a quick request.",
-    "askQuote": "Request a quote",
+    "badge": "Selected work",
+    "title": "Websites we built for our clients.",
+    "cta": "View project",
+    "ctaText": "Have a similar project? Browse our work or tell us briefly what you need.",
+    "askQuote": "Write to us",
     "allProjects": "View all projects",
     "projects": {
-      "marcinkowal": {
-        "category": "Personal brand",
-        "title": "Marcin Kowal – Personal Trainer",
-        "description": "Website for a Warsaw-based personal trainer. Bold typography, scroll animations and a contact popup triggered by pricing plan selection.",
-        "stat1": "animated sections",
-        "stat2": "fully responsive"
+      "spiro": {
+        "category": "Health & wellness",
+        "title": "Spiro Pilates & Mobility",
+        "description": "A pilates studio website on a custom WordPress theme, in Polish and English, with the class schedule connected to Fitssey. The owner edits content herself.",
+        "stat1": "language versions",
+        "stat2": "weeks to deliver"
       },
-      "studioforma": {
-        "category": "Interior Architecture",
-        "title": "Studio Forma",
-        "description": "A comprehensive website for an interior design studio, featuring dynamic service pages, interior design-inspired animations, and an online consultation booking system.",
-        "stat1": "service pages",
-        "stat2": "responsive"
+      "luisowka": {
+        "category": "Tourism & stays",
+        "title": "Luisówka",
+        "description": "A mountain cabin website with an availability calendar, enquiry form and a custom panel for managing bookings.",
+        "stat1num": "Panel",
+        "stat1": "for managing bookings",
+        "stat2": "weeks to deliver"
       },
-      "camerahub": {
-        "category": "E-commerce store",
-        "title": "CameraHub",
-        "description": "A store for professional camera gear — a full product catalog with filtering, cart, checkout, and search, built with Next.js and Tailwind CSS.",
-        "stat1": "products in catalog",
-        "stat2": "gear categories"
+      "lionforce": {
+        "category": "Business website",
+        "title": "Lion Force Weld",
+        "description": "A welding company website on a custom WordPress theme. A clear offer, easy contact and simple content editing without a page builder.",
+        "stat1": "easy content editing",
+        "stat2": "weeks to deliver"
       }
     }
   },
   "pricing": {
     "title": "How much does a website cost for your business?",
     "badge": "Pricing",
-    "subtitle": "Choose a package or send me a message — I’ll help you pick the right solution for your needs and budget.",
-    "highlights": "✔ from €350 • ✔ delivery in 7–14 days • ✔ tailored quote",
+    "subtitle": "Choose a package or write to us. We will help you pick the right solution for your industry and budget.",
+    "highlights": "✔ websites from 1,500 PLN • ✔ stores from 2,800 PLN • ✔ tailored quote",
     "cta_button": "Request a quote",
-    "cta_subtext": "Not sure which option is right for you? Send me a message — I’ll guide you.",
+    "cta_subtext": "Not sure which package to choose? Write to us and we will advise.",
     "package_aria": "What’s included in the package",
     "price_aria": "Price",
-    "image_alt": "Example website design elements — layout, typography, sections",
+    "image_alt": "Example website design elements: layout, typography, sections",
     "packages": {
       "landing": {
         "label": "Landing Page / Simple Website",
-        "priceLabel": "from €350",
+        "priceLabel": "from 1,500 PLN",
         "badge": "Good for a start",
         "description": "A simple, modern website that clearly presents your offer and makes it easy for clients to contact you.",
         "features": [
@@ -76,7 +76,7 @@
       },
       "company": {
         "label": "Business Website",
-        "priceLabel": "from €700",
+        "priceLabel": "from 3,000 PLN",
         "badge": "Most popular",
         "description": "A more advanced website for businesses that want to look professional and attract more clients.",
         "features": [
@@ -88,7 +88,7 @@
       },
       "premium": {
         "label": "Advanced Website / Premium",
-        "priceLabel": "from €1200",
+        "priceLabel": "from 5,000 PLN",
         "badge": "For bigger projects",
         "description": "A fully customized website with more sections, refined UX, and room for future growth.",
         "features": [
@@ -101,7 +101,7 @@
     },
     "modal": {
       "title": "Quick project inquiry",
-      "subtitle": "Tell me briefly what you need — I’ll get back with a proposal and estimated price.",
+      "subtitle": "Tell us briefly what you need. We will get back to you with a proposal and an estimated price.",
       "close": "Close"
     },
     "form": {
@@ -154,15 +154,15 @@
     ]
   },
   "contact": {
-    "title": "Do you have an idea for a website?",
+    "title": "Need a website or help with your current one?",
     "success_title": "Thank you for your message",
-    "success_text": "Your form has been sent successfully. I usually reply within 24 business hours.",
+    "success_text": "Your form has been sent successfully. We usually reply within 24 business hours.",
     "send_another": "Send another message",
     "write_email": "Write an email",
     "error": "The form could not be sent. Please try again or write to",
     "sending": "Sending…",
     "primary_cta": "Start a project →",
-    "response_time": "I usually reply within 24 hours",
+    "response_time": "We usually reply within one business day",
     "form": {
       "name": "Full name",
       "email": "Email",
@@ -171,7 +171,7 @@
     }
   },
   "footer": {
-    "description": "I design and code modern websites — functional, aesthetic and ready to perform. I focus on UX/UI, accessibility and clean code.",
+    "description": "We design and build websites and online stores, and help with updates, maintenance and fixes for existing sites.",
     "privacy": "Privacy Policy",
     "terms": "Terms and Conditions",
     "cookies": "Cookies",
@@ -184,21 +184,23 @@
     "learn_more": "Learn more"
   },
   "meta": {
-    "title": "Website Development for Businesses | AK Web & Design",
-    "description": "We build business websites for local and remote clients — based in Wrocław, working across Poland. Fast, modern sites designed to convert."
+    "title": "Websites & online stores in Wrocław | AK Web & Design",
+    "description": "We build websites and online stores and look after WordPress sites: updates, maintenance and fixes. Kąty Wrocławskie, Wrocław and all of Poland."
   },
   "projectsPage": {
     "ariaLabel": "Projects",
-    "title": "My projects online",
-    "subtitle": "Explore the websites I created from the first sketch to the final code — tailored to clients’ needs, modern in form and easy to use.",
+    "title": "Our work",
+    "subtitle": "Websites we built for clients, plus concept projects that show how we work. Every concept project is clearly labelled.",
     "home": "Home",
     "homeAria": "Go back to the home page",
-    "contactTop": "Write to me",
+    "contactTop": "Write to us",
     "contactBottom": "Contact",
     "contactAria": "Go to the contact section",
     "projectButton": "View project",
     "projectDetailsAria": "View details: {title}",
-    "backToProjects": "Back to projects"
+    "backToProjects": "Back to projects",
+    "metaTitle": "Our work: websites and online stores",
+    "metaDescription": "Websites we built for businesses and organisations, plus our concept projects. WordPress, Next.js and online stores."
   },
   "dropdownMenu": {
     "home": "Home",
@@ -206,11 +208,11 @@
     "projects": "Projects",
     "pricing": "Pricing",
     "blog": "Blog",
-    "cta": "Request a quote",
+    "cta": "Write to us",
     "ctaAria": "Open quote form",
     "menuAria": "Navigation menu",
     "closeAria": "Close menu",
-    "smallText": "Modern websites for businesses across Poland."
+    "smallText": "Websites, online stores and website care. Kąty Wrocławskie, Wrocław and all of Poland."
   },
   "cookieConsent": {
     "text": "We use cookies to ensure the best experience on our website.",
@@ -221,23 +223,23 @@
   "projectDetail": {
     "overviewTitle": "About the project",
     "timeframeLabel": "Timeline",
-    "workTitle": "What I worked on",
+    "workTitle": "What we did",
     "resultsTitle": "Results",
     "challengesTitle": "Challenges and solutions",
     "challengeLabel": "Challenge",
     "solutionLabel": "Solution",
     "decisionsTitle": "Key project decisions",
     "integrationsTitle": "Integrations",
-    "sidebarText": "Have questions or want a similar result? Just send me a message and I’ll get back to you with a proposal.",
+    "sidebarText": "Have questions or want a similar result? Just send us a message and we’ll get back to you with a proposal.",
     "viewOnline": "View online",
     "contact": "Get in touch",
-    "imagePreviewAria": "Full preview of the {title} project — scroll inside the frame to see the full page",
-    "imageAlt": "{title} — long website preview"
+    "imagePreviewAria": "Full preview of the {title} project: scroll inside the frame to see the full page",
+    "imageAlt": "{title}: long website preview"
   },
   "thankYou": {
     "badge": "Message sent",
     "title": "Thank you for getting in touch!",
-    "desc": "I have received your request. I will reply as soon as possible.",
+    "desc": "We have received your request. We will reply as soon as possible.",
     "home": "Back to home",
     "projects": "View projects",
     "label": "Portfolio request",
@@ -247,22 +249,21 @@
   },
   "calculator": {
     "badge": "AK Web & Design",
-    "title": "See how much your website costs — no salesperson, no pressure.",
-    "subtitle": "Configure your project step by step. The estimate updates live. I confirm the final fixed price after a short call — and I guarantee it won't change.",
+    "title": "See how much your website costs: no salesperson, no pressure.",
+    "subtitle": "Configure your project step by step. The estimate updates live. We confirm the final fixed price after a short call: and we guarantee it won't change.",
     "step1": "What do you want to achieve?",
     "step2": "How many pages?",
     "step3": "What do you need?",
     "step3hint": "Optional",
     "step4": "When do you need the site ready?",
     "extraPages": "+{count} extra pages above the package (+{price} PLN)",
-    "pagesLockedNote": "A landing page is a single page. Need more subpages? Choose a business website.",
     "sidebarTitle": "YOUR ESTIMATE",
     "sidebarFrom": "from {price} PLN",
     "sidebarRange": "{low} – {high} PLN",
     "sidebarNote": "estimated range · net",
     "careLabel": "Monthly care plan",
     "careSuffix": "/ mo.",
-    "cta": "Send estimate — I'll reply tomorrow →",
+    "cta": "Send estimate: We'll reply tomorrow →",
     "ctaEmailPre": "or",
     "ctaEmailLink": "write directly by email",
     "guarantee1": "Price won't change after our call",
@@ -272,13 +273,11 @@
     "speed_standard_sub": "4–6 weeks",
     "speed_priority_label": "Express",
     "speed_priority_sub": "2–3 weeks",
-    "speed_standard_sub_simple": "7–14 business days",
-    "speed_priority_sub_simple": "5–7 business days",
     "speed_priority_badge": "+25%",
     "breakdown_pages": "+{count} extra pages",
     "breakdown_priority": "Express delivery (+25%)",
     "modalTitle": "Send estimate",
-    "modalSubtitle": "Fill in your details — I'll get back to you with a final offer. No commitment.",
+    "modalSubtitle": "Fill in your details: We'll get back to you with a final offer. No commitment.",
     "fieldName": "Full name *",
     "fieldEmail": "E-mail *",
     "fieldPhone": "Phone",
@@ -289,48 +288,48 @@
     "fieldEmailPlaceholder": "john@company.com",
     "fieldPhonePlaceholder": "+48 500 000 000",
     "fieldCompanyPlaceholder": "Company name (optional)",
-    "submit": "Send estimate — I'll reply tomorrow →",
+    "submit": "Send estimate: We'll reply tomorrow →",
     "submitting": "Sending…",
     "submitNote": "No commitment · No spam · Reply within 24h",
     "successTitle": "Estimate sent!",
-    "successDesc": "I'll get back to you within 1–2 business days with a final offer.",
+    "successDesc": "We'll get back to you within 1–2 business days with a final offer.",
     "errorMsg": "Something went wrong. Write directly: kontakt@anastasiiakupriianets.pl",
     "siteTypes": {
       "landing": {
         "label": "Landing page",
-        "desc": "One page, one goal — maximum conversion.",
+        "desc": "One page, one goal: maximum conversion.",
         "subdesc": "Perfect for campaigns, products or services."
       },
       "business": {
         "label": "Business website",
         "desc": "A multi-page site that sells your company 24/7.",
-        "subdesc": "About, services, contact, blog — all in one place."
+        "subdesc": "About, services, contact, blog: all in one place."
       },
       "wordpress": {
         "label": "WordPress website",
         "desc": "Edit content yourself, no developer needed.",
         "subdesc": "Simple dashboard, full control over your content."
       },
-      "shop": {
-        "label": "Online store",
-        "desc": "Product catalog, cart and online payments — ready to sell.",
-        "subdesc": "WooCommerce with a panel for managing orders."
-      },
       "redesign": {
         "label": "Website redesign",
-        "desc": "New look, same content — no rewriting from scratch.",
+        "desc": "New look, same content: no rewriting from scratch.",
         "subdesc": "Faster and cheaper than a brand new site."
       },
       "premium": {
         "label": "Premium & Custom",
         "desc": "Bespoke design, animations, advanced features.",
         "subdesc": "For businesses that want to stand out from the competition."
+      },
+      "shop": {
+        "label": "Online store",
+        "desc": "Product catalog, cart and online payments, ready to sell.",
+        "subdesc": "WooCommerce with a panel for managing orders."
       }
     },
     "extras": {
       "seo": {
-        "label": "SEO — get found on Google",
-        "desc": "Meta tags, sitemap, robots, OG — ready for search engines."
+        "label": "SEO: get found on Google",
+        "desc": "Meta tags, sitemap, robots, OG: ready for search engines."
       },
       "copy": {
         "label": "Copywriting",
@@ -338,15 +337,15 @@
       },
       "booking": {
         "label": "Online booking system",
-        "desc": "Clients book themselves — no phone calls, no emails."
+        "desc": "Clients book themselves: no phone calls, no emails."
       },
       "shop": {
         "label": "Online store",
-        "desc": "Products, cart, payments — complete e-commerce."
+        "desc": "Products, cart, payments: complete e-commerce."
       },
       "lang": {
         "label": "Additional language version",
-        "desc": "Website in two languages — e.g. PL + EN."
+        "desc": "Website in two languages: e.g. PL + EN."
       },
       "blog": {
         "label": "Blog / news",
@@ -354,11 +353,11 @@
       },
       "branding": {
         "label": "Logo & visual identity",
-        "desc": "Logotype, color palette, typography — consistent brand."
+        "desc": "Logotype, color palette, typography: consistent brand."
       },
       "care": {
         "label": "Monthly care plan",
-        "desc": "Small updates, peace of mind — up to 1h/month."
+        "desc": "Small updates, peace of mind: up to 1h/month."
       }
     },
     "pageOptions": {
@@ -382,21 +381,26 @@
         "label": "13+",
         "hint": "Big project"
       }
-    }
+    },
+    "repairNote": "Problem with an existing website?",
+    "repairLink": "Write to us",
+    "pagesLockedNote": "A landing page is a single page. Need more subpages? Choose a business website.",
+    "speed_standard_sub_simple": "7–14 business days",
+    "speed_priority_sub_simple": "5–7 business days"
   },
   "projects": {
     "camerahub": {
       "title": "CameraHub – Camera Store",
-      "description": "An e-commerce store for professional camera gear: multi-level filtering, cart, checkout, live search, and full responsiveness — built with Next.js and Tailwind CSS.",
-      "overview": "A portfolio e-commerce build from the ground up on Next.js (App Router) and Tailwind CSS — from a product catalog with multi-level filtering, through cart and checkout, to a search that matches across multiple fields at once. Deliberately designed as a frontend-only project without a real backend — login, registration, and checkout are fully designed, visually working flows clearly marked as a demo, instead of bolting on an unnecessary server.",
+      "description": "An e-commerce store for professional camera gear: multi-level filtering, cart, checkout, live search, and full responsiveness: built with Next.js and Tailwind CSS.",
+      "overview": "A portfolio e-commerce build from the ground up on Next.js (App Router) and Tailwind CSS: from a product catalog with multi-level filtering, through cart and checkout, to a search that matches across multiple fields at once. Deliberately designed as a frontend-only project without a real backend: login, registration, and checkout are fully designed, visually working flows clearly marked as a demo, instead of bolting on an unnecessary server.",
       "workTitle": "Scope of work",
       "work": [
         "Catalog of 16 products across 8 categories (mirrorless cameras, DSLRs, cinema cameras, lenses, drones, lighting, audio, accessories)",
-        "Filter panel: price (slider), brand, camera type, sensor, video resolution, availability, and sale status — every filter shows a live count of matching products, even when it's zero",
-        "Search that matches each typed word individually against name, brand, category, description, and technical specs — instead of matching the whole phrase literally",
+        "Filter panel: price (slider), brand, camera type, sensor, video resolution, availability, and sale status: every filter shows a live count of matching products, even when it's zero",
+        "Search that matches each typed word individually against name, brand, category, description, and technical specs: instead of matching the whole phrase literally",
         "Cart (React Context + localStorage) accessible from every page as a slide-out panel",
         "3-step checkout (shipping → payment → review) with animated transitions between steps",
-        "Login and registration pages — full form UI with validation, clearly marked as demo functionality",
+        "Login and registration pages: full form UI with validation, clearly marked as demo functionality",
         "Photo gallery in a bento layout with a lightbox (arrow, keyboard navigation, image counter)",
         "Placeholder system: every product image automatically falls back to a styled block with a label if the file doesn't exist yet",
         "Full responsiveness: mobile menu with an accordion for categories, filter panel as a bottom sheet on phones, product cards switching from horizontal to stacked layout on narrow screens",
@@ -407,9 +411,9 @@
       "timeframe": "iterative, session by session",
       "highlights": [
         "A complete purchase flow: catalog → filtering → cart → checkout → confirmation, all connected and working",
-        "A filter panel that never shows an empty or broken state — inactive options are grayed out with a (0) count instead of disappearing",
+        "A filter panel that never shows an empty or broken state: inactive options are grayed out with a (0) count instead of disappearing",
         "Zero broken images: any product photo not yet on disk gracefully falls back to a styled placeholder instead of a broken icon",
-        "Responsive at every screen width — from narrow phones to large desktops, with a purpose-built layout for each key component"
+        "Responsive at every screen width: from narrow phones to large desktops, with a purpose-built layout for each key component"
       ],
       "challengesTitle": "Challenges",
       "challenges": [
@@ -423,40 +427,40 @@
         },
         {
           "problem": "The automatic masonry grid (CSS columns) for the photo gallery left random empty gaps with only 5 curated images.",
-          "solution": "Switched from auto-balancing CSS columns to a hand-designed CSS Grid with fixed positions — with a small, fixed number of items, predictable layout matters more than fully natural image proportions."
+          "solution": "Switched from auto-balancing CSS columns to a hand-designed CSS Grid with fixed positions: with a small, fixed number of items, predictable layout matters more than fully natural image proportions."
         }
       ],
       "decisionsTitle": "Design decisions",
       "decisions": [
         "Next.js App Router with Client Components only where interactivity is needed (cart, filters, search), everything else rendered statically",
-        "Deliberately skipped a real backend (Supabase was considered) — for a purely frontend portfolio project, a fully working visual UI clearly labeled \"this is a demo\" was a better choice than an unnecessary external dependency",
-        "Placeholder system treated as a first-class part of the design, not a stopgap — lets the project be shown at any stage of adding real photos without ever looking broken",
-        "A shared `FiltersContent` component used in both the desktop panel and the mobile bottom sheet — zero duplicated filtering logic",
-        "Filters always show the full list of possible options (grayed out with a 0 count) instead of hiding nonexistent combinations — interface predictability mattered more than minimalism"
+        "Deliberately skipped a real backend (Supabase was considered): for a purely frontend portfolio project, a fully working visual UI clearly labeled \"this is a demo\" was a better choice than an unnecessary external dependency",
+        "Placeholder system treated as a first-class part of the design, not a stopgap: lets the project be shown at any stage of adding real photos without ever looking broken",
+        "A shared `FiltersContent` component used in both the desktop panel and the mobile bottom sheet: zero duplicated filtering logic",
+        "Filters always show the full list of possible options (grayed out with a 0 count) instead of hiding nonexistent combinations: interface predictability mattered more than minimalism"
       ],
       "integrationsTitle": "Integrations",
       "integrations": [
-        "Framer Motion — animated transitions (cart, search, checkout, gallery lightbox, mobile menu)",
+        "Framer Motion: animated transitions (cart, search, checkout, gallery lightbox, mobile menu)",
         "next/image with an automatic placeholder fallback when a file is missing (`onError`)",
-        "lucide-react — a consistent icon set across the whole interface",
-        "No external backend — a deliberate design decision, see \"Design decisions\""
+        "lucide-react: a consistent icon set across the whole interface",
+        "No external backend: a deliberate design decision, see \"Design decisions\""
       ]
     },
     "booknest": {
       "title": "BookNest – Ebook Store",
       "description": "A full e-commerce store selling ebooks: filterable catalog, cart, Stripe payments, user accounts and instant download after purchase.",
-      "overview": "A complete digital storefront built from scratch on Next.js and Supabase — from the product catalog, through cart and Stripe checkout, to an account panel with order history and secure file downloads. A fully digital model (no physical shipping) with a focus on instant access right after payment.",
+      "overview": "A complete digital storefront built from scratch on Next.js and Supabase: from the product catalog, through cart and Stripe checkout, to an account panel with order history and secure file downloads. A fully digital model (no physical shipping) with a focus on instant access right after payment.",
       "workTitle": "Scope of work",
       "work": [
         "Product catalog with pagination, category/author filtering, and full-text search",
-        "Cart and checkout combined into a single flow — no unnecessary intermediate steps",
+        "Cart and checkout combined into a single flow: no unnecessary intermediate steps",
         "Stripe Checkout integration with a webhook confirming payment",
         "Supabase Auth authentication (sign-up, sign-in, session-refreshing middleware)",
         "Account panel with tabs: personal details, order history, wishlist, delivery addresses, password change",
-        "Secure ebook downloads — signed links generated only after verifying a paid order",
+        "Secure ebook downloads: signed links generated only after verifying a paid order",
         "Cart and wishlist context (React Context) memoized for performance across many product cards at once",
         "Generated product covers (color overlay + typography) as a legally safe alternative to real copyrighted cover art",
-        "Fully responsive — from the hero section to the account panel, product grids scaling 2→3→5 columns",
+        "Fully responsive: from the hero section to the account panel, product grids scaling 2→3→5 columns",
         "Seed scripts pulling catalog data from real, free sources (Project Gutenberg / Google Books API)"
       ],
       "resultsTitle": "Result",
@@ -464,8 +468,8 @@
       "timeframe": "iterative, session by session",
       "highlights": [
         "A complete, working purchase flow: catalog → cart → Stripe → confirmation → file download",
-        "No empty placeholders — every book without a photo gets a consistent, generated cover instead of a gray icon",
-        "Secure file access model — private Supabase Storage bucket, links valid only briefly and only for paid orders",
+        "No empty placeholders: every book without a photo gets a consistent, generated cover instead of a gray icon",
+        "Secure file access model: private Supabase Storage bucket, links valid only briefly and only for paid orders",
         "Responsive at every screen width, from phone to large desktop"
       ],
       "challengesTitle": "Challenges",
@@ -476,7 +480,7 @@
         },
         {
           "problem": "Real book covers (scans from Open Library, Google Books) looked inconsistent, and some would infringe copyright if used commercially.",
-          "solution": "Designed a cover-generating component: background photo + category-based color overlay + title/author typography — visually consistent and legally safe."
+          "solution": "Designed a cover-generating component: background photo + category-based color overlay + title/author typography: visually consistent and legally safe."
         },
         {
           "problem": "The catalog needed real, legally sellable digital content, not just metadata.",
@@ -485,8 +489,8 @@
       ],
       "decisionsTitle": "Design decisions",
       "decisions": [
-        "Next.js App Router with a mix of Server and Client Components — data fetched server-side, interactivity (cart, forms) client-side",
-        "Purely digital model instead of hybrid — a simpler checkout with no delivery address or carrier selection",
+        "Next.js App Router with a mix of Server and Client Components: data fetched server-side, interactivity (cart, forms) client-side",
+        "Purely digital model instead of hybrid: a simpler checkout with no delivery address or carrier selection",
         "Supabase as the single source of truth: Postgres + Auth + Storage in one place, with RLS guarding data access",
         "React context (Cart/Wishlist) memoized with useMemo so adding one item doesn't re-render the entire product grid",
         "Generated covers as a deliberate aesthetic and legal choice, instead of relying on uncertain image sources"
@@ -496,7 +500,7 @@
         "Stripe Checkout + webhook (payment confirmation, order status updates)",
         "Supabase Auth (email/password, session-refreshing middleware)",
         "Supabase Storage (private bucket for ebook files, signed download links)",
-        "Google Books API and Project Gutenberg / Gutendex — data and file sources for the catalog",
+        "Google Books API and Project Gutenberg / Gutendex: data and file sources for the catalog",
         "next/image configured with multiple remote hosts for various cover sources"
       ]
     },
@@ -520,7 +524,7 @@
       "timeframe": "2–3 weeks",
       "highlights": [
         "Consistent visual identity across every page",
-        "Scalable service architecture — adding a new service requires only a single data entry, not a new page",
+        "Scalable service architecture: adding a new service requires only a single data entry, not a new page",
         "Custom animations inspired by interior architecture (process line, blueprint corners, window blinds)",
         "Fast loading through static generation of service pages"
       ],
@@ -559,7 +563,7 @@
     "marcin-kowal": {
       "title": "Marcin Kowal – Personal Trainer",
       "description": "Website for a Warsaw-based personal trainer. Bold typography, animated sections and an interactive contact popup.",
-      "overview": "A website for personal trainer Marcin Kowal, designed in an athletic, bold style — black background, massive typography and an orange brand accent.",
+      "overview": "A website for personal trainer Marcin Kowal, designed in an athletic, bold style: black background, massive typography and an orange brand accent.",
       "workTitle": "Scope of work",
       "work": [
         "UX/UI design in bold & athletic style",
@@ -586,18 +590,18 @@
         },
         {
           "problem": "A lot of content without overwhelming the user.",
-          "solution": "Sections split with animated entrances — each appears only on scroll."
+          "solution": "Sections split with animated entrances: each appears only on scroll."
         },
         {
-          "problem": "Conversion — encouraging visitors to get in touch.",
-          "solution": "Popup with a contact form that opens when clicking a pricing plan — zero extra clicks to inquiry."
+          "problem": "Conversion: encouraging visitors to get in touch.",
+          "solution": "Popup with a contact form that opens when clicking a pricing plan: zero extra clicks to inquiry."
         }
       ],
       "decisionsTitle": "Design decisions",
       "decisions": [
         "Next.js 14 App Router for performance",
-        "Tailwind CSS over Framer Motion — pure CSS transitions",
-        "Barlow Condensed as display font — athletic character",
+        "Tailwind CSS over Framer Motion: pure CSS transitions",
+        "Barlow Condensed as display font: athletic character",
         "Black background + single accent color = strong identity"
       ],
       "integrationsTitle": "Integrations",
@@ -741,11 +745,11 @@
         },
         {
           "problem": "The site needed to be easy to manage without using page builders.",
-          "solution": "I used a custom WordPress theme and ACF to simplify content editing."
+          "solution": "We used a custom WordPress theme and ACF to simplify content editing."
         },
         {
           "problem": "The offer and class schedule could change over time.",
-          "solution": "I designed flexible sections and integrated the site with Fitssey."
+          "solution": "We designed flexible sections and integrated the site with Fitssey."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -788,11 +792,11 @@
       "challenges": [
         {
           "problem": "The client did not have a ready or structured content system.",
-          "solution": "I designed a flexible section layout that can be easily expanded and updated."
+          "solution": "We designed a flexible section layout that can be easily expanded and updated."
         },
         {
           "problem": "The editing panel had to stay simple and avoid page builders.",
-          "solution": "I implemented ACF as the main content editing tool to keep the dashboard easy to use."
+          "solution": "We implemented ACF as the main content editing tool to keep the dashboard easy to use."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -831,15 +835,15 @@
       "challenges": [
         {
           "problem": "Overlapping reservations had to be prevented.",
-          "solution": "I added date range validation and blocked booked dates in the calendar."
+          "solution": "We added date range validation and blocked booked dates in the calendar."
         },
         {
           "problem": "A simple admin panel was needed without relying on WordPress.",
-          "solution": "I built a custom CRUD admin panel in Next.js with Firestore security logic."
+          "solution": "We built a custom CRUD admin panel in Next.js with Firestore security logic."
         },
         {
           "problem": "The website had to clearly communicate privacy and form-related information.",
-          "solution": "I prepared clear legal pages and a transparent inquiry flow."
+          "solution": "We prepared clear legal pages and a transparent inquiry flow."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -881,11 +885,11 @@
       "challenges": [
         {
           "problem": "The design needed to stay visually light despite many sections.",
-          "solution": "I used a modular grid, a limited color palette, and consistent typography."
+          "solution": "We used a modular grid, a limited color palette, and consistent typography."
         },
         {
           "problem": "Animations had to add energy without hurting performance.",
-          "solution": "I used subtle micro-animations instead of heavy visual effects."
+          "solution": "We used subtle micro-animations instead of heavy visual effects."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -921,11 +925,11 @@
       "challenges": [
         {
           "problem": "The website included a lot of emotional content and imagery, but still had to remain clear and readable.",
-          "solution": "I used calm typography, balanced image proportions, and a clear section structure."
+          "solution": "We used calm typography, balanced image proportions, and a clear section structure."
         },
         {
           "problem": "The site needed to be more accessible for screen reader users.",
-          "solution": "I refined the heading structure, ARIA roles, focus rings, and alternative text."
+          "solution": "We refined the heading structure, ARIA roles, focus rings, and alternative text."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -961,7 +965,7 @@
       "challenges": [
         {
           "problem": "A lot of property information had to fit into a limited space.",
-          "solution": "I used repeatable cards with clear content hierarchy and a simple CTA."
+          "solution": "We used repeatable cards with clear content hierarchy and a simple CTA."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -997,7 +1001,7 @@
       "challenges": [
         {
           "problem": "Users often land on the site in stressful situations and need quick answers.",
-          "solution": "I focused on large buttons, shorter content, and always-visible CTAs."
+          "solution": "We focused on large buttons, shorter content, and always-visible CTAs."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -1034,7 +1038,7 @@
       "challenges": [
         {
           "problem": "The WordPress site had to stay lightweight despite having a larger amount of content.",
-          "solution": "I built a custom theme with a minimal plugin setup and an optimized front-end."
+          "solution": "We built a custom theme with a minimal plugin setup and an optimized front-end."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -1071,7 +1075,7 @@
       "challenges": [
         {
           "problem": "3D elements could reduce performance on weaker devices.",
-          "solution": "I optimized the models, limited the animation scope, and used conditional loading."
+          "solution": "We optimized the models, limited the animation scope, and used conditional loading."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -1107,7 +1111,7 @@
       "challenges": [
         {
           "problem": "Large images could slow down the site.",
-          "solution": "I used image size optimization, compression, and controlled image loading."
+          "solution": "We used image size optimization, compression, and controlled image loading."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -1142,7 +1146,7 @@
       "challenges": [
         {
           "problem": "The colorful visual style had to remain clear and well organized.",
-          "solution": "I used a balanced palette, strong headings, and a consistent section grid."
+          "solution": "We used a balanced palette, strong headings, and a consistent section grid."
         }
       ],
       "decisionsTitle": "Project decisions",
@@ -1157,5 +1161,33 @@
         "Lightweight email form"
       ]
     }
+  },
+  "homeServices": {
+    "badge": "What we do",
+    "title": "A new website or help with your current one. One place.",
+    "description": "Come to us with an idea for a new site or with a problem you can't quite name. Just describe what's happening.",
+    "more": "More",
+    "items": [
+      {
+        "title": "Websites",
+        "text": "We design and build websites for businesses, organisations and individuals, on WordPress or Next.js, always making it easy for visitors to find your offer and contact details.",
+        "href": "/services/web-development"
+      },
+      {
+        "title": "Online stores",
+        "text": "We build online stores, including ones selling digital products such as e-books or downloadable materials. Payments, cart and an order management panel.",
+        "href": "/services/ecommerce-websites"
+      },
+      {
+        "title": "Maintenance & care",
+        "text": "We update WordPress and plugins, make backups and handle ongoing changes. You run your business, we look after the website.",
+        "href": "/services/website-maintenance"
+      },
+      {
+        "title": "Technical support & fixes",
+        "text": "Site not loading, contact form not sending, something vanished after an update? We find the cause and fix it, also on sites built by someone else.",
+        "href": "/services/website-support"
+      }
+    ]
   }
 }

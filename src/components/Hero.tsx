@@ -1,7 +1,6 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
-import { Link } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import HeroVideo from '@/components/HeroVideo';
@@ -10,8 +9,9 @@ const QuoteModal = dynamic(() => import('@/components/QuoteModal'), { ssr: false
 
 export default function Hero() {
   const t = useTranslations('hero');
-  const locale = useLocale();
   const [quoteOpen, setQuoteOpen] = useState(false);
+  const [quoteType, setQuoteType] = useState<string | undefined>(undefined);
+  const openQuote = (type?: string) => { setQuoteType(type); setQuoteOpen(true); };
 
   return (
     <section id="top" style={{
@@ -54,7 +54,6 @@ export default function Hero() {
 
         <div className="hero-inner">
 
-          {/* Copy */}
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
 
             <div className="fade-up" style={{ marginBottom: 22, animationDelay: '0ms' }}>
@@ -92,11 +91,25 @@ export default function Hero() {
               {t('description')}
             </p>
 
+            <p
+              className="fade-up"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.92rem',
+                color: 'var(--ink-soft)', marginTop: '-.6rem', marginBottom: '1.6rem',
+                animationDelay: '200ms',
+              }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+              </svg>
+              {t('location')}
+            </p>
+
             <div
               className="fade-up"
               style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: '1.6rem', animationDelay: '240ms' }}>
               <button
-                onClick={() => setQuoteOpen(true)}
+                onClick={() => openQuote()}
                 style={{
                   fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.95rem',
                   background: 'var(--brand)', color: '#fff',
@@ -110,46 +123,44 @@ export default function Hero() {
                 {t('primary_cta')} <span>→</span>
               </button>
 
-              <Link
-                href="/projects"
-                locale={locale}
+              <button
+                onClick={() => openQuote('Pomoc z istniejącą stroną')}
                 style={{
                   fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.95rem',
-                  color: 'var(--ink)', borderRadius: 99, padding: '.85em 1.8em',
-                  border: '1.5px solid var(--line)',
+                  color: 'var(--ink)', background: 'transparent', borderRadius: 99, padding: '.85em 1.8em',
+                  border: '1.5px solid var(--line)', cursor: 'pointer',
                   display: 'inline-flex', alignItems: 'center',
-                  transition: 'border-color .2s, color .2s', textDecoration: 'none',
+                  transition: 'border-color .2s, color .2s',
                 }}
                 onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--brand)'; (e.currentTarget as HTMLElement).style.color = 'var(--brand)'; }}
-onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--line)'; (e.currentTarget as HTMLElement).style.color = 'var(--ink)'; }}>
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--line)'; (e.currentTarget as HTMLElement).style.color = 'var(--ink)'; }}>
                 {t('secondary_cta')}
-              </Link>
+              </button>
             </div>
 
             <div
               className="fade-up"
               style={{ display: 'flex', flexWrap: 'wrap', gap: '12px 22px', animationDelay: '320ms' }}>
               {[
-                { num: '7–14', label: t('meta_days')   ?? 'dni do startu' },
-                { num: '100%', label: t('meta_custom') ?? 'indywidualny design' },
-                { num: '5★',   label: t('meta_rating') ?? 'ocena klientów' },
+                { num: '', label: t('meta_from') },
+                { num: '7–14', label: t('meta_days') },
+                { num: '', label: t('meta_reply') },
               ].map(({ num, label }) => (
-                <span key={num} style={{ fontFamily: 'var(--fb)', fontSize: '.85rem', color: 'var(--muted)' }}>
-                  <strong style={{ fontFamily: 'var(--fd)', fontWeight: 700, color: 'var(--ink)' }}>{num}</strong> {label}
+                <span key={label} style={{ fontFamily: 'var(--fb)', fontSize: '.85rem', color: 'var(--muted)' }}>
+                  {num && <strong style={{ fontFamily: 'var(--fd)', fontWeight: 700, color: 'var(--ink)' }}>{num} </strong>}{label}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Video */}
-          <div className="fade-up video-float hero-video-col" style={{ animationDelay: '100ms' }}>
+          <div className="fade-up hero-video-col" style={{ animationDelay: '100ms' }}>
             <HeroVideo />
           </div>
 
         </div>
       </div>
 
-      {quoteOpen && <QuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} />}
+      {quoteOpen && <QuoteModal isOpen={quoteOpen} initialType={quoteType} onClose={() => setQuoteOpen(false)} />}
     </section>
   );
 }

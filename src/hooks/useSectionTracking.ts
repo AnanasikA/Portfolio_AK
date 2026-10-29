@@ -2,11 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-/**
- * Śledzi czas spędzony w sekcji i wysyła eventy do GA4.
- * Użycie: const ref = useSectionTracking("hero");
- *         <section ref={ref}>...</section>
- */
 export function useSectionTracking(sectionName: string) {
   const ref = useRef<HTMLElement>(null);
   const enterTime = useRef<number | null>(null);
@@ -20,7 +15,6 @@ export function useSectionTracking(sectionName: string) {
         if (entry.isIntersecting) {
           enterTime.current = Date.now();
 
-          // GA4: sekcja weszła w viewport
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (window as any).gtag?.("event", "section_view", {
             section_name: sectionName,
@@ -30,7 +24,6 @@ export function useSectionTracking(sectionName: string) {
           const timeSpentSec = Math.round(timeSpentMs / 1000);
           enterTime.current = null;
 
-          // GA4: czas spędzony w sekcji (tylko jeśli >= 2s żeby nie śmiecić)
           if (timeSpentSec >= 2) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (window as any).gtag?.("event", "section_time_spent", {
@@ -40,7 +33,7 @@ export function useSectionTracking(sectionName: string) {
           }
         }
       },
-      { threshold: 0.3 } // sekcja "widziana" gdy 30% widoczne
+      { threshold: 0.3 }
     );
 
     observer.observe(el);

@@ -1,99 +1,16 @@
 export type ProjectItem = {
   slug: string;
   image: string;
-  /** Pełny zrzut całej strony (długi, do przewijanego podglądu na stronie projektu).
-   *  Jeśli nie podany, ProjectView użyje `image` — wtedy po prostu nie będzie się przewijać. */
   fullImage?: string;
   cardImage: string;
   ratio?: number;
   tech: string[];
   link?: string;
-  /**
-   * Slug usługi (z src/data/services), z którą to case study jest najsilniej
-   * powiązane — wyliczony wg tej samej logiki tagów co serviceProjects.ts
-   * (patrz getProjectsForService), tylko w drugą stronę: projekt → usługa.
-   * Używany do renderowania sekcji „Powiązana usługa” na stronie realizacji.
-   */
   relatedService?: string;
+  concept?: boolean;
 };
 
 export const projects: ProjectItem[] = [
-  {
-  slug: 'camerahub',
-  relatedService: 'sklepy-internetowe',
-  image: '/projects/camerahub.webp',
-  fullImage: '/projects/camerahub.webp', // TODO: podmień na faktyczny pełny zrzut strony
-  cardImage: '/projects/camerahub.webp',
-  tech: [
-    'Next.js',
-    'TypeScript',
-    'Tailwind CSS',
-    'Framer Motion',
-    'E-commerce',
-  ],
-  link: 'https://camerahub-delta.vercel.app/', // TODO: podmień na dokładny adres z Twojego Vercela
-},
-  {
-  slug: 'studio-forma',
-  relatedService: 'strony-dla-firm',
-  image: '/projects/studio-forma-card.webp',
-  fullImage: '/projects/studio-forma-card.webp', // TODO: podmień na faktyczny pełny zrzut strony
-  cardImage: '/projects/studio-forma-card.webp',
-  tech: [
-    'Next.js',
-    'TypeScript',
-    'CSS Animations',
-    'Responsive Design',
-    'UI/UX Design',
-  ],
-  link: 'https://studio-forma-chi.vercel.app/',
-},
-  {
-    slug: 'marcin-kowal',
-    relatedService: 'strony-dla-firm',
-    image: '/projects/marcin-kowal1.webp',
-    fullImage: '/projects/marcin-kowal1.webp', 
-    cardImage: '/projects/marcin-kowal1.webp',
-    tech: [
-      'Next.js',
-      'Tailwind CSS',
-      'TypeScript',
-      'CSS Animations',
-      'Responsive Design',
-      'UI/UX Design',
-    ],
-    link: 'https://marcin-kowal.vercel.app/',
-  },
-  {
-  slug: 'biuro-ksiegowe',
-  relatedService: 'strony-dla-firm',
-  image: '/projects/BiuroKsiegowe1.webp',
-  cardImage: '/projects/BiuroKsiegowe1.webp',
-  tech: [
-    'Next.js',
-    'Tailwind CSS',
-    'TypeScript',
-    'Responsive Design',
-    'UI/UX Design',
-    'Polish Website',
-  ],
-  link: 'https://rachunkowosc.vercel.app/',
-},
-  {
-  slug: 'crescent-development',
-  relatedService: 'strony-dla-firm',
-  image: '/projects/Crescent1.webp',
-  cardImage: '/projects/Crescent1.webp',
-  tech: [
-    'Next.js',
-    'Tailwind CSS',
-    'TypeScript',
-    'Responsive Design',
-    'UI/UX Design',
-    'SEO Ready',
-  ],
-  link: 'https://nieruchomosci-six.vercel.app/',
-},
   {
     slug: 'spiro-pilates-mobility',
     relatedService: 'wordpress',
@@ -134,7 +51,89 @@ export const projects: ProjectItem[] = [
     link: 'https://luisowka.com',
   },
   {
+  slug: 'camerahub',
+    concept: true,
+  relatedService: 'sklepy-internetowe',
+  image: '/projects/camerahub.webp',
+  fullImage: '/projects/camerahub.webp',
+  cardImage: '/projects/camerahub.webp',
+  tech: [
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'Framer Motion',
+    'E-commerce',
+  ],
+  link: 'https://camerahub-delta.vercel.app/',
+},
+  {
+  slug: 'studio-forma',
+    concept: true,
+  relatedService: 'strony-dla-firm',
+  image: '/projects/studio-forma-card.webp',
+  fullImage: '/projects/studio-forma-card.webp',
+  cardImage: '/projects/studio-forma-card.webp',
+  tech: [
+    'Next.js',
+    'TypeScript',
+    'CSS Animations',
+    'Responsive Design',
+    'UI/UX Design',
+  ],
+  link: 'https://studio-forma-chi.vercel.app/',
+},
+  {
+    slug: 'marcin-kowal',
+    concept: true,
+    relatedService: 'strony-dla-firm',
+    image: '/projects/marcin-kowal1.webp',
+    fullImage: '/projects/marcin-kowal1.webp',
+    cardImage: '/projects/marcin-kowal1.webp',
+    tech: [
+      'Next.js',
+      'Tailwind CSS',
+      'TypeScript',
+      'CSS Animations',
+      'Responsive Design',
+      'UI/UX Design',
+    ],
+    link: 'https://marcin-kowal.vercel.app/',
+  },
+  {
+  slug: 'biuro-ksiegowe',
+    concept: true,
+  relatedService: 'strony-dla-firm',
+  image: '/projects/BiuroKsiegowe1.webp',
+  cardImage: '/projects/BiuroKsiegowe1.webp',
+  tech: [
+    'Next.js',
+    'Tailwind CSS',
+    'TypeScript',
+    'Responsive Design',
+    'UI/UX Design',
+    'Polish Website',
+  ],
+  link: 'https://rachunkowosc.vercel.app/',
+},
+  {
+  slug: 'crescent-development',
+    concept: true,
+  relatedService: 'strony-dla-firm',
+  image: '/projects/Crescent1.webp',
+  cardImage: '/projects/Crescent1.webp',
+  tech: [
+    'Next.js',
+    'Tailwind CSS',
+    'TypeScript',
+    'Responsive Design',
+    'UI/UX Design',
+    'SEO Ready',
+  ],
+  link: 'https://nieruchomosci-six.vercel.app/',
+},
+  {
     slug: 'zdrowie-plus',
+    concept: true,
     relatedService: 'landing-page',
     image: '/projects/Zdrowie+1.webp',
     cardImage: '/projects/Zdrowie+1.webp',
@@ -151,6 +150,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'quest-for-paws',
+    concept: true,
     relatedService: 'landing-page',
     image: '/projects/Paws1.webp',
     cardImage: '/projects/Paws1.webp',
@@ -166,6 +166,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'realestate',
+    concept: true,
     relatedService: 'landing-page',
     image: '/projects/RealEstate1.webp',
     cardImage: '/projects/RealEstate1.webp',
@@ -181,6 +182,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'marecki-24-7',
+    concept: true,
     relatedService: 'landing-page',
     image: '/projects/Warsztat1.webp',
     cardImage: '/projects/Warsztat1.webp',
@@ -196,6 +198,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'goports',
+    concept: true,
     relatedService: 'wordpress',
     image: '/projects/goports21.webp',
     cardImage: '/projects/goports21.webp',
@@ -211,6 +214,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'studybuddy',
+    concept: true,
     relatedService: 'projektowanie-stron',
     image: '/projects/studybuddy1.webp',
     cardImage: '/projects/studybuddy.webp',
@@ -226,6 +230,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'photographer',
+    concept: true,
     relatedService: 'projektowanie-stron',
     image: '/projects/photographer-site1.webp',
     cardImage: '/projects/photographer-site1.webp',
@@ -241,6 +246,7 @@ export const projects: ProjectItem[] = [
   },
   {
     slug: 'luxenails',
+    concept: true,
     relatedService: 'projektowanie-stron',
     image: '/projects/startup-site1.webp',
     cardImage: '/projects/startup-site.webp',

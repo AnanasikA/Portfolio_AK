@@ -12,7 +12,7 @@ export function toCsv(rows: Record<string, unknown>[]): string {
     headers.join(";"),
     ...rows.map((row) => headers.map((h) => escape(row[h])).join(";")),
   ];
-  // BOM, żeby Excel poprawnie rozpoznał polskie znaki (UTF-8)
+
   return "\uFEFF" + lines.join("\n");
 }
 

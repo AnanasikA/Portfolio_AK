@@ -8,27 +8,29 @@ import { Link } from '@/i18n/navigation';
 interface Props { isOpen: boolean; toggleMenu: () => void; }
 
 const SERVICE_LINKS_PL = [
-  { href: '/services/tworzenie-stron-internetowych', label: 'Tworzenie stron' },
-  { href: '/services/projektowanie-stron',           label: 'Projektowanie stron' },
-  { href: '/services/strony-dla-firm',               label: 'Strony dla firm' },
-  { href: '/services/wordpress',                     label: 'WordPress' },
-  { href: '/services/landing-page',                  label: 'Landing page' },
+
+  { href: '/services/tworzenie-stron-internetowych', label: 'Strony internetowe' },
   { href: '/services/sklepy-internetowe',            label: 'Sklepy internetowe' },
-  { href: '/services/administracja-stron',           label: 'Administracja stron' },
-  { href: '/services/opieka-nad-stronami',           label: 'Opieka nad stronami' },
+  { href: '/services/administracja-stron',           label: 'Administracja i opieka' },
+  { href: '/services/opieka-nad-stronami',           label: 'Wsparcie techniczne i naprawy' },
+
+  { href: '/services/strony-dla-firm',               label: 'Strony dla firm' },
+  { href: '/services/projektowanie-stron',           label: 'Projektowanie stron' },
+  { href: '/services/wordpress',                     label: 'Strony WordPress' },
+  { href: '/services/landing-page',                  label: 'Landing page' },
   { href: '/services/modernizacja-stron',            label: 'Modernizacja stron' },
 ];
 
 const SERVICE_LINKS_EN = [
-  { href: '/services/tworzenie-stron-internetowych', label: 'Website Development' },
-  { href: '/services/projektowanie-stron',           label: 'Web Design' },
-  { href: '/services/strony-dla-firm',               label: 'Business Websites' },
-  { href: '/services/wordpress',                     label: 'WordPress' },
+  { href: '/services/web-development',               label: 'Websites' },
+  { href: '/services/ecommerce-websites',            label: 'Online Stores' },
+  { href: '/services/website-maintenance',           label: 'Maintenance & Care' },
+  { href: '/services/website-support',               label: 'Technical Support & Fixes' },
+  { href: '/services/business-websites',             label: 'Business Websites' },
+  { href: '/services/web-design',                    label: 'Web Design' },
+  { href: '/services/wordpress-websites',            label: 'WordPress Websites' },
   { href: '/services/landing-page',                  label: 'Landing Pages' },
-  { href: '/services/sklepy-internetowe',            label: 'Online Stores' },
-  { href: '/services/administracja-stron',           label: 'Website Administration' },
-  { href: '/services/opieka-nad-stronami',           label: 'Website Care' },
-  { href: '/services/modernizacja-stron',            label: 'Website Redesign' },
+  { href: '/services/website-redesign',              label: 'Website Redesign' },
 ];
 
 export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
@@ -43,9 +45,8 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
     { href: '/projects',      label: isEn ? 'Work'        : 'Projekty'     },
     { href: '/#process',      label: isEn ? 'Process'     : 'Proces'       },
     { href: '/#why-us',       label: isEn ? 'Why us'      : 'Dlaczego my'  },
-    // Usługi accordion wchodzi po tym — renderowane osobno
+
     { href: '/blog',          label: 'Blog'                                },
-    { href: '/partners/offer',label: isEn ? 'Partnership' : 'Współpraca'   },
     { href: '/#contact',      label: isEn ? 'Contact'     : 'Kontakt'     },
   ];
 
@@ -53,7 +54,6 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Overlay */}
           <motion.div
             key="overlay"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -61,7 +61,6 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
             style={{ position: 'fixed', inset: 0, zIndex: 90, background: 'rgba(0,0,0,.45)', backdropFilter: 'blur(4px)' }}
           />
 
-          {/* Panel */}
           <motion.div
             key="panel"
             initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
@@ -75,7 +74,6 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
               boxSizing: 'border-box',
             }}
           >
-            {/* Top row */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 40, flexShrink: 0 }}>
               <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '1rem', color: '#fff', letterSpacing: '-.01em' }}>
                 AK Web & Design
@@ -88,10 +86,8 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
               </button>
             </div>
 
-            {/* Links */}
             <nav style={{ flex: 1, overflowY: 'auto' }}>
 
-              {/* Start, Projekty, Proces, Dlaczego my */}
               {links.slice(0, 4).map(({ href, label }, i) => (
                 <motion.div
                   key={href}
@@ -108,13 +104,11 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
                 </motion.div>
               ))}
 
-              {/* Usługi — accordion */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 4 * 0.05 + 0.1 }}
               >
-                {/* Trigger */}
                 <button
                   onClick={() => setServOpen(v => !v)}
                   style={{
@@ -148,7 +142,6 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
                   </svg>
                 </button>
 
-                {/* Accordion body */}
                 <AnimatePresence>
                   {servOpen && (
                     <motion.div
@@ -195,7 +188,6 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
                 </AnimatePresence>
               </motion.div>
 
-              {/* Blog, Współpraca, Kontakt */}
               {links.slice(4).map(({ href, label }, i) => (
                 <motion.div
                   key={href}
@@ -219,7 +211,7 @@ export default function DropdownMenu({ isOpen, toggleMenu }: Props) {
                 style={{ width: '100%', fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '1rem', background: '#fff', color: 'var(--brand)', borderRadius: 99, padding: '.85em 1.5em', border: 'none', cursor: 'pointer', transition: 'opacity .2s' }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '.88')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
-                {isEn ? 'Request a Quote' : 'Zapytaj o wycene'}
+                {isEn ? 'Write to us' : 'Napisz do nas'}
               </button>
 
               <Link

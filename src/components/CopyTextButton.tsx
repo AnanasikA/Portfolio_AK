@@ -11,7 +11,7 @@ export default function CopyTextButton({ text, label = "Kopiuj" }: { text: strin
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // cichy fallback — bardzo stara przeglądarka bez Clipboard API
+
     }
   }
 

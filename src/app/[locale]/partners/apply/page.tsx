@@ -7,10 +7,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import PartnersShell from "@/components/PartnersShell";
 
-/* ============================================================
-   Ikony — minimalistyczne, jednoliniowe
-   ============================================================ */
-
 type IconProps = { size?: number; color?: string };
 const iconBase = { fill: "none", strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 
@@ -67,10 +63,6 @@ function IconCheck({ size = 18, color = "currentColor" }: IconProps) {
   );
 }
 
-/* ============================================================
-   Globalne style — focus, hover
-   ============================================================ */
-
 function GlobalStyle() {
   return (
     <style>{`
@@ -92,10 +84,6 @@ function GlobalStyle() {
     `}</style>
   );
 }
-
-/* ============================================================
-   Formularz
-   ============================================================ */
 
 const STEPS = [
   {
@@ -273,7 +261,6 @@ function PartnerApplyForm() {
                   className="pa-grid"
                   style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: 40, alignItems: "start" }}
                 >
-                  {/* FORMULARZ */}
                   <div
                     style={{
                       border: "1px solid var(--line)",
@@ -356,7 +343,6 @@ function PartnerApplyForm() {
                     </form>
                   </div>
 
-                  {/* CO DALEJ */}
                   <div
                     style={{
                       border: "1px solid var(--line)",
@@ -512,7 +498,6 @@ function SuccessState() {
 export default function PartnerApplyPage() {
   return (
     <>
-      {/* Formularz aplikacji partnera — narzędzie transakcyjne, nie strona do indeksowania */}
       <meta name="robots" content="noindex, nofollow" />
       <Suspense fallback={null}>
         <PartnerApplyForm />

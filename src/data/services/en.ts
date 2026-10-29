@@ -5,37 +5,36 @@ import type {
   ServiceFAQ,
 } from './types';
 
-
 const PROCESS_DEFAULT: ServiceProcess[] = [
   {
     step: '01',
     title: 'Discovery',
-    desc: 'I learn about your business, goals and target audience. Together we define the project scope, timeline and budget.',
+    desc: 'We learn about your business, goals and target audience. Together we define the project scope, timeline and budget.',
   },
   {
     step: '02',
     title: 'Design',
-    desc: 'I create the website design in Figma. You receive a preview and can request revisions before development begins.',
+    desc: 'We create the website design in Figma. You receive a preview and can request revisions before development begins.',
   },
   {
     step: '03',
     title: 'Development',
-    desc: 'I build the website based on the approved design, focusing on clean code, performance and responsive layouts.',
+    desc: 'We build the website based on the approved design, focusing on clean code, performance and responsive layouts.',
   },
   {
     step: '04',
     title: 'Revisions',
-    desc: 'Two rounds of revisions are included. I refine every detail to match your expectations.',
+    desc: 'Two rounds of revisions are included. We refine every detail to match your expectations.',
   },
   {
     step: '05',
     title: 'Launch',
-    desc: 'I deploy the website to your hosting, configure the domain and SSL certificate, and make sure everything works correctly.',
+    desc: 'We deploy the website to your hosting, configure the domain and SSL certificate, and make sure everything works correctly.',
   },
   {
     step: '06',
     title: 'Support',
-    desc: '30 days of technical support are included. If you have any questions after launch, I’m here to help.',
+    desc: '30 days of technical support are included. If you have any questions after launch, we’re here to help.',
   },
 ];
 
@@ -43,9 +42,9 @@ const webDevelopment: ServiceData = {
   slug: 'web-development',
   title: 'Website Development',
   subtitle:
-    'I design and build custom websites from scratch — without templates. Every project is tailored to your business, performance goals, and user experience.',
+    'We design and build custom websites from scratch, without templates. Every project is tailored to your business, performance goals, and user experience.',
   description:
-    'I create custom websites for businesses and freelancers. Every project is built from the ground up with a focus on performance, SEO, and a seamless experience across all devices.',
+    'We create custom websites for businesses and freelancers. Every project is built from the ground up with a focus on performance, SEO, and a seamless experience across all devices.',
   keywords: [
     'website development',
     'business website',
@@ -58,21 +57,21 @@ const webDevelopment: ServiceData = {
   heroPoster: '/videos/services/web-development-poster.webp',
   heroLabel: 'Web Development',
   heroStats: [
-    { value: '14+', label: 'completed projects' },
-    { value: '100%', label: 'custom code' },
+    { value: 'from 1,500', label: 'PLN for a simple site' },
+    { value: '7–14 days', label: 'for a simple site' },
     { value: '30 days', label: 'free support' },
   ],
-  whyTitle: 'Why work with me?',
+  whyTitle: 'Why work with us?',
   why: [
     {
       icon: 'star',
       title: 'Custom Design',
-      desc: 'Every website is designed specifically for your business—no templates or generic layouts.',
+      desc: 'Every website is designed specifically for your business, no templates or generic layouts.',
     },
     {
       icon: 'bolt',
       title: 'Fast Performance',
-      desc: 'I optimize every website for fast loading times, creating a better experience for visitors and a solid technical foundation for SEO.',
+      desc: 'We optimize every website for fast loading times, creating a better experience for visitors and a solid technical foundation for SEO.',
     },
     {
       icon: 'mobile',
@@ -82,7 +81,7 @@ const webDevelopment: ServiceData = {
     {
       icon: 'search',
       title: 'SEO Ready',
-      desc: 'I implement semantic HTML, meta tags, sitemap, and robots.txt to prepare your website for search engines.',
+      desc: 'We implement semantic HTML, meta tags, sitemap, and robots.txt to prepare your website for search engines.',
     },
     {
       icon: 'shield',
@@ -92,7 +91,7 @@ const webDevelopment: ServiceData = {
     {
       icon: 'chat',
       title: 'User-Focused UX/UI',
-      desc: 'I design layouts that make it easy for visitors to find information and get in touch.',
+      desc: 'We design layouts that make it easy for visitors to find information and get in touch.',
     },
   ],
   whatTitle: "What's included?",
@@ -150,7 +149,7 @@ const webDevelopment: ServiceData = {
   faq: [
     {
       q: 'How much does a website cost?',
-      a: 'Pricing depends on the project scope. Landing pages start at €350, while business websites typically start at €700. I provide a custom quote after a short consultation.',
+      a: 'Pricing depends on the project scope. Landing pages start at 1,500 PLN, while business websites typically start at 3,000 PLN. We provide a custom quote after a short consultation.',
     },
     {
       q: 'How long does it take to build a website?',
@@ -162,19 +161,19 @@ const webDevelopment: ServiceData = {
     },
     {
       q: 'Which technologies do you use?',
-      a: 'I primarily work with Next.js, React, Tailwind CSS, and WordPress with custom themes. The technology is always chosen based on your project requirements.',
+      a: 'We primarily work with Next.js, React, Tailwind CSS, and WordPress with custom themes. The technology is always chosen based on your project requirements.',
     },
     {
       q: 'Can I edit the website myself after launch?',
-      a: 'Yes. WordPress websites include an easy-to-use admin panel. For Next.js projects, I can integrate a CMS if required.',
+      a: 'Yes. WordPress websites include an easy-to-use admin panel. For Next.js projects, we can integrate a CMS if required.',
     },
     {
       q: 'Can you help with hosting and domains?',
-      a: 'Yes. I can help you choose, configure, and deploy your website to the right hosting provider and connect your domain.',
+      a: 'Yes. We can help you choose, configure, and deploy your website to the right hosting provider and connect your domain.',
     },
     {
       q: 'Do you provide SEO services?',
-      a: 'Every website includes technical SEO, such as semantic HTML, meta tags, sitemap, robots.txt, and Open Graph tags. I do not provide ongoing SEO campaigns.',
+      a: 'Every website includes technical SEO, such as semantic HTML, meta tags, sitemap, robots.txt, and Open Graph tags. We do not provide ongoing SEO campaigns.',
     },
     {
       q: 'What if I want changes to the design?',
@@ -193,9 +192,9 @@ const webDesign: ServiceData = {
   slug: 'web-design',
   title: 'Website Design',
   subtitle:
-    'I design websites in Figma that are clean, user-friendly, and tailored to your brand and audience.',
+    'We design websites in Figma that are clean, user-friendly, and tailored to your brand and audience.',
   description:
-    'I create custom website designs in Figma for businesses and freelancers. Every project focuses on usability, visual consistency, and a clear user experience.',
+    'We create custom website designs in Figma for businesses and freelancers. Every project focuses on usability, visual consistency, and a clear user experience.',
   keywords: [
     'website design',
     'UI UX design',
@@ -221,7 +220,7 @@ const webDesign: ServiceData = {
     {
       icon: 'search',
       title: 'User-Centered Design',
-      desc: 'I structure every page to help visitors quickly find information and take the next step.',
+      desc: 'We structure every page to help visitors quickly find information and take the next step.',
     },
     {
       icon: 'code',
@@ -241,7 +240,7 @@ const webDesign: ServiceData = {
     {
       icon: 'refresh',
       title: 'Collaborative Process',
-      desc: 'I share progress throughout the project and incorporate your feedback before the design is finalized.',
+      desc: 'We share progress throughout the project and incorporate your feedback before the design is finalized.',
     },
   ],
   whatTitle: "What's included?",
@@ -294,15 +293,15 @@ const webDesign: ServiceData = {
   faq: [
     {
       q: 'Do you design logos or brand identity?',
-      a: 'I do not create complete brand identities from scratch. Website designs are based on your existing branding and visual materials.',
+      a: 'We do not create complete brand identities from scratch. Website designs are based on your existing branding and visual materials.',
     },
     {
       q: 'Which design tool do you use?',
-      a: 'I work in Figma. You can review the project, leave comments, and receive full access to the file once the project is complete.',
+      a: 'We work in Figma. You can review the project, leave comments, and receive full access to the file once the project is complete.',
     },
     {
       q: 'How does the design process work?',
-      a: 'I start by learning about your business and goals. Then I create the page structure, visual design, and an interactive prototype. You can provide feedback at every stage.',
+      a: 'We start by learning about your business and goals. Then we create the page structure, visual design, and an interactive prototype. You can provide feedback at every stage.',
     },
     {
       q: 'How long does the design process take?',
@@ -314,7 +313,7 @@ const webDesign: ServiceData = {
     },
     {
       q: 'Do you design printed materials?',
-      a: 'No. I specialize in website and web application interface design.',
+      a: 'No. We specialize in website and web application interface design.',
     },
     {
       q: 'Can I order only the design without development?',
@@ -336,9 +335,9 @@ const businessWebsites: ServiceData = {
   slug: 'business-websites',
   title: 'Business Websites',
   subtitle:
-    'I create business websites that build credibility, make it easy for customers to get in touch, and support the growth of your business.',
+    'We create business websites that build credibility, make it easy for customers to get in touch, and support the growth of your business.',
   description:
-    'I design and develop custom business websites with technical SEO, responsive layouts, and a unique design tailored to your company.',
+    'We design and develop custom business websites with technical SEO, responsive layouts, and a unique design tailored to your company.',
   keywords: [
     'business website',
     'business website development',
@@ -350,7 +349,7 @@ const businessWebsites: ServiceData = {
   heroPoster: '/videos/services/business-websites-poster.webp',
   heroLabel: 'Business Websites',
   heroStats: [
-    { value: '14+', label: 'completed projects' },
+    { value: 'from 1,500', label: 'PLN for a business site' },
     { value: '2–4', label: 'weeks delivery time' },
     { value: 'SEO', label: 'technical setup included' },
   ],
@@ -374,7 +373,7 @@ const businessWebsites: ServiceData = {
     {
       icon: 'bolt',
       title: 'Fast Performance',
-      desc: 'I optimize every website to provide fast loading times and a smooth browsing experience.',
+      desc: 'We optimize every website to provide fast loading times and a smooth browsing experience.',
     },
     {
       icon: 'target',
@@ -446,7 +445,7 @@ const businessWebsites: ServiceData = {
     },
     {
       q: 'Can the website be prepared for Google Ads?',
-      a: 'Yes. I can build your website with Google Ads campaigns in mind, focusing on performance, clear calls to action, and conversion tracking.',
+      a: 'Yes. We can build your website with Google Ads campaigns in mind, focusing on performance, clear calls to action, and conversion tracking.',
     },
     {
       q: 'How long does the project take?',
@@ -454,15 +453,15 @@ const businessWebsites: ServiceData = {
     },
     {
       q: 'Will my website appear in Google search?',
-      a: 'Every website includes technical SEO as a solid foundation for future search engine optimization. However, I do not guarantee specific rankings.',
+      a: 'Every website includes technical SEO as a solid foundation for future search engine optimization. However, we do not guarantee specific rankings.',
     },
     {
       q: 'Can you redesign my existing website?',
-      a: 'Yes. I can refresh your website, improve its performance, and update it to modern web standards.',
+      a: 'Yes. We can refresh your website, improve its performance, and update it to modern web standards.',
     },
     {
       q: 'Do you write website content?',
-      a: 'Content is provided by the client. I’m happy to help organize the structure and suggest what information should be included.',
+      a: 'Content is provided by the client. We’re happy to help organize the structure and suggest what information should be included.',
     },
     {
       q: 'Can the website be expanded later?',
@@ -484,9 +483,9 @@ const wordpressWebsites: ServiceData = {
   slug: 'wordpress-websites',
   title: 'WordPress Websites',
   subtitle:
-    'I build custom WordPress websites with handcrafted themes—no templates or heavy page builders. Fast, secure, and easy to manage.',
+    'We build custom WordPress websites with handcrafted themes, no templates or heavy page builders. Fast, secure, and easy to manage.',
   description:
-    'I design and develop custom WordPress websites with handcrafted themes, an intuitive admin panel, and a design tailored to your business.',
+    'We design and develop custom WordPress websites with handcrafted themes, an intuitive admin panel, and a design tailored to your business.',
   keywords: [
     'WordPress websites',
     'WordPress development',
@@ -498,7 +497,7 @@ const wordpressWebsites: ServiceData = {
   heroPoster: '/videos/services/web-development-poster.webp',
   heroLabel: 'WordPress',
   heroStats: [
-    { value: '5+', label: 'WordPress websites built' },
+    { value: 'Custom', label: 'theme, no page builder' },
     { value: 'ACF', label: 'easy content editing' },
     { value: '100%', label: 'custom theme' },
   ],
@@ -512,7 +511,7 @@ const wordpressWebsites: ServiceData = {
     {
       icon: 'shield',
       title: 'Security',
-      desc: 'I configure WordPress properly and implement essential security best practices to help protect your website.',
+      desc: 'We configure WordPress properly and implement essential security best practices to help protect your website.',
     },
     {
       icon: 'bolt',
@@ -532,7 +531,7 @@ const wordpressWebsites: ServiceData = {
     {
       icon: 'chart',
       title: 'SEO Ready',
-      desc: 'I integrate analytics tools and implement technical SEO from the very beginning.',
+      desc: 'We integrate analytics tools and implement technical SEO from the very beginning.',
     },
   ],
   whatTitle: "What's included?",
@@ -588,23 +587,23 @@ const wordpressWebsites: ServiceData = {
   faq: [
     {
       q: 'How is your WordPress website different from a template?',
-      a: 'I build custom themes tailored to your project instead of using ready-made templates. This results in a faster, lighter, and more flexible website.',
+      a: 'We build custom themes tailored to your project instead of using ready-made templates. This results in a faster, lighter, and more flexible website.',
     },
     {
       q: 'Can I edit the website myself after launch?',
-      a: 'Yes. I configure the admin panel to make content editing simple and show you how to use it.',
+      a: 'Yes. We configure the admin panel to make content editing simple and show you how to use it.',
     },
     {
       q: 'Do you use Elementor or other page builders?',
-      a: 'No. I build custom themes using the native WordPress editor, keeping the website lightweight and easy to maintain.',
+      a: 'No. We build custom themes using the native WordPress editor, keeping the website lightweight and easy to maintain.',
     },
     {
       q: 'Is WordPress secure?',
-      a: 'Yes, when it is properly configured and regularly updated. I implement essential security measures during development.',
+      a: 'Yes, when it is properly configured and regularly updated. We implement essential security measures during development.',
     },
     {
       q: 'Can you migrate my existing WordPress website?',
-      a: 'Yes. I can migrate your content and rebuild your website while preserving the most important information.',
+      a: 'Yes. We can migrate your content and rebuild your website while preserving the most important information.',
     },
     {
       q: 'Can I add an online store later?',
@@ -612,7 +611,7 @@ const wordpressWebsites: ServiceData = {
     },
     {
       q: 'Can you help with hosting?',
-      a: 'Yes. I can recommend the right hosting provider and configure your domain and SSL certificate.',
+      a: 'Yes. We can recommend the right hosting provider and configure your domain and SSL certificate.',
     },
     {
       q: 'Do you provide support after launch?',
@@ -630,9 +629,9 @@ const landingPage: ServiceData = {
   slug: 'landing-page',
   title: 'Landing Pages',
   subtitle:
-    'I design landing pages with one clear goal — helping visitors contact you, sign up, or make a purchase.',
+    'We design landing pages with one clear goal, helping visitors contact you, sign up, or make a purchase.',
   description:
-    'I create custom landing pages for businesses and advertising campaigns. Every project includes a unique design, fast performance, technical SEO, and analytics setup.',
+    'We create custom landing pages for businesses and advertising campaigns. Every project includes a unique design, fast performance, technical SEO, and analytics setup.',
   keywords: [
     'landing page',
     'landing page design',
@@ -645,7 +644,7 @@ const landingPage: ServiceData = {
   heroLabel: 'Landing Pages',
   heroStats: [
     { value: '7–14', label: 'business days' },
-    { value: '90+', label: 'PageSpeed performance' },
+    { value: 'PageSpeed', label: 'tested before launch' },
     { value: 'GA4', label: 'analytics setup' },
   ],
   whyTitle: 'Why choose a landing page?',
@@ -658,7 +657,7 @@ const landingPage: ServiceData = {
     {
       icon: 'bolt',
       title: 'Fast Performance',
-      desc: 'I optimize every landing page to load quickly on both mobile devices and desktops.',
+      desc: 'We optimize every landing page to load quickly on both mobile devices and desktops.',
     },
     {
       icon: 'chart',
@@ -738,7 +737,7 @@ const landingPage: ServiceData = {
     },
     {
       q: 'Is a landing page suitable for Google Ads?',
-      a: 'Yes. I design landing pages specifically for advertising campaigns, focusing on performance, clear messaging, and conversion tracking.',
+      a: 'Yes. We design landing pages specifically for advertising campaigns, focusing on performance, clear messaging, and conversion tracking.',
     },
     {
       q: 'How long does it take to build a landing page?',
@@ -746,7 +745,7 @@ const landingPage: ServiceData = {
     },
     {
       q: 'Do you set up analytics?',
-      a: 'Yes. I can configure Google Analytics 4, Google Tag Manager, conversion tracking, and Meta Pixel if needed.',
+      a: 'Yes. We can configure Google Analytics 4, Google Tag Manager, conversion tracking, and Meta Pixel if needed.',
     },
     {
       q: 'Will my landing page work on mobile devices?',
@@ -758,11 +757,11 @@ const landingPage: ServiceData = {
     },
     {
       q: 'Can you help with hosting and domains?',
-      a: 'Yes. I can help you choose a hosting provider, configure your domain, and install an SSL certificate.',
+      a: 'Yes. We can help you choose a hosting provider, configure your domain, and install an SSL certificate.',
     },
     {
       q: 'Can you redesign my existing landing page?',
-      a: 'Yes. I can redesign your existing landing page, improve its performance, and prepare it for new advertising campaigns.',
+      a: 'Yes. We can redesign your existing landing page, improve its performance, and prepare it for new advertising campaigns.',
     },
   ],
   schema: {
@@ -776,9 +775,9 @@ const ecommerceWebsites: ServiceData = {
   slug: 'ecommerce-websites',
   title: 'E-commerce Websites',
   subtitle:
-    'I build online stores with WooCommerce and Next.js, making it easy to manage products, orders, and online payments.',
+    'We build online stores with WooCommerce and Next.js, making it easy to manage products, orders, and online payments.',
   description:
-    'I design and develop custom e-commerce websites with payment gateway integration, an intuitive admin panel, and technical SEO built in from the start.',
+    'We design and develop custom e-commerce websites with payment gateway integration, an intuitive admin panel, and technical SEO built in from the start.',
   keywords: [
     'e-commerce website',
     'online store development',
@@ -792,7 +791,7 @@ const ecommerceWebsites: ServiceData = {
   heroStats: [
     { value: 'Stripe', label: 'payment integration' },
     { value: 'P24', label: 'Przelewy24 / PayU' },
-    { value: '90+', label: 'PageSpeed performance' },
+    { value: 'PageSpeed', label: 'tested before launch' },
   ],
   whyTitle: 'Why invest in an online store?',
   why: [
@@ -804,7 +803,7 @@ const ecommerceWebsites: ServiceData = {
     {
       icon: 'shield',
       title: 'Secure Payments',
-      desc: 'I integrate trusted payment gateways so customers can complete purchases quickly and securely.',
+      desc: 'We integrate trusted payment gateways so customers can complete purchases quickly and securely.',
     },
     {
       icon: 'bolt',
@@ -844,7 +843,7 @@ const ecommerceWebsites: ServiceData = {
   plans: [
     {
       name: 'Starter',
-      from: 4500,
+      from: 2800,
       features: [
         'Up to 50 products',
         'WooCommerce',
@@ -884,11 +883,11 @@ const ecommerceWebsites: ServiceData = {
     },
     {
       q: 'Can the store support online payments?',
-      a: 'Yes. I integrate payment providers such as Stripe, PayPal, Przelewy24, PayU, and Paynow depending on your requirements.',
+      a: 'Yes. We integrate payment providers such as Stripe, PayPal, Przelewy24, PayU, and Paynow depending on your requirements.',
     },
     {
       q: 'How much does an online store cost?',
-      a: 'A basic WooCommerce store starts from around PLN 4,500. Larger or more complex projects are quoted individually after discussing your requirements.',
+      a: 'A basic WooCommerce store starts from 2,800 PLN. Larger or more complex projects are quoted individually after discussing your requirements.',
     },
     {
       q: 'Will I get an admin panel?',
@@ -900,7 +899,7 @@ const ecommerceWebsites: ServiceData = {
     },
     {
       q: 'Can I add products myself?',
-      a: 'Yes. I provide training and show you how to manage products, orders, and other store content.',
+      a: 'Yes. We provide training and show you how to manage products, orders, and other store content.',
     },
     {
       q: 'Will my store work on mobile devices?',
@@ -922,7 +921,7 @@ const websiteMaintenanceProcess: ServiceProcess[] = [
   {
     step: '01',
     title: 'Audit',
-    desc: 'I review your website, software versions, existing issues, and areas that may need improvement.',
+    desc: 'We review your website, software versions, existing issues, and areas that may need improvement.',
   },
   {
     step: '02',
@@ -932,12 +931,12 @@ const websiteMaintenanceProcess: ServiceProcess[] = [
   {
     step: '03',
     title: 'Setup',
-    desc: 'I configure the necessary access, backups, and essential tools to monitor your website.',
+    desc: 'We configure the necessary access, backups, and essential tools to monitor your website.',
   },
   {
     step: '04',
     title: 'Ongoing Maintenance',
-    desc: 'Each month I perform the agreed updates, maintenance tasks, and small website changes.',
+    desc: 'Each month we perform the agreed updates, maintenance tasks, and small website changes.',
   },
   {
     step: '05',
@@ -947,7 +946,7 @@ const websiteMaintenanceProcess: ServiceProcess[] = [
   {
     step: '06',
     title: 'Improvements',
-    desc: 'Whenever needed, I suggest improvements related to performance, security, or overall usability.',
+    desc: 'Whenever needed, we suggest improvements related to performance, security, or overall usability.',
   },
 ];
 
@@ -989,15 +988,15 @@ const websiteMaintenancePlans: ServicePlan[] = [
 const websiteMaintenanceFaq: ServiceFAQ[] = [
   {
     q: 'Which websites do you maintain?',
-    a: 'I primarily maintain WordPress and Next.js websites, but I can also help with simple HTML/CSS websites.',
+    a: 'We primarily maintain WordPress and Next.js websites, but we can also help with simple HTML/CSS websites.',
   },
   {
     q: 'Does the website have to be built by you?',
-    a: 'No. I also provide maintenance for websites created by other developers. I usually start with a short technical audit.',
+    a: 'No. We also provide maintenance for websites created by other developers. We usually start with a short technical audit.',
   },
   {
     q: 'How quickly do you respond to requests?',
-    a: 'I respond during business hours. Response times depend on your maintenance plan and the type of issue.',
+    a: 'We respond during business hours. Response times depend on your maintenance plan and the type of issue.',
   },
   {
     q: 'What if I need more work than my plan includes?',
@@ -1009,7 +1008,7 @@ const websiteMaintenanceFaq: ServiceFAQ[] = [
   },
   {
     q: 'Can updates break my website?',
-    a: 'Before major updates I create a backup, so your website can be restored if any unexpected issues occur.',
+    a: 'Before major updates we create a backup, so your website can be restored if any unexpected issues occur.',
   },
   {
     q: 'Can I cancel the maintenance plan?',
@@ -1017,16 +1016,16 @@ const websiteMaintenanceFaq: ServiceFAQ[] = [
   },
   {
     q: 'Can you maintain a WooCommerce store?',
-    a: 'Yes. I can update WooCommerce, make small changes, and help manage products and the online store.',
+    a: 'Yes. We can update WooCommerce, make small changes, and help manage products and the online store.',
   },
 ];
 const websiteMaintenance: ServiceData = {
   slug: 'website-maintenance',
   title: 'Website Maintenance',
   subtitle:
-    'Technical website maintenance — you report what you need (an update, a fix, a technical issue), and I take care of it within your plan.',
+    'Ongoing technical care within a monthly plan: updates, backups, security and small changes. You run your business, we look after the website.',
   description:
-    'I handle technical maintenance for WordPress and Next.js websites: updates, backups, security, and fixing issues as they come up.',
+    'We handle technical maintenance for WordPress and Next.js websites: updates, backups, security and fixing issues as they come up.',
   keywords: [
     'website maintenance',
     'WordPress maintenance',
@@ -1047,7 +1046,7 @@ const websiteMaintenance: ServiceData = {
     {
       icon: 'refresh',
       title: 'Regular Updates',
-      desc: 'I keep WordPress, themes, and plugins up to date to ensure your website continues to work properly.',
+      desc: 'We keep WordPress, themes, and plugins up to date to ensure your website continues to work properly.',
     },
     {
       icon: 'save',
@@ -1057,22 +1056,22 @@ const websiteMaintenance: ServiceData = {
     {
       icon: 'bug',
       title: 'Quick Support',
-      desc: 'If an issue occurs, I investigate it and work on resolving it as quickly as possible.',
+      desc: 'If an issue occurs, we investigate it and work on resolving it as quickly as possible.',
     },
     {
       icon: 'check',
       title: 'Content Updates',
-      desc: 'I can update text, images, and other small website content without the need to hire a developer.',
+      desc: 'We can update text, images, and other small website content without the need to hire a developer.',
     },
     {
       icon: 'chart',
       title: 'Website Monitoring',
-      desc: 'I regularly check website availability and basic performance.',
+      desc: 'We regularly check website availability and basic performance.',
     },
     {
       icon: 'shield',
       title: 'Security',
-      desc: 'I keep your website software updated and apply essential security best practices.',
+      desc: 'We keep your website software updated and apply essential security best practices.',
     },
   ],
   whatTitle: "What's included?",
@@ -1097,18 +1096,18 @@ const websiteMaintenance: ServiceData = {
   },
   relatedService: {
     slug: 'website-support',
-    note: 'Looking for ongoing, monthly support instead of one-off fixes?',
-    linkLabel: 'See website support',
+    note: 'Something stopped working and you need a one-off fix?',
+    linkLabel: 'See technical support & fixes',
   },
 };
 
 const websiteSupport: ServiceData = {
   slug: 'website-support',
-  title: 'Website Support',
+  title: 'Technical Support & WordPress Fixes',
   subtitle:
-    'Ongoing, monthly website support — regular updates, backups, and help whenever you need it, without worrying about the technical side.',
+    'Something not working on your website? We find the cause and fix it, including sites built by someone else. One-off help or ongoing care.',
   description:
-    'I provide ongoing, monthly support for WordPress and Next.js websites. It is a long-term partnership: regular updates, security, backups, and small content changes, so you can focus on running your business.',
+    'WordPress fixes and technical support: errors after updates, broken contact forms, malware, slow loading. Website care for businesses in Wrocław and across Poland.',
   keywords: [
     'website support',
     'ongoing website care',
@@ -1129,7 +1128,7 @@ const websiteSupport: ServiceData = {
     {
       icon: 'shield',
       title: 'Security',
-      desc: 'I take care of updates, backups, and essential security measures to keep your website protected.',
+      desc: 'We take care of updates, backups, and essential security measures to keep your website protected.',
     },
     {
       icon: 'save',
@@ -1139,22 +1138,22 @@ const websiteSupport: ServiceData = {
     {
       icon: 'bolt',
       title: 'Reliable Performance',
-      desc: 'I monitor your website and suggest improvements whenever necessary.',
+      desc: 'We monitor your website and suggest improvements whenever necessary.',
     },
     {
       icon: 'chat',
       title: 'Direct Contact',
-      desc: 'You communicate directly with me instead of going through a help desk or ticket system.',
+      desc: 'You communicate directly with us instead of going through a help desk or ticket system.',
     },
     {
       icon: 'chart',
       title: 'Website Monitoring',
-      desc: 'I monitor your website and respond whenever technical issues arise.',
+      desc: 'We monitor your website and respond whenever technical issues arise.',
     },
     {
       icon: 'check',
       title: 'Small Content Changes',
-      desc: 'Need to update text, pricing, opening hours, or images? I can handle those changes as part of your plan.',
+      desc: 'Need to update text, pricing, opening hours, or images? We can handle those changes as part of your plan.',
     },
   ],
   whatTitle: "What's included?",
@@ -1179,7 +1178,7 @@ const websiteSupport: ServiceData = {
   },
   relatedService: {
     slug: 'website-maintenance',
-    note: 'Need a one-off technical fix without an ongoing monthly plan?',
+    note: 'Prefer ongoing monthly care instead of one-off fixes?',
     linkLabel: 'See website maintenance',
   },
 };
@@ -1187,9 +1186,9 @@ const websiteRedesign: ServiceData = {
   slug: 'website-redesign',
   title: 'Website Redesign',
   subtitle:
-    'I refresh existing websites by improving their look, performance, and usability without rebuilding everything from scratch.',
+    'We refresh existing websites by improving their look, performance, and usability without rebuilding everything from scratch.',
   description:
-    'I modernize business websites with a new design, better performance, content migration, and updates aligned with current web standards.',
+    'We modernize business websites with a new design, better performance, content migration, and updates aligned with current web standards.',
   keywords: [
     'website redesign',
     'website modernization',
@@ -1210,32 +1209,32 @@ const websiteRedesign: ServiceData = {
     {
       icon: 'clock',
       title: 'Slow Performance',
-      desc: 'I improve website performance to make browsing smoother and more comfortable for users.',
+      desc: 'We improve website performance to make browsing smoother and more comfortable for users.',
     },
     {
       icon: 'mobile',
       title: 'Mobile Issues',
-      desc: 'I adapt your website to mobile devices and current responsive design standards.',
+      desc: 'We adapt your website to mobile devices and current responsive design standards.',
     },
     {
       icon: 'star',
       title: 'Outdated Design',
-      desc: 'I refresh the visual design while keeping the character of your brand.',
+      desc: 'We refresh the visual design while keeping the character of your brand.',
     },
     {
       icon: 'lock',
       title: 'Outdated Software',
-      desc: 'I help update your website and improve its overall security.',
+      desc: 'We help update your website and improve its overall security.',
     },
     {
       icon: 'chart',
       title: 'Visibility Problems',
-      desc: 'I fix technical issues that may make future SEO work harder.',
+      desc: 'We fix technical issues that may make future SEO work harder.',
     },
     {
       icon: 'check',
       title: 'Difficult Editing',
-      desc: 'If your current website is hard to manage, I can implement a simpler content management system.',
+      desc: 'If your current website is hard to manage, we can implement a simpler content management system.',
     },
   ],
   whatTitle: "What's included?",
@@ -1255,7 +1254,7 @@ const websiteRedesign: ServiceData = {
     {
       step: '01',
       title: 'Audit',
-      desc: 'I review your current website, including its design, performance, and key technical issues.',
+      desc: 'We review your current website, including its design, performance, and key technical issues.',
     },
     {
       step: '02',
@@ -1265,17 +1264,17 @@ const websiteRedesign: ServiceData = {
     {
       step: '03',
       title: 'Design',
-      desc: 'I prepare a refreshed website design tailored to your business.',
+      desc: 'We prepare a refreshed website design tailored to your business.',
     },
     {
       step: '04',
       title: 'Development',
-      desc: 'I build the new version of the website and migrate the required content.',
+      desc: 'We build the new version of the website and migrate the required content.',
     },
     {
       step: '05',
       title: 'Testing',
-      desc: 'I test the website before publication to make sure everything works correctly.',
+      desc: 'We test the website before publication to make sure everything works correctly.',
     },
     {
       step: '06',
@@ -1321,15 +1320,15 @@ const websiteRedesign: ServiceData = {
   faq: [
     {
       q: 'Can a redesign affect SEO?',
-      a: 'A properly planned redesign helps preserve the most important technical SEO elements. If needed, I prepare redirects and keep important URLs in place.',
+      a: 'A properly planned redesign helps preserve the most important technical SEO elements. If needed, we prepare redirects and keep important URLs in place.',
     },
     {
       q: 'Will my content be migrated?',
-      a: 'Yes. I migrate the text, images, and other materials that should appear on the new website.',
+      a: 'Yes. We migrate the text, images, and other materials that should appear on the new website.',
     },
     {
       q: 'Will my current website stay online during the work?',
-      a: 'Yes. I prepare the new version in a test environment, and the final launch happens only after the work is complete.',
+      a: 'Yes. We prepare the new version in a test environment, and the final launch happens only after the work is complete.',
     },
     {
       q: 'How much does a website redesign cost?',
@@ -1337,7 +1336,7 @@ const websiteRedesign: ServiceData = {
     },
     {
       q: 'Can you change the website technology?',
-      a: 'Yes. If it makes sense for the project, I can move your website to WordPress or Next.js.',
+      a: 'Yes. If it makes sense for the project, we can move your website to WordPress or Next.js.',
     },
     {
       q: 'How long does a redesign take?',
@@ -1345,7 +1344,7 @@ const websiteRedesign: ServiceData = {
     },
     {
       q: 'Can you only improve website speed?',
-      a: 'Yes. I can provide performance optimization without a full website redesign.',
+      a: 'Yes. We can provide performance optimization without a full website redesign.',
     },
     {
       q: 'Can I keep my current hosting?',

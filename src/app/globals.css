@@ -1,9 +1,6 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
-/* ============================================================
-   AK Web & Design — design system
-   ============================================================ */
 :root {
   --brand:       #1d4ed8;
   --brand-bright:#2563eb;
@@ -56,7 +53,6 @@ a { color: inherit; text-decoration: none; }
 img, video { display: block; max-width: 100%; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-/* ---------- Scrollbar ---------- */
 *::-webkit-scrollbar { width: 6px; }
 *::-webkit-scrollbar-track { background: transparent; }
 *::-webkit-scrollbar-thumb { background: var(--line); border-radius: 99px; }
@@ -64,7 +60,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .qw-sidebar { scrollbar-width: none !important; }
 
-/* ---------- Skip link ---------- */
 .skip-link {
   position: fixed; left: 1rem; top: -100%; z-index: 200;
   padding: .55rem 1rem; background: #fff; color: var(--brand);
@@ -73,14 +68,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .skip-link:focus { top: 1rem; }
 
-/* ---------- Body lock ---------- */
 body.is-locked { overflow: hidden !important; }
 
-/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
-/* ---------- Hero 2-col grid ---------- */
+
 .hero-grid {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -91,7 +84,6 @@ body.is-locked { overflow: hidden !important; }
   }
 }
 
-/* ---------- Card grid (projects/pricing/process) ---------- */
 .card-grid-3 {
   display: grid !important;
   grid-template-columns: 1fr !important;
@@ -104,11 +96,10 @@ body.is-locked { overflow: hidden !important; }
 
 .blog-sidebar {
   position: sticky;
-  top: 96px; /* wysokość navbara + margines */
+  top: 96px;
   align-self: start;
 }
 
-/* ---------- Hero fade-up animations ---------- */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }

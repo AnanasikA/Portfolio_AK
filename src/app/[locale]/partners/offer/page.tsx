@@ -20,14 +20,6 @@ function OfferContent() {
   return (
     <PartnersShell>
       <div style={{ fontFamily: "var(--fb)", color: "var(--ink, #111)" }}>
-        {/* Strona publiczna (program partnerski), bez własnego generateMetadata
-            (komponent kliencki) — bez tego dziedziczyłaby title/description
-            strony głównej. Patrz audyt SEO, punkt 6. Dostępna tylko w PL. */}
-        <title>Program partnerski | AK Web & Design</title>
-        <meta
-          name="description"
-          content="Polecaj strony internetowe AK Web & Design i zarabiaj prowizję od każdego zrealizowanego projektu. Sprawdź zasady programu partnerskiego."
-        />
         <GlobalStyle />
         <Hero name={name} applyHref={applyHref} />
         <WhyWorth />
@@ -49,10 +41,6 @@ export default function PartnerOfferPage() {
     </Suspense>
   );
 }
-
-/* ============================================================
-   Ikony — minimalistyczne, jednoliniowe (SVG, bez zależności)
-   ============================================================ */
 
 type IconProps = { size?: number; color?: string };
 type ApplyHref = { pathname: string; query?: { name: string } };
@@ -131,10 +119,6 @@ function IconPhone({ size = 24, color = "currentColor" }: IconProps) {
     </svg>
   );
 }
-
-/* ============================================================
-   Globalne style — hover, gradienty, animacje
-   ============================================================ */
 
 function GlobalStyle() {
   return (
@@ -217,10 +201,6 @@ function GlobalStyle() {
     `}</style>
   );
 }
-
-/* ============================================================
-   Wspólne
-   ============================================================ */
 
 const eyebrowStyle: React.CSSProperties = {
   fontFamily: "var(--fd, sans-serif)",
@@ -307,10 +287,6 @@ function IconBadge({ children, size = 52 }: { children: React.ReactNode; size?: 
   );
 }
 
-/* ============================================================
-   1. HERO
-   ============================================================ */
-
 function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
   return (
     <div style={{ position: "relative", overflow: "hidden" }}>
@@ -394,9 +370,9 @@ function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
             <p style={{ fontSize: 18, lineHeight: 1.65, color: "var(--muted, #555)", maxWidth: 540 }}>
               Dołącz do programu partnerskiego AK Web &amp; Design, rozmawiaj
               ze swoimi kontaktami i przedstawiaj im profesjonalne strony
-              internetowe oraz rozwiązania cyfrowe poparte jakością,
-              terminowością i indywidualnym podejściem. Ja zajmuję się
-              wyceną, ustaleniami i realizacją projektu — a Ty otrzymujesz
+              internetowe przygotowane z dbałością o jakość, terminy
+              i potrzeby klienta. My zajmujemy się wyceną, ustaleniami
+              i realizacją projektu, a Ty otrzymujesz
               prowizję za każdą zakończoną współpracę.
             </p>
 
@@ -413,7 +389,7 @@ function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
                 className="po-btn-secondary"
                 style={secondaryBtnStyle}
               >
-                Napisz do mnie
+                Napisz do nas
               </a>
             </div>
 
@@ -460,14 +436,10 @@ function Hero({ name, applyHref }: { name: string; applyHref: ApplyHref }) {
   );
 }
 
-/* ============================================================
-   3. DLACZEGO WARTO?
-   ============================================================ */
-
 const BENEFITS = [
   {
     Icon: IconTrendingUp,
-    title: "Realne źródło dodatkowego dochodu",
+    title: "Dodatkowy dochód z poleceń",
     body: "Poleć klienta raz i otrzymuj prowizję za każdą zakończoną realizację. Bez sprzedaży, bez obsługi projektu i bez zbędnych formalności.",
   },
   {
@@ -478,12 +450,12 @@ const BENEFITS = [
   {
     Icon: IconClock,
     title: "Szybka realizacja zgłoszeń",
-    body: "Gdy przedstawisz klientowi ofertę, ja od razu przejmuję temat — przygotowuję wycenę i prowadzę cały proces aż do zakończenia projektu.",
+    body: "Gdy przedstawisz klientowi ofertę, od razu przejmujemy temat. Przygotowujemy wycenę i prowadzimy cały proces aż do zakończenia projektu.",
   },
   {
     Icon: IconPhone,
-    title: "Ty rozmawiasz, ja domykam",
-    body: "Przedstawiasz klientowi naszą ofertę, a ja przejmuję wycenę, ustalenia i realizację projektu. Twój czas kończy się na rozmowie.",
+    title: "Ty rozmawiasz, my domykamy",
+    body: "Przedstawiasz klientowi naszą ofertę, a my przejmujemy wycenę, ustalenia i realizację projektu. Twój czas kończy się na rozmowie.",
   },
   {
     Icon: IconShield,
@@ -492,7 +464,7 @@ const BENEFITS = [
   },
   {
     Icon: IconPalette,
-    title: "Indywidualne rozwiązania zamiast gotowych szablonów",
+    title: "Indywidualne projekty zamiast gotowych szablonów",
     body: "Każdy projekt powstaje od podstaw z myślą o celach biznesowych klienta, jego marce i planach rozwoju.",
   },
 ];
@@ -552,15 +524,11 @@ function WhyWorth() {
   );
 }
 
-/* ============================================================
-   4. JAK WYGLĄDA WSPÓŁPRACA? — timeline
-   ============================================================ */
-
 const STEPS = [
-  { n: "1", title: "Rozmawiasz z klientem", body: "Przedstawiasz klientowi naszą ofertę i wstępnie ustalasz, czego potrzebuje, a potem przekazujesz mi kontakt." },
-  { n: "2", title: "Ja domykam szczegóły i wycenę", body: "Kontaktuję się z klientem, potwierdzam zakres i przygotowuję dokładną wycenę projektu." },
-  { n: "3", title: "Realizuję projekt", body: "Projektuję i wdrażam stronę od podstaw — Ty nie angażujesz w to swojego czasu." },
-  { n: "4", title: "Ty otrzymujesz prowizję", body: "Po zakończeniu i rozliczeniu projektu od razu wypłacam Twoją prowizję." },
+  { n: "1", title: "Rozmawiasz z klientem", body: "Przedstawiasz klientowi naszą ofertę i wstępnie ustalasz, czego potrzebuje, a potem przekazujesz nam kontakt." },
+  { n: "2", title: "My domykamy szczegóły i wycenę", body: "Kontaktujemy się z klientem, potwierdzamy zakres i przygotowujemy dokładną wycenę projektu." },
+  { n: "3", title: "Realizujemy projekt", body: "Projektujemy i wdrażamy stronę od podstaw. Ty nie angażujesz w to swojego czasu." },
+  { n: "4", title: "Ty otrzymujesz prowizję", body: "Po zakończeniu i rozliczeniu projektu od razu wypłacamy Twoją prowizję." },
 ];
 
 function Timeline() {
@@ -623,10 +591,6 @@ function Timeline() {
     </SectionWrap>
   );
 }
-
-/* ============================================================
-   5. KALKULATOR PROWIZJI — zakres do realnej ceny max (3600 zł)
-   ============================================================ */
 
 function Calculator({ applyHref }: { applyHref: ApplyHref }) {
   const [value, setValue] = useState(2000);
@@ -781,21 +745,16 @@ function Calculator({ applyHref }: { applyHref: ApplyHref }) {
   );
 }
 
-/* ============================================================
-   6. WYKRES — przykładowe miesięczne zarobki
-   (przy średniej wartości projektu ok. 2000 zł, w granicach realnych cen)
-   ============================================================ */
-
 const EARNINGS_DATA = [
-  { label: "1 klient", value: 200 },
-  { label: "2 klientów", value: 400 },
-  { label: "3 klientów", value: 600 },
-  { label: "5 klientów", value: 1000 },
+  { label: "1 klient", value: 300 },
+  { label: "2 klientów", value: 600 },
+  { label: "3 klientów", value: 900 },
+  { label: "5 klientów", value: 1500 },
 ];
 
 function EarningsChart() {
-  const max = 1000;
-  const gridLines = [0, 200, 400, 600, 800, 1000];
+  const max = 1500;
+  const gridLines = [0, 300, 600, 900, 1200, 1500];
 
   return (
     <SectionWrap tinted>
@@ -804,7 +763,7 @@ function EarningsChart() {
         Ile możesz zarobić miesięcznie
       </h2>
       <p style={{ fontSize: 14, color: "var(--muted, #555)", marginBottom: 44 }}>
-        Przykładowa symulacja przy prowizji 10% od wartości projektu i
+        Przykładowa symulacja przy prowizji 15% od wartości projektu i
         średniej cenie realizacji na poziomie ok. 2000 zł.
       </p>
 
@@ -871,10 +830,6 @@ function EarningsChart() {
   );
 }
 
-/* ============================================================
-   7. CO OTRZYMUJE PARTNER?
-   ============================================================ */
-
 const PERKS = [
   { Icon: IconFolder, title: "Portfolio realizacji", body: "Otrzymujesz profesjonalne materiały i portfolio, które ułatwią przedstawienie naszej oferty." },
   { Icon: IconFileText, title: "Gotowa oferta", body: "Dostajesz gotowe materiały sprzedażowe, które możesz od razu przekazać klientowi." },
@@ -918,10 +873,6 @@ function WhatYouGet() {
   );
 }
 
-/* ============================================================
-   8. FAQ
-   ============================================================ */
-
 const FAQ_ITEMS = [
   {
     q: "Jak liczona jest prowizja?",
@@ -933,7 +884,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Czy podpisujemy umowę?",
-    a: "Bazowo działamy bez długich umów — wystarczy krótkie ustalenie zasad. Jeśli reprezentujesz naszą ofertę wobec klientów i potrzebujesz pisemnego potwierdzenia warunków współpracy, przygotuję je dla Ciebie bez problemu.",
+    a: "Zwykle działamy bez długich umów, wystarczy krótkie ustalenie zasad. Jeśli reprezentujesz naszą ofertę wobec klientów i potrzebujesz pisemnego potwierdzenia warunków współpracy, przygotujemy je dla Ciebie bez problemu.",
   },
   {
     q: "Czy mogę polecić więcej niż jednego klienta?",
@@ -941,7 +892,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "Czy mogę polecać firmy spoza Polski?",
-    a: "Tak. Współpracujemy z klientami z całego świata. Wystarczy możliwość komunikacji w języku polskim lub angielskim.",
+    a: "Tak. Pracujemy z klientami z całej Polski i z zagranicy. Wystarczy, że klient porozumiewa się po polsku lub angielsku.",
   },
   {
     q: "Czy odbieracie moich klientów?",
@@ -1033,10 +984,6 @@ function FAQ() {
   );
 }
 
-/* ============================================================
-   9. CTA
-   ============================================================ */
-
 function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
   return (
     <SectionWrap style={{ paddingBottom: 130 }}>
@@ -1065,7 +1012,6 @@ function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
           }}
         />
 
-        {/* Ikonki — pozioma listwa na górze */}
         <div
           style={{
             position: "relative",
@@ -1077,7 +1023,7 @@ function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
           }}
         >
           {[
-            { Icon: IconShield, label: "Sprawdzona marka" },
+            { Icon: IconShield, label: "Lokalna marka" },
             { Icon: IconClock, label: "Proste zasady współpracy" },
             { Icon: IconTrendingUp, label: "15% prowizji" },
           ].map((item, i) => (
@@ -1115,7 +1061,6 @@ function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
           ))}
         </div>
 
-        {/* Nagłówek, tekst, przyciski — pełna szerokość */}
         <div style={{ position: "relative", textAlign: "center" }}>
           <h2
             style={{
@@ -1126,7 +1071,7 @@ function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
               marginBottom: 16,
             }}
           >
-            Buduj dochód razem ze sprawdzoną marką
+            Polecaj nas i zarabiaj na każdym projekcie
           </h2>
           <p
             style={{
@@ -1139,8 +1084,8 @@ function FinalCTA({ applyHref }: { applyHref: ApplyHref }) {
             }}
           >
             Dołącz do programu partnerskiego AK Web &amp; Design i polecaj
-            usługi poparte jakością, doświadczeniem i realnymi efektami dla
-            Twoich klientów.
+            strony internetowe, sklepy i opiekę nad stronami swoim
+            znajomym i klientom.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Link

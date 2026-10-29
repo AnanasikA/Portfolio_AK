@@ -10,6 +10,7 @@ import Header from '@/components/Header';
 import DropdownMenu from '@/components/DropdownMenu';
 import { FiChevronLeft, FiExternalLink } from 'react-icons/fi';
 import Footer from '@/components/Footer';
+import { SITE_HOST } from '@/lib/site';
 import { getService, getTranslatedServiceSlug } from '@/data/services';
 
 type Project = {
@@ -20,6 +21,7 @@ type Project = {
   ratio?: number;
   tech: string[];
   link?: string;
+  concept?: boolean;
   relatedService?: string;
 };
 
@@ -28,7 +30,6 @@ type Challenge = {
   solution: string;
 };
 
-/* ── shared inline style helpers ── */
 const chip = (active = false): React.CSSProperties => ({
   display: 'inline-flex', alignItems: 'center', gap: 6,
   padding: '4px 12px', borderRadius: 99,
@@ -39,11 +40,6 @@ const chip = (active = false): React.CSSProperties => ({
   whiteSpace: 'nowrap' as const,
 });
 
-/**
- * Hook: automatycznie przewija kontener w dół, gdy wjeżdża w viewport.
- * Zatrzymuje się na hover (żeby user mógł się zatrzymać i przyjrzeć),
- * i wraca na górę, gdy element opuszcza viewport.
- */
 function useAutoScrollScreenshot(
   containerRef: React.RefObject<HTMLDivElement | null>,
   imgLoaded: boolean,
@@ -60,7 +56,7 @@ function useAutoScrollScreenshot(
     const start = () => {
       const maxScroll = el.scrollHeight - el.clientHeight;
       if (maxScroll <= 0) return;
-      // czas trwania proporcjonalny do wysokości strony — dłuższa strona = wolniejszy, spokojniejszy scroll
+
       const duration = Math.min(22, Math.max(6, maxScroll / 100));
       controls = animate(el.scrollTop, maxScroll, {
         duration,
@@ -108,9 +104,6 @@ export default function ProjectView({ project: p }: { project: Project }) {
   const decisions   = t.has(`${p.slug}.decisions`)   ? (t.raw(`${p.slug}.decisions`)   as string[])    : [];
   const integrations= t.has(`${p.slug}.integrations`)? (t.raw(`${p.slug}.integrations`)as string[])    : [];
 
-  // Powiązana usługa (case study → usługa) — mapowanie z src/data/projects.ts,
-  // wyliczone na podstawie tych samych tagów co serviceProjects.ts. Patrz
-  // strategia SEO ETAP 3, sekcja D / ETAP 4 pkt 4.
   const relatedServiceSlug = p.relatedService
     ? getTranslatedServiceSlug('pl', locale, p.relatedService)
     : undefined;
@@ -120,10 +113,6 @@ export default function ProjectView({ project: p }: { project: Project }) {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
     return () => { document.body.style.overflow = 'auto'; };
   }, [isOpen]);
-
-  // Dane strukturalne (CreativeWork + BreadcrumbList) są teraz renderowane
-  // po stronie serwera w page.tsx, z poprawnym prefiksem locale w URL-ach —
-  // patrz audyt SEO, H6/M4. Nie duplikujemy ich tutaj.
 
   const SectionTitle = ({ children }: { children: React.ReactNode }) => (
     <h2 style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(1.3rem,2vw,1.6rem)', letterSpacing: '-.02em', color: 'var(--ink)', marginBottom: 20, lineHeight: 1.2 }}>
@@ -141,7 +130,6 @@ export default function ProjectView({ project: p }: { project: Project }) {
       <main style={{ paddingTop: 'clamp(100px,14vh,140px)', paddingBottom: 'clamp(64px,10vw,120px)' }}>
         <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
-          {/* Breadcrumb */}
           <nav style={{ marginBottom: 32 }}>
             <Link href="/projects" locale={locale}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.85rem', color: 'var(--muted)', textDecoration: 'none', padding: '6px 14px 6px 10px', borderRadius: 99, border: '1px solid var(--line)', transition: 'color .2s, border-color .2s' }}
@@ -152,9 +140,15 @@ export default function ProjectView({ project: p }: { project: Project }) {
             </Link>
           </nav>
 
-          {/* Hero header */}
           <header style={{ marginBottom: 40, display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
             <div style={{ flex: '1 1 320px' }}>
+              {p.concept && (
+                <span style={{ ...chip(), display: 'inline-flex', marginBottom: 14 }}>
+                  {locale === 'en'
+                    ? 'Concept project: built to show our skills, not commissioned by a client'
+                    : 'Projekt koncepcyjny: przygotowany przez nas jako przykład, nie na zlecenie klienta'}
+                </span>
+              )}
               <h1 style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: 'clamp(2rem,5vw,3.6rem)', letterSpacing: '-.035em', lineHeight: .97, color: 'var(--ink)', marginBottom: 16 }}>
                 {title}
               </h1>
@@ -168,7 +162,6 @@ export default function ProjectView({ project: p }: { project: Project }) {
               </div>
             </div>
 
-            {/* Ikonka "scroll mouse" — zachęta do przewijania w dół */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -198,9 +191,7 @@ export default function ProjectView({ project: p }: { project: Project }) {
             </motion.div>
           </header>
 
-          {/* Screenshot browser frame */}
           <div style={{ borderRadius: 'var(--r-l)', overflow: 'hidden', border: '1px solid var(--line)', marginBottom: 'clamp(40px,6vw,72px)', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
-            {/* browser bar */}
             <div style={{ height: 44, background: 'var(--surface)', borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px' }}>
               <div style={{ display: 'flex', gap: 6 }}>
                 {['#ff5f57','#febc2e','#28c840'].map(c => (
@@ -229,12 +220,11 @@ export default function ProjectView({ project: p }: { project: Project }) {
                     whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                     display: 'block', width: '100%',
                   }}>
-                    {`anastasiiakuprianets.pl/projects/${p.slug}`}
+                    {`${SITE_HOST}/projects/${p.slug}`}
                   </span>
-                )} 
+                )}
               </div>
             </div>
-            {/* screenshot — auto-scroll gdy sekcja wjeżdża w viewport, pauza na hover */}
             <div
               ref={screenshotRef}
               onMouseEnter={scrollHandlers.onMouseEnter}
@@ -252,7 +242,6 @@ export default function ProjectView({ project: p }: { project: Project }) {
             </div>
           </div>
 
-          {/* Content grid */}
           <style>{`
             .pv-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
             @media (min-width: 768px) { .pv-grid { grid-template-columns: 1fr 320px; gap: 64px; align-items: start; } }
@@ -260,7 +249,6 @@ export default function ProjectView({ project: p }: { project: Project }) {
 
           <div className="pv-grid">
 
-            {/* Main content */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 48, minWidth: 0 }}>
 
               {overview && (
@@ -352,7 +340,6 @@ export default function ProjectView({ project: p }: { project: Project }) {
               )}
             </div>
 
-            {/* Sidebar */}
             <aside style={{ position: 'sticky', top: 100 }}>
               <div style={{ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--r-l)', padding: 'clamp(20px,3vw,28px)', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 <p style={{ fontFamily: 'var(--fb)', fontSize: '.9rem', color: 'var(--muted)', lineHeight: 1.6 }}>

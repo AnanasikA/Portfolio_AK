@@ -1,15 +1,3 @@
-// Mapowanie slugów artykułów blogowych PL <-> EN.
-//
-// Artykuły PL i EN nie mają wspólnego identyfikatora w treści MDX (frontmatter
-// zawiera tylko title/description/date/tags), a same daty publikacji się
-// powtarzają w obrębie jednego języka, więc nie można ich użyć do
-// automatycznego dopasowania. Ta tabela została zweryfikowana ręcznie na
-// podstawie treści artykułów i służy do budowy poprawnego hreflang
-// (alternates.languages) między wersjami językowymi tego samego artykułu.
-//
-// Uwaga dla przyszłych artykułów: każdy nowy wpis PL i jego odpowiednik EN
-// (lub sam PL, jeśli tłumaczenie jeszcze nie istnieje) trzeba dopisać tutaj.
-
 export const BLOG_SLUG_PAIRS: Array<{ pl: string; en: string }> = [
   { pl: 'co-powinna-zawierac-strona-dla-firmy-uslugowej', en: 'what-should-a-service-website-include' },
   { pl: 'czy-twoja-strona-internetowa-potrzebuje-bloga',   en: 'does-every-business-need-a-blog' },
@@ -28,12 +16,6 @@ export const BLOG_SLUG_PAIRS: Array<{ pl: string; en: string }> = [
   { pl: 'wordpress-vs-nextjs-co-wybrac',                   en: 'wordpress-vs-nextjs-which-to-choose' },
 ];
 
-/**
- * Zwraca slug tego samego artykułu w docelowym języku.
- * Jeśli nie znaleziono pary (np. artykuł nie ma jeszcze tłumaczenia),
- * zwraca `null` — wywołujący nie powinien wtedy dodawać wpisu hreflang
- * dla tego języka.
- */
 export function getTranslatedBlogSlug(
   currentLocale: string,
   targetLocale: string,

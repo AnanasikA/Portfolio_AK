@@ -1,46 +1,18 @@
 import type { Metadata } from 'next';
+import { SITE_URL, alternates } from '@/lib/site';
 import { getAllPosts } from '@/lib/blog';
 import { setRequestLocale } from 'next-intl/server';
 import BlogPageClient from './BlogPageClient';
 
-const BASE_URL = 'https://anastasiiakupriianets.pl';
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const isEn = locale === 'en';
-  const canonical = `${BASE_URL}/${locale}/blog`;
-
-  const title = isEn
-    ? 'Blog — Web Development & Design Tips | AK Web & Design'
-    : 'Blog — porady o tworzeniu stron internetowych | AK Web & Design';
-  const description = isEn
-    ? 'Practical articles about building, pricing and maintaining business websites — from choosing a web designer to comparing WordPress and Next.js.'
-    : 'Praktyczne artykuły o tworzeniu, wycenie i utrzymaniu stron internetowych dla firm — od wyboru wykonawcy po porównanie WordPressa i Next.js.';
-
   return {
-    // `absolute` wyłącza szablon z layout.tsx — tytuł ma już „| AK Web & Design”.
-    title: { absolute: title },
-    description,
-    alternates: {
-      canonical,
-      languages: {
-        pl: `${BASE_URL}/pl/blog`,
-        en: `${BASE_URL}/en/blog`,
-        'x-default': `${BASE_URL}/pl/blog`,
-      },
-    },
-    openGraph: {
-      type: 'website',
-      url: canonical,
-      title,
-      description,
-      siteName: 'AK Web & Design',
-      locale: isEn ? 'en_US' : 'pl_PL',
-    },
+    title: { absolute: isEn ? 'Blog: practical tips about websites | AK Web & Design' : 'Blog: praktycznie o stronach internetowych | AK Web & Design' },
+    description: isEn
+      ? 'How much a website costs, how long it takes, WordPress or Next.js. Straightforward articles for business owners.'
+      : 'Ile kosztuje strona, ile trwa jej zrobienie, WordPress czy Next.js. Konkretne artykuły dla właścicieli firm.',
+    alternates: alternates(locale, '/blog'),
   };
 }
 
@@ -57,8 +29,8 @@ export default async function BlogPage({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'AK Web & Design', item: BASE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${BASE_URL}/${locale}/blog` },
+      { '@type': 'ListItem', position: 1, name: 'AK Web & Design', item: `${SITE_URL}/${locale}` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/${locale}/blog` },
     ],
   };
 

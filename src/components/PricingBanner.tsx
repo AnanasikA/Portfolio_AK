@@ -27,7 +27,6 @@ export default function PricingBanner() {
             flexWrap: 'wrap',
           }}
         >
-          {/* Left */}
           <div style={{ flex: '1 1 300px' }}>
             <p style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.72rem', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.55)', marginBottom: '.6rem' }}>
               {isEn ? 'Pricing' : 'Cennik'}
@@ -35,21 +34,21 @@ export default function PricingBanner() {
             <h2 style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: 'clamp(1.6rem,3.5vw,2.4rem)', letterSpacing: '-.04em', color: '#fff', lineHeight: 1.1, marginBottom: '.75rem', maxWidth: '18ch' }}>
               {isEn
                 ? 'Curious how much your site will cost?'
-                : 'Ciekaw ile kosztuje Twoja strona?'}
+                : 'Ile może kosztować Twoja strona?'}
             </h2>
             <p style={{ fontFamily: 'var(--fd)', fontSize: 'clamp(.88rem,1.3vw,1rem)', color: 'rgba(255,255,255,.65)', lineHeight: 1.6, maxWidth: '44ch' }}>
               {isEn
-                ? 'Use the interactive calculator — configure your project and get a live estimate in under a minute.'
-                : 'Skorzystaj z interaktywnego kalkulatora — skonfiguruj projekt i otrzymaj wycenę na żywo w mniej niż minutę.'}
+                ? 'Use our calculator. Pick what you need and see an estimate straight away.'
+                : 'Skorzystaj z kalkulatora. Wybierz, czego potrzebujesz, a zobaczysz orientacyjną cenę od razu.'}
             </p>
           </div>
 
-          {/* Right */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 12, flexShrink: 0 }}>
             {[
-              isEn ? 'From 1 500 PLN' : 'Od 1 500 zł',
+              isEn ? 'Websites from 1,500 PLN' : 'Strony od 1 500 zł',
+              isEn ? 'Stores from 2,800 PLN' : 'Sklepy od 2 800 zł',
               isEn ? 'Fixed price before we start' : 'Stała cena przed startem',
-              isEn ? 'Reply within 24h' : 'Odpowiedź w 24h',
+
             ].map(item => (
               <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">

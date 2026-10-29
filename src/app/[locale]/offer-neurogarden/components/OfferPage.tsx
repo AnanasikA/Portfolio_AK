@@ -8,7 +8,6 @@ import { offerData as d } from '../offer.data';
 
 function fmt(n: number) { return n.toLocaleString('pl-PL'); }
 
-// ─── Typing effect ────────────────────────────────────────────────────────────
 function useTypewriter(text: string, speed = 38, startDelay = 300) {
   const [displayed, setDisplayed] = useState('');
   useEffect(() => {
@@ -27,7 +26,6 @@ function useTypewriter(text: string, speed = 38, startDelay = 300) {
   return displayed;
 }
 
-// ─── Animated number ─────────────────────────────────────────────────────────
 function useAnimatedNumber(target: number) {
   const [v, setV] = useState(target);
   const prev = useRef(target);
@@ -50,8 +48,6 @@ function useAnimatedNumber(target: number) {
   return v;
 }
 
-// ─── Blueprint Card ───────────────────────────────────────────────────────────
-// Sekwencja: border → tło → dzieci
 function BlueprintCard({
   children,
   style,
@@ -78,42 +74,36 @@ function BlueprintCard({
   }, []);
 
   const d0 = delay;
-  const d1 = d0 + 0.15; // tło
-  const d2 = d1 + 0.18; // dzieci
+  const d1 = d0 + 0.15;
+  const d2 = d1 + 0.18;
 
   return (
     <div ref={ref} className={className} style={{ position: 'relative', overflow: 'hidden', ...style }}>
-      {/* border top */}
       <motion.div
         initial={{ scaleX: 0 }} animate={{ scaleX: inView ? 1 : 0 }}
         transition={{ duration: 0.35, delay: d0, ease: [.22,1,.36,1] }}
         style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: 'var(--brand)', transformOrigin: 'left', zIndex: 2 }}
       />
-      {/* border bottom */}
       <motion.div
         initial={{ scaleX: 0 }} animate={{ scaleX: inView ? 1 : 0 }}
         transition={{ duration: 0.35, delay: d0 + 0.08, ease: [.22,1,.36,1] }}
         style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1, background: 'var(--brand)', transformOrigin: 'right', zIndex: 2 }}
       />
-      {/* border left */}
       <motion.div
         initial={{ scaleY: 0 }} animate={{ scaleY: inView ? 1 : 0 }}
         transition={{ duration: 0.3, delay: d0 + 0.16, ease: [.22,1,.36,1] }}
         style={{ position: 'absolute', top: 0, left: 0, bottom: 0, width: 1, background: 'var(--brand)', transformOrigin: 'top', zIndex: 2 }}
       />
-      {/* border right */}
       <motion.div
         initial={{ scaleY: 0 }} animate={{ scaleY: inView ? 1 : 0 }}
         transition={{ duration: 0.3, delay: d0 + 0.16, ease: [.22,1,.36,1] }}
         style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 1, background: 'var(--brand)', transformOrigin: 'bottom', zIndex: 2 }}
       />
-      {/* tło */}
       <motion.div
         initial={{ opacity: 0 }} animate={{ opacity: inView ? 1 : 0 }}
         transition={{ duration: 0.4, delay: d1 }}
         style={{ position: 'absolute', inset: 0, background: 'inherit', zIndex: 0 }}
       />
-      {/* dzieci */}
       <motion.div
         initial={{ opacity: 0, y: 4 }} animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 4 }}
         transition={{ duration: 0.35, delay: d2, ease: [.22,1,.36,1] }}
@@ -159,10 +149,8 @@ export default function OfferPage() {
   const [pages,        setPages]        = useState(d.includedPages);
   const [extras,       setExtras]       = useState<Set<string>>(new Set());
 
-  // typing effect dla nazwy klienta w hero
   const typedName = useTypewriter(d.clientName + '.', 55, 400);
 
-  // auto-rotate screenshotów co 4s
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveScreen(i => (i + 1) % d.screens.length);
@@ -180,7 +168,6 @@ export default function OfferPage() {
   const careTotal   = d.extras.filter(e => extras.has(e.id) && !!e.monthly).reduce((s, e) => s + e.price, 0);
   const total       = baseTotal + extrasTotal;
 
-  // animowana liczba w kalkulatorze
   const animTotal = useAnimatedNumber(total);
 
   const NAV = [['Realizacje','#realizacje'],['Zakres','#zakres'],['Wycena','#wycena'],['Kontakt','#kontakt']];
@@ -215,7 +202,6 @@ export default function OfferPage() {
         @media print {
           * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
           html, body { background: #fff !important; font-size: 10pt !important; }
-          /* ukryj globalny header strony i offer header */
           body > header,
           .site-header,
           .offer-header,
@@ -227,7 +213,6 @@ export default function OfferPage() {
           h1, h2, h3 { break-after: avoid; }
           a { color: inherit !important; text-decoration: none !important; }
           button { display: none !important; }
-          /* hero i footer pełna szerokość też w druku */
           .offer-hero-full, .offer-footer-full { margin-left: 0 !important; margin-right: 0 !important; }
         }
 
@@ -236,7 +221,6 @@ export default function OfferPage() {
         }
       `}</style>
 
-      {/* ── OFFER HEADER (oddzielny od globalnego) ─────────────────────── */}
       <header className="offer-header no-print" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, background: 'color-mix(in srgb, var(--bg) 92%, transparent)', borderBottom: `1px solid ${line}`, backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}>
         <div style={{ maxWidth: 1240, margin: '0 auto', minHeight: 68, padding: '0 clamp(1.5rem,5vw,4rem)', display: 'flex', alignItems: 'center', gap: 24 }}>
 
@@ -274,10 +258,8 @@ export default function OfferPage() {
         )}
       </header>
 
-      {/* ── MAIN ───────────────────────────────────────────────────────────── */}
       <main id="offer-top" style={{ background: 'var(--bg)', minHeight: '100vh', paddingTop: 68 }}>
 
-        {/* ── HERO — pełna szerokość ─────────────────────────────────────── */}
         <section className="offer-hero-full" style={{ background: 'var(--surface)', borderBottom: `1px solid ${line}` }}>
           <div style={{ ...W, padding: 'clamp(2.5rem,6vw,5rem) clamp(1.5rem,5vw,4rem)' }}>
             <div style={{ display: 'flex', gap: 'clamp(2rem,5vw,4rem)', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between' }}>
@@ -309,7 +291,6 @@ export default function OfferPage() {
                 </motion.div>
               </div>
 
-              {/* Meta karta — statyczna */}
               <div style={{ flex: '0 1 320px', background: '#fff', border: `1px solid ${line}`, borderRadius: 'var(--r-l)', padding: '1.75rem 2rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 {([['Data', d.date],['Czas realizacji', d.deliveryTime],['Wycena od', d.priceFrom],['Ważna do', d.validUntil]] as const).map(([label, value]) => (
                   <div key={label}>
@@ -327,7 +308,6 @@ export default function OfferPage() {
 
         <div style={W}>
 
-          {/* REALIZACJE */}
           <section id="realizacje" style={{ padding: 'clamp(2rem,4vw,3rem) 0', borderBottom: `1px solid ${line}` }}>
             <motion.div variants={fade} initial="hidden" whileInView="visible" viewport={vp}>
               <Label>Realizacje</Label>
@@ -336,13 +316,11 @@ export default function OfferPage() {
 
             <motion.div variants={fade} custom={.06} initial="hidden" whileInView="visible" viewport={vp}
               style={{ border: `1px solid ${line}`, borderRadius: 'var(--r-l)', overflow: 'hidden', boxShadow: 'var(--sh-s)', marginBottom: '1rem' }}>
-              {/* Browser bar */}
               <div style={{ height: 34, background: 'var(--surface)', borderBottom: `1px solid ${line}`, display: 'flex', alignItems: 'center', gap: 6, padding: '0 14px' }}>
                 {['#ef4444','#f59e0b','#22c55e'].map(col => <span key={col} style={{ width: 9, height: 9, borderRadius: '50%', background: col, display: 'block' }} />)}
                 <div style={{ marginLeft: 10, flex: 1, height: 18, background: line, borderRadius: 99 }} />
               </div>
 
-              {/* Image z AnimatePresence */}
               <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', background: 'var(--surface)' }}>
                 <AnimatePresence mode="wait">
                   <motion.div key={activeScreen}
@@ -362,7 +340,6 @@ export default function OfferPage() {
                 </AnimatePresence>
               </div>
 
-              {/* Opis i przycisk pod obrazkiem */}
               <AnimatePresence mode="wait">
                 <motion.div key={`desc-${activeScreen}`}
                   initial={{ opacity: 0, y: 6 }}
@@ -383,7 +360,6 @@ export default function OfferPage() {
               </AnimatePresence>
             </motion.div>
 
-            {/* Kontrolki — prev/next + dots */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <button onClick={() => setActiveScreen(i => (i - 1 + d.screens.length) % d.screens.length)}
                 style={{ width: 36, height: 36, borderRadius: '50%', border: `1.5px solid ${line}`, background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: ink, flexShrink: 0, transition: 'border-color .18s' }}
@@ -410,7 +386,6 @@ export default function OfferPage() {
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
 
-              {/* Tytuły jako zakładki */}
               <div style={{ display: 'flex', gap: 6, marginLeft: 4, flexWrap: 'wrap' }}>
                 {d.screens.map((s, i) => (
                   <button key={i} onClick={() => setActiveScreen(i)} style={{
@@ -426,7 +401,6 @@ export default function OfferPage() {
             </div>
           </section>
 
-          {/* ZAKRES */}
           <section id="zakres" style={{ padding: 'clamp(2rem,4vw,3rem) 0', borderBottom: `1px solid ${line}` }}>
             <motion.div variants={fade} initial="hidden" whileInView="visible" viewport={vp}>
               <Label>Zakres prac</Label>
@@ -444,7 +418,6 @@ export default function OfferPage() {
             </div>
           </section>
 
-          {/* KALKULATOR */}
           <section id="wycena" className="offer-calc-interactive" style={{ padding: 'clamp(2rem,4vw,3rem) 0', borderBottom: `1px solid ${line}` }}>
             <motion.div variants={fade} initial="hidden" whileInView="visible" viewport={vp}>
               <Label>Wycena</Label>
@@ -475,7 +448,7 @@ export default function OfferPage() {
                         <BlueprintCard key={ex.id} delay={i * 0.04}
                           className="offer-check"
                           style={{ textAlign: 'left', padding: '.7rem .9rem', background: on ? 'var(--brand-tint)' : 'var(--bg)', borderRadius: 'var(--r-s)', cursor: 'pointer' }}
-                         
+
                         >
                           <button onClick={() => toggleExtra(ex.id)} style={{ all: 'unset', display: 'block', width: '100%', cursor: 'pointer' }}>
                             <p style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.84rem', color: ink, marginBottom: 2 }}>{ex.label}</p>
@@ -488,7 +461,6 @@ export default function OfferPage() {
                 </div>
               </div>
 
-              {/* Dark sidebar */}
               <div style={{ flex: '0 1 240px', background: '#0f1117', borderRadius: 'var(--r-l)', padding: '1.5rem 1.6rem', color: '#fff' }}>
                 <p style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.62rem', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)', marginBottom: '1rem' }}>Twoja wycena</p>
                 <p style={{ fontFamily: 'var(--fd)', fontWeight: 800, fontSize: 'clamp(1.8rem,3vw,2.4rem)', letterSpacing: '-.05em', lineHeight: 1, color: '#fff', marginBottom: '.25rem' }}>{fmt(animTotal)} zł</p>
@@ -520,7 +492,6 @@ export default function OfferPage() {
             </div>
           </section>
 
-          {/* WYCENA PRINT */}
           <section className="offer-calc-print" style={{ padding: 'clamp(2rem,4vw,3rem) 0', borderBottom: `1px solid ${line}` }}>
             <Label>Wycena</Label>
             <h2 style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '1.6rem', letterSpacing: '-.03em', color: ink, marginBottom: '1rem' }}>Orientacyjna wycena</h2>
@@ -539,7 +510,6 @@ export default function OfferPage() {
             </div>
           </section>
 
-          {/* KONTAKT */}
           <section id="kontakt" style={{ padding: 'clamp(2rem,4vw,3rem) 0' }}>
             <motion.div variants={fade} initial="hidden" whileInView="visible" viewport={vp}
               style={{ display: 'flex', gap: 'clamp(1.5rem,4vw,3rem)', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', background: 'var(--surface)', border: `1px solid ${line}`, borderRadius: 'var(--r-l)', padding: 'clamp(1.25rem,3vw,2rem)' }}>
@@ -556,9 +526,8 @@ export default function OfferPage() {
             </motion.div>
           </section>
 
-        </div>{/* END W */}
+        </div>
 
-        {/* ── FOOTER — pełna szerokość ───────────────────────────────────── */}
         <footer className="offer-footer-full" style={{ background: 'var(--surface)', borderTop: `1px solid ${line}`, marginTop: 'clamp(1rem,3vw,2rem)' }}>
           <div style={{ ...W, padding: 'clamp(1.5rem,3vw,2.5rem) clamp(1.25rem,5vw,3rem)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

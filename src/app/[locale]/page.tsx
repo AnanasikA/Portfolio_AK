@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import HomeSections from '@/components/HomeSections';
-
-const BASE_URL = 'https://anastasiiakupriianets.pl';
+import { SITE_URL, alternates } from '@/lib/site';
 
 export async function generateMetadata({
   params,
@@ -13,19 +12,13 @@ export async function generateMetadata({
   const isEn = locale === 'en';
   const t = await getTranslations({ locale, namespace: 'meta' });
 
-  const canonical = `${BASE_URL}/${locale}`;
+  const alt = alternates(locale);
+  const canonical = alt.canonical;
 
   return {
-    title: t('title'),
+    title: { absolute: t('title') },
     description: t('description'),
-    alternates: {
-      canonical,
-      languages: {
-        pl: `${BASE_URL}/pl`,
-        en: `${BASE_URL}/en`,
-        'x-default': `${BASE_URL}/pl`,
-      },
-    },
+    alternates: alt,
     openGraph: {
       type: 'website',
       url: canonical,
@@ -51,12 +44,11 @@ export default async function Home({
   setRequestLocale(locale);
   const isEn = locale === 'en';
 
-  // WebSite JSON-LD — generowane po stronie serwera (patrz audyt SEO, H6).
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'AK Web & Design',
-    url: `${BASE_URL}/${locale}`,
+    url: `${SITE_URL}/${locale}`,
     inLanguage: isEn ? 'en' : 'pl',
   };
 

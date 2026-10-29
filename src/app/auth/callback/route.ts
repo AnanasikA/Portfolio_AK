@@ -2,9 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-// GET /auth/callback?code=...&next=/pl/partners/dashboard
-// Supabase magic link redirects tutaj z kodem — trzeba go wymienić
-// na sesję (cookies), zanim odeślemy dalej do dashboardu.
 export async function GET(req: NextRequest) {
   const { searchParams, origin } = new URL(req.url);
   const code = searchParams.get("code");
@@ -36,6 +33,5 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  // Kod nieprawidłowy / wygasły — wróć do logowania z informacją o błędzie
   return NextResponse.redirect(`${origin}/pl/partners/login?error=auth`);
 }

@@ -1,14 +1,13 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
+import { GOOGLE_PROFILE_URL } from '@/lib/business';
+import { SITE_URL, SITE_HOST } from '@/lib/site';
 import { Link } from '@/i18n/navigation';
-import { SERVICE_SLUGS } from '@/data/services';
 import { trackContactClick } from '@/lib/gtag';
 type NavLink = { label: string; href: string; external?: boolean };
 type NavCol  = { head: string; links: NavLink[] };
 
-// lucide-react nie eksportuje już ikon marek (Facebook, LinkedIn itd.),
-// więc trzymamy je jako lokalne SVG.
 function LinkedinIcon({ size = 15 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -16,6 +15,12 @@ function LinkedinIcon({ size = 15 }: { size?: number }) {
     </svg>
   );
 }
+
+const GoogleIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M21.35 11.1H12v2.98h5.36c-.23 1.4-1.68 4.1-5.36 4.1-3.23 0-5.86-2.67-5.86-5.97S8.77 6.24 12 6.24c1.84 0 3.07.78 3.78 1.46l2.57-2.48C16.7 3.69 14.56 2.8 12 2.8 6.92 2.8 2.8 6.92 2.8 12s4.12 9.2 9.2 9.2c5.31 0 8.83-3.73 8.83-8.99 0-.6-.07-1.06-.15-1.51z" />
+  </svg>
+);
 
 function FacebookIcon({ size = 15 }: { size?: number }) {
   return (
@@ -32,23 +37,22 @@ export default function Footer() {
 
   const year    = new Date().getFullYear();
   const email   = 'kontakt@anastasiiakupriianets.pl';
-  const website = 'anastasiiakupriianets.pl';
+  const website = SITE_HOST;
   const nip     = '8961662887';
   const phone   = '+48576564682';
 
   const social = [
     { label: 'LinkedIn', href: 'https://www.linkedin.com/company/ak-web-design-anastasiia-kupriianets/', Icon: LinkedinIcon },
     { label: 'Facebook', href: 'https://www.facebook.com/akwebdesign.pol/',                                Icon: FacebookIcon },
+    { label: 'Google', href: GOOGLE_PROFILE_URL, Icon: GoogleIcon },
   ];
 
-  // Organization + ProfessionalService — tylko dane, które faktycznie
-  // znajdują się na stronie (email, NIP, telefon, miasto z metadanych
-  // usług). Bez wymyślonego adresu, ocen czy opinii — patrz audyt SEO, M3.
   const schema = {
     '@context': 'https://schema.org',
     '@type': ['Organization', 'ProfessionalService'],
-    name: 'AK Web & Design | Anastasiia Kupriianets',
-    url: 'https://anastasiiakupriianets.pl',
+    name: 'AK Web & Design',
+    founder: { '@type': 'Person', name: 'Anastasiia Kupriianets' },
+    url: SITE_URL,
     email,
     telephone: phone,
     taxID: nip,
@@ -57,7 +61,7 @@ export default function Footer() {
       addressLocality: 'Wrocław',
       addressCountry: 'PL',
     },
-    areaServed: isEn ? ['PL', 'Europe', 'Worldwide'] : 'PL',
+    areaServed: ['Kąty Wrocławskie', 'Wrocław', 'Polska'],
     sameAs: social.map(s => s.href),
     contactPoint: [{ '@type': 'ContactPoint', contactType: isEn ? 'customer support' : 'obsługa klienta', email, telephone: phone, availableLanguage: ['Polish', 'English'] }],
   };
@@ -79,24 +83,22 @@ export default function Footer() {
       head: isEn ? 'Services' : 'Usługi',
       links: isEn
         ? [
-            { label: 'Website Development',   href: `/services/${SERVICE_SLUGS.en.webDevelopment}`   },
-            { label: 'Web Design',            href: `/services/${SERVICE_SLUGS.en.webDesign}`         },
-            { label: 'Business Websites',     href: `/services/${SERVICE_SLUGS.en.businessWebsites}`  },
-            { label: 'WordPress',             href: `/services/${SERVICE_SLUGS.en.wordpressWebsites}` },
-            { label: 'Landing Pages',         href: `/services/${SERVICE_SLUGS.en.landingPage}`       },
-            { label: 'Online Stores',         href: `/services/${SERVICE_SLUGS.en.ecommerceWebsites}` },
-            { label: 'Website Care',          href: `/services/${SERVICE_SLUGS.en.websiteSupport}`    },
-            { label: 'Website Redesign',      href: `/services/${SERVICE_SLUGS.en.websiteRedesign}`   },
+            { label: 'Websites',               href: '/services/web-development'     },
+            { label: 'Online Stores',          href: '/services/ecommerce-websites'  },
+            { label: 'Website Maintenance',    href: '/services/website-maintenance' },
+            { label: 'Technical Support & Fixes', href: '/services/website-support' },
+            { label: 'WordPress',              href: '/services/wordpress-websites'  },
+            { label: 'Landing Pages',          href: '/services/landing-page'        },
+            { label: 'Website Redesign',       href: '/services/website-redesign'    },
           ]
         : [
-            { label: 'Tworzenie stron',       href: `/services/${SERVICE_SLUGS.pl.webDevelopment}`   },
-            { label: 'Projektowanie stron',   href: `/services/${SERVICE_SLUGS.pl.webDesign}`         },
-            { label: 'Strony dla firm',       href: `/services/${SERVICE_SLUGS.pl.businessWebsites}`  },
-            { label: 'WordPress',             href: `/services/${SERVICE_SLUGS.pl.wordpressWebsites}` },
-            { label: 'Landing page',          href: `/services/${SERVICE_SLUGS.pl.landingPage}`       },
-            { label: 'Sklepy internetowe',    href: `/services/${SERVICE_SLUGS.pl.ecommerceWebsites}` },
-            { label: 'Opieka nad stronami',   href: `/services/${SERVICE_SLUGS.pl.websiteSupport}`    },
-            { label: 'Modernizacja stron',    href: `/services/${SERVICE_SLUGS.pl.websiteRedesign}`   },
+            { label: 'Strony internetowe',     href: '/services/tworzenie-stron-internetowych' },
+            { label: 'Sklepy internetowe',     href: '/services/sklepy-internetowe'            },
+            { label: 'Administracja stron',    href: '/services/administracja-stron'           },
+            { label: 'Wsparcie i naprawy',     href: '/services/opieka-nad-stronami'           },
+            { label: 'Strony WordPress',       href: '/services/wordpress'                     },
+            { label: 'Landing page',           href: '/services/landing-page'                  },
+            { label: 'Modernizacja stron',     href: '/services/modernizacja-stron'            },
           ],
     },
     {
@@ -104,6 +106,7 @@ export default function Footer() {
       links: [
         { label: email,             href: `mailto:${email}`      },
         { label: '+48 576 564 682', href: 'tel:+48576564682'     },
+        { label: isEn ? 'Google Business Profile' : 'Wizytówka Google', href: GOOGLE_PROFILE_URL, external: true },
         { label: website,           href: `https://${website}`, external: true },
       ],
     },
@@ -148,7 +151,6 @@ export default function Footer() {
 
         <div className="ft-grid">
 
-          {/* Brand */}
           <div className="ft-brand-col">
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
               <span style={{ width: 34, height: 34, borderRadius: 9, background: 'var(--brand)', display: 'grid', placeItems: 'center', color: '#fff', fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.82rem', flexShrink: 0 }}>AK</span>
@@ -158,11 +160,10 @@ export default function Footer() {
             </div>
             <p style={{ fontFamily: 'var(--fb)', fontSize: '.88rem', color: 'var(--muted)', lineHeight: 1.65, maxWidth: '34ch', marginBottom: 20 }}>
               {isEn
-                ? 'Web design studio — fast, modern sites built for real results.'
-                : 'Studio projektowania stron — nowoczesne, szybkie witryny nastawione na efekty.'}
+                ? 'We build websites and online stores, and help with updates, maintenance and fixes. Kąty Wrocławskie, Wrocław and all of Poland.'
+                : 'Tworzymy strony i sklepy internetowe, pomagamy w aktualizacjach, opiece i naprawach. Kąty Wrocławskie, Wrocław i cała Polska.'}
             </p>
 
-            {/* Social / email shortcut */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' as const }}>
               <a
                 href="mailto:kontakt@anastasiiakupriianets.pl"
@@ -184,7 +185,7 @@ export default function Footer() {
                 onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'var(--brand)'; el.style.color = '#fff'; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'transparent'; el.style.color = 'var(--brand)'; }}
               >
-                ✉ {isEn ? 'Write to me' : 'Napisz do mnie'}
+                ✉ {isEn ? 'Write to us' : 'Napisz do nas'}
               </a>
 
               {social.map(({ label, href, Icon }) => (
@@ -216,7 +217,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Nav cols */}
           {cols.map(col => (
             <div key={col.head}>
               <p style={{
@@ -250,7 +250,6 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom bar */}
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '10px 16px', padding: '18px 0' }}>
           <p style={{ fontFamily: 'var(--fb)', fontSize: '.82rem', color: 'var(--muted-2)' }}>
             © {year} AK Web & Design · Anastasiia Kupriianets · NIP {nip}

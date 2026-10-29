@@ -3,11 +3,6 @@
 import { createServerSupabase, createAdminClient } from "@/lib/supabase-clients";
 import type { ActionState } from "./action-types";
 
-/**
- * Zapisuje zmiany w profilu partnera (firma, strona, notatka, dane do wypłaty).
- * Logika i uprawnienia identyczne jak wcześniej — jedyna zmiana to zwracany
- * stan (sukces/błąd) zamiast cichego zapisu bez informacji zwrotnej.
- */
 export async function updateProfileAction(
   _prevState: ActionState,
   formData: FormData
@@ -62,12 +57,6 @@ export async function updateProfileAction(
   }
 }
 
-/**
- * Pozwala partnerowi ręcznie zgłosić poleconego klienta, bez konieczności
- * przechodzenia przez link /r/[kod] (np. gdy polecił kogoś telefonicznie).
- * To NOWA funkcjonalność — nie zmienia istniejącego mechanizmu automatycznego
- * przypisywania zgłoszeń przez cookie ak_ref w formularzu wyceny.
- */
 export async function submitManualConversionAction(
   _prevState: ActionState,
   formData: FormData

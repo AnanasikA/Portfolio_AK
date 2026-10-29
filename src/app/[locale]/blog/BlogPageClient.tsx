@@ -32,7 +32,6 @@ export default function BlogPageClient({ posts, locale }: Props) {
   const totalPages = Math.ceil(filtered.length / POSTS_PER_PAGE);
   const paginated  = filtered.slice((page - 1) * POSTS_PER_PAGE, page * POSTS_PER_PAGE);
 
-  // animacja kart
   useEffect(() => {
     const cards = gridRef.current?.querySelectorAll<HTMLElement>('.blog-card');
     if (!cards) return;
@@ -106,7 +105,6 @@ export default function BlogPageClient({ posts, locale }: Props) {
 
       <main style={{ background: 'var(--bg)', minHeight: '100vh' }}>
 
-        {/* ── HERO ── */}
         <section style={{
           paddingTop: 'clamp(100px,14vh,140px)',
           paddingBottom: 'clamp(40px,6vw,64px)',
@@ -135,11 +133,9 @@ export default function BlogPageClient({ posts, locale }: Props) {
           </div>
         </section>
 
-        {/* ── GRID SECTION ── */}
         <section style={{ padding: 'clamp(40px,6vw,64px) 0 clamp(64px,10vw,120px)' }}>
           <div style={{ maxWidth: 1240, margin: '0 auto', padding: '0 clamp(20px,5vw,72px)' }}>
 
-            {/* Filters */}
             {allTags.length > 0 && (
               <div style={{ marginBottom: 'clamp(24px,4vw,36px)' }}>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -164,10 +160,9 @@ export default function BlogPageClient({ posts, locale }: Props) {
               {isEn
                 ? `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`
                 : `${filtered.length} artykuł${filtered.length === 1 ? '' : filtered.length < 5 ? 'y' : 'ów'}`}
-              {activeTag && <span style={{ color: 'var(--brand)' }}> — {activeTag}</span>}
+              {activeTag && <span style={{ color: 'var(--brand)' }}> · {activeTag}</span>}
             </p>
 
-            {/* Grid */}
             {paginated.length === 0 ? (
               <div style={{ border: '1px solid var(--line)', padding: '48px 32px', textAlign: 'center', borderRadius: 10 }}>
                 <p style={{ fontFamily: 'var(--fb)', color: 'var(--muted)' }}>{isEn ? 'No articles found.' : 'Brak artykułów.'}</p>
@@ -181,10 +176,8 @@ export default function BlogPageClient({ posts, locale }: Props) {
                     className="blog-card"
                     data-delay={String(index * 60)}
                   >
-                    {/* Body */}
                     <div style={{ padding: '20px 22px 22px', display: 'flex', flexDirection: 'column', flex: 1 }}>
 
-                      {/* Tags */}
                       {post.tags.length > 0 && (
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
                           {post.tags.slice(0, 2).map(tag => (
@@ -203,7 +196,6 @@ export default function BlogPageClient({ posts, locale }: Props) {
                         {post.description}
                       </p>
 
-                      {/* Footer */}
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 14, borderTop: '1px solid var(--line)', marginTop: 'auto' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                           <span style={{ fontFamily: 'var(--fd)', fontSize: '.72rem', color: 'var(--muted-2)', fontWeight: 500 }}>
@@ -223,7 +215,6 @@ export default function BlogPageClient({ posts, locale }: Props) {
               </div>
             )}
 
-            {/* Pagination */}
             {totalPages > 1 && (
               <nav style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 4, marginTop: 48, paddingTop: 32, borderTop: '1px solid var(--line)' }}>
                 <button

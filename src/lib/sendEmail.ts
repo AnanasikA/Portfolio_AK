@@ -12,13 +12,11 @@ import {
   isValidPhone,
 } from '@/lib/form-guard';
 
-// ── Supabase client (server-side only, service role) ──────────────────────────
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-// ── Types ─────────────────────────────────────────────────────────────────────
 export type EmailData = {
   name: string;
   email: string;
@@ -28,7 +26,7 @@ export type EmailData = {
   has_logo?: string;
   message: string;
   locale?: string;
-  /** Pole-pułapka na boty — w prawdziwym formularzu zawsze puste. */
+
   hp?: string;
 };
 
@@ -48,16 +46,14 @@ type SubmissionLog = {
   error_stack?: string;
 };
 
-// ── Helper: save to Supabase ──────────────────────────────────────────────────
 async function logToDatabase(entry: SubmissionLog) {
   const { error } = await supabase.from('form_submissions').insert([entry]);
   if (error) {
-    // Nie przerywamy flow — logujemy tylko do konsoli
+
     console.error('[Supabase] Błąd zapisu logu:', error.message);
   }
 }
 
-// ── Helper: build main HTML email ─────────────────────────────────────────────
 function buildEmailHtml(data: EmailData): string {
   const { name, email, phone, site_type, budget, has_logo, message, locale } = data;
   const isEn = locale === 'en';
@@ -117,7 +113,6 @@ function buildEmailHtml(data: EmailData): string {
     </div>`;
 }
 
-// ── Helper: build error alert email ───────────────────────────────────────────
 function buildErrorAlertHtml(data: EmailData, error: unknown): string {
   const err = error instanceof Error ? error : new Error(String(error));
   return `
@@ -153,13 +148,8 @@ function buildErrorAlertHtml(data: EmailData, error: unknown): string {
     </div>`;
 }
 
-// ── Main function ─────────────────────────────────────────────────────────────
 export async function sendEmail(input: EmailData): Promise<{ ok: boolean; error?: string }> {
-  // Server action to publiczny endpoint — dane mogą przyjść spoza formularza,
-  // więc każde pole jest czyszczone i sprawdzane tak samo jak w /api/send-quote.
   const raw = (input ?? {}) as Record<string, unknown>;
-
-  // Pole-pułapka wypełnione → bot. Udajemy sukces i nic nie wysyłamy.
   if (cleanText(raw.hp, 200) !== '') return { ok: true };
 
   const ip = getClientIp(await headers());
@@ -181,9 +171,6 @@ export async function sendEmail(input: EmailData): Promise<{ ok: boolean; error?
   if (data.name.length < 2 || !isValidEmail(data.email) || !isValidPhone(data.phone ?? '')) {
     return { ok: false, error: 'invalid' };
   }
-
-  // Kopia z escapowanym HTML — tylko do treści maili. Do tematu, replyTo
-  // i bazy idą wartości oryginalne (już oczyszczone powyżej).
   const safe: EmailData = {
     ...data,
     name:      escapeHtml(data.name),
@@ -209,7 +196,6 @@ export async function sendEmail(input: EmailData): Promise<{ ok: boolean; error?
     tls: { rejectUnauthorized: false },
   });
 
-  // ── Próba wysyłki głównego maila ──────────────────────────────────────────
   try {
     const info = await transporter.sendMail({
       from: `"Portfolio AK" <${process.env.SMTP_USER}>`,
@@ -227,7 +213,6 @@ export async function sendEmail(input: EmailData): Promise<{ ok: boolean; error?
       date: new Date().toISOString(),
     });
 
-    // ── Zapis sukcesu do Supabase ─────────────────────────────────────────
     await logToDatabase({
       status: 'success',
       ...data,
@@ -242,7 +227,6 @@ export async function sendEmail(input: EmailData): Promise<{ ok: boolean; error?
 
     console.error('[Email] Błąd wysyłki:', err);
 
-    // ── Zapis błędu do Supabase ───────────────────────────────────────────
     await logToDatabase({
       status: 'error',
       ...data,
@@ -250,7 +234,6 @@ export async function sendEmail(input: EmailData): Promise<{ ok: boolean; error?
       error_stack: err.stack,
     });
 
-    // ── Alert mailowy o błędzie ───────────────────────────────────────────
     try {
       await transporter.sendMail({
         from: `"Portfolio AK Alerty" <${process.env.SMTP_USER}>`,
@@ -259,7 +242,7 @@ export async function sendEmail(input: EmailData): Promise<{ ok: boolean; error?
         html: buildErrorAlertHtml(safe, err),
       });
     } catch (alertError) {
-      // Alert też padł — zostaje tylko Supabase i konsola
+
       console.error('[Email] Nie udało się wysłać alertu:', alertError);
     }
 

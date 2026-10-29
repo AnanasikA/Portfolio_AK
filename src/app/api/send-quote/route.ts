@@ -15,7 +15,7 @@ import {
 type QuoteRow = { label: string; price: number };
 
 export async function POST(req: Request) {
-  // ── Ochrona: pochodzenie żądania i limit zgłoszeń ─────────────────────────
+
   if (!isSameOrigin(req.headers)) {
     return NextResponse.json({ ok: false }, { status: 403 });
   }
@@ -33,13 +33,10 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false }, { status: 400 });
   }
 
-  // Pole-pułapka: człowiek go nie widzi, bot je wypełnia. Odpowiadamy „ok”,
-  // żeby bot nie wiedział, że został odrzucony — ale nic nie wysyłamy.
   if (cleanText(body.hp, 200) !== '') {
     return NextResponse.json({ ok: true });
   }
 
-  // ── Walidacja ─────────────────────────────────────────────────────────────
   const rawName    = cleanText(body.name, 100);
   const rawEmail   = cleanText(body.email, 254);
   const rawPhone   = cleanText(body.phone, 30);
@@ -69,7 +66,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: 'invalid' }, { status: 400 });
   }
 
-  // Wartości wstawiane do HTML maila — zawsze po escapowaniu.
   const name    = escapeHtml(rawName);
   const email   = escapeHtml(rawEmail);
   const phone   = escapeHtml(rawPhone);
@@ -150,8 +146,6 @@ export async function POST(req: Request) {
       html,
     });
 
-    // Jeśli gość przyszedł z linku partnerskiego (cookie ak_ref) —
-    // utwórz powiązane zgłoszenie w programie partnerskim.
     await attributeReferralConversion({
       clientName: rawName,
       clientEmail: rawEmail,

@@ -4,8 +4,6 @@ import { useEffect, useRef, useCallback } from 'react';
 
 const PLANE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>`;
 
-/* Ten SVG ma "nos" w prawym górnym rogu (M22,2) → naturalny kąt to -45°
-   Żeby nos wskazywał w kierunku ruchu, odejmujemy 135° od kąta trajektorii */
 const PLANE_BASE_ANGLE = 45;
 
 function cubicBezier(t: number, p0: number, p1: number, p2: number, p3: number) {
