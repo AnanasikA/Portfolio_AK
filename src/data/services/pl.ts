@@ -333,7 +333,7 @@ const businessWebsites: ServiceData = {
   heroLabel: 'Strony firmowe',
   heroStats: [
     { value: 'od 1 500 zł', label: 'strona dla firmy' },
-    { value: '2–4', label: 'tygodnie realizacji' },
+    { value: '7–14', label: 'dni na prostą stronę' },
     { value: 'SEO', label: 'techniczne w standardzie' },
   ],
   whyTitle: 'Dlaczego warto zainwestować w stronę firmową?',

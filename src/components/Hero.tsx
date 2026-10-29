@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import HeroVideo from '@/components/HeroVideo';
+import HeroPreview from '@/components/HeroPreview';
 
 const QuoteModal = dynamic(() => import('@/components/QuoteModal'), { ssr: false });
 
@@ -41,7 +41,7 @@ export default function Hero() {
             .hero-video-col { max-width: 520px; margin: 0 auto; width: 100%; }
           }
           @media (min-width: 860px) {
-            .hero-inner { grid-template-columns: 1fr 1fr; gap: 56px; }
+            .hero-inner { grid-template-columns: .95fr 1.05fr; gap: 48px; }
             .hero-video-col { max-width: none; margin: 0; }
           }
           @keyframes heroFloat {
@@ -154,7 +154,7 @@ export default function Hero() {
           </div>
 
           <div className="fade-up hero-video-col" style={{ animationDelay: '100ms' }}>
-            <HeroVideo />
+            <HeroPreview />
           </div>
 
         </div>

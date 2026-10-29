@@ -11,6 +11,9 @@ import type { Post } from '@/lib/blog';
 type Props = { post: Post; locale: string; mdxContent: React.ReactNode };
 
 export default function BlogPostClient({ post, locale, mdxContent }: Props) {
+  const isRepair = post.tags.some(t => ['Naprawy', 'Fixes'].includes(t));
+  const openBrief = () => window.dispatchEvent(new CustomEvent('open-brief', isRepair ? { detail: { type: 'Pomoc z istniejącą stroną' } } : undefined));
+
   const [isOpen, setIsOpen] = useState(false);
   const isEn = locale === 'en';
 
@@ -163,17 +166,17 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
                 }}>
                   <div aria-hidden style={{ position:'absolute', top:-60, right:-60, width:200, height:200, borderRadius:'50%', background:'rgba(255,255,255,.06)', pointerEvents:'none' }} />
                   <p style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'clamp(1.1rem,2vw,1.5rem)', marginBottom:8 }}>
-                    {isEn ? 'Need a website for your business?' : 'Potrzebujesz strony dla swojej firmy?'}
+                    {isRepair ? (isEn ? 'Something not working on your website?' : 'Coś nie działa na Twojej stronie?') : (isEn ? 'Need a website for your business?' : 'Potrzebujesz strony dla swojej firmy?')}
                   </p>
                   <p style={{ fontFamily:'var(--fb)', fontSize:'.95rem', color:'rgba(255,255,255,.8)', marginBottom:24 }}>
-                    {isEn ? 'Write to us and we will help you choose the right solution.' : 'Napisz do nas, pomożemy dobrać odpowiednie rozwiązanie.'}
+                    {isRepair ? (isEn ? 'Tell us what is happening. We will find the cause and tell you how long the fix will take.' : 'Napisz, co się dzieje. Znajdziemy przyczynę i powiemy, ile potrwa naprawa.') : (isEn ? 'Write to us and we will help you choose the right solution.' : 'Napisz do nas, pomożemy dobrać odpowiednie rozwiązanie.')}
                   </p>
                   <button
-                    onClick={() => window.dispatchEvent(new CustomEvent('open-brief'))}
+                    onClick={openBrief}
                     style={{ display:'inline-flex', alignItems:'center', gap:8, fontFamily:'var(--fd)', fontWeight:600, fontSize:'.95rem', background:'#fff', color:'var(--brand)', borderRadius:99, padding:'.8em 1.8em', border:'none', cursor:'pointer', transition:'transform .25s, box-shadow .25s' }}
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform='translateY(-2px)'; (e.currentTarget as HTMLElement).style.boxShadow='0 8px 24px rgba(0,0,0,.2)'; }}
                     onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform=''; (e.currentTarget as HTMLElement).style.boxShadow=''; }}>
-                    {isEn ? 'Get a free quote' : 'Zapytaj o wycenę'} <FiArrowRight size={14}/>
+                    {isRepair ? (isEn ? 'Get help' : 'Poproś o pomoc') : (isEn ? 'Get a free quote' : 'Zapytaj o wycenę')} <FiArrowRight size={14}/>
                   </button>
                 </div>
               </div>
@@ -209,17 +212,17 @@ export default function BlogPostClient({ post, locale, mdxContent }: Props) {
 
                   <div style={{ background:'var(--bg)', borderRadius:'var(--r-l)', border:'1px solid var(--line)', padding:'clamp(18px,2.5vw,24px)' }}>
                     <p style={{ fontFamily:'var(--fd)', fontWeight:600, fontSize:'1rem', color:'var(--ink)', marginBottom:8, lineHeight:1.3 }}>
-                      {isEn ? 'Ready to start your project?' : 'Gotowy na nową stronę?'}
+                      {isRepair ? (isEn ? 'Website not working?' : 'Strona nie działa?') : (isEn ? 'Ready to start your project?' : 'Gotowy na nową stronę?')}
                     </p>
                     <p style={{ fontFamily:'var(--fb)', fontSize:'.85rem', color:'var(--muted)', lineHeight:1.6, marginBottom:16 }}>
-                      {isEn ? 'Get a free quote, no strings attached.' : 'Bezpłatna wycena bez zobowiązań.'}
+                      {isRepair ? (isEn ? 'We fix WordPress sites, including ones built by someone else.' : 'Naprawiamy strony WordPress, także po innych wykonawcach.') : (isEn ? 'Get a free quote, no strings attached.' : 'Bezpłatna wycena bez zobowiązań.')}
                     </p>
                     <button
-                      onClick={() => window.dispatchEvent(new CustomEvent('open-brief'))}
+                      onClick={openBrief}
                       style={{ width:'100%', display:'flex', alignItems:'center', justifyContent:'center', gap:8, fontFamily:'var(--fd)', fontWeight:600, fontSize:'.9rem', background:'var(--brand)', color:'#fff', borderRadius:99, padding:'.75em 1.5em', border:'none', cursor:'pointer', transition:'opacity .2s' }}
                       onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity='.85'}
                       onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity='1'}>
-                      {isEn ? 'Request a quote' : 'Zapytaj o wycenę'} <FiArrowRight size={13}/>
+                      {isRepair ? (isEn ? 'We can help' : 'Pomożemy') : (isEn ? 'Request a quote' : 'Zapytaj o wycenę')} <FiArrowRight size={13}/>
                     </button>
                   </div>
 

@@ -16,29 +16,17 @@ const DropdownMenu = dynamic(() => import('@/components/DropdownMenu'), { ssr: f
 interface HeaderProps { isOpen: boolean; toggleMenu: () => void; }
 
 const SERVICE_LINKS_PL = [
-
   { href: '/services/tworzenie-stron-internetowych', label: 'Strony internetowe' },
   { href: '/services/sklepy-internetowe',            label: 'Sklepy internetowe' },
   { href: '/services/administracja-stron',           label: 'Administracja i opieka' },
   { href: '/services/opieka-nad-stronami',           label: 'Wsparcie techniczne i naprawy' },
-
-  { href: '/services/strony-dla-firm',               label: 'Strony dla firm' },
-  { href: '/services/projektowanie-stron',           label: 'Projektowanie stron' },
-  { href: '/services/wordpress',                     label: 'Strony WordPress' },
-  { href: '/services/landing-page',                  label: 'Landing page' },
-  { href: '/services/modernizacja-stron',            label: 'Modernizacja stron' },
 ];
 
 const SERVICE_LINKS_EN = [
-  { href: '/services/web-development',               label: 'Websites' },
-  { href: '/services/ecommerce-websites',            label: 'Online Stores' },
-  { href: '/services/website-maintenance',           label: 'Maintenance & Care' },
-  { href: '/services/website-support',               label: 'Technical Support & Fixes' },
-  { href: '/services/business-websites',             label: 'Business Websites' },
-  { href: '/services/web-design',                    label: 'Web Design' },
-  { href: '/services/wordpress-websites',            label: 'WordPress Websites' },
-  { href: '/services/landing-page',                  label: 'Landing Pages' },
-  { href: '/services/website-redesign',              label: 'Website Redesign' },
+  { href: '/services/web-development',     label: 'Websites' },
+  { href: '/services/ecommerce-websites',  label: 'Online Stores' },
+  { href: '/services/website-maintenance', label: 'Maintenance & Care' },
+  { href: '/services/website-support',     label: 'Technical Support & Fixes' },
 ];
 
 function LangSwitcher() {
@@ -301,10 +289,6 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
         }
         @media (max-width: 599px) {
           .nav-cta-btn { display: none !important; }
-          .nav-main-cta { display: inline-flex !important; font-size: .8rem !important; padding: .55em 1em !important; }
-        }
-        @media (max-width: 439px) {
-          .nav-brand-text { display: none; }
         }
       `}</style>
 
@@ -321,7 +305,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
 
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
             <span style={{ width: 36, height: 36, borderRadius: 10, background: 'var(--brand)', display: 'grid', placeItems: 'center', color: '#fff', fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.88rem', flexShrink: 0 }}>AK</span>
-            <span className="nav-brand-text" style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', letterSpacing: '-.02em', color: 'var(--ink)', lineHeight: 1.15 }}>
+            <span style={{ fontFamily: 'var(--fd)', fontWeight: 700, fontSize: '.95rem', letterSpacing: '-.02em', color: 'var(--ink)', lineHeight: 1.15 }}>
               AK Web & Design
             </span>
           </Link>
@@ -365,7 +349,7 @@ export default function Header({ isOpen, toggleMenu }: HeaderProps) {
 
             <PaperPlaneButton
               onClick={() => setBriefOpen(true)}
-              className="nav-cta-btn nav-main-cta"
+              className="nav-cta-btn"
               style={{ fontFamily: 'var(--fd)', fontWeight: 600, fontSize: '.88rem', background: 'var(--brand)', color: '#fff', border: 'none', borderRadius: 99, padding: '.6em 1.3em', cursor: 'pointer', whiteSpace: 'nowrap', transition: 'opacity .2s' }}
               onMouseEnter={e => (e.currentTarget as HTMLElement).style.opacity = '.85'}
               onMouseLeave={e => (e.currentTarget as HTMLElement).style.opacity = '1'}

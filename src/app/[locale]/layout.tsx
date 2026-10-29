@@ -9,6 +9,7 @@ import { SITE_URL } from '@/lib/site';
 import CookieConsent from '@/components/CookieConsent';
 import MobileCtaBar from '@/components/MobileCtaBar';
 import '../globals.css';
+import { spaceGrotesk, manrope, playfair } from '../fonts';
 
 export async function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -38,7 +39,13 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <>
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      className={`${spaceGrotesk.variable} ${manrope.variable} ${playfair.variable}`}
+      style={{ '--fd': 'var(--font-sg), system-ui, sans-serif', '--fb': 'var(--font-mn), system-ui, sans-serif' } as React.CSSProperties}
+    >
+    <body>
 <Script src="https://www.googletagmanager.com/gtag/js?id=G-CLP2ME6EWT" strategy="afterInteractive" />
 <Script id="google-analytics" strategy="afterInteractive">{`
   window.dataLayer = window.dataLayer || [];
@@ -77,6 +84,7 @@ export default async function LocaleLayout({
         <MobileCtaBar />
         <CookieConsent />
       </NextIntlClientProvider>
-    </>
+    </body>
+    </html>
   );
 }

@@ -8,29 +8,19 @@ import { Link } from '@/i18n/navigation';
 interface Props { isOpen: boolean; toggleMenu: () => void; }
 
 const SERVICE_LINKS_PL = [
-
   { href: '/services/tworzenie-stron-internetowych', label: 'Strony internetowe' },
   { href: '/services/sklepy-internetowe',            label: 'Sklepy internetowe' },
   { href: '/services/administracja-stron',           label: 'Administracja i opieka' },
   { href: '/services/opieka-nad-stronami',           label: 'Wsparcie techniczne i naprawy' },
-
-  { href: '/services/strony-dla-firm',               label: 'Strony dla firm' },
-  { href: '/services/projektowanie-stron',           label: 'Projektowanie stron' },
-  { href: '/services/wordpress',                     label: 'Strony WordPress' },
-  { href: '/services/landing-page',                  label: 'Landing page' },
-  { href: '/services/modernizacja-stron',            label: 'Modernizacja stron' },
+  { href: '/services',                               label: 'Wszystkie usługi →' },
 ];
 
 const SERVICE_LINKS_EN = [
-  { href: '/services/web-development',               label: 'Websites' },
-  { href: '/services/ecommerce-websites',            label: 'Online Stores' },
-  { href: '/services/website-maintenance',           label: 'Maintenance & Care' },
-  { href: '/services/website-support',               label: 'Technical Support & Fixes' },
-  { href: '/services/business-websites',             label: 'Business Websites' },
-  { href: '/services/web-design',                    label: 'Web Design' },
-  { href: '/services/wordpress-websites',            label: 'WordPress Websites' },
-  { href: '/services/landing-page',                  label: 'Landing Pages' },
-  { href: '/services/website-redesign',              label: 'Website Redesign' },
+  { href: '/services/web-development',     label: 'Websites' },
+  { href: '/services/ecommerce-websites',  label: 'Online Stores' },
+  { href: '/services/website-maintenance', label: 'Maintenance & Care' },
+  { href: '/services/website-support',     label: 'Technical Support & Fixes' },
+  { href: '/services',                     label: 'All services →' },
 ];
 
 export default function DropdownMenu({ isOpen, toggleMenu }: Props) {

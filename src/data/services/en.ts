@@ -356,7 +356,7 @@ const businessWebsites: ServiceData = {
   heroLabel: 'Business Websites',
   heroStats: [
     { value: 'from 1,500', label: 'PLN for a business site' },
-    { value: '2–4', label: 'weeks delivery time' },
+    { value: '7–14', label: 'days for a simple site' },
     { value: 'SEO', label: 'technical setup included' },
   ],
   whyTitle: 'Why invest in a business website?',

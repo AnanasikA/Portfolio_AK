@@ -159,7 +159,7 @@ export default function OfferPage() {
   }, []);
 
   function toggleExtra(id: string) {
-    setExtras(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+    setExtras(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n; });
   }
 
   const extraPages  = Math.max(0, pages - d.includedPages);
